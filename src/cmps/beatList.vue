@@ -5,7 +5,7 @@
         <ul>
             <li v-for = "beat in beats" :key="beat._id" >
                 ggg
-            <toy-preview :beat="beat"  @deleteBeat="emitDelete"/>
+            <beat-preview :beat="beat"  @deleteBeat="emitDelete"/>
             </li>
         </ul>
     </section>

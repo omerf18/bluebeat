@@ -33,6 +33,8 @@ export const beatStore = {
         async loadBeats({commit}) {
             console.log('ddddddd');
             const beats = await beatService.query();
+            console.log('loadbeats',beats);
+            
             commit({type: 'loadBeats', beats})
         },
         async deleteBeat({commit}, {beatId} ) {
