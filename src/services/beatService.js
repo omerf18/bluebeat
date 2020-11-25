@@ -14,6 +14,7 @@ async function query() {
     try {
         let path = `${BASE_URL}/beat`
         const res = await axios.get(path);
+        console.log(res.data);
         return (res.data);
     } catch (err) {
         // Handle Error Here
