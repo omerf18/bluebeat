@@ -1,24 +1,18 @@
 <template>
-  <div class="home">
-    <h1>dfdfdvfv
-
-    </h1>
-  </div>
+  <section class="home">
+    <img class="beat-hero" src="@/assets/img/bluebeatHero.jpg" />
+    <beat-home-list />
+  </section>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+import beatHomeList from "@/cmps/beatHomeList.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    
+    beatHomeList,
   },
-  created() {
-    this.$store.dispatch({type: 'loadStations'})
-    const stations = this.$store.getters.stations
-    console.log(stations);
-  }
-}
+};
 </script>
+
