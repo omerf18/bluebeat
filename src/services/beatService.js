@@ -1,6 +1,5 @@
-// import HttpService from './HttpService.js';
 import axios from 'axios'
-// const gBeats = require('../../data/database.json')
+
 export const beatService = {
     query,
     getById,
@@ -9,16 +8,13 @@ export const beatService = {
     getEmptyBeat,
 }
 
-function query() {
-    return gBeats
-}
 const BASE_URL = 'http://localhost:3000'
 
- async function query() {
+async function query() {
     try {
         let path = `${BASE_URL}/beat`
         const res = await axios.get(path);
-        return(res.data);
+        return (res.data);
     } catch (err) {
         // Handle Error Here
         console.error(err);
@@ -48,8 +44,6 @@ function getEmptyBeat() {
 
     }
 }
-
-
 
 function _createYouTubeEmbedLink(link) {
     console.log(link, link.includes('http://www.youtube.com/watch?v='));
