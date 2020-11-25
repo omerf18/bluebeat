@@ -1,6 +1,6 @@
   <template>
   <div class="prev-card">
-    <img class="prev-img" src=beat.imgUrl />
+    <img class="prev-img" :src=beat.imgUrl />
     <h2 class="prev-title">{{ beat.name }}</h2>
     <h3 class="prev-genre">{{ beat.genre }}</h3>
     <h3 class="prev-songs-count">{{ beat.songs.length }} Songs in playlist</h3>

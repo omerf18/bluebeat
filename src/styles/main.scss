@@ -7,6 +7,7 @@
 // BASICS
 @import "./basics/layout";
 @import "./basics/helpers";
+@import "./basics/base";
 
 
 //VIEWS
@@ -14,4 +15,5 @@
 
 // CMPS
 @import "./cmps/beatHeader";
+@import "./cmps/beatAdd";
 
