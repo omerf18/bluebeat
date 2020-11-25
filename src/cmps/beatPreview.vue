@@ -1,16 +1,18 @@
   <template>
   <div class="prev-card">
-    <img class="prev-img" src=beat.imgUrl />
-    <h2 class="prev-title">{{ beat.name }}</h2>
-    <h3 class="prev-genre">{{ beat.genre }}</h3>
-    <h3 class="prev-songs-count">{{ beat.songs.length }} Songs in playlist</h3>
-    <div class="flex space-between">
-      <div class="flex">
-        <i class="fas fa-heart"></i>
-        {{ beat.likes }}
+    <img class="prev-img" :src="beat.imgUrl" />
+    <div class="prev-details flex col align-center">
+      <h2 class="prev-name">{{ beat.name }}</h2>
+      <h3 class="prev-genre">{{ beat.genre }}</h3>
+      <h3 class="prev-song-count">{{ beat.songs.length }} Songs in playlist</h3>
+      <div class="prev-info-container flex space-between">
+        <div class="flex">
+          <i class="prev-likes prev- fas fa-heart"></i>
+          <span class="prev-info"> {{ beat.likes }} </span>
+        </div>
+        <span class="prev-info">ONLINE: 25</span>
+        <span class="prev-info">VIEWS: {{ beat.views }}</span>
       </div>
-    <p>  ONLINE: 25 </p>
-    <p>  VIEWS: {{beat.views}} </p>
     </div>
   </div>
 </template>

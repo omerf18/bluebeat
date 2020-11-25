@@ -1,0 +1,43 @@
+.prev-card {
+   background-color: $bgc2;
+   max-width: 200px;
+   max-height: 200px;
+   padding: 4px;
+   color: $font3;
+}
+
+.prev-img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+}
+
+.prev-details{
+    height: 50%;
+    justify-content: space-evenly;
+}
+
+.prev-name {
+    font-size: rem(20px);
+}
+
+.prev-genre {
+    font-size: rem(18px);
+}
+
+.prev-song-count {
+    font-size: rem(16px);
+}
+
+.prev-likes {
+    font-size: rem(12px);
+    color: $logo;
+}
+
+.prev-info {
+    font-size: rem(10px);
+}
+
+.prev-info-container {
+    width: 100%;
+}
