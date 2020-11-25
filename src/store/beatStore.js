@@ -3,53 +3,53 @@ import {beatService} from '../services/beatService.js'
 export const beatStore = {
     strict: true,
     state: {
-        stations: [],
+        beats: [],
     },
     getters: {
-        stations(state) {
-            return state.stations;
+        beats(state) {
+            return state.beats;
         },
     },
     mutations: {
-        loadStations(state, {stations}) {
-            console.log('stations', stations);
-            state.stations = stations
+        loadBeats(state, {beats}) {
+            console.log('beatssssss', beats);
+            state.beats = beats
         },
-        deleteStation(state, {stationId}) {
-            const idx = state.stations.findIndex(station => station._id === stationId);
-            state.stations.splice(idx, 1);
+        deleteBeat(state, {beatId}) {
+            const idx = state.beats.findIndex(beat => beat._id === beatId);
+            state.beats.splice(idx, 1);
         },
-        editStation(state, {station}) {
-            const idx = state.stations.findIndex(currStation => station._id === currStation._id);
-            state.stations.splice(idx, 1, toy)
+        editBeat(state, {beat}) {
+            const idx = state.beats.findIndex(currBeat => beat._id === currBeat._id);
+            state.beats.splice(idx, 1, beat)
           
         },
-        addStation(state, {station}) {
-           state.toys.unshift(station) 
+        addBeat(state, {beat}) {
+           state.beats.unshift(beat) 
           
         }
     },
     actions: {
-        async loadStations({commit}) {
-
-            const stations = await beatService.query();
-            commit({type: 'loadStations', stations})
+        async loadBeats({commit}) {
+            const beats = await beatService.query();
+            console.log('loadbeats',beats);
+            
+            commit({type: 'loadBeats', beats})
         },
-        async deleteToy({commit}, {toyId} ) {
-            await toyService.remove(toyId);
-            commit({type: 'deleteToy', toyId})
+        async deleteBeat({commit}, {beatId} ) {
+            await beatService.remove(beatId);
+            commit({type: 'deleteBeat', beatId})
         },
         getEmpty(){
-            return toyService.getEmpty()
+            return beatService.getEmptyBeat()
         },
-        async editToy({commit}, {toy}) {
-            console.log('toy', toy);
-            const savedToy = await toyService.save(toy)
-            commit({type: 'editToy', toy: savedToy})
+        async editBeat({commit}, {beat}) {
+            const savedBeat = await beatService.save(beat)
+            commit({type: 'editBeat', beat: savedBeat})
         },
-        async addToy({commit}, {toy}) {
-            const savedToy = await toyService.save(toy)
-            commit ({type: 'addToy', toy: savedToy})
+        async addBeat({commit}, {beat}) {
+            const savedBeat = await beatService.save(beat)
+            commit ({type: 'addBeat', beat: savedBeat})
         }
     }
 }

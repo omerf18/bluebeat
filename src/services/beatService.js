@@ -1,5 +1,6 @@
-import HttpService from './HttpService.js';
-const gStations = require('../../data/database.json')
+// import HttpService from './HttpService.js';
+import axios from 'axios'
+// const gBeats = require('../../data/database.json')
 export const beatService = {
     query,
     getById,
@@ -8,16 +9,21 @@ export const beatService = {
     getEmptyBeat,
 }
 
-
-
 function query() {
-    return gStations
+    return gBeats
 }
+const BASE_URL = 'http://localhost:3000'
 
-
-
-
-
+ async function query() {
+    try {
+        let path = `${BASE_URL}/beat`
+        const res = await axios.get(path);
+        return(res.data);
+    } catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
+};
 
 function getBeats() {
     return HttpService.get('beat')

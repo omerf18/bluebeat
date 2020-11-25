@@ -10,9 +10,28 @@ import beatHomeList from "@/cmps/beatHomeList.vue";
 
 export default {
   name: "Home",
+  computed: {
+    logcoChack() {
+    return this.$store.getters.beats
+    }
+   },
+  created() {
+    this.$store.dispatch({type: 'loadBeats'})
+    console.log(this.$store.getters.beats);
+  },
+
   components: {
     beatHomeList,
   },
-};
+  computed: {
+    logcoChack() {
+    return this.$store.getters.beats
+    }
+   },
+  created() {
+    this.$store.dispatch({type: 'loadBeats'})
+    console.log(this.$store.getters.beats);
+  }
+}
 </script>
 
