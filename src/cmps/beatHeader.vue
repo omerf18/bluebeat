@@ -1,6 +1,6 @@
 <template>
     <div class="header flex justify-center align-center space-between">
-        <img class="beat-logo" src="@/assets/img/beatLogo.png" />
+        <img class="beat-logo" src="@/assets/img/beatLogo.png" @click="backHome" />
         <el-input class="header-search" type="text" placeholder="Serch for beat" prefix-icon="el-icon-search" v-model="genre" />
         <div class="flex justify-center align-center space-between">
         <router-link class="header-btn" to="/app">BEATS ||</router-link>
@@ -21,6 +21,11 @@ export default {
       return {
         genre:''
       }
-    }
+    },
+        methods:{
+          backHome(){
+            this.$router.push("/")
+          }
+        }
 };
 </script>
