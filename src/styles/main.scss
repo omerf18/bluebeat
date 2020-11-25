@@ -9,11 +9,10 @@
 @import "./basics/helpers";
 @import "./basics/base";
 
-
 //VIEWS
 @import "./views/beatApp";
 
 // CMPS
 @import "./cmps/beatHeader";
+@import "./cmps/beatPreview";
 @import "./cmps/beatAdd";
-
