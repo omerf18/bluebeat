@@ -1,6 +1,8 @@
 import vue from 'vue'
 import vueRouter from 'vue-router'
 import beatHome from '../views/beatHome.vue'
+import beatApp from '../views/beatApp.vue'
+import beatDetails from '../views/beatDetails.vue'
 
 vue.use(vueRouter)
 
@@ -10,11 +12,16 @@ const routes = [
     name: 'Home',
     component: beatHome
   },
- // {
-    // path: '/about',
-    // name: 'About',
-    // component: 
- // }
+  {
+    path: '/app',
+    name: 'beatapp',
+    component: beatApp
+  },
+  {
+    path: '/beat',
+    name: 'beatDetails',
+    component: beatDetails
+  },
 ]
 
 const router = new vueRouter({
