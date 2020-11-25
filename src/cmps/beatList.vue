@@ -1,16 +1,35 @@
+
 <template>
-    <h1>LIST CMP HERE</h1>
-<<<<<<< HEAD
+    <section>
+      <h1>LIST CMP HERE</h1>
+        <ul>
+            <li v-for = "beat in beats" :key="beat._id" >
+                ggg
+            <toy-preview :beat="beat"  @deleteBeat="emitDelete"/>
+            </li>
+        </ul>
+    </section>
    
     
 
-=======
->>>>>>> d4350566dbd9ac5c59d8864c624d80a3d59189b7
 </template>
 
 <script>
+import beatPreview from '../cmps/beatPreview.vue'
 export default {
   name: "beatList",
+  props: {
+    beats: Array,
+  },
+  methods: {
+   
+  },
+  components: {
+        beatPreview,
+    },
+    created(){
+       
+    }
 }
 
 
@@ -27,10 +46,7 @@ export default {
 //     console.log(this.$store.getters.beats);
 //   }
 </script>
-<<<<<<< HEAD
 
 <style>
 
 </style>
-=======
->>>>>>> d4350566dbd9ac5c59d8864c624d80a3d59189b7

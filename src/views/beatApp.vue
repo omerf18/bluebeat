@@ -10,7 +10,7 @@
 <div>ROCK N ROLL</div>
 <div>LATIN</div>
 </div>
-<beat-list />
+<beat-list :beats="beats"/>
 </section>
 </template>
 
@@ -20,8 +20,17 @@ export default {
   name: 'beatApp',
     components: {
     beatList
+  },
+  computed: {
+    beats() {
+      // console.log(this.$store.getters.beats);
+    return this.$store.getters.beats
+    },
+  },
+  created() {
+    this.$store.dispatch({type: 'loadBeats'})
   }
-};
+}
 </script>
 
 <style>
