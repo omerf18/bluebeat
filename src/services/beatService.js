@@ -13,7 +13,9 @@ const BASE_URL = 'http://localhost:3000'
 async function query() {
     try {
         let path = `${BASE_URL}/beat`
+        // console.log('res.dataaaaaaa');
         const res = await axios.get(path);
+        console.log('res.data', res.data);
         return (res.data);
     } catch (err) {
         // Handle Error Here
