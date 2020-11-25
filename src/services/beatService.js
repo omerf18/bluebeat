@@ -23,8 +23,7 @@ const BASE_URL = 'http://localhost:3000'
     try {
         let path = `${BASE_URL}/beat`
         const res = await axios.get(path);
-        console.log(res);
-        console.log(res.data);
+        return(res.data);
     } catch (err) {
         // Handle Error Here
         console.error(err);
