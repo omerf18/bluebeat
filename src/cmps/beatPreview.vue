@@ -1,4 +1,4 @@
-  <template>
+<template>
   <div class="prev-card">
     <img class="prev-img" :src="beat.imgUrl" />
     <div class="prev-details flex col align-center">
