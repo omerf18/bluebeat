@@ -1,12 +1,23 @@
 import HttpService from './HttpService.js';
-
+const gStations = require('../../data/database.json')
 export const beatService = {
-    getBeats,
+    query,
     getById,
     remove,
     save,
     getEmptyBeat,
 }
+
+
+
+function query(){
+    return gStations
+}
+
+
+
+
+
 
 function getBeats() {
     return HttpService.get('beat')
