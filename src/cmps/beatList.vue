@@ -37,19 +37,6 @@ export default {
     }
 }
 
-
-
-
-
-// computed: {
-//     logcoChack() {
-//     return this.$store.getters.beats
-//     }
-//    },
-//   created() {
-//     this.$store.dispatch({type: 'loadBeats'})
-//     console.log(this.$store.getters.beats);
-//   }
 </script>
 
 <style>
