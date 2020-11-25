@@ -10,8 +10,8 @@ export const beatService = {
 
 
 
- function query(){
-   return gStations
+function query(){
+    return gStations
 }
 
 

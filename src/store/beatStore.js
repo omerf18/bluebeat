@@ -1,5 +1,6 @@
+import {beatService} from '../services/beatService.js'
 
-export const toyStore = {
+export const beatStore = {
     strict: true,
     state: {
         stations: [],
@@ -11,26 +12,28 @@ export const toyStore = {
     },
     mutations: {
         loadStations(state, {stations}) {
+            console.log('stations', stations);
             state.stations = stations
         },
-        deleteStation(state, {toyId}) {
-            const idx = state.toys.findIndex(toy => toy._id === toyId);
-            state.toys.splice(idx, 1);
+        deleteStation(state, {stationId}) {
+            const idx = state.stations.findIndex(station => station._id === stationId);
+            state.stations.splice(idx, 1);
         },
-        editToy(state, {toy}) {
-            const idx = state.toys.findIndex(currToy => toy._id === currToy._id);
-            state.toys.splice(idx, 1, toy)
+        editStation(state, {station}) {
+            const idx = state.stations.findIndex(currStation => station._id === currStation._id);
+            state.stations.splice(idx, 1, toy)
           
         },
-        addToy(state, {toy}) {
-           state.toys.unshift(toy) 
+        addStation(state, {station}) {
+           state.toys.unshift(station) 
           
         }
     },
     actions: {
-        async loadToys({commit}) {
-            const toys = await toyService.query();
-            commit({type: 'loadToys', toys})
+        async loadStations({commit}) {
+
+            const stations = await beatService.query();
+            commit({type: 'loadStations', stations})
         },
         async deleteToy({commit}, {toyId} ) {
             await toyService.remove(toyId);
