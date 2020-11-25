@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+    <h1>dfdfdvfv
+
+    </h1>
   </div>
 </template>
 
@@ -11,6 +14,11 @@ export default {
   name: 'Home',
   components: {
     
+  },
+  created() {
+    this.$store.dispatch({type: 'loadStations'})
+    const stations = this.$store.getters.stations
+    console.log(stations);
   }
 }
 </script>

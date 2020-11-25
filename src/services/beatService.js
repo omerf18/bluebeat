@@ -10,8 +10,8 @@ export const beatService = {
 
 
 
-async function query(){
-    await gStations
+function query(){
+    return gStations
 }
 
 
