@@ -10,7 +10,7 @@ export const beatService = {
 
 
 
-function query(){
+function query() {
     return gStations
 }
 
@@ -39,6 +39,13 @@ function save(beat) {
 
 function getEmptyBeat() {
     return {
-  
+
     }
+}
+
+
+
+function _createYouTubeEmbedLink(link) {
+    console.log(link, link.includes('http://www.youtube.com/watch?v='));
+    return link.replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/');
 }
