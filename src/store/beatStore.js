@@ -30,9 +30,11 @@ export const beatStore = {
         }
     },
     actions: {
-        async loadStations({commit}) {
+        async loadBeats({commit}) {
+            console.log('loadstation');
 
             const stations = await beatService.query();
+            
             commit({type: 'loadStations', stations})
         },
         async deleteToy({commit}, {toyId} ) {
