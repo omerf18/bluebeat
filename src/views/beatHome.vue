@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <h1>dfdfdvfv
-
+    <h1>
+      {{logcoChack}}
     </h1>
   </div>
 </template>
@@ -15,10 +15,14 @@ export default {
   components: {
     
   },
+  computed: {
+    logcoChack() {
+    return this.$store.getters.beats
+    }
+   },
   created() {
-    this.$store.dispatch({type: 'loadStations'})
-    const stations = this.$store.getters.stations
-    console.log(stations);
+    this.$store.dispatch({type: 'loadBeats'})
+    console.log(this.$store.getters.beats);
   }
 }
 </script>
