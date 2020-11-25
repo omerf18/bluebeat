@@ -1,8 +1,17 @@
 .header {
     padding: 5px;
+    background-color: $bgc2;
 }
 .beat-logo{
     height: 100px;
+}
+.header-btn{
+    font-size: rem(20px);
+    text-decoration: none;
+    color: $font2;
+}
+.header-search{
+    max-width: 200px;
 }
 
 .beat-hero {
