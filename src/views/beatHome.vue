@@ -22,7 +22,7 @@ export default {
         type: 'setGenreFilter',
         selectedGenre,
       })
-    }
+    } 
   },
   computed: {
      beats() {
@@ -31,9 +31,18 @@ export default {
      genres() {
       return this.$store.getters.genres
     },
+    //  beatsToDisplay() {
+    //   return this.$store.getters.genres
+    // },
    },
   created() {
-    this.$store.dispatch({type: 'loadBeats'})
+    this.$store.dispatch({type: 'resetFilter'})
+    // this.$store.dispatch({type: 'loadBeats'})
+    //  this.$store.dispatch({
+    //     type: 'setGenreFilter',
+    //     selectedGenre: 'All',
+    //   })
+    
   },
   components: {
     beatHomeList,

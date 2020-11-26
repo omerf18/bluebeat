@@ -4,8 +4,9 @@ export const beatStore = {
     strict: true,
     state: {
         beats: [],
-        genreFilter: 'ALL',
-        genres: ['Hip hop', 'Israeli', 'Dance', 'Pop', 'Rock n roll', 'Latin']
+        filterBy: {genreFilter: 'ALL', beatTitle: ''} ,
+        genres: ['Hip hop', 'Isreali', 'Dance', 'Pop', 'Rock n roll', 'Latin'],
+        // beatFilter: ''
     },
     getters: {
         beats(state) {
@@ -14,8 +15,8 @@ export const beatStore = {
         genres(state){
             return state.genres
         },
-        genreFilter(state){
-            return state.genreFilter
+        filterBy(state){
+            return state.filterBy
         }
     },
     mutations: {
@@ -35,12 +36,21 @@ export const beatStore = {
            state.beats.unshift(beat) 
         },
         setGenreFilter(state,{selectedGenre}){
-            state.genreFilter = selectedGenre
+            state.filterBy.genreFilter = selectedGenre
+        },
+        setTxtFilter(state,{txt}) {
+            state.filterBy.beatTitle = txt
+            // const filterBeat = state.beats.filter(beat => beat.name.toLowerCase().includes(txt))
+            // state.beats = filterBeat
+        },
+        resetFilter(state) {
+            state.filterBy.genreFilter = 'ALL';
+            state.filterBy.beatTitle = '';
         }
     },
     actions: {
         async loadBeats({getters,commit}) {
-            let beats = await beatService.query(getters.genreFilter);
+            let beats = await beatService.query(getters.filterBy);
             commit({type: 'loadBeats', beats})
             
         },
@@ -63,7 +73,19 @@ export const beatStore = {
            console.log('storeee', selectedGenre);
           await state.commit({type:'setGenreFilter', selectedGenre})
             state.dispatch('loadBeats')
-          
+        },
+       async setTxtFilter(state,{txt}){
+           await state.commit({type:'setTxtFilter', txt})
+           state.dispatch('loadBeats')
+           state.commit({type: 'loadBeats', beats})
+        //   await state.commit({type:'setGenreFilter', selectedGenre})
+        //     state.dispatch('loadBeats')
+        },
+        async resetFilter(state) {
+            await state.commit({type: 'resetFilter'})
+            state.dispatch('loadBeats')
+            state.commit({type: 'loadBeats', beats})
+           
         }
-    }
+     } 
 }
