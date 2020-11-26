@@ -91,7 +91,7 @@ export default {
         },
         setImgUrl(imgUrl) {
             console.log("imgUrl emit", imgUrl);
-            this.beat.imgUrl = imgUrl;
+            this.beatForDisplay.imgUrl = imgUrl;
         },
         savePrefs() {
             this.beat.name = this.beatForDisplay.name;

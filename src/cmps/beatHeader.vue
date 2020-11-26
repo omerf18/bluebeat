@@ -1,7 +1,7 @@
 <template>
     <div class="header flex justify-center align-center space-between">
         <img class="beat-logo" src="@/assets/img/beatLogo.png" @click="backHome" />
-        <form @submit.prevent="searchBeat">
+        <form @keyup="searchBeat">
         <el-input class="header-search" type="text" placeholder="Serch for beat" prefix-icon="el-icon-search" v-model="beatToSearch"  />
         </form>
         <div class="flex justify-center align-center space-between">
