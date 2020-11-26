@@ -25,9 +25,16 @@ function getBeats() {
     return HttpService.get('beat')
 }
 
-function getById(beatId) {
-    console.log('beat ID:', beatId);
-    return HttpService.get(`beat/${beatId}`)
+async function getById(beatId) {
+    try {
+        let path = `${BASE_URL}/beat`;
+        const res = await axios.get(path);
+        let beat = res.data.find(beat => beat._id === beatId);
+        return beat;
+    } catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
 }
 
 function remove(beatId) {
@@ -43,9 +50,4 @@ function getEmptyBeat() {
     return {
 
     }
-}
-
-function _createYouTubeEmbedLink(link) {
-    console.log(link, link.includes('http://www.youtube.com/watch?v='));
-    return link.replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/');
 }

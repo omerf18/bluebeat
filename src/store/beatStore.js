@@ -12,7 +12,6 @@ export const beatStore = {
     },
     mutations: {
         loadBeats(state, {beats}) {
-            console.log('beatssssss', beats);
             state.beats = beats
         },
         deleteBeat(state, {beatId}) {
@@ -31,10 +30,7 @@ export const beatStore = {
     },
     actions: {
         async loadBeats({commit}) {
-            console.log('ddddddd');
             const beats = await beatService.query();
-            console.log('loadbeats',beats);
-            
             commit({type: 'loadBeats', beats})
         },
         async deleteBeat({commit}, {beatId} ) {
