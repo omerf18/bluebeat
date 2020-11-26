@@ -1,5 +1,5 @@
 <template>
-  <div class="prev-card">
+  <div class="prev-card" @click="beatPrev(beat._id)">
     <img class="prev-img" :src="beat.imgUrl" />
     <div class="prev-details flex col align-center">
       <h2 class="prev-name">{{ beat.name }}</h2>
@@ -20,8 +20,11 @@
 export default {
   props: ["beat"],
   name: "beatPreview",
+  methods: {
+    beatPrev(beatId) {
+      this.$router.push(`/details/${beatId}`);
+    },
+  },
 };
 </script>
 
-<style>
-</style>

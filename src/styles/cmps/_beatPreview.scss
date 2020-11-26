@@ -1,9 +1,10 @@
 .prev-card {
-   background-color: $bgc2;
-   max-width: 200px;
-   max-height: 200px;
-   padding: 4px;
-   color: $font3;
+    background-color: $bgc2;
+    max-width: 200px;
+    height: 200px;
+    padding: 4px;
+    color: $font3;
+    cursor: pointer;
 }
 
 .prev-img {
@@ -12,7 +13,7 @@
     object-fit: cover;
 }
 
-.prev-details{
+.prev-details {
     height: 50%;
     justify-content: space-evenly;
 }
@@ -40,4 +41,17 @@
 
 .prev-info-container {
     width: 100%;
+}
+
+.txt-deco {
+    text-decoration: none;
+    color: blanchedalmond;
+    display: inline-block;
+    & a {
+        text-decoration: none;
+    }
+}
+
+li a {
+    text-decoration: none;
 }
