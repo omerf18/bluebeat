@@ -1,13 +1,11 @@
 <template>
   <div id="app">
-    <section v-if="!isLoading">
-      <label for="imgUploader"> <img src="../assets/img/uploadImg.png" alt=""> </label>
+    <section v-if="!isLoading && !imgUrl">
+      <label for="imgUploader"> <img class="img-uploaded" src="../assets/img/uploadImg.png" alt=""> </label>
       <input class="img-upload" type="file" name="img-uploader" id="imgUploader" @change="onUploadImg">  
     </section>
-    <img class="loader" v-else src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif" alt="">
-    <div class="img-list">
-      <img v-for="(imgUrl, idx) in imgUrls" :src="imgUrl" :key="idx" alt="img...">
-    </div>
+    <img class="loader" v-if="isLoading && !imgUrl" src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif" alt="">
+    <img v-if="!isLoading && imgUrl" class="img-uploaded" :src="imgUrl">
   </div>
 </template>
 
@@ -18,16 +16,16 @@ export default {
   data() {
     return {
       isLoading: false,
-      imgUrls: []
+      imgUrl: null
     }
   },
   methods: {
     async onUploadImg(ev) {
       this.isLoading = true;
       const res = await uploadImg(ev);
+      this.imgUrl = res.url
+      this.$emit('getImgUrl',res.url)
       console.log('res:', res.url)
-      this.imgUrls.push(res.url)
-      // this.toyToEdit.imgUrl = res.url;
       this.isLoading = false;
     }
   },

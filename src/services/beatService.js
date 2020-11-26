@@ -4,7 +4,6 @@ export const beatService = {
     query,
     getById,
     save,
-    getEmptyBeat,
     removeBeat
 }
 
@@ -54,7 +53,22 @@ async function query(filterBy) {
 //     }
 // };
 
+function save(beat) {
+    const savedBeat = (beat._id) ? _update(beat) : _add(beat)
+    return savedBeat;
 
+}
+ async function _add(beat) {
+     try{
+         const res = await axios.post(`${BASE_URL}/beat`, beat)
+         console.log(res,' checkin add');
+          let addBeat = res.data
+          return addBeat
+        } catch (err) {
+            console.error(err);
+        }
+
+}
 
 
 function _buildQuery(genreFilter) {
@@ -89,8 +103,12 @@ async function removeBeat(beatId) {
         console.error(err);
     }
 }
- 
-async function removeSong(songId) {
+
+// function save(beat) {
+//     if (!beat._id) return HttpService.post(`beat`, beat)
+//     return HttpService.put(`beat/${beat._id}`, beat)
+// }
+function removeSong(songId) {
     try {
         await axios.delete(`${BASE_URL}/beat/song/:${songId}`)
     } catch (err) {
@@ -105,13 +123,9 @@ async function removeSong(songId) {
 //     return HttpService.delete(`beat/${beatId}`)
 // }
 
-function save(beat) {
-    if (!beat._id) return HttpService.post(`beat`, beat)
-    return HttpService.put(`beat/${beat._id}`, beat)
-}
+// function save(beat) {
+//     if (!beat._id) return HttpService.post(`beat`, beat)
+//     return HttpService.put(`beat/${beat._id}`, beat)
+// }
 
-function getEmptyBeat() {
-    return {
 
-    }
-}
