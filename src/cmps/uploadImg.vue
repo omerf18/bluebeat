@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <template v-if="!isLoading">
+    <section v-if="!isLoading">
       <label for="imgUploader"> <img src="../assets/img/uploadImg.png" alt=""> </label>
       <input class="img-upload" type="file" name="img-uploader" id="imgUploader" @change="onUploadImg">  
-    </template>
+    </section>
     <img class="loader" v-else src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif" alt="">
     <div class="img-list">
       <img v-for="(imgUrl, idx) in imgUrls" :src="imgUrl" :key="idx" alt="img...">

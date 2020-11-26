@@ -16,6 +16,8 @@ export default {
 
   computed: {
      beats() {
+       console.log(this.$store.getters.beats);
+       
       return this.$store.getters.beats
     },
      genres() {

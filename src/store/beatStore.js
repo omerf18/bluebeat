@@ -11,6 +11,9 @@ export const beatStore = {
         beats(state) {
             return state.beats;
         },
+        genres(state){
+            return state.genres
+        },
         genreFilter(state){
             return state.genreFilter
         }
