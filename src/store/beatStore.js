@@ -73,12 +73,12 @@ export const beatStore = {
         async setTxtFilter(state, { txt }) {
             await state.commit({ type: 'setTxtFilter', txt })
             state.dispatch('loadBeats')
-            state.commit({ type: 'loadBeats', beats })
+         
         },
         async resetFilter(state) {
             await state.commit({ type: 'resetFilter' })
             state.dispatch('loadBeats')
-            state.commit({ type: 'loadBeats', beats })
+          
 
         }
     }
