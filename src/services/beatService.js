@@ -5,23 +5,12 @@ export const beatService = {
     getById,
     remove,
     save,
-    getEmptyBeat,
+  
 }
 
 const BASE_URL = 'http://localhost:3000'
 
-// async function query(genreFilter) {
-//     try {
-//         let path =`${BASE_URL}/beat`
-//      const qst =_buildQuery(genreFilter)
-//      console.log('qst',qst);
-//      let pathf =`${BASE_URL}/beat${qst}`
-//         const res = await axios.get(path);
-//         return (res.data);
-//     } catch (err) {
-//         console.error(err);
-//     }
-// };
+
 async function query(genreFilter) {
     try {
         let path = `${BASE_URL}/beat`
@@ -35,7 +24,21 @@ async function query(genreFilter) {
     }
 };
 
+function save(beat) {
+    const savedBeat = (beat._id) ? _update(beat) : _add(beat)
+    return savedBeat;
 
+}
+ async function _add(beat) {
+     try{
+         const res = await axios.post(`${BASE_URL}/beat`, beat)
+          let addBeat = res.data
+          return addBeat
+        } catch (err) {
+            console.error(err);
+        }
+
+}
 
 
 function _buildQuery(genreFilter) {
@@ -64,13 +67,9 @@ function remove(beatId) {
     return HttpService.delete(`beat/${beatId}`)
 }
 
-function save(beat) {
-    if (!beat._id) return HttpService.post(`beat`, beat)
-    return HttpService.put(`beat/${beat._id}`, beat)
-}
+// function save(beat) {
+//     if (!beat._id) return HttpService.post(`beat`, beat)
+//     return HttpService.put(`beat/${beat._id}`, beat)
+// }
 
-function getEmptyBeat() {
-    return {
 
-    }
-}

@@ -25,7 +25,6 @@
     },
     methods:{
         setGenreFilter(){
-            console.log('selectedGenre',this.selectedGenre);
             let genreFilterCopy =JSON.parse(JSON.stringify(this.selectedGenre));
             this.$emit("setGenre",genreFilterCopy)
            

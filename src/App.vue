@@ -12,6 +12,9 @@ export default {
   components: {
     beatHeader,
   },
+   created() {
+    this.$store.dispatch({type: 'loadBeats'})
+  },
 };
 </script>
 
