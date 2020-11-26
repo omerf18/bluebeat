@@ -28,7 +28,7 @@ async function query(genreFilter) {
         const res = await axios.get(path);
         let beats = res.data
         if (genreFilter === 'ALL') return beats
-        var filteredBeats = beats.filter(beat => beat.genre === genreFilter)
+        var filteredBeats = beats.filter(beat => beat.genre.toLowerCase() === genreFilter.toLowerCase())
         return filteredBeats;
     } catch (err) {
         console.error(err);
