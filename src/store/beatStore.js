@@ -4,15 +4,18 @@ export const beatStore = {
     strict: true,
     state: {
         beats: [],
+        genres: ['Hip hop', 'Isreali', 'Dance', 'Pop', 'Rock n roll', 'Latin']
     },
     getters: {
         beats(state) {
             return state.beats;
         },
+        genres(state) {
+            return state.genres;
+        },
     },
     mutations: {
         loadBeats(state, {beats}) {
-            console.log('beatssssss', beats);
             state.beats = beats
         },
         deleteBeat(state, {beatId}) {
@@ -31,10 +34,7 @@ export const beatStore = {
     },
     actions: {
         async loadBeats({commit}) {
-            console.log('ddddddd');
             const beats = await beatService.query();
-            console.log('loadbeats',beats);
-            
             commit({type: 'loadBeats', beats})
         },
         async deleteBeat({commit}, {beatId} ) {
