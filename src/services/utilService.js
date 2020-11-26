@@ -11,7 +11,7 @@ function getEmpty() {
         likes: 10,
         name: '', 
         description:'',
-        imgUrl:'',
+        imgUrl:'https://res.cloudinary.com/bluebeat/image/upload/v1606408214/bluebeat/qvnmmdyspo3ceez5vjoj.png',
         tags:[
             'love',
             'happy'
