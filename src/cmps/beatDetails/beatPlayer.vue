@@ -23,7 +23,6 @@ export default {
   name: "beatPlayer",
   computed: {
     currSongUrl() {
-      console.log("currrr", this.currSong);
       return `https://www.youtube.com/embed/${this.currSong.youtubeId}`;
     },
   },
