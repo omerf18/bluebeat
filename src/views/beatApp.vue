@@ -9,7 +9,7 @@
 import beatList from "@/cmps/beatList.vue";
 import genreFilter from "@/cmps/genreFilter.vue";
 export default {
-    name: "beatApp",
+    name: "beat",
     data() {
         return {};
     },

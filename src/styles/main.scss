@@ -12,13 +12,15 @@
 //VIEWS
 @import "./views/beatApp";
 @import "./views/beatHome";
-@import "./cmps/beatAdd.scss";
+@import "./views/beatDetails.scss";
 
 // CMPS
 @import "./cmps/beatHeader";
 @import "./cmps/beatPreview";
 @import "./cmps/beatAdd";
 @import "./cmps/beatApp";
+@import "./cmps/beatAdd.scss";
 @import "./cmps/beat-info";
 @import "./cmps/beatPlayer";
+@import "./cmps/beatPlaylist";
 @import "./cmps/beatChat";

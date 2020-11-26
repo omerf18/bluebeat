@@ -10,13 +10,10 @@
       ></iframe>
       <div id="ytplayer"></div>
     </div>
-    <div>
+    <div class="song-desc">
       <h2>{{ currSong.title }}</h2>
-      <div class="flex space-between">
-        <h3>GENRE: {{ currSong.genre }}</h3>
-        <h5>{{ currSong.duration }}</h5>
+        <h4>{{ currSong.duration }}</h4>
       </div>
-    </div>
   </section>
 </template>
 

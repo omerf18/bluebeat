@@ -1,0 +1,19 @@
+.song-container {
+    width: 100%;
+    height: 50px;
+    background-color: $bgc2;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+.song-img {
+    padding: 4px;
+    height: 95%;
+    width: 6%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.song-delete {
+    padding: 0 10px 0 50px;
+}

@@ -45,7 +45,7 @@ export const beatStore = {
             
         },
         async deleteBeat({commit}, {beatId} ) {
-            await beatService.remove(beatId);
+            await beatService.removeBeat(beatId);
             commit({type: 'deleteBeat', beatId})
         },
         getEmpty(){
@@ -60,6 +60,7 @@ export const beatStore = {
             commit ({type: 'addBeat', beat: savedBeat})
         },
        async setGenreFilter(state,{selectedGenre}){
+           console.log('storeee', selectedGenre);
           await state.commit({type:'setGenreFilter', selectedGenre})
             state.dispatch('loadBeats')
           

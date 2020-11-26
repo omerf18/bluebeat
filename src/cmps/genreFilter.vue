@@ -20,7 +20,7 @@
       },
     data () {
       return {
-        selectedGenre:'ALL'
+        selectedGenre:''
       };
     },
     methods:{
@@ -31,6 +31,7 @@
         }
     },
     created(){
+        this.selectedGenre = this.$store.getters.genreFilter
         this.setGenreFilter()
     }
   }

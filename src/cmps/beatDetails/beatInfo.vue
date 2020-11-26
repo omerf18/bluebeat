@@ -1,20 +1,21 @@
 <template>
-  <section class="beat-info flex">
+  <section v-if="beat" class="beat-info flex space-between">
     <div class="user-profile">
       <img class="profile-img" :src="beat.createdBy.imgUrl" />
       <h4>{{ beat.createdBy.userName }}</h4>
     </div>
-    <div>
-      <h5>{{ beat.name }}</h5>
-      <h6>{{ beat.genre }}</h6>
-      <p>beat.description</p>
+    <div class="beat-desc">
+      <h2>{{ beat.name }}</h2>
+      <h3>{{ beat.genre }}</h3>
+      <h4>{{beat.description}}</h4>
     </div>
-    <div class="flex">
+    <div class="views-container beat-desc">
       <div class="flex">
-        <h6>{{ beat.likes }}</h6>
+          <i class="like-btn far fa-heart"></i>
+        <h5>{{ beat.likes }}</h5>
       </div>
-      <h6>VISITS: {{ beat.visits }}</h6>
-      <h6>ONLINE: 2</h6>
+      <h5>VISITS: {{ beat.visits }}</h5>
+      <h5>ONLINE: 2</h5>
     </div>
   </section>
 </template>
@@ -25,6 +26,3 @@ export default {
   name: "beatInfo",
 };
 </script>
-
-<style>
-</style>
