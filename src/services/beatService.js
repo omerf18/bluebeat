@@ -92,9 +92,9 @@ function removeSong(songId) {
 //     return HttpService.delete(`beat/${beatId}`)
 // }
 
-function save(beat) {
-    if (!beat._id) return HttpService.post(`beat`, beat)
-    return HttpService.put(`beat/${beat._id}`, beat)
-}
+// function save(beat) {
+//     if (!beat._id) return HttpService.post(`beat`, beat)
+//     return HttpService.put(`beat/${beat._id}`, beat)
+// }
 
 
