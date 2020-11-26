@@ -12,8 +12,8 @@
     </div>
     <div class="song-desc">
       <h2>{{ currSong.title }}</h2>
-        <h4>{{ currSong.duration }}</h4>
-      </div>
+      <h4>{{ currSong.duration }}</h4>
+    </div>
   </section>
 </template>
 
