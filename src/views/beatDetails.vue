@@ -4,7 +4,11 @@
       <div class="main-details">
         <beat-info class="beat-info-cmp" :beat="beat" />
         <beatPlayer class="beat-player-cmp" :currSong="currSong" />
-        <beatPlaylist class="beat-playerlist-cmp" :playlist="playlist" />
+        <beatPlaylist
+          class="beat-playerlist-cmp"
+          :playlist="playlist"
+          @playNextSong="song"
+        />
       </div>
       <div class="chat-container">
         <beatChat class="beat-chat-cmp" />
@@ -24,19 +28,24 @@ export default {
   data() {
     return {
       beat: null,
+      songIdx: 0,
     };
   },
   computed: {
     currSong() {
       if (!this.beat) return;
-      return this.beat.songs[0];
+      return this.beat.songs[this.songIdx];
     },
     playlist() {
       if (!this.beat) return;
       return this.beat.songs;
     },
   },
-  methods: {},
+  methods: {
+    song(songIdx) {
+      this.songIdx = songIdx;
+    },
+  },
   async created() {
     const beatId = this.$route.params.id;
     let beat = await beatService.getById(beatId);
