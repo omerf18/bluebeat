@@ -1,5 +1,5 @@
 <template>
-<section class=" beat-add flex col justify-center align-center">
+<section class="beat-add flex main-layout col justify-center align-center">
   <form>
     <el-input type="text" v-model="beat.name" placeholder="Beat name"></el-input>
     <el-input type="textarea" :rows="2" v-model="beat.discription" placeholder="Discription"></el-input>

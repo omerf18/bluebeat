@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <beat-info :beat="beat" />
-    <beatPlayer :currSong="currSong" />
-  </div>
+  <section class="main-layout">
+    <beat-info class="beat-info-cmp" :beat="beat" />
+    <beatPlayer class="beat-player-cmp" :currSong="currSong" />
+  </section>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <beatHeader />
-    <router-view class="main-layout" />
+    <router-view />
   </div>
 </template>,
 

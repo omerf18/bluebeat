@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="main-layout">
         <genre-filter @setGenre="setGenreFilter" class="flex align-center justify-center"></genre-filter>
         <beat-list :beats="beats" />
     </section>

@@ -3,7 +3,7 @@
     <img class="beat-hero" src="@/assets/img/bluebeatHero.jpg" />
     <!-- <template v-for="genre in genres"> -->
     <!-- <beat-home-list   :genre="genre" :beats="beats" :key="genre" /> -->
-    <beat-home-list v-for="genre in genres"  :genre="genre" :beats="beats" :key="genre" />
+    <beat-home-list class="main-layout" v-for="genre in genres"  :genre="genre" :beats="beats" :key="genre" />
     <!-- </template> -->
   </section>
 </template>

@@ -2,12 +2,21 @@
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    background-color: $bgc2;
+html {
+    color: $font3;
 }
 
-h1, h2, h3, h4, h5, h6 {
+body {
+    margin: 0;
+    background-color: $bgc1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0;
     font-weight: normal;
 }
@@ -16,22 +25,15 @@ h1 {
     font-size: em(66px, 16px);
 }
 
-p {
-    margin: 0 0 1em;
-    max-width: 54ch;
-}
-img{
-    cursor: pointer;
-}
-
-ul{
+ul {
     list-style: none;
     padding: 0;
 }
-.img-upload{
+.img-upload {
     height: 0;
     width: 0;
 }
-button{
-cursor: pointer;
+
+button {
+    cursor: pointer;
 }
