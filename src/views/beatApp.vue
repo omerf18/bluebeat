@@ -1,33 +1,40 @@
 <template>
-<section>
-<div class="beat-filter flex">
-<div>ALL</div>
-<div>MOST VIEWED</div>
-<div>HIP-HOP</div>
-<div>ISRAELI</div>
-<div>DANCE</div>
-<div>POP</div>
-<div>ROCK N ROLL</div>
-<div>LATIN</div>
-</div>
-<beat-list :beats="beats"/>
-</section>
+    <section>
+        <genre-filter @setGenre="setGenreFilter" class="flex align-center justify-center"></genre-filter>
+        <beat-list :beats="beats" />
+    </section>
 </template>
 
 <script>
 import beatList from "@/cmps/beatList.vue";
+import genreFilter from "@/cmps/genreFilter.vue";
 export default {
-  name: 'beatApp',
-    components: {
-    beatList
-  },
-  computed: {
-    beats() {
-      return this.$store.getters.beats
+    name: "beatApp",
+    data() {
+        return {};
     },
-  },
-  created() {
-    this.$store.dispatch({type: 'loadBeats'})
-  }
-}
+    methods: {
+     setGenreFilter(genre){
+        this.$store.dispatch({
+                type: "loadBeats",
+                selectedGenre: genre
+            })
+     }
+    },
+    components: {
+        beatList,
+        genreFilter,
+    },
+    computed: {
+        beats() {
+            return this.$store.getters.beats;
+        },
+        genreFilter() {
+            return this.$store.getters.genreFilter;
+        },
+    },
+    created() {
+        this.$store.dispatch({ type: "loadBeats" });
+    },
+};
 </script>
