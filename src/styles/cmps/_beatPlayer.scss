@@ -1,8 +1,15 @@
 .beat-player {
-    padding: 20px;
+   background-color: $bgc2;
 }
 
 .beat-frame {
 width: 40%;
 }
 
+.song-desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 60%;
+}

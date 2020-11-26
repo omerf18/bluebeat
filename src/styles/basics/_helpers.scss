@@ -6,6 +6,10 @@
 
 // .ratio-poster { @include aspect-ratio(100, 150); }
 
+.icon {
+    cursor: pointer;
+}
+
 .flex {
     display: flex;
     &.justify-center {
