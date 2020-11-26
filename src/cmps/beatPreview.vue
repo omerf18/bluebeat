@@ -22,7 +22,7 @@ export default {
   name: "beatPreview",
   methods: {
     beatPrev(beatId) {
-      this.$router.push(`/details/${beatId}`);
+      this.$router.push(`/beat/${beatId}`);
     },
   },
 };
