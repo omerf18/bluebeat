@@ -32,7 +32,7 @@
         }
     },
     created(){
-        this.selectedGenre = this.$store.getters.genreFilter
+        this.selectedGenre = this.$store.getters.filterBy.genreFilter
         this.setGenreFilter()
     }
   }

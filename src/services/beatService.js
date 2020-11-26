@@ -22,18 +22,37 @@ const BASE_URL = 'http://localhost:3000'
 //         console.error(err);
 //     }
 // };
-async function query(genreFilter) {
+async function query(filterBy) {
     try {
         let path = `${BASE_URL}/beat`
         const res = await axios.get(path);
         let beats = res.data
-        if (genreFilter === 'ALL') return beats
-        var filteredBeats = beats.filter(beat => beat.genre.toLowerCase() === genreFilter.toLowerCase())
+        if (filterBy.genreFilter === 'ALL' && filterBy.beatTitle === '') return beats
+        var filteredBeats = beats
+        console.log(filteredBeats, 'filteredBeatsfilteredBeats');
+        if (filterBy.genreFilter !== 'ALL'){
+            filteredBeats = beats.filter(beat => beat.genre.toLowerCase() === filterBy.genreFilter.toLowerCase())
+        }
+        if (filterBy.beatTitle !== '') {
+            filteredBeats = filteredBeats.filter(beat => beat.name.toLowerCase().includes(filterBy.beatTitle))
+        }
         return filteredBeats;
     } catch (err) {
         console.error(err);
     }
 };
+// async function query(genreFilter) {
+//     try {
+//         let path = `${BASE_URL}/beat`
+//         const res = await axios.get(path);
+//         let beats = res.data
+//         if (genreFilter === 'ALL') return beats
+//         var filteredBeats = beats.filter(beat => beat.genre.toLowerCase() === genreFilter.toLowerCase())
+//         return filteredBeats;
+//     } catch (err) {
+//         console.error(err);
+//     }
+// };
 
 
 
@@ -62,18 +81,18 @@ async function getById(beatId) {
 }
 
 
-function removeBeat(beatId) {
+async function removeBeat(beatId) {
     try {
-        return axios.delete(`${BASE_URL}/beat${beatId}`)
+        await axios.delete(`${BASE_URL}/beat${beatId}`)
     } catch (err) {
         // Handle Error Here
         console.error(err);
     }
 }
-
-function removeSong(songId) {
+ 
+async function removeSong(songId) {
     try {
-        return axios.delete(`${BASE_URL}/beat/song${songId}`)
+        await axios.delete(`${BASE_URL}/beat/song/:${songId}`)
     } catch (err) {
         // Handle Error Here
         console.error(err);
