@@ -4,8 +4,8 @@ export const beatStore = {
     strict: true,
     state: {
         beats: [],
-        genreFilter: 'ALL'
-
+        genreFilter: 'ALL',
+        genres: ['Hip hop', 'Isreali', 'Dance', 'Pop', 'Rock n roll', 'Latin']
     },
     getters: {
         beats(state) {
@@ -17,7 +17,6 @@ export const beatStore = {
     },
     mutations: {
         loadBeats(state, {beats}) {
-            console.log('beatssssss', beats);
             state.beats = beats
         },
         deleteBeat(state, {beatId}) {
@@ -60,12 +59,12 @@ export const beatStore = {
             const savedBeat = await beatService.save(beat)
             commit ({type: 'addBeat', beat: savedBeat})
         },
-       async setGenreFilter(state,{selectedGenre}){
-           let beats = await state.dispatch('loadBeats',selectedGenre)
-           console.log('setGenre',beats);
-             state.commit({type: 'loadBeats', beats})
-            // state.commit({type:'setGenreFilter', selectedGenre})
+    //    async setGenreFilter(state,{selectedGenre}){
+    //        let beats = await state.dispatch('loadBeats',selectedGenre)
+    //        console.log('setGenre',beats);
+    //          state.commit({type: 'loadBeats', beats})
+    //         // state.commit({type:'setGenreFilter', selectedGenre})
           
-        }
+    //     }
     }
 }

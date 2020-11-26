@@ -1,7 +1,10 @@
 <template>
   <section class="home">
     <img class="beat-hero" src="@/assets/img/bluebeatHero.jpg" />
-    <beat-home-list />
+    <!-- <template v-for="genre in genres"> -->
+    <!-- <beat-home-list   :genre="genre" :beats="beats" :key="genre" /> -->
+    <beat-home-list v-for="genre in genres"  :genre="genre" :beats="beats" :key="genre" />
+    <!-- </template> -->
   </section>
 </template>
 
@@ -10,28 +13,21 @@ import beatHomeList from "@/cmps/beatHomeList.vue";
 
 export default {
   name: "Home",
+
   computed: {
-    logcoChack() {
-    return this.$store.getters.beats
-    }
+     beats() {
+      return this.$store.getters.beats
+    },
+     genres() {
+      return this.$store.getters.genres
+    },
    },
   created() {
     this.$store.dispatch({type: 'loadBeats'})
-    console.log(this.$store.getters.beats);
   },
-
   components: {
     beatHomeList,
   },
-  computed: {
-    logcoChack() {
-    return this.$store.getters.beats
-    }
-   },
-  created() {
-    this.$store.dispatch({type: 'loadBeats'})
-    console.log(this.$store.getters.beats);
-  }
 }
 </script>
 
