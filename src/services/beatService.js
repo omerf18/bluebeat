@@ -24,14 +24,12 @@ const BASE_URL = 'http://localhost:3000'
 // };
 async function query(genreFilter) {
     try {
-        console.log('service', genreFilter);
-        let path =`${BASE_URL}/beat`
+        let path = `${BASE_URL}/beat`
         const res = await axios.get(path);
         let beats = res.data
-        if(genreFilter==='ALL')return beats
-        var filterdBeats=beats.filter(beat=>beat.genre === genreFilter)
-        console.log(filterdBeats, 'filterrrrr service');
-        return filterdBeats;
+        if (genreFilter === 'ALL') return beats
+        var filteredBeats = beats.filter(beat => beat.genre === genreFilter)
+        return filteredBeats;
     } catch (err) {
         console.error(err);
     }
@@ -40,9 +38,9 @@ async function query(genreFilter) {
 
 
 
-function _buildQuery(genreFilter){
-    const str =`?genre=${genreFilter}`
-    console.log('path',str);
+function _buildQuery(genreFilter) {
+    const str = `?genre=${genreFilter}`
+    console.log('path', str);
     return str
 }
 

@@ -16,7 +16,7 @@ export default {
     methods: {
      setGenreFilter(genre){
         this.$store.dispatch({
-                type: "loadBeats",
+                type: "setGenreFilter",
                 selectedGenre: genre
             })
      }

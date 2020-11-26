@@ -32,15 +32,12 @@ export const beatStore = {
            state.beats.unshift(beat) 
         },
         setGenreFilter(state,{selectedGenre}){
-            console.log('genreFilter',selectedGenre);
             state.genreFilter = selectedGenre
         }
     },
     actions: {
-        async loadBeats({commit},{selectedGenre}) {
-            console.log('genrefilter load',selectedGenre);
-            let beats = await beatService.query(selectedGenre);
-            commit({type:'setGenreFilter', selectedGenre})
+        async loadBeats({getters,commit}) {
+            let beats = await beatService.query(getters.genreFilter);
             commit({type: 'loadBeats', beats})
             
         },
@@ -59,12 +56,10 @@ export const beatStore = {
             const savedBeat = await beatService.save(beat)
             commit ({type: 'addBeat', beat: savedBeat})
         },
-    //    async setGenreFilter(state,{selectedGenre}){
-    //        let beats = await state.dispatch('loadBeats',selectedGenre)
-    //        console.log('setGenre',beats);
-    //          state.commit({type: 'loadBeats', beats})
-    //         // state.commit({type:'setGenreFilter', selectedGenre})
+       async setGenreFilter(state,{selectedGenre}){
+          await state.commit({type:'setGenreFilter', selectedGenre})
+            state.dispatch('loadBeats')
           
-    //     }
+        }
     }
 }
