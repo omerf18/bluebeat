@@ -3,9 +3,9 @@ import axios from 'axios'
 export const beatService = {
     query,
     getById,
-    remove,
     save,
     getEmptyBeat,
+    removeBeat
 }
 
 const BASE_URL = 'http://localhost:3000'
@@ -48,6 +48,7 @@ function getBeats() {
     return HttpService.get('beat')
 }
 
+
 async function getById(beatId) {
     try {
         let path = `${BASE_URL}/beat`;
@@ -60,9 +61,30 @@ async function getById(beatId) {
     }
 }
 
-function remove(beatId) {
-    return HttpService.delete(`beat/${beatId}`)
+
+function removeBeat(beatId) {
+    try {
+        return axios.delete(`${BASE_URL}/beat${beatId}`)
+    } catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
 }
+
+function removeSong(songId) {
+    try {
+        return axios.delete(`${BASE_URL}/beat/song${songId}`)
+    } catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
+}
+
+
+
+// function remove(beatId) {
+//     return HttpService.delete(`beat/${beatId}`)
+// }
 
 function save(beat) {
     if (!beat._id) return HttpService.post(`beat`, beat)

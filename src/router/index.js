@@ -15,7 +15,7 @@ const routes = [
   },
   {
     path: '/app',
-    name: 'beatapp',
+    name: 'beatApp',
     component: beatApp
   },
   {

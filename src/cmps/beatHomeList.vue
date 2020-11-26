@@ -34,8 +34,9 @@ export default {
   },
   methods: {
     showBeatsByGener(){
-      console.log(this.beats);
-      console.log(this.genre);
+       this.$emit('filter', this.genre)
+      // console.log(this.beats);
+      // console.log(this.genre);
        this.$router.push('/app')
     }
   },
