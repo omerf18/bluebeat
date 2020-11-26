@@ -1,10 +1,10 @@
 <template>
-	<el-select v-model="selectedGenere" placeholder="genre" >
+	<el-select @change="setGenre" v-model="selectedGenre" placeholder="genre" >
 		<el-option
-			v-for="genere in generes"
-			:key="genere.value"
-			:label="genere.label"
-			:value="genere.value"
+			v-for="genre in genres"
+			:key="genre.value"
+			:label="genre.label"
+			:value="genre.value"
 		>
 		</el-option>
 	</el-select>
@@ -13,15 +13,17 @@
 <script>
 export default {
 	props: {
-		 generes:Array
+		 genres:Array
 	},
 	data() {
 		return {
-			selectedGenere:''
+			selectedGenre:''
 		};
 	},
 	methods: {
-	
+	setGenre(){
+		this.$emit('setGenre',this.selectedGenre)
+	}
     },
     created(){
       

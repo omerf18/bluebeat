@@ -10,13 +10,20 @@ export const beatService = {
 const BASE_URL = 'http://localhost:3000'
 
 
-async function query(genreFilter) {
+async function query(filterBy) {
     try {
         let path = `${BASE_URL}/beat`
         const res = await axios.get(path);
         let beats = res.data
-        if (genreFilter === 'ALL') return beats
-        var filteredBeats = beats.filter(beat => beat.genre.toLowerCase() === genreFilter.toLowerCase())
+        if (filterBy.genreFilter === 'ALL' && filterBy.beatTitle === '') return beats
+        var filteredBeats = beats
+        console.log(filteredBeats, 'filteredBeatsfilteredBeats');
+        if (filterBy.genreFilter !== 'ALL') {
+            filteredBeats = beats.filter(beat => beat.genre.toLowerCase() === filterBy.genreFilter.toLowerCase())
+        }
+        if (filterBy.beatTitle !== '') {
+            filteredBeats = filteredBeats.filter(beat => beat.name.toLowerCase().includes(filterBy.beatTitle))
+        }
         return filteredBeats;
     } catch (err) {
         console.error(err);
@@ -28,18 +35,17 @@ function save(beat) {
     return savedBeat;
 
 }
- async function _add(beat) {
-     try{
-         const res = await axios.post(`${BASE_URL}/beat`, beat)
-         console.log(res,' checkin add');
-          let addBeat = res.data
-          return addBeat
-        } catch (err) {
-            console.error(err);
-        }
+async function _add(beat) {
+    try {
+        const res = await axios.post(`${BASE_URL}/beat`, beat)
+        console.log(res, ' checkin add');
+        let addBeat = res.data
+        return addBeat
+    } catch (err) {
+        console.error(err);
+    }
 
 }
-
 
 function _buildQuery(genreFilter) {
     const str = `?genre=${genreFilter}`
@@ -50,7 +56,6 @@ function _buildQuery(genreFilter) {
 function getBeats() {
     return HttpService.get('beat')
 }
-
 
 async function getById(beatId) {
     try {
@@ -64,10 +69,9 @@ async function getById(beatId) {
     }
 }
 
-
-function removeBeat(beatId) {
+async function removeBeat(beatId) {
     try {
-        return axios.delete(`${BASE_URL}/beat${beatId}`)
+        axios.delete(`${BASE_URL}/beat${beatId}`)
     } catch (err) {
         // Handle Error Here
         console.error(err);
@@ -80,7 +84,7 @@ function removeBeat(beatId) {
 // }
 function removeSong(songId) {
     try {
-        return axios.delete(`${BASE_URL}/beat/song${songId}`)
+        axios.delete(`${BASE_URL}/beat/song/:${songId}`)
     } catch (err) {
         // Handle Error Here
         console.error(err);
