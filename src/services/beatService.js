@@ -110,7 +110,7 @@ async function removeBeat(beatId) {
 // }
 function removeSong(songId) {
     try {
-        await axios.delete(`${BASE_URL}/beat/song/:${songId}`)
+        axios.delete(`${BASE_URL}/beat/song/:${songId}`)
     } catch (err) {
         // Handle Error Here
         console.error(err);
