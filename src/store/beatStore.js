@@ -9,6 +9,9 @@ export const beatStore = {
         currBeat: null,
     },
     getters: {
+        currBeat(state) {
+            return state.currBeat;
+        },
         beats(state) {
             return state.beats;
         },
@@ -20,6 +23,10 @@ export const beatStore = {
         }
     },
     mutations: {
+        setCurrBeat(state, { beat }) {
+            console.log('from store',beat);
+            state.currBeat = beat;
+        },
         loadBeats(state, { beats }) {
             state.beats = beats
         },
@@ -47,6 +54,9 @@ export const beatStore = {
         }
     },
     actions: {
+        setCurrBeat({ commit }, { beat }) {
+            commit({ type: 'setCurrBeat', beat })
+        },
         async loadBeats({ getters, commit }) {
             let beats = await beatService.query(getters.filterBy);
             commit({ type: 'loadBeats', beats })

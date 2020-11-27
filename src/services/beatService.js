@@ -17,7 +17,6 @@ async function query(filterBy) {
         let beats = res.data
         if (filterBy.genreFilter === 'ALL' && filterBy.beatTitle === '') return beats
         var filteredBeats = beats
-        console.log(filteredBeats, 'filteredBeatsfilteredBeats');
         if (filterBy.genreFilter !== 'ALL') {
             filteredBeats = beats.filter(beat => beat.genre.toLowerCase() === filterBy.genreFilter.toLowerCase())
         }
@@ -31,14 +30,13 @@ async function query(filterBy) {
 };
 
 function save(beat) {
-    const savedBeat = (beat._id) ? _update(beat) : _add(beat)
+    const savedBeat = beat._id ? _update(beat) : _add(beat)
     return savedBeat;
-
 }
+
 async function _add(beat) {
     try {
         const res = await axios.post(`${BASE_URL}/beat`, beat)
-        console.log(res, ' checkin add');
         let addBeat = res.data
         return addBeat
     } catch (err) {
@@ -71,7 +69,7 @@ async function getById(beatId) {
 
 async function removeBeat(beatId) {
     try {
-         axios.delete(`${BASE_URL}/beat${beatId}`)
+        axios.delete(`${BASE_URL}/beat${beatId}`)
     } catch (err) {
         // Handle Error Here
         console.error(err);
@@ -82,9 +80,6 @@ async function removeBeat(beatId) {
 //     if (!beat._id) return HttpService.post(`beat`, beat)
 //     return HttpService.put(`beat/${beat._id}`, beat)
 // }
-
-
-
 
 // function remove(beatId) {
 //     return HttpService.delete(`beat/${beatId}`)
