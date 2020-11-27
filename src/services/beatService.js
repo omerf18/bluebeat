@@ -45,6 +45,16 @@ async function _add(beat) {
 
 }
 
+async function _update(beat) {
+    try{
+        const res = await axios.put(`${BASE_URL}/beat/${beat._id}`, beat)
+        let updateBeat = res.data
+        return updateBeat
+    } catch (err) {
+        console.error(err);
+    }
+}
+
 function _buildQuery(genreFilter) {
     const str = `?genre=${genreFilter}`
     console.log('path', str);

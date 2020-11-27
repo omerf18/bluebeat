@@ -3,10 +3,10 @@ import { beatService } from '../services/beatService.js'
 export const beatStore = {
     strict: true,
     state: {
-        beats: [],
-        filterBy: { genreFilter: 'ALL', beatTitle: '' },
-        genres: ['Hip hop', 'Israeli', 'Dance', 'Pop', 'Rock n roll', 'Latin'],
-        currBeat: null,
+        beats: null,
+        filterBy: {genreFilter: 'ALL', beatTitle: ''} ,
+        genres: ['Popular', 'Trending', 'Hip hop', 'Israeli', 'Dance', 'Pop', 'Rock n roll', 'Latin'],
+        currBeat: null
     },
     getters: {
         currBeat(state) {
@@ -14,6 +14,9 @@ export const beatStore = {
         },
         beats(state) {
             return state.beats;
+        },
+        currBeat(state){
+            return state.currBeat
         },
         genres(state) {
             return state.genres
@@ -42,6 +45,9 @@ export const beatStore = {
         addBeat(state, { beat }) {
             state.beats.unshift(beat)
         },
+        setCurrBeat(state,{beat}){
+            state.currBeat = beat
+        },
         setGenreFilter(state, { selectedGenre }) {
             state.filterBy.genreFilter = selectedGenre
         },
@@ -66,9 +72,6 @@ export const beatStore = {
             await beatService.removeBeat(beatId);
             commit({ type: 'deleteBeat', beatId })
         },
-        getEmpty() {
-            return beatService.getEmptyBeat()
-        },
         async editBeat({ commit }, { beat }) {
             const savedBeat = await beatService.save(beat)
             commit({ type: 'editBeat', beat: savedBeat })
@@ -76,6 +79,8 @@ export const beatStore = {
         async addBeat({ commit }, { beat }) {
             const savedBeat = await beatService.save(beat)
             commit({ type: 'addBeat', beat: savedBeat })
+            commit({type:'setCurrBeat', beat: savedBeat})
+            return savedBeat
         },
         async setGenreFilter(state, { selectedGenre }) {
             await state.commit({ type: 'setGenreFilter', selectedGenre })
