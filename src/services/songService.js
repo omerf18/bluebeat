@@ -3,7 +3,7 @@ import axios from 'axios'
 const BASE_URL = 'http://localhost:3000';
 
 export const songService = {
-    removeSong(songId);
+    removeSong
 }
 
 function removeSong(songId) {

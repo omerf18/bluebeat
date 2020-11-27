@@ -61,14 +61,16 @@ export default {
         back() {
             this.$router.go(-1);
         },
-        saveBeat() {
+       async saveBeat() {
             // if (!beat.name || beat.genre)
             //     return this.msg = 'Please enter name/genre';
-            this.$store.dispatch({
+           const savedBeat= await this.$store.dispatch({
                 type: "addBeat",
                 beat: this.beat,
             });
-            this.$router.push(`/beat/${beatId}`);
+                this.$router.push(`/beat/${savedBeat._id}`);
+
+          
         },
         setImgUrl(imgUrl) {
             console.log("imgUrl emit", imgUrl);
