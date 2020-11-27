@@ -46,10 +46,10 @@ async function _add(beat) {
 }
 
 async function _update(beat) {
-    try{
-        const res = await axios.put(`${BASE_URL}/beat/${beat._id}`, beat)
-        let updateBeat = res.data
-        return updateBeat
+    try {
+        const res = await axios.put(`${BASE_URL}/beat/${beat._id}`, beat);
+        let updatedBeat = res.data;
+        return updatedBeat;
     } catch (err) {
         console.error(err);
     }

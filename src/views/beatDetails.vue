@@ -44,7 +44,10 @@ export default {
   },
   methods: {
     removeSong(songId) {
-      console.log("songid", songId);
+      this.$store.dispatch({
+        type: 'removeSong',
+        songId
+      })
     },
     song(songIdx) {
       this.songIdx = songIdx;
@@ -54,6 +57,7 @@ export default {
     const beatId = this.$route.params.id;
     let beat = await beatService.getById(beatId);
     this.beat = JSON.parse(JSON.stringify(beat));
+    console.log('beat details', this.beat);
     this.$store.dispatch({
       type: "setCurrBeat",
       beat: this.beat,

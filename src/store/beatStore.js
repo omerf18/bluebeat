@@ -45,9 +45,6 @@ export const beatStore = {
         addBeat(state, { beat }) {
             state.beats.unshift(beat)
         },
-        setCurrBeat(state,{beat}){
-            state.currBeat = beat
-        },
         setGenreFilter(state, { selectedGenre }) {
             state.filterBy.genreFilter = selectedGenre
         },

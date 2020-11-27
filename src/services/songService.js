@@ -7,9 +7,11 @@ export const songService = {
     removeSong,
 }
 
-function removeSong(songId, currBeat) {
+async function removeSong(songId, currBeat) {
     let beat = JSON.parse(JSON.stringify(currBeat));
-    let idx = beat.songs.findIndex(song => song._id === songId);
+    let idx = beat.songs.findIndex(song => song.id === songId);
+    console.log('service:', beat, idx);
     beat.songs.splice(idx, 1);
-    beatService.save(beat);
+    await beatService.save(beat);
+    return idx;
 }
