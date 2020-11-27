@@ -92,14 +92,7 @@ async function removeBeat(beatId) {
 //     if (!beat._id) return HttpService.post(`beat`, beat)
 //     return HttpService.put(`beat/${beat._id}`, beat)
 // }
-function removeSong(songId) {
-    try {
-        axios.delete(`${BASE_URL}/beat/song/:${songId}`)
-    } catch (err) {
-        // Handle Error Here
-        console.error(err);
-    }
-}
+
 
 
 

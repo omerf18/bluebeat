@@ -1,6 +1,12 @@
-.beat-add {
+
+.beat-add{
+    padding: 50px;
+ 
+}
+.beat-add-container {
     background-color: $bgc2;
-    
+    width: 60%;
+    padding: 20px;
     
 }
 .img-uploaded{
@@ -9,4 +15,12 @@
 }
 .add-input{
     width: 200px;
+    padding-bottom: 10px;
+}
+.add-btns{
+padding: 15px;
+
+}
+.genre-select{
+    padding-bottom: 10px;
 }
