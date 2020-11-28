@@ -1,4 +1,5 @@
 import { songService } from '../services/songService.js'
+import { youtubeService } from '../services/youtubeService.js'
 
 export const songStore = {
     strict: true,
@@ -19,5 +20,9 @@ export const songStore = {
             let idx = await songService.removeSong(songId, currBeat);
             commit({ type: 'removeSong', idx, currBeat })
         },
+        async addSong(){
+            const newSongToAdd = await youtubeService.getSong()
+            console.log(newSongToAdd);
+        }
     }
 }
