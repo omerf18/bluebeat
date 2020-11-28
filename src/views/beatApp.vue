@@ -1,6 +1,6 @@
 <template>
     <section class="main-layout">
-        <genre-filter @setGenre="setGenreFilter" class="flex align-center justify-center"></genre-filter>
+        <genre-filter  @setGenre="setGenreFilter" class="flex align-center justify-center"></genre-filter>
         <beat-list :beats="beats" />
     </section>
 </template>
@@ -11,7 +11,9 @@ import genreFilter from "@/cmps/genreFilter.vue";
 export default {
     name: "beat",
     data() {
-        return {};
+        return {
+         
+        };
     },
     methods: {
      setGenreFilter(genre){
@@ -32,8 +34,11 @@ export default {
         genreFilter() {
             return this.$store.getters.genreFilter;
         },
+  
+
     },
     created() {
+        
         this.$store.dispatch({ type: "loadBeats" });
     },
 };

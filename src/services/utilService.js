@@ -1,7 +1,8 @@
 
 
 export const utilService ={
-    getEmpty
+    getEmpty,
+    makeId
 }
 
 function getEmpty() {
@@ -30,7 +31,7 @@ function getEmpty() {
 
 
 
-function _makeId(length = 5) {
+function makeId(length = 5) {
     var txt = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     for (let i = 0; i < length; i++) {

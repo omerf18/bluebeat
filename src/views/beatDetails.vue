@@ -10,10 +10,8 @@
           @playNextSong="song"
           @removeSong="removeSong"
         />
-      <input  type="text"> 
-      <div>youtubesong</div>
+        <add-song :searchedSongs="searchedSongsForDisplay" @setKeyWord="searchYoutubeSong" @addSongToPlayList="addSongToPlayList"></add-song>
       </div>
-        <button @click="searchYoutubeSong">search</button>
       <div class="chat-container">
         <beatChat class="beat-chat-cmp" />
       </div>
@@ -27,13 +25,14 @@ import beatInfo from "../cmps/beatDetails/beatInfo.vue";
 import beatPlayer from "../cmps/beatDetails/beatPlayer.vue";
 import beatPlaylist from "../cmps/beatDetails/beatPlaylist.vue";
 import beatChat from "../cmps/beatDetails/beatChat.vue";
+import addSong from '../cmps/beatDetails/addSong.vue'
 export default {
   name: "beatDetails",
   data() {
     return {
       beat: null,
       songIdx: 0,
-      serchYoutubeSong:''
+   
     };
   },
   computed: {
@@ -45,6 +44,9 @@ export default {
       if (!this.beat) return;
       return this.beat.songs;
     },
+    searchedSongsForDisplay(){
+     return this.$store.getters.searchedSongsForDisplay
+    }
   },
   methods: {
     removeSong(songId) {
@@ -62,11 +64,19 @@ export default {
         beatId,
       })
     },
-    searchYoutubeSong(){
-        this.$store.dispatch({
-        type: 'addSong',
+     async searchYoutubeSong(keyWord){
+       this.$store.dispatch({
+        type: 'searchSong',
+        keyWord
+      })
+    },
+    async addSongToPlayList(song){
+      this.$store.dispatch({
+        type:'addSong',
+        song
       })
     }
+    
   },
   async created() {
     const beatId = this.$route.params.id;
@@ -83,6 +93,7 @@ export default {
     beatPlayer,
     beatPlaylist,
     beatChat,
+    addSong
   },
 };
 </script>

@@ -2,7 +2,8 @@
   <div>
     <el-radio-group class="beat-filter" v-model="selectedGenre" @change="setGenreFilter">
       <el-radio class="filter-btn" value="ALL" label="ALL"></el-radio>
-      <el-radio class="filter-btn" value="MOST VIEWED"  label="MOST VIEWED"></el-radio>
+      <!-- <el-radio class="filter-btn" value="TRENDING"  label="TRENDING"></el-radio>
+      <el-radio class="filter-btn" value="POPULAR"  label="POPULAR"></el-radio> -->
       <el-radio class="filter-btn" value="HIP HOP"  label="HIP HOP"></el-radio>
       <el-radio class="filter-btn" value="ISRAELI"  label="ISRAELI"></el-radio>
       <el-radio class="filter-btn" value="DANCE"  label="DANCE"></el-radio>
@@ -16,7 +17,7 @@
 <script>
   export default {
       props:{
-          genres:Array
+        
       },
     data () {
       return {
