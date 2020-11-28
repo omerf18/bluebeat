@@ -2,7 +2,11 @@
   <section class="main-layout">
     <div class="flex">
       <div class="main-details">
-        <beat-info class="beat-info-cmp" :beat="beat" @removeBeat="removeBeat" />
+        <beat-info
+          class="beat-info-cmp"
+          :beat="beat"
+          @removeBeat="removeBeat"
+        />
         <beatPlayer class="beat-player-cmp" :currSong="currSong" />
         <beatPlaylist
           class="beat-playerlist-cmp"
@@ -10,7 +14,11 @@
           @playNextSong="song"
           @removeSong="removeSong"
         />
-        <add-song :searchedSongs="searchedSongsForDisplay" @setKeyWord="searchYoutubeSong" @addSongToPlayList="addSongToPlayList"></add-song>
+        <add-song
+          :searchedSongs="searchedSongsForDisplay"
+          @setKeyWord="searchYoutubeSong"
+          @addSongToPlayList="addSongToPlayList"
+        ></add-song>
       </div>
       <div class="chat-container">
         <beatChat class="beat-chat-cmp" />
@@ -25,14 +33,14 @@ import beatInfo from "../cmps/beatDetails/beatInfo.vue";
 import beatPlayer from "../cmps/beatDetails/beatPlayer.vue";
 import beatPlaylist from "../cmps/beatDetails/beatPlaylist.vue";
 import beatChat from "../cmps/beatDetails/beatChat.vue";
-import addSong from '../cmps/beatDetails/addSong.vue'
+import addSong from "../cmps/beatDetails/addSong.vue";
 export default {
   name: "beatDetails",
   data() {
     return {
       beat: null,
       songIdx: 0,
-   
+      serchYoutubeSong: "",
     };
   },
   computed: {
@@ -44,45 +52,44 @@ export default {
       if (!this.beat) return;
       return this.beat.songs;
     },
-    searchedSongsForDisplay(){
-     return this.$store.getters.searchedSongsForDisplay
-    }
+    searchedSongsForDisplay() {
+      return this.$store.getters.searchedSongsForDisplay;
+    },
   },
   methods: {
     removeSong(songId) {
       this.$store.dispatch({
-        type: 'removeSong',
-        songId
-      })
+        type: "removeSong",
+        songId,
+      });
     },
     song(songIdx) {
       this.songIdx = songIdx;
     },
     removeBeat(beatId) {
       this.$store.dispatch({
-        type: 'removeBeat',
+        type: "removeBeat",
         beatId,
-      })
+      });
     },
-     async searchYoutubeSong(keyWord){
-       this.$store.dispatch({
-        type: 'searchSong',
-        keyWord
-      })
-    },
-    async addSongToPlayList(song){
+    async searchYoutubeSong(keyWord) {
       this.$store.dispatch({
-        type:'addSong',
-        song
-      })
-    }
-    
+        type: "searchSong",
+        keyWord,
+      });
+    },
+    async addSongToPlayList(song) {
+      this.$store.dispatch({
+        type: "addSong",
+        song,
+      });
+    },
   },
   async created() {
     const beatId = this.$route.params.id;
     let beat = await beatService.getById(beatId);
     this.beat = JSON.parse(JSON.stringify(beat));
-    console.log('beat details', this.beat);
+    console.log("beat details", this.beat);
     this.$store.dispatch({
       type: "setCurrBeat",
       beat: this.beat,
@@ -93,7 +100,7 @@ export default {
     beatPlayer,
     beatPlaylist,
     beatChat,
-    addSong
+    addSong,
   },
 };
 </script>
