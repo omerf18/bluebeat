@@ -14,6 +14,10 @@ export const songStore = {
 
     },
     mutations: {
+        addSong(state,{newSong,currBeat}){
+            console.log(currBeat, 'beeeeeee');
+            currBeat.songs.push(newSong)
+        },
         removeSong(state, { idx, currBeat }) {
             currBeat.songs.splice(idx, 1);
         },
@@ -36,7 +40,10 @@ export const songStore = {
         },
         async addSong(state,{song}){
             const currBeat = state.getters.currBeat;
+            console.log('currbeattt',currBeat);
+            
             const newSong = await songService.addSong(song,currBeat)
+            state.commit({ type: 'addSong', newSong, currBeat })
         }
         
         

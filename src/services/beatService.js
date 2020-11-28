@@ -56,15 +56,7 @@ async function _update(beat) {
     }
 }
 
-function _buildQuery(genreFilter) {
-    const str = `?genre=${genreFilter}`
-    console.log('path', str);
-    return str
-}
 
-function getBeats() {
-    return HttpService.get('beat')
-}
 
 async function getById(beatId) {
     try {
@@ -79,7 +71,6 @@ async function getById(beatId) {
 }
 
 async function removeBeat(beatId) {
-    console.log('service', beatId);
     try {
         await axios.delete(`${BASE_URL}/beat/${beatId}`)
     } catch (err) {
@@ -87,6 +78,9 @@ async function removeBeat(beatId) {
         console.error(err);
     }
 }
+// function getBeats() {
+//     return HttpService.get('beat')
+// }
 
 // function save(beat) {
 //     if (!beat._id) return HttpService.post(`beat`, beat)
