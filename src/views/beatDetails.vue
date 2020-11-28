@@ -2,7 +2,11 @@
   <section class="main-layout">
     <div class="flex">
       <div class="main-details">
-        <beat-info class="beat-info-cmp" :beat="beat" @removeBeat="removeBeat" />
+        <beat-info
+          class="beat-info-cmp"
+          :beat="beat"
+          @removeBeat="removeBeat"
+        />
         <beatPlayer class="beat-player-cmp" :currSong="currSong" />
         <beatPlaylist
           class="beat-playerlist-cmp"
@@ -10,10 +14,7 @@
           @playNextSong="song"
           @removeSong="removeSong"
         />
-      <input  type="text"> 
-      <div>youtubesong</div>
       </div>
-        <button @click="searchYoutubeSong">search</button>
       <div class="chat-container">
         <beatChat class="beat-chat-cmp" />
       </div>
@@ -33,7 +34,7 @@ export default {
     return {
       beat: null,
       songIdx: 0,
-      serchYoutubeSong:''
+      serchYoutubeSong: "",
     };
   },
   computed: {
@@ -49,30 +50,25 @@ export default {
   methods: {
     removeSong(songId) {
       this.$store.dispatch({
-        type: 'removeSong',
-        songId
-      })
+        type: "removeSong",
+        songId,
+      });
     },
     song(songIdx) {
       this.songIdx = songIdx;
     },
     removeBeat(beatId) {
       this.$store.dispatch({
-        type: 'removeBeat',
+        type: "removeBeat",
         beatId,
-      })
+      });
     },
-    searchYoutubeSong(){
-        this.$store.dispatch({
-        type: 'addSong',
-      })
-    }
   },
   async created() {
     const beatId = this.$route.params.id;
     let beat = await beatService.getById(beatId);
     this.beat = JSON.parse(JSON.stringify(beat));
-    console.log('beat details', this.beat);
+    console.log("beat details", this.beat);
     this.$store.dispatch({
       type: "setCurrBeat",
       beat: this.beat,

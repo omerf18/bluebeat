@@ -1,7 +1,12 @@
 import vue from 'vue'
 import vuex from 'vuex'
-import { beatStore } from './beatStore.js'
-import { songStore } from './songStore.js'
+import {beatStore} from './beatStore.js'
+import {songStore} from './songStore.js'
+
+import VueYoutube from 'vue-youtube'
+ 
+vue.use(VueYoutube)
+
 
 vue.use(vuex)
 
