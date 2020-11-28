@@ -11,6 +11,7 @@ const BASE_URL = 'http://localhost:3000'
 
 
 async function query(filterBy) {
+    console.log('filterBy', filterBy);
     try {
         let path = `${BASE_URL}/beat`
         const res = await axios.get(path);

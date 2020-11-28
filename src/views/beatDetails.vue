@@ -14,6 +14,11 @@
           @playNextSong="song"
           @removeSong="removeSong"
         />
+        <add-song
+          :searchedSongs="searchedSongsForDisplay"
+          @setKeyWord="searchYoutubeSong"
+          @addSongToPlayList="addSongToPlayList"
+        ></add-song>
       </div>
       <div class="chat-container">
         <beatChat class="beat-chat-cmp" />
@@ -28,6 +33,7 @@ import beatInfo from "../cmps/beatDetails/beatInfo.vue";
 import beatPlayer from "../cmps/beatDetails/beatPlayer.vue";
 import beatPlaylist from "../cmps/beatDetails/beatPlaylist.vue";
 import beatChat from "../cmps/beatDetails/beatChat.vue";
+import addSong from "../cmps/beatDetails/addSong.vue";
 export default {
   name: "beatDetails",
   data() {
@@ -46,6 +52,9 @@ export default {
       if (!this.beat) return;
       return this.beat.songs;
     },
+    searchedSongsForDisplay() {
+      return this.$store.getters.searchedSongsForDisplay;
+    },
   },
   methods: {
     removeSong(songId) {
@@ -61,6 +70,18 @@ export default {
       this.$store.dispatch({
         type: "removeBeat",
         beatId,
+      });
+    },
+    async searchYoutubeSong(keyWord) {
+      this.$store.dispatch({
+        type: "searchSong",
+        keyWord,
+      });
+    },
+    async addSongToPlayList(song) {
+      this.$store.dispatch({
+        type: "addSong",
+        song,
       });
     },
   },
@@ -79,6 +100,7 @@ export default {
     beatPlayer,
     beatPlaylist,
     beatChat,
+    addSong,
   },
 };
 </script>
