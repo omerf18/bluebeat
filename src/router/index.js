@@ -4,6 +4,7 @@ import beatHome from '../views/beatHome.vue'
 import beatApp from '../views/beatApp.vue'
 import beatDetails from '../views/beatDetails.vue'
 import beatAdd from '../views/beatAdd.vue'
+import beatLogin from '../views/beatLogin.vue'
 
 vue.use(vueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/app/add',
     name: 'beatAdd',
     component: beatAdd
+  },
+  {
+    path: '/login',
+    name: 'beatAdd',
+    component: beatLogin
   },
 ]
 
