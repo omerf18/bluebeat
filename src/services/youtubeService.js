@@ -1,21 +1,31 @@
 import axios from 'axios';
 
-const API_KEY = AIzaSyDaOfZxHtQT_vKcANLFW5vy3Q0nA9SV_Qs;
+const API_KEY = 'AIzaSyD6G3kNRCVWP7Sl_5rL7QHV8DcmJuxuuOs';
+
 
 export const youtubeService = {
-    getSearchRes,
+    getSong,
+}
+const urlForVideoId= 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=chrisbrown&key=AIzaSyDaOfZxHtQT_vKcANLFW5vy3Q0nA9SV_Qs'
+const term ='chrisbrown'
+async function getSong(){
+    const path =  urlForVideoId
+    try{
+        let newVideosId = await axios.get(path)
+        const videoId= newVideosId.data.items[0].id.videoId;
+        const videoDetails= `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=AIzaSyDaOfZxHtQT_vKcANLFW5vy3Q0nA9SV_Qs` 
+        let newVideoDetails = await axios.get(videoDetails)
+       console.log('de' ,newVideoDetails.data.items);
+    }catch(err){
+        console.log('err');
+        
+
+    }
+
 }
 
-const getSearchRes = async () => {
-    try {
-        const res = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${searchStr}&key=${API_KEY}`);
-        console.log(res.data);
-        return res.data;
-    } catch (err) {
-        // Handle Error Here
-        console.error('API ERROR:', err);
-    }
-};
+
+
 
 function getYoutubeUrl(youtubeId) {
     return `https://www.youtube.com/embed/${youtubeId}`

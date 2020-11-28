@@ -10,7 +10,10 @@
           @playNextSong="song"
           @removeSong="removeSong"
         />
+      <input  type="text"> 
+      <div>youtubesong</div>
       </div>
+        <button @click="searchYoutubeSong">search</button>
       <div class="chat-container">
         <beatChat class="beat-chat-cmp" />
       </div>
@@ -30,6 +33,7 @@ export default {
     return {
       beat: null,
       songIdx: 0,
+      serchYoutubeSong:''
     };
   },
   computed: {
@@ -52,6 +56,11 @@ export default {
     song(songIdx) {
       this.songIdx = songIdx;
     },
+    searchYoutubeSong(){
+        this.$store.dispatch({
+        type: 'addSong',
+      })
+    }
   },
   async created() {
     const beatId = this.$route.params.id;
