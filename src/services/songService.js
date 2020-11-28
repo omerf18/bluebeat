@@ -5,6 +5,7 @@ const BASE_URL = 'http://localhost:3000';
 
 export const songService = {
     removeSong,
+    addSong
 }
 
 async function removeSong(songId, currBeat) {
@@ -14,4 +15,14 @@ async function removeSong(songId, currBeat) {
     beat.songs.splice(idx, 1);
     await beatService.save(beat);
     return idx;
+}
+
+
+async function addSong(song,currBeat){
+    const beat = JSON.parse(JSON.stringify(currBeat))
+    beat.songs.unshift(song)
+    console.log('beat',beat);
+    await beatService.save(beat)
+    
+    
 }
