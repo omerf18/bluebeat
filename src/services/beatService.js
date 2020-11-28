@@ -78,8 +78,9 @@ async function getById(beatId) {
 }
 
 async function removeBeat(beatId) {
+    console.log('service', beatId);
     try {
-        axios.delete(`${BASE_URL}/beat${beatId}`)
+        await axios.delete(`${BASE_URL}/beat/${beatId}`)
     } catch (err) {
         // Handle Error Here
         console.error(err);

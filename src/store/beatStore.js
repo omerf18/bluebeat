@@ -33,7 +33,7 @@ export const beatStore = {
         loadBeats(state, { beats }) {
             state.beats = beats
         },
-        deleteBeat(state, { beatId }) {
+        removeBeat(state, { beatId }) {
             const idx = state.beats.findIndex(beat => beat._id === beatId);
             state.beats.splice(idx, 1);
         },
@@ -65,9 +65,10 @@ export const beatStore = {
             commit({ type: 'loadBeats', beats })
 
         },
-        async deleteBeat({ commit }, { beatId }) {
+        async removeBeat({ commit }, { beatId }) {
+            console.log('store:', beatId);
             await beatService.removeBeat(beatId);
-            commit({ type: 'deleteBeat', beatId })
+            commit({ type: 'removeBeat', beatId })
         },
         async editBeat({ commit }, { beat }) {
             const savedBeat = await beatService.save(beat)

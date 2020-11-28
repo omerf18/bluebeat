@@ -2,7 +2,7 @@
   <section class="main-layout">
     <div class="flex">
       <div class="main-details">
-        <beat-info class="beat-info-cmp" :beat="beat" />
+        <beat-info class="beat-info-cmp" :beat="beat" @removeBeat="removeBeat" />
         <beatPlayer class="beat-player-cmp" :currSong="currSong" />
         <beatPlaylist
           class="beat-playerlist-cmp"
@@ -52,6 +52,12 @@ export default {
     song(songIdx) {
       this.songIdx = songIdx;
     },
+    removeBeat(beatId) {
+      this.$store.dispatch({
+        type: 'removeBeat',
+        beatId,
+      })
+    }
   },
   async created() {
     const beatId = this.$route.params.id;

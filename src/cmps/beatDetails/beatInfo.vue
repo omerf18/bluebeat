@@ -17,7 +17,8 @@
       <h5>VISITS: {{ beat.visits }}</h5>
       <h5>ONLINE: 2</h5>
     </div>
-    <i @click="removeBeat(song.id)" class="remove-beat icon fas fa-trash"></i>
+    <!-- <i @click="removeBeat(song.id)" class="remove-beat icon fas fa-trash"></i> -->
+    <i @click="emitDelete(beat._id)" class="remove-beat icon fas fa-trash"></i>
   </section>
 </template>
 
@@ -25,5 +26,11 @@
 export default {
   props: ["beat"],
   name: "beatInfo",
+  methods: {
+    emitDelete(beatId) {
+      this.$emit('removeBeat', beatId)
+      this.$router.push('/app')
+    }
+  }
 };
 </script>
