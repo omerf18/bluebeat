@@ -37,10 +37,11 @@
                 </div>
             </div>
             <div class="chat-container">
-                <beatChat class="beat-chat-cmp" />
+                 <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
             </div>
         </div>
     </section>
+
 </template>
 
 <script>
@@ -50,6 +51,9 @@ import beatPlayer from "../cmps/beatDetails/beatPlayer.vue";
 import beatPlaylist from "../cmps/beatDetails/beatPlaylist.vue";
 import beatChat from "../cmps/beatDetails/beatChat.vue";
 import addSong from "../cmps/beatDetails/addSong.vue";
+
+
+
 export default {
     name: "beatDetails",
     data() {
@@ -159,5 +163,78 @@ export default {
         beatChat,
         addSong,
     },
-};
+  
+  // methods: {
+  //   changeSong(songId, diff, isShuffle) {
+  //     let song;
+  //     if (isShuffle) {
+  //       let beatOpts = this.beat.songs.length - 1;
+  //       let rndIdx = Math.floor(Math.random() * Math.floor(beatOpts));
+  //       song = this.beat.songs[rndIdx];
+  //     } else {
+  //       let idx = this.beat.songs.findIndex((song) => song.id === songId);
+  //       if (idx === 0 && diff === -1) return;
+  //       else if (idx === this.beat.songs.length - 1 && diff === 1) idx = 0;
+  //       else if (diff === 1) idx += 1;
+  //       else idx += -1;
+  //       song = this.beat.songs[idx];
+  //     }
+  //     this.$store.dispatch({
+  //       type: "setCurrSong",
+  //       song,
+  //     });
+  //   },
+  //   removeSong(songId) {
+  //     this.$store.dispatch({
+  //       type: "removeSong",
+  //       songId,
+  //     });
+  //   },
+  //   switchSong(song) {
+  //     this.$store.dispatch({
+  //       type: "setCurrSong",
+  //       song,
+  //     });
+  //   },
+  //   removeBeat(beatId) {
+  //     this.$store.dispatch({
+  //       type: "removeBeat",
+  //       beatId,
+  //     });
+  //   },
+  //   async searchYoutubeSong(keyWord) {
+  //     console.log();
+  //     this.$store.dispatch({
+  //       type: "searchSong",
+  //       keyWord,
+  //     });
+  //   },
+  //   async addSongToPlayList(song) {
+  //     this.$store.dispatch({
+  //       type: "addSong",
+  //       song,
+  //     });
+  //   },
+  // },
+  // async created() {
+  //   const beatId = this.$route.params.id;
+  //   let beat = await beatService.getById(beatId);
+  //   this.beat = JSON.parse(JSON.stringify(beat));
+  //   this.$store.dispatch({
+  //     type: "setCurrBeat",
+  //     beat: this.beat,
+  //   });
+  //   this.$store.dispatch({
+  //     type: "setCurrSong",
+  //     song: this.beat.songs[0],
+  //   });
+  // },
+  // components: {
+  //   beatInfo,
+  //   beatPlayer,
+  //   beatPlaylist,
+  //   beatChat,
+  //   addSong,
+  // },
+}
 </script>

@@ -1,24 +1,27 @@
 <template>
-  <div class="header flex justify-center align-center space-between">
-    <img class="beat-logo" src="@/assets/img/beatLogo.png" @click="backHome" />
-    <form @keyup="searchBeat">
-      <el-input
-        class="header-search"
-        type="text"
-        placeholder="Serch for beat"
-        prefix-icon="el-icon-search"
-        v-model="beatToSearch"
+  <div class="header main-layout">
+    <div class="flex justify-center align-center space-between">
+      <img
+        class="beat-logo"
+        src="@/assets/img/beatLogo.png"
+        @click="backHome"
       />
-    </form>
- 
+      <form @keyup="searchBeat">
+        <el-input
+          class="header-search"
+          type="text"
+          placeholder="Search a beat"
+          prefix-icon="el-icon-search"
+          v-model="beatToSearch"
+        />
+      </form>
     <div class="flex row">  
        <div class="flex justify-center align-center ">
       <router-link class="header-btn" to="/beat">Beats</router-link>
       <router-link class="header-btn" to="/beat/add">Create Beat</router-link>
     </div>
-      <el-avatar
-        src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-      ></el-avatar>
+        <i class="user-profile-btn icon fas fa-user-circle"></i>
+      </div>
     </div>
   </div>
 </template>

@@ -8,12 +8,7 @@ width: 100%;
     background-color: $bgc2;
     margin-bottom: 5px;
     align-items: center;
-    h5{
-        margin-right: 10px;
-    }
-    i{
-        margin-right: 5px;
-    }
+    border-radius: 7px;
 }
 
 .song-img {
@@ -27,9 +22,7 @@ width: 100%;
     font-size: rem(13px);
     padding: 0 10px 0 10px;
 }
-.song-title{
-    font-size: rem(10px);
-}
+
 .active {
     color: $logo;
     .song-icon{
@@ -42,4 +35,3 @@ width: 100%;
         cursor: pointer;
     }
 }
-

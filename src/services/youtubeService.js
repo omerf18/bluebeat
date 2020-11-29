@@ -22,9 +22,6 @@ async function getSong(q) {
     }
 }
 
-
-
-
 async function _getDetails(youTubeIds) {
     const songsDetails = []
     youTubeIds.forEach(async (id) => {
@@ -35,7 +32,7 @@ async function _getDetails(youTubeIds) {
     })
     const details = await Promise.all(songsDetails)
     console.log(details);
-    
+
     return details
 }
 
@@ -47,7 +44,7 @@ async function _neededDetails(songs) {
             youtubeId: song.id,
             title: song.snippet.title,
             imgUrl: song.snippet.thumbnails.medium.url,
-            duration:_setContentDetails(song.contentDetails.duration),
+            duration: _setContentDetails(song.contentDetails.duration),
         }
         await neededDetails.push(songDetails)
     })
@@ -56,10 +53,10 @@ async function _neededDetails(songs) {
 }
 
 
-function _setContentDetails(duration){
-    var playTime = duration.replace('PT','')
-   var playTime1 = playTime.replace('M',':');
-   var playTime2 = playTime1.replace('S','')
+function _setContentDetails(duration) {
+    var playTime = duration.replace('PT', '')
+    var playTime1 = playTime.replace('M', ':');
+    var playTime2 = playTime1.replace('S', '')
     return playTime2
 }
 

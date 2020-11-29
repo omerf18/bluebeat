@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <section v-if="!isLoading && !imgUrl">
-      <label for="imgUploader"> <img class="img-uploaded" src="../assets/img/uploadImg.png" alt=""> </label>
+      <label for="imgUploader"> <i class="img-icon icon fas fa-camera"></i> </label>
       <input class="img-upload" type="file" name="img-uploader" id="imgUploader" @change="onUploadImg">  
     </section>
     <img class="loader" v-if="isLoading && !imgUrl" src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif" alt="">

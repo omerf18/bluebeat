@@ -2,7 +2,7 @@
   <section v-if="beats" class="main-list">
     <div class="list-header flex space-between align-baseline">
       <h2 class="" >{{ genre }}</h2>
-      <h5 @click="showBeatsByGener" >See All</h5>
+      <h5 v-if="genre !== 'Popular' && genre !== 'Trending'" @click="showBeatsByGener" >See All</h5>
     </div>
       <beat-list :beats="beatsToShow" />
   </section>
@@ -31,6 +31,7 @@ export default {
         for (var i = 0; i < 4; i++) {
           popularBeats.push(sortBeats[i])
         }
+        console.log(popularBeats);
           return popularBeats
         } else if (this.genre === 'Trending') {
           var sortBeats = JSON.parse(JSON.stringify(this.beats))

@@ -1,5 +1,5 @@
 <template>
-  <section v-if="beat" class="beat-info flex space-between">
+  <section v-if="beat" class="beat-info flex space-between container">
       <img class="prev-img-details" :src="beat.imgUrl" >
     <div class="user-profile">
       <img class="profile-img" v-if="beat.createdBy.imgUrl" :src="beat.createdBy.imgUrl" />

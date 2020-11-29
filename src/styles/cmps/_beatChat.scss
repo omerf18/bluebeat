@@ -24,3 +24,15 @@
     padding: 0 10px;
     font-size: 25px;
 }
+
+.beat-chat {
+    position: relative;
+}
+
+.whatsapp-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: rem(25px);
+    color: $logo;
+}

@@ -53,6 +53,7 @@ export const beatStore = {
         resetFilter(state) {
             state.filterBy.genreFilter = 'ALL';
             state.filterBy.beatTitle = '';
+            state.beats = null;
         }
     },
     actions: {
@@ -88,7 +89,11 @@ export const beatStore = {
         },
         async resetFilter(state) {
             await state.commit({ type: 'resetFilter' })
-            state.dispatch('loadBeats')
+            try {
+                state.dispatch('loadBeats')
+            } catch(err) {
+                console.log(err);
+            }
         }
     }
 }
