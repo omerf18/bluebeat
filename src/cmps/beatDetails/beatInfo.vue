@@ -1,7 +1,9 @@
 <template>
   <section v-if="beat" class="beat-info flex space-between">
+      <img class="prev-img-details" :src="beat.imgUrl" >
     <div class="user-profile">
-      <img class="profile-img" :src="beat.createdBy.imgUrl" />
+      <img class="profile-img" v-if="beat.createdBy.imgUrl" :src="beat.createdBy.imgUrl" />
+      <img class="profile-img" v-else src="../../assets/img/beatLogo.png" />
       <h4>{{ beat.createdBy.userName }}</h4>
     </div>
     <div class="beat-desc">
