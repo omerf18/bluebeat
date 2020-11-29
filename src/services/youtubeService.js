@@ -34,6 +34,8 @@ async function _getDetails(youTubeIds) {
         )
     })
     const details = await Promise.all(songsDetails)
+    console.log(details);
+    
     return details
 }
 
@@ -44,7 +46,7 @@ async function _neededDetails(songs) {
             id: utilService.makeId(),
             youtubeId: song.id,
             title: song.snippet.title,
-            imgUrl: song.snippet.thumbnails.default.url,
+            imgUrl: song.snippet.thumbnails.medium.url,
             duration: song.contentDetails.duration,
         }
         await neededDetails.push(songDetails)
