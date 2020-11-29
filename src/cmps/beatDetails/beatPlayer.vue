@@ -3,14 +3,13 @@
     <div class="beat-frame flex col">
       <img
         class="prev-img playing-img"
-        :class="{ playing: isPlaying }"
+        :class="{ playing: playerVars.isPlaying }"
         :src="currSong.imgUrl"
       />
       <youtube
         class="player"
         :video-id="currSong.youtubeId"
         ref="youtube"
-        @playing="playing"
         style="visibility: hidden"
       ></youtube>
     </div>
@@ -23,12 +22,17 @@
           <i @click="playSong" class="fas fa-play"></i>
           <i @click="pauseSong" class="fas fa-pause"></i>
           <i @click="switchSong(currSong.id, 1)" class="fas fa-forward"></i>
+          <i
+            @click="shuffle"
+            :class="{ active: playerVars.isShuffle }"
+            class="fas fa-random"
+          ></i>
         </div>
       </div>
       <div class="flex">
         <i
           @click="muteSound"
-          :class="{ soundOn: !playerVars.isMuted }"
+          :class="{ active: !playerVars.isMuted }"
           class="sound icon fas fa-volume-down"
         ></i>
         <input
@@ -56,22 +60,24 @@ export default {
         vol: 50,
         time: null,
         isMuted: false,
-        isPlaying: false
+        isPlaying: false,
+        isShuffle: false,
       },
     };
   },
-  computed: {},
   methods: {
-    playing() {
-      console.log("o/ we are watching!!!");
+    shuffle() {
+      this.playerVars.isShuffle = !this.playerVars.isShuffle;
     },
-    switchSong(songId, num) {
-      this.$emit("switchSong", songId, num);
+    switchSong(songId, diff) {
+      this.$emit("switchSong", songId, diff, this.playerVars.isShuffle);
     },
     pauseSong() {
+      this.playerVars.isPlaying = false;
       this.$refs.youtube.player.pauseVideo();
     },
     playSong() {
+      this.playerVars.isPlaying = true;
       this.$refs.youtube.player.playVideo();
     },
     muteSound() {
