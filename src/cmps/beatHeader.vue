@@ -5,7 +5,7 @@
       <el-input
         class="header-search"
         type="text"
-        placeholder="Search for beat"
+        placeholder="Search a beat"
         prefix-icon="el-icon-search"
         v-model="beatToSearch"
       />

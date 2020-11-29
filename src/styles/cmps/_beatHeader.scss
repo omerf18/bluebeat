@@ -1,23 +1,30 @@
 .header {
     padding: 5px 20px;
     background-color: $bgc1;
-
 }
-.beat-logo{
+.beat-logo {
     height: 100px;
     cursor: pointer;
 }
-.header-btn{
+.header-btn {
     font-size: rem(20px);
     text-decoration: none;
     color: $font1;
     margin-right: 10px;
-    &:hover{
+    &:hover {
         color: $logo;
     }
-    
 }
-.header-search{
+.header-search {
     max-width: rem(250px);
-   
+}
+
+.el-input__inner {
+    background-color: transparent;
+    color: $logo;
+    border: none;
+    border-bottom: 1px solid $logo;
+    &::placeholder {
+        color: $logo;
+    }
 }
