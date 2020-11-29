@@ -1,11 +1,14 @@
 <template>
   <section v-if="currSong" class="beat-player flex">
-    <div class="beat-frame flex col">
+    <div class="beat-frame flex">
+      <div class="beat-img flex align-center ml20">
       <img
-        class="prev-img playing-img"
+        class="prev-img"
+      
         :class="{ playing: playerVars.isPlaying }"
         :src="currSong.imgUrl"
       />
+      </div>
       <youtube
         class="player"
         :video-id="currSong.youtubeId"
@@ -75,10 +78,12 @@ export default {
     pauseSong() {
       this.playerVars.isPlaying = false;
       this.$refs.youtube.player.pauseVideo();
+       this.playerVars.isPlaying = false
     },
     playSong() {
       this.playerVars.isPlaying = true;
       this.$refs.youtube.player.playVideo();
+      this.playerVars.isPlaying =true
     },
     muteSound() {
       if (!this.playerVars.isMuted) {

@@ -17,7 +17,10 @@
     height: rem(120px);
     object-fit: cover;
     border-radius: 50%;
-    border: solid 3px $bgc2;
+    border: solid 2px $bgc2;
+    &.playing{
+        animation:rotation 2s infinite linear
+    }
 }
 .beat-img {
     position: relative;
@@ -33,7 +36,7 @@
         transform: translate(-50%, -50%);
         background: $bgc2;
         border-radius: 50%;
-        border: solid 2px $bgc1;
+        border: solid 1px $bgc1;
     }
 }
 
