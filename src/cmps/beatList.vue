@@ -1,8 +1,8 @@
 
 <template>
   <section>
-    <div class="prev-container card-grid" v-if="beats">
-      <beat-preview
+    <div class="flex wrap" v-if="beats">
+      <beat-preview class="list-item"
         v-for="beat in beats"
         :key="beat._id"
         :beat="beat"
