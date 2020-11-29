@@ -1,26 +1,34 @@
-
-.beat-add{
+.beat-add {
     padding: 50px;
- 
 }
 .beat-add-container {
     background-color: $bgc2;
     width: 60%;
     padding: 20px;
-    
 }
-.img-uploaded{
+.img-uploaded {
     height: rem(104px);
     width: rem(104px);
 }
-.add-input{
+
+.add-search {
+    padding: 10px 20px;
+    margin: 10px 0;
+    background-color: $bgc2;
+    border-radius: 7px;
+}
+
+.add-input {
     width: 200px;
     padding-bottom: 10px;
 }
-.add-btns{
-padding: 15px;
-
+.add-btns {
+    padding: 15px;
 }
-.genre-select{
+.genre-select {
     padding-bottom: 10px;
+}
+
+.add-song-btn {
+    padding-right: 10px;
 }
