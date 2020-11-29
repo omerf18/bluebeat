@@ -26,7 +26,7 @@
         ></add-song>
       </div>
       <div class="chat-container">
-        <beatChat class="beat-chat-cmp" />
+        <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
       </div>
     </div>
   </section>
