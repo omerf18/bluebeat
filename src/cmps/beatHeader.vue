@@ -15,13 +15,11 @@
           v-model="beatToSearch"
         />
       </form>
-      <div class="flex row">
-        <div class="flex justify-center align-center">
-          <router-link class="header-btn" to="/app">Beats</router-link>
-          <router-link class="header-btn" to="/app/add"
-            >Create Beat</router-link
-          >
-        </div>
+    <div class="flex row">  
+       <div class="flex justify-center align-center ">
+      <router-link class="header-btn" to="/beat">Beats</router-link>
+      <router-link class="header-btn" to="/beat/add">Create Beat</router-link>
+    </div>
         <i class="user-profile-btn icon fas fa-user-circle"></i>
       </div>
     </div>
@@ -48,7 +46,7 @@ export default {
         type: "setTxtFilter",
         txt: this.beatToSearch,
       });
-      this.$router.push("/app");
+      this.$router.push("/beat");
     },
   },
 };

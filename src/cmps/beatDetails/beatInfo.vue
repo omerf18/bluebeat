@@ -20,6 +20,7 @@
       <h5>2 Online </h5>
     </div>
     <i @click="emitDelete(beat._id)" class="remove-beat icon fas fa-trash"></i>
+                     
   </section>
 </template>
 
@@ -30,7 +31,7 @@ export default {
   methods: {
     emitDelete(beatId) {
       this.$emit("removeBeat", beatId);
-      this.$router.push("/app");
+      this.$router.push("/beat");
     },
   },
 };
