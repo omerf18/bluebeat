@@ -79,17 +79,19 @@ export default {
   },
   methods: {
     changeSong(songId, diff, isShuffle) {
+      let song;
       if (isShuffle) {
         let beatOpts = this.beat.songs.length - 1;
         let rndIdx = Math.floor(Math.random() * Math.floor(beatOpts));
-        console.log(rndIdx);
+        song = this.beat.songs[rndIdx];
+      } else {
+        let idx = this.beat.songs.findIndex((song) => song.id === songId);
+        if (idx === 0 && diff === -1) return;
+        else if (idx === this.beat.songs.length - 1 && diff === 1) idx = 0;
+        else if (diff === 1) idx += 1;
+        else idx += -1;
+        song = this.beat.songs[idx];
       }
-      let idx = this.beat.songs.findIndex((song) => song.id === songId);
-      if (idx === 0 && diff === -1) return;
-      else if (idx === this.beat.songs.length - 1 && diff === 1) idx = 0;
-      else if (diff === 1) idx += 1;
-      else idx += -1;
-      let song = this.beat.songs[idx];
       this.$store.dispatch({
         type: "setCurrSong",
         song,
