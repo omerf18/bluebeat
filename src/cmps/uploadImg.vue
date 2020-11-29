@@ -25,7 +25,6 @@ export default {
       const res = await uploadImg(ev);
       this.imgUrl = res.url
       this.$emit('getImgUrl',res.url)
-      console.log('res:', res.url)
       this.isLoading = false;
     }
   },

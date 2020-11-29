@@ -4,7 +4,7 @@ export const beatStore = {
     strict: true,
     state: {
         beats: null,
-        filterBy: {genreFilter: 'ALL', beatTitle: ''} ,
+        filterBy: { genreFilter: 'ALL', beatTitle: '' },
         genres: ['Popular', 'Trending', 'Hip hop', 'Israeli', 'Dance', 'Pop', 'Rock n roll', 'Latin'],
         currBeat: null
     },
@@ -15,7 +15,7 @@ export const beatStore = {
         beats(state) {
             return state.beats;
         },
-        currBeat(state){
+        currBeat(state) {
             return state.currBeat
         },
         genres(state) {
@@ -27,7 +27,6 @@ export const beatStore = {
     },
     mutations: {
         setCurrBeat(state, { beat }) {
-            console.log('from store',beat);
             state.currBeat = beat;
         },
         loadBeats(state, { beats }) {
@@ -66,7 +65,6 @@ export const beatStore = {
 
         },
         async removeBeat({ commit }, { beatId }) {
-            console.log('store:', beatId);
             await beatService.removeBeat(beatId);
             commit({ type: 'removeBeat', beatId })
         },
@@ -77,7 +75,7 @@ export const beatStore = {
         async addBeat({ commit }, { beat }) {
             const savedBeat = await beatService.save(beat)
             commit({ type: 'addBeat', beat: savedBeat })
-            commit({type:'setCurrBeat', beat: savedBeat})
+            commit({ type: 'setCurrBeat', beat: savedBeat })
             return savedBeat
         },
         async setGenreFilter(state, { selectedGenre }) {

@@ -21,7 +21,6 @@ export default {
   name: "Home",
   methods: {
     dispatchFilter(selectedGenre) {
-      console.log("genregenregenre", selectedGenre);
       this.$store.dispatch({
         type: "setGenreFilter",
         selectedGenre,

@@ -1,9 +1,14 @@
 .beat-player {
-   background-color: $bgc2;
+    background-color: $bgc2;
 }
 
 .beat-frame {
-width: 40%;
+    width: 40%;
+}
+
+.player {
+    width: 100%;
+    height: 100%;
 }
 
 .song-desc {
@@ -14,3 +19,23 @@ width: 40%;
     text-align: center;
     width: 60%;
 }
+
+.player-btn > * {
+    color: $logo;
+    cursor: pointer;
+    padding: 8px;
+    font-size: rem(22px);
+}
+
+.sound {
+    padding: 8px;
+    font-size: rem(22px);
+}
+
+.soundOn {
+    color: $logo;
+}
+
+// .set-vol {
+//     transform: rotate(270deg);
+// }

@@ -54,7 +54,6 @@ export default {
     },
     created() {
         this.beat = utilService.getEmpty();
-        console.log("emptybeat", this.beat);
     },
     computed: {},
     methods: {
@@ -62,8 +61,6 @@ export default {
             this.$router.go(-1);
         },
        async saveBeat() {
-            // if (!beat.name || beat.genre)
-            //     return this.msg = 'Please enter name/genre';
            const savedBeat= await this.$store.dispatch({
                 type: "addBeat",
                 beat: this.beat,
@@ -73,7 +70,6 @@ export default {
           
         },
         setImgUrl(imgUrl) {
-            console.log("imgUrl emit", imgUrl);
             this.beat.imgUrl = imgUrl;
         },
         // savePrefs() {
@@ -83,7 +79,6 @@ export default {
         //     this.beat.genre = this.beatForDisplay.genre;
         // },
         setGenre(genre) {
-            console.log("genre", genre);
             this.beat.genre = genre;
         },
 

@@ -5,22 +5,34 @@ export const songStore = {
     strict: true,
     state: {
         currSong: null,
-        searchedSongs:null
+        searchedSongs: null,
     },
     getters: {
-        searchedSongsForDisplay(state){
+        getCurrSong(state) {
+            return state.currSong;
+        },
+        getCurrSongId(state) {
+            return state.currSongId;
+        },
+        getCurrSongIdx(state) {
+
+        },
+        searchedSongsForDisplay(state) {
             return state.searchedSongs
         }
-
     },
     mutations: {
+        setCurrSong(state, { song }) {
+            state.currSong = song;
+        },
+        addSong(state, { newSong, currBeat }) {
+            currBeat.songs.push(newSong)
+        },
         removeSong(state, { idx, currBeat }) {
             currBeat.songs.splice(idx, 1);
         },
-        setSearchedSongs(state,{searchedSongs}){
+        setSearchedSongs(state, { searchedSongs }) {
             state.searchedSongs = searchedSongs
-            console.log('state',state.searchedSongs);
-            
         }
     },
     actions: {
@@ -29,16 +41,17 @@ export const songStore = {
             let idx = await songService.removeSong(songId, currBeat);
             commit({ type: 'removeSong', idx, currBeat })
         },
-        async searchSong({commit},{keyWord}){
+        async searchSong({ commit }, { keyWord }) {
             const searchedSongs = await youtubeService.getSong(keyWord)
-            commit({type:'setSearchedSongs',searchedSongs})
-            
+            commit({ type: 'setSearchedSongs', searchedSongs })
         },
-        async addSong(state,{song}){
+        async addSong(state, { song }) {
             const currBeat = state.getters.currBeat;
-            const newSong = await songService.addSong(song,currBeat)
+            const newSong = await songService.addSong(song, currBeat)
+            commit({ type: 'addSong', newSong, currBeat })
+        },
+        setCurrSong({ commit }, { song }) {
+            commit({ type: 'setCurrSong', song })
         }
-        
-        
     }
 }

@@ -11,18 +11,14 @@ export const songService = {
 async function removeSong(songId, currBeat) {
     let beat = JSON.parse(JSON.stringify(currBeat));
     let idx = beat.songs.findIndex(song => song.id === songId);
-    console.log('service:', beat, idx);
     beat.songs.splice(idx, 1);
     await beatService.save(beat);
     return idx;
 }
 
-
-async function addSong(song,currBeat){
+async function addSong(song, currBeat) {
     const beat = JSON.parse(JSON.stringify(currBeat))
-    beat.songs.unshift(song)
-    console.log('beat',beat);
+    beat.songs.push(song)
     await beatService.save(beat)
-    
-    
+    return song
 }
