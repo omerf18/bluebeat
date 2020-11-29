@@ -5,7 +5,7 @@ export const beatStore = {
     state: {
         beats: null,
         filterBy: { genreFilter: 'ALL', beatTitle: '' },
-        genres: ['Popular', 'Trending', 'Hip hop', 'Israeli', 'Dance', 'Pop', 'Rock n roll', 'Latin'],
+        genres: ['Popular', 'Trending', 'Hip hop', 'Israeli', 'Dance', 'Pop', 'Rock n roll', 'Latin','Easy'],
         currBeat: null
     },
     getters: {
