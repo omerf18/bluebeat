@@ -8,11 +8,6 @@ export const youtubeService = {
     getSong,
 }
 
-
-
-
-
-
 async function getSong(q) {
     if(!q)return null
     const path = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${q}&key=${API_KEY}`
@@ -24,8 +19,6 @@ async function getSong(q) {
         const details = await _getDetails(videoIds)
         const neededDetails = await _neededDetails(details)
        return neededDetails;
-       
-        
     } catch (err) {
         console.log('err');
     }
@@ -60,11 +53,3 @@ async function _getDetails(videoIds) {
 }
 
 
-function getYoutubeUrl(youtubeId) {
-    return `https://www.youtube.com/embed/${youtubeId}`
-}
-
-function _createYouTubeEmbedLink(link) {
-    console.log(link, link.includes('http://www.youtube.com/watch?v='));
-    return link.replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/');
-}
