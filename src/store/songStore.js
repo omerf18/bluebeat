@@ -14,9 +14,6 @@ export const songStore = {
         getCurrSongId(state) {
             return state.currSongId;
         },
-        getCurrSongIdx(state) {
-
-        },
         searchedSongsForDisplay(state) {
             return state.searchedSongs
         }
@@ -47,7 +44,7 @@ export const songStore = {
         },
         async addSong(state, { song }) {
             const currBeat = state.getters.currBeat;
-            const newSong = await songService.addSong(song,currBeat)
+            const newSong = await songService.addSong(song, currBeat)
             state.commit({ type: 'addSong', newSong, currBeat })
         },
         setCurrSong({ commit }, { song }) {

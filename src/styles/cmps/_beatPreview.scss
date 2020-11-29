@@ -1,45 +1,45 @@
 .prev-card {
-    background-color:$bgc2 ;
+    background-color: $bgc2;
     max-width: 200px;
     // height: 200px;
     padding: 5px 0 3px;
     border-radius: 10px;
     color: $font3;
     cursor: pointer;
-    &.prev-card:hover{
-        background-color:#121212bf;
+    &.prev-card:hover {
+        background-color: #121212bf;
     }
 }
 
 .prev-img {
-  background-color:$bgc1;
+    background-color: $bgc1;
     border-radius: 5px;
     width: rem(120px);
     height: rem(120px);
     object-fit: cover;
     border-radius: 50%;
     border: solid 3px $bgc2;
-    
 }
-.beatImg{
+.beatImg {
     position: relative;
     &:before {
-     content: '';
-     width: 15px;
-     height: 15px;
-      position: absolute;
-      z-index: 5;
-      top: 50%;
-       left: 50%;
-       transform: translate(-50%, -50%);
-       background: $bgc2;
-     border-radius: 50%;
-     border: solid 2px $bgc1 ;
+        content: "";
+        width: 15px;
+        padding: 2px;
+        height: 15px;
+        position: absolute;
+        z-index: 5;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: $bgc2;
+        border-radius: 50%;
+        border: solid 2px $bgc1;
     }
-   
 }
 
 .prev-details {
+    padding: 2px 10px 20px;
     height: 50%;
     justify-content: space-evenly;
 }
@@ -79,6 +79,6 @@
         text-decoration: none;
     }
 }
-.list-header{
+.list-header {
     padding: 10px 0 10px;
 }
