@@ -3,7 +3,7 @@
     <div class="beat-frame flex">
       <div class="beat-img flex align-center ml20">
         <img
-          class="prev-img"
+          class="prev-img playing-disc"
           :class="{ playing: playerVars.isPlaying }"
           :src="currSong.imgUrl"
         />
