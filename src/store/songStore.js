@@ -25,6 +25,9 @@ export const songStore = {
         setCurrSong(state, { song }) {
             state.currSong = song;
         },
+        addSong(state, { newSong, currBeat }) {
+            currBeat.songs.push(newSong)
+        },
         removeSong(state, { idx, currBeat }) {
             currBeat.songs.splice(idx, 1);
         },
@@ -45,8 +48,9 @@ export const songStore = {
         async addSong(state, { song }) {
             const currBeat = state.getters.currBeat;
             const newSong = await songService.addSong(song, currBeat)
+            commit({ type: 'addSong', newSong, currBeat })
         },
-        async setCurrSong({ commit }, { song }) {
+        setCurrSong({ commit }, { song }) {
             commit({ type: 'setCurrSong', song })
         }
     }

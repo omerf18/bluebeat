@@ -55,14 +55,14 @@ async function _update(beat) {
     }
 }
 
+<<<<<<< HEAD
 function _buildQuery(genreFilter) {
     const str = `?genre=${genreFilter}`
     return str
 }
+=======
+>>>>>>> b8665dd553dfd4ed11ee1f134aa816fb1795dbac
 
-function getBeats() {
-    return HttpService.get('beat')
-}
 
 async function getById(beatId) {
     try {
@@ -84,6 +84,9 @@ async function removeBeat(beatId) {
         console.error(err);
     }
 }
+// function getBeats() {
+//     return HttpService.get('beat')
+// }
 
 // function save(beat) {
 //     if (!beat._id) return HttpService.post(`beat`, beat)
