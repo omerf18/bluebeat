@@ -56,6 +56,10 @@ export default {
       if (!this.beat) return;
       return this.beat.songs;
     },
+    currBeatImg() {
+      if (!this.beat) return;
+      return this.beat.imgUrl;
+    },
     currSongIdx() {
       if (!this.beat) return;
       const list = this.playlist;
