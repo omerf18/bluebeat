@@ -15,7 +15,6 @@
           v-model="beatToSearch"
         />
       </form>
-
       <div class="flex row">
         <div class="flex justify-center align-center">
           <router-link class="header-btn" to="/app">Beats</router-link>
