@@ -23,8 +23,6 @@ export const songStore = {
         },
         setSearchedSongs(state,{searchedSongs}){
             state.searchedSongs = searchedSongs
-            console.log('state',state.searchedSongs);
-            
         }
     },
     actions: {
@@ -40,8 +38,6 @@ export const songStore = {
         },
         async addSong(state,{song}){
             const currBeat = state.getters.currBeat;
-            console.log('currbeattt',currBeat);
-            
             const newSong = await songService.addSong(song,currBeat)
             state.commit({ type: 'addSong', newSong, currBeat })
         }
