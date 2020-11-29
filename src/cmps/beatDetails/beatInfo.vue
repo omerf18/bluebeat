@@ -1,7 +1,9 @@
 <template>
   <section v-if="beat" class="beat-info flex space-between">
+      <img class="prev-img-details" :src="beat.imgUrl" >
     <div class="user-profile">
-      <img class="profile-img" :src="beat.createdBy.imgUrl" />
+      <img class="profile-img" v-if="beat.createdBy.imgUrl" :src="beat.createdBy.imgUrl" />
+      <img class="profile-img" v-else src="../../assets/img/beatLogo.png" />
       <h4>{{ beat.createdBy.userName }}</h4>
     </div>
     <div class="beat-desc">
@@ -14,10 +16,9 @@
         <i class="like-btn far fa-heart"></i>
         <h5>{{ beat.likes }}</h5>
       </div>
-      <h5>VISITS: {{ beat.visits }}</h5>
-      <h5>ONLINE: 2</h5>
+      <h5>{{ beat.visits }} Visits </h5>
+      <h5>2 Online </h5>
     </div>
-    <!-- <i @click="removeBeat(song.id)" class="remove-beat icon fas fa-trash"></i> -->
     <i @click="emitDelete(beat._id)" class="remove-beat icon fas fa-trash"></i>
   </section>
 </template>
@@ -28,9 +29,9 @@ export default {
   name: "beatInfo",
   methods: {
     emitDelete(beatId) {
-      this.$emit('removeBeat', beatId)
-      this.$router.push('/app')
-    }
-  }
+      this.$emit("removeBeat", beatId);
+      this.$router.push("/app");
+    },
+  },
 };
 </script>

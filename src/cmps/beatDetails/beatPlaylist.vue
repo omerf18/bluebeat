@@ -4,16 +4,12 @@
       <div
         class="song-container flex space-between icon"
         :class="{ active: index === currSongIdx }"
-        @click="changeSong(song)"
-      >
-        <img class="song-img" :src="song.imgUrl" />
-        <h4 class="song-title">{{ song.title }}</h4>
-        <div class="flex">
+          @click="changeSong(song)">
+          <img class="song-img" :src="song.imgUrl" />
+           <h4 class="song-title">{{ song.title }}</h4>
+          <div class="flex">
           <h5 class="song-dur">{{ song.duration }}</h5>
-          <i
-            @click="removeSong(song.id)"
-            class="song-icon icon fas fa-trash"
-          ></i>
+          <i @click="removeSong(song.id)" class="song-icon icon fas fa-trash"></i>
         </div>
       </div>
     </div>

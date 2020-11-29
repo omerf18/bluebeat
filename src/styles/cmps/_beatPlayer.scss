@@ -3,7 +3,7 @@
 }
 
 .beat-frame {
-    width: 40%;
+    width: 30%;
 }
 
 .player {
@@ -21,10 +21,12 @@
 }
 
 .player-btn > * {
-    color: $logo;
     cursor: pointer;
     padding: 8px;
     font-size: rem(22px);
+    &:not(:last-child) {
+        color: $logo;
+    }
 }
 
 .sound {

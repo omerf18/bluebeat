@@ -24,10 +24,19 @@
     &.space-between {
         justify-content: space-between;
     }
+    &.space-around{
+        justify-content: space-around;
+    }
     &.space-evenly {
         justify-content: space-evenly;
     }
     &.wrap {
         flex-wrap: wrap;
     }
+    &.align-baseline{
+        align-items: baseline;
+    }
+}
+.ml20{
+    margin-left: 20px;
 }

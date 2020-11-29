@@ -12,18 +12,25 @@
           :currSong="currSong"
           @switchSong="changeSong"
         />
+        <div class="flex space-between">
+          <el-button type="primary" icon="el-icon-edit" circle @click="toggleSearch"></el-button>
+          <a href="whatsapp://send?text= text to share!" data-action="share/whatsapp/share"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <div class="flex row">
+         <add-song
+          :searchedSongs="searchedSongsForDisplay"
+          @setKeyWord="searchYoutubeSong"
+          @addSongToPlayList="addSongToPlayList"
+        ></add-song>
         <beatPlaylist
-          class="beat-playerlist-cmp"
+          class="beat-playerlist-cmp ml20"
           :playlist="playlist"
           :currSongIdx="currSongIdx"
           @changeSong="switchSong"
           @removeSong="removeSong"
         />
-        <add-song
-          :searchedSongs="searchedSongsForDisplay"
-          @setKeyWord="searchYoutubeSong"
-          @addSongToPlayList="addSongToPlayList"
-        ></add-song>
+          </div>  
+     
       </div>
       <div class="chat-container">
         <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
@@ -44,7 +51,6 @@ export default {
   data() {
     return {
       beat: null,
-      serchYoutubeSong: "",
     };
   },
   computed: {
@@ -55,6 +61,10 @@ export default {
     playlist() {
       if (!this.beat) return;
       return this.beat.songs;
+    },
+    currBeatImg() {
+      if (!this.beat) return;
+      return this.beat.imgUrl;
     },
     currSongIdx() {
       if (!this.beat) return;
@@ -67,13 +77,20 @@ export default {
     },
   },
   methods: {
-    changeSong(songId, num) {
-      let idx = this.beat.songs.findIndex((song) => song.id === songId);
-      if (idx === 0 && num === -1) return;
-      else if (idx === this.beat.songs.length - 1 && num === 1) idx = 0;
-      else if (num === 1) idx += 1;
-      else idx += -1;
-      let song = this.beat.songs[idx];
+    changeSong(songId, diff, isShuffle) {
+      let song;
+      if (isShuffle) {
+        let beatOpts = this.beat.songs.length - 1;
+        let rndIdx = Math.floor(Math.random() * Math.floor(beatOpts));
+        song = this.beat.songs[rndIdx];
+      } else {
+        let idx = this.beat.songs.findIndex((song) => song.id === songId);
+        if (idx === 0 && diff === -1) return;
+        else if (idx === this.beat.songs.length - 1 && diff === 1) idx = 0;
+        else if (diff === 1) idx += 1;
+        else idx += -1;
+        song = this.beat.songs[idx];
+      }
       this.$store.dispatch({
         type: "setCurrSong",
         song,

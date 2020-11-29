@@ -1,6 +1,6 @@
 <template>
   <section v-if="beats" class="main-list">
-    <div class="flex space-between">
+    <div class="list-header flex space-between align-baseline">
       <h2 class="" >{{ genre }}</h2>
       <h5 v-if="genre !== 'Popular' && genre !== 'Trending'" @click="showBeatsByGener" >See All</h5>
     </div>
