@@ -1,7 +1,7 @@
 <template>
   <section v-if="beats" class="main-list">
     <div class="list-header flex space-between align-baseline">
-      <h2 class="" >{{ genre }}</h2>
+      <h2 class="list-genre" >{{ genre }}</h2>
       <h5 @click="showBeatsByGener" >See All</h5>
     </div>
       <beat-list :beats="beatsToShow" />
