@@ -16,8 +16,7 @@ async function removeSong(songId, currBeat) {
     return idx;
 }
 
-
-async function addSong(song,currBeat){
+async function addSong(song, currBeat) {
     const beat = JSON.parse(JSON.stringify(currBeat))
     beat.songs.push(song)
     await beatService.save(beat)

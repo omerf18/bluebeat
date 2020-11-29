@@ -1,9 +1,9 @@
 .beat-player {
-   background-color: $bgc2;
+    background-color: $bgc2;
 }
 
 .beat-frame {
-width: 40%;
+    width: 40%;
 }
 
 .player {
@@ -18,6 +18,22 @@ width: 40%;
     align-items: center;
     text-align: center;
     width: 60%;
+}
+
+.player-btn > * {
+    color: $logo;
+    cursor: pointer;
+    padding: 8px;
+    font-size: rem(22px);
+}
+
+.sound {
+    padding: 8px;
+    font-size: rem(22px);
+}
+
+.soundOn {
+    color: $logo;
 }
 
 // .set-vol {

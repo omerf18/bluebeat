@@ -1,9 +1,10 @@
 <template>
   <section>
-    <div v-for="song in playlist" :key="song.id">
+    <div v-for="(song, index) in playlist" :key="song.id">
       <div
         class="song-container flex space-between icon"
-        @click="changeSong(song.id)"
+        :class="{ active: index === currSongIdx }"
+        @click="changeSong(song)"
       >
         <img class="song-img" :src="song.imgUrl" />
         <h4 class="song-title">{{ song.title }}</h4>
@@ -21,7 +22,7 @@
 
 <script>
 export default {
-  props: ["playlist"],
+  props: ["playlist", "currSongIdx"],
   name: "playlist",
   data() {
     return {};
@@ -31,9 +32,8 @@ export default {
     removeSong(songId) {
       this.$emit("removeSong", songId);
     },
-    changeSong(songId) {
-      let idx = this.playlist.findIndex((song) => song.id === songId);
-      this.$emit("playNextSong", idx);
+    changeSong(song) {
+      this.$emit("changeSong", song);
     },
   },
 };
