@@ -2,7 +2,7 @@
   <section v-if="currSong" class="beat-player flex">
     <div class="beat-frame flex col">
       <img
-        class="prev-img playing-img playing"
+        class="prev-img playing-img"
         :class="{ playing: isPlaying }"
         :src="currSong.imgUrl"
       />
