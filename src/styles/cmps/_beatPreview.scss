@@ -18,8 +18,8 @@
     object-fit: cover;
     border-radius: 50%;
     border: solid 2px $bgc2;
-    &.playing{
-        animation:rotation 2s infinite linear
+    &.playing {
+        animation: rotation 4s infinite linear;
     }
 }
 .beat-img {
