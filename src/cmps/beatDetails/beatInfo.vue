@@ -16,8 +16,8 @@
         <i class="like-btn far fa-heart"></i>
         <h5>{{ beat.likes }}</h5>
       </div>
-      <h5>Visits: {{ beat.visits }}</h5>
-      <h5>Online: 2</h5>
+      <h5>{{ beat.visits }} Visits </h5>
+      <h5>2 Online </h5>
     </div>
     <i @click="emitDelete(beat._id)" class="remove-beat icon fas fa-trash"></i>
   </section>

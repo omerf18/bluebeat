@@ -12,18 +12,25 @@
           :currSong="currSong"
           @switchSong="changeSong"
         />
+        <div class="flex space-between">
+          <el-button type="primary" icon="el-icon-edit" circle @click="toggleSearch"></el-button>
+          <a href="whatsapp://send?text= text to share!" data-action="share/whatsapp/share"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <div class="flex row">
+         <add-song
+          :searchedSongs="searchedSongsForDisplay"
+          @setKeyWord="searchYoutubeSong"
+          @addSongToPlayList="addSongToPlayList"
+        ></add-song>
         <beatPlaylist
-          class="beat-playerlist-cmp"
+          class="beat-playerlist-cmp ml20"
           :playlist="playlist"
           :currSongIdx="currSongIdx"
           @changeSong="switchSong"
           @removeSong="removeSong"
         />
-        <add-song
-          :searchedSongs="searchedSongsForDisplay"
-          @setKeyWord="searchYoutubeSong"
-          @addSongToPlayList="addSongToPlayList"
-        ></add-song>
+          </div>  
+     
       </div>
       <div class="chat-container">
         <beatChat class="beat-chat-cmp" />
