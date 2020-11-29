@@ -16,7 +16,7 @@
     width: rem(120px);
     height: rem(120px);
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 49%;
     border: solid 2px $bgc2;
     &.playing {
         animation: rotation 4s infinite linear;

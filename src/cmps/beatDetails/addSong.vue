@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="beat-add">
         <input  type="text" class="send-msg"  @keyup="searchYoutubeSong" v-model="searchKeyWord" placeholder="Search song" />
         <section v-if="searchedSongs" class="add-container">
             <div v-for="song in searchedSongs" :key="song.id">
