@@ -1,6 +1,5 @@
 <template>
   <div class="beat-chat">
-<<<<<<< HEAD
       <!-- <div class="beat-msg"></div> -->
       <ul class="beat-msg">
           <li v-for="(msg, idx) in msgs" :key="idx">
@@ -13,13 +12,6 @@
       </form>
         <h4 v-if="isTyping" >{{userNowTyping}}</h4>
     
-=======
-    <div class="beat-msg"></div>
-    <div class="send-container flex">
-      <i class="send-btn icon fas fa-paper-plane"></i>
-      <input class="send-msg" type="text" />
-    </div>
->>>>>>> 0571bbb3011f410592f8c6c5b6f742e8fb804a13
   </div>
 </template>
 

@@ -12,10 +12,10 @@
 }
 
 .add-search {
-    padding: 10px 20px;
-    margin: 10px 0;
     background-color: $bgc2;
     border-radius: 7px;
+    margin-bottom: 10px;
+    padding: 10px;
 }
 
 .add-input {
@@ -98,4 +98,13 @@
     border: 1px solid #5ffbf1;
     padding: 20px;
     border-radius: 14px;
+}
+
+.searchKeyword {
+    width: 45%;
+}
+
+.add-song-cmp {
+    width: 30vw;
+    margin-left: 10px;
 }

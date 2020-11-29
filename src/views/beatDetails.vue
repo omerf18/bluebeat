@@ -12,28 +12,26 @@
           :currSong="currSong"
           @switchSong="changeSong"
         />
-        <div class="flex space-between">
-          <el-button type="primary" icon="el-icon-edit" circle @click="toggleSearch"></el-button>
-          <a href="whatsapp://send?text= text to share!" data-action="share/whatsapp/share"><i class="fab fa-whatsapp"></i></a>
-        </div>
-        <div class="flex row">
-         <add-song
-          :searchedSongs="searchedSongsForDisplay"
-          @setKeyWord="searchYoutubeSong"
-          @addSongToPlayList="addSongToPlayList"
-        ></add-song>
         <beatPlaylist
-          class="beat-playerlist-cmp ml20"
+          class="beat-playerlist-cmp"
           :playlist="playlist"
           :currSongIdx="currSongIdx"
           @changeSong="switchSong"
           @removeSong="removeSong"
         />
-          </div>  
-     
       </div>
       <div class="chat-container">
+<<<<<<< HEAD
         <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
+=======
+        <beatChat class="beat-chat-cmp" />
+        <add-song
+          class="add-song-cmp"
+          :searchedSongs="searchedSongsForDisplay"
+          @setKeyWord="searchYoutubeSong"
+          @addSongToPlayList="addSongToPlayList"
+        ></add-song>
+>>>>>>> a21924bad29865f468df610a85d24d6fa028484e
       </div>
     </div>
   </section>
@@ -115,6 +113,7 @@ export default {
       });
     },
     async searchYoutubeSong(keyWord) {
+      console.log();
       this.$store.dispatch({
         type: "searchSong",
         keyWord,
