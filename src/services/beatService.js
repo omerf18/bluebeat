@@ -9,7 +9,6 @@ export const beatService = {
 
 const BASE_URL = 'http://localhost:3000'
 
-
 async function query(filterBy) {
     try {
         let path = `${BASE_URL}/beat`
@@ -54,15 +53,6 @@ async function _update(beat) {
         console.error(err);
     }
 }
-
-<<<<<<< HEAD
-function _buildQuery(genreFilter) {
-    const str = `?genre=${genreFilter}`
-    return str
-}
-=======
->>>>>>> b8665dd553dfd4ed11ee1f134aa816fb1795dbac
-
 
 async function getById(beatId) {
     try {
