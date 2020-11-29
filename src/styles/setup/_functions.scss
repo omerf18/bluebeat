@@ -6,4 +6,11 @@
   @function em($pixels, $context: 16px) {
     @return ($pixels/$context) * 1em;
   }
-  
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg)
+    }
+  }

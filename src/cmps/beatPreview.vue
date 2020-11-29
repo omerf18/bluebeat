@@ -1,7 +1,7 @@
 <template>
   <div class="prev-card" @click="beatPrev(beat._id)">
     <div class="beat-img flex align-center justify-center">
-    <img class="prev-img " :src="beat.imgUrl" />
+    <img class="prev-img" :src="beat.imgUrl" />
     </div>
     <div class="prev-details flex col align-center">
       <h2 class="prev-name">{{ beat.name }}</h2>
