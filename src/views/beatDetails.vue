@@ -7,11 +7,16 @@
           :beat="beat"
           @removeBeat="removeBeat"
         />
-        <beatPlayer class="beat-player-cmp" :currSong="currSong" />
+        <beatPlayer
+          class="beat-player-cmp"
+          :currSong="currSong"
+          @switchSong="changeSong"
+        />
         <beatPlaylist
           class="beat-playerlist-cmp"
           :playlist="playlist"
-          @playNextSong="song"
+          :currSongIdx="currSongIdx"
+          @changeSong="switchSong"
           @removeSong="removeSong"
         />
         <add-song
@@ -39,32 +44,52 @@ export default {
   data() {
     return {
       beat: null,
-      songIdx: 0,
       serchYoutubeSong: "",
     };
   },
   computed: {
     currSong() {
       if (!this.beat) return;
-      return this.beat.songs[this.songIdx];
+      return this.$store.getters.getCurrSong;
     },
     playlist() {
       if (!this.beat) return;
       return this.beat.songs;
     },
+    currSongIdx() {
+      if (!this.beat) return;
+      const list = this.playlist;
+      return list.findIndex((song) => song.id === this.currSong.id);
+    },
     searchedSongsForDisplay() {
+      if (!this.beat) return;
       return this.$store.getters.searchedSongsForDisplay;
     },
   },
   methods: {
+    changeSong(songId, num) {
+      let idx = this.beat.songs.findIndex((song) => song.id === songId);
+      if (idx === 0 && num === -1) return;
+      else if (idx === this.beat.songs.length - 1 && num === 1) idx = 0;
+      else if (num === 1) idx += 1;
+      else idx += -1;
+      let song = this.beat.songs[idx];
+      this.$store.dispatch({
+        type: "setCurrSong",
+        song,
+      });
+    },
     removeSong(songId) {
       this.$store.dispatch({
         type: "removeSong",
         songId,
       });
     },
-    song(songIdx) {
-      this.songIdx = songIdx;
+    switchSong(song) {
+      this.$store.dispatch({
+        type: "setCurrSong",
+        song,
+      });
     },
     removeBeat(beatId) {
       this.$store.dispatch({
@@ -89,10 +114,13 @@ export default {
     const beatId = this.$route.params.id;
     let beat = await beatService.getById(beatId);
     this.beat = JSON.parse(JSON.stringify(beat));
-    console.log("beat details", this.beat);
     this.$store.dispatch({
       type: "setCurrBeat",
       beat: this.beat,
+    });
+    this.$store.dispatch({
+      type: "setCurrSong",
+      song: this.beat.songs[0],
     });
   },
   components: {
