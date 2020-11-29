@@ -31,7 +31,7 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'beatAdd',
+    name: 'beatLogin',
     component: beatLogin
   },
 ]

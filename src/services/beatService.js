@@ -1,4 +1,5 @@
 import axios from 'axios'
+import HttpService from './HttpService.js'
 
 export const beatService = {
     query,
@@ -8,7 +9,12 @@ export const beatService = {
 }
 
 const BASE_URL = 'http://localhost:3000'
+// const BASE_URL = 'http://localhost:3030'
 
+
+// function query() {
+//     return HttpService.get('/beat')
+// }
 
 async function query(filterBy) {
     console.log('filterBy', filterBy);
