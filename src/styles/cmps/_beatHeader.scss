@@ -1,6 +1,7 @@
 .header {
-    padding: 5px;
+    padding: 5px 20px;
     background-color: $bgc1;
+
 }
 .beat-logo{
     height: 100px;
@@ -10,7 +11,13 @@
     font-size: rem(20px);
     text-decoration: none;
     color: $font1;
+    margin-right: 10px;
+    &:hover{
+        color: $logo;
+    }
+    
 }
 .header-search{
-    max-width: 200px;
+    max-width: rem(250px);
+   
 }

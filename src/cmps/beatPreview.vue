@@ -8,7 +8,8 @@
       <h3 class="prev-genre">{{ beat.genre }}</h3>
       <h3 class="prev-song-count">{{ beat.songs.length }} Songs in playlist</h3>
       <div class="prev-info-container flex space-around align-center">
-         <span class="prev-info"> <i class="prev-likes prev- fas fa-heart"> </i> {{ beat.likes }} </span>
+       
+         <span class="prev-info">  <i class="prev-likes prev- fas fa-heart"></i> {{ beat.likes }} </span>
         <span class="prev-info">25 Online</span>
         <span class="prev-info">{{ beat.views }} Views </span>
       </div>
