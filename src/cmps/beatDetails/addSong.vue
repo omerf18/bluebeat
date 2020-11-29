@@ -1,12 +1,7 @@
 <template>
     <section>
-        <input
-            type="text"
-            class="send-msg"
-            @keyup="searchYoutubeSong"
-            v-model="searchKeyWord"
-        />
-        <section v-if="searchedSongs">
+        <input  type="text" class="send-msg"  @keyup="searchYoutubeSong" v-model="searchKeyWord" placeholder="Search song" />
+        <section v-if="searchedSongs" class="add-container">
             <div v-for="song in searchedSongs" :key="song.id">
                 <div class="song-container flex space-between icon">
                     <img class="song-img" :src="song.imgUrl" />

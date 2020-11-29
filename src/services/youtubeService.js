@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { utilService } from '../services/utilService.js'
 
-const API_KEY = 'AIzaSyClRroC-RtQ92fvczO1HEIj0yKX9JX8kQs';
+const API_KEY = 'AIzaSyBWT1PdBEb4XeUkPP-yP41N_5hSohd95e8';
 
 
 export const youtubeService = {
@@ -47,7 +47,7 @@ async function _neededDetails(songs) {
             youtubeId: song.id,
             title: song.snippet.title,
             imgUrl: song.snippet.thumbnails.medium.url,
-            duration: song.contentDetails.duration,
+            duration:_setContentDetails(song.contentDetails.duration),
         }
         await neededDetails.push(songDetails)
     })
@@ -55,4 +55,11 @@ async function _neededDetails(songs) {
     return data
 }
 
+
+function _setContentDetails(duration){
+    var playTime = duration.replace('PT','')
+   var playTime1 = playTime.replace('M',':');
+   var playTime2 = playTime1.replace('S','')
+    return playTime2
+}
 
