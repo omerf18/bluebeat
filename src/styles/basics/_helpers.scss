@@ -30,4 +30,7 @@
     &.wrap {
         flex-wrap: wrap;
     }
+    &.align-baseline{
+        align-items: baseline;
+    }
 }

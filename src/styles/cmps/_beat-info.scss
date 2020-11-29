@@ -9,10 +9,13 @@
     justify-content: center;
     align-items: center;
 }
+.prev-img-details{
+    width: rem(150px);
+}
 
 .profile-img {
-    width: rem(40px);
-    height: rem(40px);
+    width: rem(30px);
+    height: rem(30px);
     object-fit: cover;
     border-radius: 50%;
 }
