@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import socketService from '../services/socketService';
+import socketService from "../services/socketService";
 import { beatService } from "../services/beatService.js";
 import beatInfo from "../cmps/beatDetails/beatInfo.vue";
 import beatPlayer from "../cmps/beatDetails/beatPlayer.vue";
@@ -55,8 +55,8 @@ export default {
   data() {
     return {
       beat: null,
+      addedSong: null,
       serchYoutubeSong: "",
-      newSong: null
     };
   },
   computed: {
@@ -66,9 +66,9 @@ export default {
     },
     playlist() {
       if (!this.beat) return;
-      console.log('playlist',this.beat.songs);
-      
-      return this.beat.songs;
+      let songs = JSON.parse(JSON.stringify(this.beat.songs));
+      if (this.addedSong) songs.push(this.addedSong);
+      return songs;
     },
     currBeatImg() {
       if (!this.beat) return;
@@ -76,7 +76,8 @@ export default {
     },
     currSongIdx() {
       if (!this.beat) return;
-      const list = this.playlist;
+      const list = JSON.parse(JSON.stringify(this.playlist));
+      console.log("push", list);
       return list.findIndex((song) => song.id === this.currSong.id);
     },
     searchedSongsForDisplay() {
@@ -129,22 +130,22 @@ export default {
       });
     },
     async addSongToPlayList(song) {
-      this.newSong = song
+      let newSong = JSON.parse(JSON.stringify(song));
       await this.$store.dispatch({
         type: "addSong",
         song,
       });
-      socketService.emit('add song',song)
-      // this.beat.songs.push(song)
+      console.log("song", newSong);
+      socketService.emit("add song", newSong);
+      socketService.on("add song", (this.addedSong = newSong));
     },
   },
   async created() {
     const beatId = this.$route.params.id;
-      socketService.emit('chat topic',beatId);
     let beat = await beatService.getById(beatId);
     this.beat = JSON.parse(JSON.stringify(beat));
-   
-    socketService.on('add song',this.newSong)
+    console.log("this", this.beat);
+    socketService.emit("chat topic", beatId);
     this.$store.dispatch({
       type: "setCurrBeat",
       beat: this.beat,

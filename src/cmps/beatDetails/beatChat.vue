@@ -1,6 +1,5 @@
 <template>
   <div class="beat-chat">
-      <!-- <div class="beat-msg"></div> -->
       <ul class="beat-msg">
           <li v-for="(msg, idx) in msgs" :key="idx">
                {{msg.from}}: {{msg.txt}} 
