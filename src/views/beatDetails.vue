@@ -16,7 +16,7 @@
         <div class="flex">
           <beatPlaylist
             class="beat-playerlist-cmp"
-            :beat="beat"
+            :playlist="playlist"
             :currSongIdx="currSongIdx"
             @changeSong="switchSong"
             @removeSong="removeSong"
@@ -48,25 +48,22 @@ export default {
   name: "beatDetails",
   data() {
     return {
-      // beat: null,
+      beat: null,
       serchYoutubeSong: "",
       newSong: null
     };
   },
   computed: {
-    beat(){
-      return this.$store.getters.currBeat;
-    },
     currSong() {
       if (!this.beat) return;
       return this.$store.getters.getCurrSong;
     },
-    // playlist() {
-    //   if (!this.beat) return;
-    //   console.log('playlist',this.beat.songs);
+    playlist() {
+      if (!this.beat) return;
+      console.log('playlist',this.beat.songs);
       
-    //   return this.beat.songs;
-    // },
+      return this.beat.songs;
+    },
     currBeatImg() {
       if (!this.beat) return;
       return this.beat.imgUrl;
@@ -82,9 +79,6 @@ export default {
     },
   },
   methods: {
-  async setBeat(beatId){
-    await this.$store.dispatch({type:''})
-    },
     changeSong(songId, diff, isShuffle) {
       let song;
       if (isShuffle) {
@@ -122,17 +116,16 @@ export default {
         beatId,
       });
     },
-   searchYoutubeSong(keyWord) {
+    async searchYoutubeSong(keyWord) {
       this.$store.dispatch({
         type: "searchSong",
         keyWord,
       });
     },
-      addSong(song){
-       var beat =JSON.parse(JSON.stringify(this.beat))
-       beat.songs.push(song)
-      socketService.emit('beat songs changed',beat)
-      this.$$store.dispatch({type: 'saveBeat',beat})
+     async addSong(song){
+       this.newSong = song
+     await socketService.emit('add song',song)
+    
 
     },
     async addSongToPlayList() {
@@ -145,11 +138,15 @@ export default {
     },
   },
   async created() {
+    socketService.setup()
+    socketService.on('add song',this.addSongToPlayList )
+      socketService.emit('chat topic',beatId);
     const beatId = this.$route.params.id;
-    this.setStation(beatId);
-    socketService.emit('join beat',beatId);
-
-  this.$store.dispatch({
+    let beat = await beatService.getById(beatId);
+    this.beat = JSON.parse(JSON.stringify(beat));
+   
+   
+    this.$store.dispatch({
       type: "setCurrBeat",
       beat: this.beat,
     });
