@@ -125,10 +125,11 @@ export default {
         keyWord,
       });
     },
-     async addSong(song){
+      addSong(song){
        var beat =JSON.parse(JSON.stringify(this.beat))
-     await socketService.emit('add song',song)
-    
+       beat.songs.push(song)
+      socketService.emit('beat songs changed',beat)
+      this.$$store.dispatch({type: 'saveBeat',beat})
 
     },
     async addSongToPlayList() {
