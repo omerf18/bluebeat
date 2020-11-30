@@ -31,7 +31,11 @@ export default {
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+    serPlaylist() {
+      socketService.on("add song", this.playlist);
+    },
+  },
   methods: {
     removeSong(songId) {
       this.$emit("removeSong", songId);

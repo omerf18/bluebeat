@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { utilService } from '../services/utilService.js'
 
-const API_KEY = 'AIzaSyDBTRTb8qLf_omU7foaqgJ_kLS-WjFeMGg';
-
+const API_KEY = 'AIzaSyCyM2fv9P2yWDlNTAfgAcDdRqMXQpULiiM';
+// const API_KEY = 'AIzaSyDBTRTb8qLf_omU7foaqgJ_kLS-WjFeMGg';
 
 export const youtubeService = {
     getSong,
@@ -51,7 +51,6 @@ async function _neededDetails(songs) {
     const data = await Promise.all(neededDetails)
     return data
 }
-
 
 function _setContentDetails(duration) {
     var playTime = duration.replace('PT', '')
