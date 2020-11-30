@@ -1,5 +1,3 @@
-
-
 export const utilService ={
     getEmpty,
     makeId
@@ -27,8 +25,6 @@ function getEmpty() {
         ]
     }
 }
-
-
 
 function makeId(length = 5) {
     var txt = '_'

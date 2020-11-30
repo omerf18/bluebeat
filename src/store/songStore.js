@@ -1,5 +1,6 @@
 import { songService } from '../services/songService.js'
 import { youtubeService } from '../services/youtubeService.js'
+import socketService from "../services/socketService";
 
 export const songStore = {
     strict: true,
@@ -8,22 +9,22 @@ export const songStore = {
         searchedSongs: null,
     },
     getters: {
-        getCurrSong(state) {
-            return state.currSong;
+        getCurrSong({ currSong }) {
+            return currSong;
         },
-        getCurrSongId(state) {
-            return state.currSongId;
+        getCurrSongId({ currSong }) {
+            return currSong.id;
         },
-        searchedSongsForDisplay(state) {
-            return state.searchedSongs
+        searchedSongsForDisplay({ searchedSongs }) {
+            return searchedSongs;
         }
     },
     mutations: {
-        setCurrSong(state, { song }) {
-            state.currSong = song;
+        setCurrSong({ currSong }, { song }) {
+            currSong = song;
         },
         addSong(state, { newSong, currBeat }) {
-            currBeat.songs.push(newSong)
+            currBeat.songs.push(newSong);
         },
         removeSong(state, { idx, currBeat }) {
             currBeat.songs.splice(idx, 1);
@@ -46,6 +47,7 @@ export const songStore = {
             const currBeat = state.getters.currBeat;
             const newSong = await songService.addSong(song, currBeat)
             state.commit({ type: 'addSong', newSong, currBeat })
+            socketService.emit("beat update", currBeat);
         },
         setCurrSong({ commit }, { song }) {
             commit({ type: 'setCurrSong', song })

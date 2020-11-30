@@ -55,8 +55,8 @@ export default {
   data() {
     return {
       beat: null,
-      addedSong: null,
-      serchYoutubeSong: "",
+      currSongIdx: null,
+      newSong: null,
     };
   },
   computed: {
@@ -66,19 +66,11 @@ export default {
     },
     playlist() {
       if (!this.beat) return;
-      let songs = JSON.parse(JSON.stringify(this.beat.songs));
-      if (this.addedSong) songs.push(this.addedSong);
-      return songs;
+      return this.beat.songs;
     },
     currBeatImg() {
       if (!this.beat) return;
       return this.beat.imgUrl;
-    },
-    currSongIdx() {
-      if (!this.beat) return;
-      const list = JSON.parse(JSON.stringify(this.playlist));
-      console.log("push", list);
-      return list.findIndex((song) => song.id === this.currSong.id);
     },
     searchedSongsForDisplay() {
       if (!this.beat) return;
@@ -99,6 +91,7 @@ export default {
         else if (diff === 1) idx += 1;
         else idx += -1;
         song = this.beat.songs[idx];
+        this.currSongIdx = song;
       }
       this.$store.dispatch({
         type: "setCurrSong",
@@ -130,22 +123,17 @@ export default {
       });
     },
     async addSongToPlayList(song) {
-      let newSong = JSON.parse(JSON.stringify(song));
+      this.newSong = song;
       await this.$store.dispatch({
         type: "addSong",
         song,
       });
-      console.log("song", newSong);
-      socketService.emit("add song", newSong);
-      socketService.on("add song", (this.addedSong = newSong));
     },
   },
   async created() {
     const beatId = this.$route.params.id;
     let beat = await beatService.getById(beatId);
     this.beat = JSON.parse(JSON.stringify(beat));
-    console.log("this", this.beat);
-    socketService.emit("chat topic", beatId);
     this.$store.dispatch({
       type: "setCurrBeat",
       beat: this.beat,
@@ -154,6 +142,7 @@ export default {
       type: "setCurrSong",
       song: this.beat.songs[0],
     });
+    this.currSongIdx = 0;
   },
   components: {
     beatInfo,
@@ -165,3 +154,4 @@ export default {
   },
 };
 </script>
+  

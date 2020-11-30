@@ -5,54 +5,57 @@ export const beatStore = {
     state: {
         beats: null,
         filterBy: { genreFilter: 'ALL', beatTitle: '' },
-        genres: ['Popular', 'Trending', 'Hip hop', 'Israeli', 'Dance', 'Pop', 'Rock n roll', 'Latin','Easy'],
+        genres: ['Popular', 'Trending', 'Hip hop', 'Israeli', 'Dance', 'Pop', 'Rock n roll', 'Latin', 'Easy'],
         currBeat: null
     },
     getters: {
-        currBeat(state) {
-            return state.currBeat;
+        beatImgUrl({ currBeat }) {
+            return currBeat.imgUrl;
         },
-        beats(state) {
-            return state.beats;
+        playlist({ currBeat }) {
+            return currBeat.songs;
         },
-        currBeat(state) {
-            return state.currBeat
+        beats({ beats }) {
+            return beats;
         },
-        genres(state) {
-            return state.genres
+        currBeat({ currBeat }) {
+            return currBeat
         },
-        filterBy(state) {
-            return state.filterBy
+        genres({ genres }) {
+            return genres;
+        },
+        filterBy({ filterBy }) {
+            return filterBy;
         }
     },
     mutations: {
-        setCurrBeat(state, { beat }) {
-            state.currBeat = beat;
+        setCurrBeat({ currBeat }, { beat }) {
+            currBeat = beat;
         },
         loadBeats(state, { beats }) {
             state.beats = beats
         },
-        removeBeat(state, { beatId }) {
-            const idx = state.beats.findIndex(beat => beat._id === beatId);
-            state.beats.splice(idx, 1);
+        removeBeat({ beats }, { beatId }) {
+            const idx = beats.findIndex(beat => beat._id === beatId);
+            beats.splice(idx, 1);
         },
-        editBeat(state, { beat }) {
-            const idx = state.beats.findIndex(currBeat => beat._id === currBeat._id);
-            state.beats.splice(idx, 1, beat)
+        editBeat({ beats }, { beat }) {
+            const idx = beats.findIndex(currBeat => beat._id === currBeat._id);
+            beats.splice(idx, 1, beat)
         },
-        addBeat(state, { beat }) {
-            state.beats.unshift(beat)
+        addBeat({ beats }, { beat }) {
+            beats.unshift(beat);
         },
-        setGenreFilter(state, { selectedGenre }) {
-            state.filterBy.genreFilter = selectedGenre
+        setGenreFilter({ filterBy }, { selectedGenre }) {
+            filterBy.genreFilter = selectedGenre
         },
-        setTxtFilter(state, { txt }) {
-            state.filterBy.beatTitle = txt
+        setTxtFilter({ filterBy }, { txt }) {
+            filterBy.beatTitle = txt
         },
-        resetFilter(state) {
-            state.filterBy.genreFilter = 'ALL';
-            state.filterBy.beatTitle = '';
-            state.beats = null;
+        resetFilter({ filterBy, beats }) {
+            filterBy.genreFilter = 'ALL';
+            filterBy.beatTitle = '';
+            beats = null;
         }
     },
     actions: {
@@ -90,7 +93,7 @@ export const beatStore = {
             await state.commit({ type: 'resetFilter' })
             try {
                 state.dispatch('loadBeats')
-            } catch(err) {
+            } catch (err) {
                 console.log(err);
             }
         }

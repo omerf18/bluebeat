@@ -1,5 +1,5 @@
 <template>
-  <div class="prev-card" @click="beatPrev(beat._id)">
+  <div class="prev-card icon" @click="beatPrev(beat._id)">
     <div class="beat-img flex align-center justify-center">
       <img class="prev-img" :src="beat.imgUrl" />
     </div>
