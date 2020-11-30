@@ -1,13 +1,11 @@
-
-.beat-playerlist-cmp{
-margin-top: 49px;
-width: 100%;
+.beat-playerlist-cmp {
+    margin-top: 49px;
+    width: 100%;
 }
 .song-container {
     height: 50px;
     background-color: $bgc2;
     margin-bottom: 5px;
-    align-items: center;
     border-radius: 7px;
 }
 
@@ -25,7 +23,7 @@ width: 100%;
 
 .active {
     color: $logo;
-    .song-icon{
+    .song-icon {
         color: $font1;
     }
 }

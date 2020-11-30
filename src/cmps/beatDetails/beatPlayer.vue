@@ -11,11 +11,11 @@
         style="visibility: hidden"
       ></youtube>
     </div>
-    <div class="song-desc">
+    <div class="song-desc flex col space-evenly justify-center align-center">
       <h2>{{ currSong.title }}</h2>
       <h4>{{ currSong.duration }}</h4>
       <div class="flex">
-        <div class="player-btn flex">
+        <div class="player-btn flex icon">
           <i @click="switchSong(currSong.id, -1)" class="fas fa-backward"></i>
           <i v-if="!playerVars.isPlaying" @click="playSong" class="fas fa-play"></i>
           <i v-if="playerVars.isPlaying" @click="pauseSong" class="fas fa-pause"></i>

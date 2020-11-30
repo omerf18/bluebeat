@@ -40,8 +40,6 @@ export default {
   },
   methods: {
     sendMsg() {
-      console.log(this.beat);
-      console.log(this.msg.txt);
       socketService.emit('chat newMsg', this.msg)
       this.msg = {from: 'Guest', txt: ''};
       // this.msg = {from: this.$store.getters.loggedinUser.username, txt: ''};

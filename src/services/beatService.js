@@ -1,5 +1,5 @@
 import axios from 'axios'
-// import { lastIndexOf } from 'core-js/fn/array'
+
 import HttpService from './HttpService.js'
 
 export const beatService = {
@@ -9,23 +9,17 @@ export const beatService = {
     removeBeat
 }
 
-// const BASE_URL = 'http://localhost:3000'
 const BASE_URL = 'http://localhost:3030'
 
-
 function query(filterBy) {
-    // console.log('service', filterBy);
     if ( filterBy.genreFilter)
     return HttpService.get(`beat?name=${filterBy.beatTitle}&genre=${filterBy.genreFilter}`)
 }
-
 
 function save(beat) {
     if (!beat._id) return HttpService.post(`beat`, beat)
     return HttpService.put(`beat/${beat._id}`, beat)
 }
-
-
 
 function getById(beatId) {
     return HttpService.get(`beat/${beatId}`)

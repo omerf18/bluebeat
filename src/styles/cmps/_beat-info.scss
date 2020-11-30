@@ -4,10 +4,6 @@
 
 .user-profile {
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 .prev-img-details {
     padding: 10px;
@@ -22,20 +18,11 @@
     border-radius: 50%;
 }
 
-.beat-desc {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-}
-
 .views-container {
     padding: 5px;
 }
 
 .like-btn {
-    cursor: pointer;
     padding-right: 5px;
     color: $logo;
 }
-

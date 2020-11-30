@@ -2,7 +2,7 @@
   <div class="header main-layout">
     <div class="flex justify-center align-center space-between">
       <img
-        class="beat-logo"
+        class="beat-logo icon"
         src="@/assets/img/beatLogo.png"
         @click="backHome"
       />
@@ -20,7 +20,7 @@
       <router-link class="header-btn" to="/beat">Beats</router-link>
       <router-link class="header-btn" to="/beat/add">Create Beat</router-link>
     </div>
-        <i class="user-profile-btn icon fas fa-user-circle"></i>
+        <i class="user-profile-btn icon fas fa-user-circle flex col justify-center align-center"></i>
       </div>
     </div>
   </div>

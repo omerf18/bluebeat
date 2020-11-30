@@ -35,10 +35,8 @@ export default {
             return this.$store.getters.genreFilter;
         },
   
-
     },
     created() {
-        
         this.$store.dispatch({ type: "loadBeats" });
     },
 };
