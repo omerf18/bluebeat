@@ -13,10 +13,18 @@ export const beatService = {
 const BASE_URL = 'http://localhost:3030'
 
 
-function query(filterBy) {
+async function query(filterBy) {
     // console.log('service', filterBy);
-    if ( filterBy.genreFilter)
-    return HttpService.get(`beat?name=${filterBy.beatTitle}&genre=${filterBy.genreFilter}`)
+    // if ( filterBy.genreFilter)
+    // return HttpService.get(`beat?name=${filterBy.beatTitle}&genre=${filterBy.genreFilter}`)
+    var beats = await HttpService.get(`beat?genre=${filterBy.genreFilter}`)
+    console.log('beats', beats);
+    if (filterBy.beatTitle !== '') {
+        var filteredBeats = beats.filter(beat => beat.name.toLowerCase().includes(filterBy.beatTitle))
+        console.log('filteredBeatsfilteredBeats', filteredBeats);
+        return filteredBeats
+    } else return beats;
+  
 }
 
 

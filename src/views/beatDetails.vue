@@ -21,17 +21,13 @@
         />
       </div>
       <div class="chat-container">
-<<<<<<< HEAD
         <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
-=======
-        <beatChat class="beat-chat-cmp" />
         <add-song
           class="add-song-cmp"
           :searchedSongs="searchedSongsForDisplay"
           @setKeyWord="searchYoutubeSong"
           @addSongToPlayList="addSongToPlayList"
         ></add-song>
->>>>>>> a21924bad29865f468df610a85d24d6fa028484e
       </div>
     </div>
   </section>

@@ -6,11 +6,11 @@
                {{msg.from}}: {{msg.txt}} 
           </li>
       </ul>
+      <h4 v-if="isTyping" >{{userNowTyping}}</h4>
       <form class="send-container flex" @submit.prevent="sendMsg">
           <i class="send-btn icon fas fa-paper-plane" @click="sendMsg" ></i>
-          <input class="send-msg" type="text" v-model="msg.txt">
+          <input class="send-msg" @keydown="userTyping" type="text" v-model="msg.txt">
       </form>
-        <h4 v-if="isTyping" >{{userNowTyping}}</h4>
     
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
   name: "beatChat",
   data() {
     return {
-      msg: {from: 'Me', txt: ''},
+      msg: {from: 'Guest', txt: ''},
       msgs: [],
       topic : '',
       isTyping: false,
@@ -40,8 +40,7 @@ export default {
   },
   methods: {
     sendMsg() {
-      console.log(this.beat);
-      console.log(this.msg.txt);
+      this.msg = {from: 'Guest', txt: this.msg.txt};
       socketService.emit('chat newMsg', this.msg)
       this.msg = {from: 'Guest', txt: ''};
       // this.msg = {from: this.$store.getters.loggedinUser.username, txt: ''};
@@ -53,11 +52,19 @@ export default {
       this.isTyping = true;
       // const userTyping = {typing: this.isTyping ,loggedinUser: this.loggedinUser}
       // socketService.emit('user typing', userTyping);
-      const userTyping = {typing: this.isTyping ,loggedinUser: 'He'}
+      const userTyping = {typing: this.isTyping ,loggedinUser: 'Guest'}
       socketService.emit('user typing', userTyping);
       setTimeout(() => {
           this.isTyping = false;
         }, 2000);
+    },
+    typing(typing) {
+      this.isTyping = typing.typing;
+      this.userNowTyping = typing.loggedinUser + ' is typing...'
+      setTimeout(() => {
+        this.userNowTyping = '';
+        this.isTyping = false;
+      }, 2000);
     },
     destroyed() {
             socketService.off('chat addMsg', this.addMsg)
@@ -71,8 +78,5 @@ export default {
     socketService.on('chat addMsg', this.addMsg);
     socketService.on('typing', this.typing);
   },
-  mounted() {
-    
-  }
 };
 </script>
