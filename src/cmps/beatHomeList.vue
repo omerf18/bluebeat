@@ -1,7 +1,7 @@
 <template>
   <section v-if="beats" class="main-list">
     <div class="list-header flex space-between align-baseline">
-      <h2 class="" >{{ genre }}</h2>
+      <h2 class="list-genre" >{{ genre }}</h2>
       <h5 v-if="genre !== 'Popular' && genre !== 'Trending'" @click="showBeatsByGener" >See All</h5>
     </div>
       <beat-list :beats="beatsToShow" />
@@ -15,7 +15,6 @@ export default {
   props: {
     beats: Array,
     genre: String
-    // categories: Array
   },
   data() {
       return{
@@ -31,7 +30,7 @@ export default {
         for (var i = 0; i < 4; i++) {
           popularBeats.push(sortBeats[i])
         }
-        console.log(popularBeats);
+        // console.log(popularBeats);
           return popularBeats
         } else if (this.genre === 'Trending') {
           var sortBeats = JSON.parse(JSON.stringify(this.beats))
@@ -50,8 +49,9 @@ export default {
   },
   methods: {
     showBeatsByGener(){
-       this.$emit('filter', this.genre)
-       this.$router.push('/app')
+      console.log(this.genre);
+       this.$emit('filter', this.genre.toUpperCase())
+       this.$router.push('/beat')
     }
     
   },

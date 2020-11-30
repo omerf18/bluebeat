@@ -12,7 +12,7 @@ function getEmpty() {
         likes: 10,
         name: '', 
         description:'',
-        imgUrl:'https://res.cloudinary.com/bluebeat/image/upload/v1606408214/bluebeat/qvnmmdyspo3ceez5vjoj.png',
+        imgUrl:'https://res.cloudinary.com/bluebeat/image/upload/v1606685267/bluebeat/srdn8qp7cpwx3ywieq2n.png',
         tags:[
             'love',
             'happy'
@@ -32,7 +32,7 @@ function getEmpty() {
 
 
 function makeId(length = 5) {
-    var txt = ''
+    var txt = '_'
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     for (let i = 0; i < length; i++) {
         txt += possible.charAt(Math.floor(Math.random() * possible.length))

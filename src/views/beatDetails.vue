@@ -12,13 +12,24 @@
           :currSong="currSong"
           @switchSong="changeSong"
         />
-        <beatPlaylist
-          class="beat-playerlist-cmp"
-          :playlist="playlist"
-          :currSongIdx="currSongIdx"
-          @changeSong="switchSong"
-          @removeSong="removeSong"
-        />
+        <div class="flex space-between">
+          <button @click="toggleSearch">+</button>
+        </div>
+        <div class="flex row">
+          <add-song
+            v-if="isSearch"
+            :searchedSongs="searchedSongsForDisplay"
+            @setKeyWord="searchYoutubeSong"
+            @addSongToPlayList="addSongToPlayList"
+          ></add-song>
+          <beatPlaylist
+            class="beat-playerlist-cmp"
+            :playlist="playlist"
+            :currSongIdx="currSongIdx"
+            @changeSong="switchSong"
+            @removeSong="removeSong"
+          />
+        </div>
       </div>
       <div class="chat-container">
         <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
@@ -40,11 +51,14 @@ import beatPlayer from "../cmps/beatDetails/beatPlayer.vue";
 import beatPlaylist from "../cmps/beatDetails/beatPlaylist.vue";
 import beatChat from "../cmps/beatDetails/beatChat.vue";
 import addSong from "../cmps/beatDetails/addSong.vue";
+
 export default {
   name: "beatDetails",
   data() {
     return {
       beat: null,
+      serchYoutubeSong: "",
+      isSearch: false,
     };
   },
   computed: {
@@ -109,7 +123,6 @@ export default {
       });
     },
     async searchYoutubeSong(keyWord) {
-      console.log();
       this.$store.dispatch({
         type: "searchSong",
         keyWord,
@@ -120,6 +133,9 @@ export default {
         type: "addSong",
         song,
       });
+    },
+    toggleSearch() {
+      this.isSearch = !this.isSearch;
     },
   },
   async created() {

@@ -1,12 +1,18 @@
-.beat-add {
-    padding: 50px;
+
+.beat-add{
+width: 100%; 
+margin-right: 20px;
+input{
+    margin-bottom: 20px;
+}
 }
 .beat-add-container {
     background-color: $bgc2;
     padding: 20px;
-    width: 100%;
+    max-width: 50%;
 }
-.img-uploaded {
+
+.img-uploaded{
     height: rem(104px);
     width: rem(104px);
 }

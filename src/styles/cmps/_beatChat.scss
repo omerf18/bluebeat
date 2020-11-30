@@ -1,9 +1,9 @@
 .beat-chat {
     background-color: $bgc2;
     height: 80vh;
-    width: 100%;
-    position: relative;
-    margin: 0 0 10px 10px;
+    width: rem(300px);
+    position: fixed;
+    margin: 0 20px;
 }
 
 .send-container {
@@ -25,14 +25,3 @@
     font-size: 25px;
 }
 
-.beat-chat {
-    position: relative;
-}
-
-.whatsapp-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: rem(25px);
-    color: $logo;
-}

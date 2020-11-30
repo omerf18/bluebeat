@@ -2,7 +2,7 @@
   <div class="header main-layout">
     <div class="flex justify-center align-center space-between">
       <img
-        class="beat-logo"
+        class="beat-logo icon"
         src="@/assets/img/beatLogo.png"
         @click="backHome"
       />
@@ -15,14 +15,12 @@
           v-model="beatToSearch"
         />
       </form>
-      <div class="flex row">
-        <div class="flex justify-center align-center">
-          <router-link class="header-btn" to="/app">Beats</router-link>
-          <router-link class="header-btn" to="/app/add"
-            >Create Beat</router-link
-          >
-        </div>
-        <i class="user-profile-btn icon fas fa-user-circle"></i>
+    <div class="flex row">  
+       <div class="flex justify-center align-center ">
+      <router-link class="header-btn" to="/beat">Beats</router-link>
+      <router-link class="header-btn" to="/beat/add">Create Beat</router-link>
+    </div>
+        <i class="user-profile-btn icon fas fa-user-circle flex col justify-center align-center"></i>
       </div>
     </div>
   </div>
@@ -48,7 +46,8 @@ export default {
         type: "setTxtFilter",
         txt: this.beatToSearch,
       });
-      this.$router.push("/app");
+      // console.log('gggggggg', this.$router.options);
+      this.$router.push("/beat");
     },
   },
 };

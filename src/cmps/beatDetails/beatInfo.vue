@@ -1,25 +1,26 @@
 <template>
   <section v-if="beat" class="beat-info flex space-between container">
       <img class="prev-img-details" :src="beat.imgUrl" >
-    <div class="user-profile">
+    <div class="user-profile  flex col justify-center align-center">
       <img class="profile-img" v-if="beat.createdBy.imgUrl" :src="beat.createdBy.imgUrl" />
       <img class="profile-img" v-else src="../../assets/img/beatLogo.png" />
       <h4>{{ beat.createdBy.userName }}</h4>
     </div>
-    <div class="beat-desc">
+    <div class="beat-desc flex col align-center space-around">
       <h2>{{ beat.name }}</h2>
       <h3>{{ beat.genre }}</h3>
       <h4>{{ beat.description }}</h4>
     </div>
-    <div class="views-container beat-desc">
+    <div class="views-container beat-desc flex col align-center space-around">
       <div class="flex">
-        <i class="like-btn far fa-heart"></i>
+        <i class="like-btn icon far fa-heart"></i>
         <h5>{{ beat.likes }}</h5>
       </div>
       <h5>{{ beat.visits }} Visits </h5>
       <h5>2 Online </h5>
     </div>
     <i @click="emitDelete(beat._id)" class="remove-beat icon fas fa-trash"></i>
+                     
   </section>
 </template>
 
@@ -30,7 +31,7 @@ export default {
   methods: {
     emitDelete(beatId) {
       this.$emit("removeBeat", beatId);
-      this.$router.push("/app");
+      this.$router.push("/beat");
     },
   },
 };

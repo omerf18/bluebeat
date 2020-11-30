@@ -10,9 +10,9 @@
 @import "./basics/base";
 
 //VIEWS
-@import "./views/beatApp";
+// @import "./views/beatApp";
 @import "./views/beatHome";
-@import "./views/beatDetails.scss";
+@import "./views/beatDetails";
 @import "./views/beatLogin";
 
 // CMPS
@@ -20,6 +20,7 @@
 @import "./cmps/beatPreview";
 @import "./cmps/beatAdd";
 @import "./cmps/beatApp";
+@import "./cmps/beatList";
 @import "./cmps/beatAdd.scss";
 @import "./cmps/beat-info";
 @import "./cmps/beatPlayer";
