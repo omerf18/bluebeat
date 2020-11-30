@@ -50,7 +50,7 @@ export default {
   methods: {
     showBeatsByGener(){
        this.$emit('filter', this.genre)
-       this.$router.push('/app')
+       this.$router.push('/beat')
     }
     
   },
