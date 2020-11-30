@@ -7,6 +7,7 @@
 
 <script>
 import beatHeader from "@/cmps/beatHeader.vue";
+import socketService from './services/socketService.js'
 
 export default {
   components: {
@@ -14,6 +15,7 @@ export default {
   },
    created() {
     this.$store.dispatch({type: 'loadBeats'})
+        socketService.setup()
   },
 };
 </script>

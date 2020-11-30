@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import socketService from '../../services/socketService';
 export default {
   name: "addSong",
   props: {
@@ -27,12 +26,11 @@ export default {
   methods: {
     addSongToPlayList(song) {
       this.$emit("addSongToPlayList", song);
-      socketService.emit('add song',song)
+      
     },
   },
   created(){
-    socketService.setup()
-    socketService.on('add song', song)
+
   }
 };
 </script>
