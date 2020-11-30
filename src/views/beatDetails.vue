@@ -16,7 +16,7 @@
         <div class="flex">
           <beatPlaylist
             class="beat-playerlist-cmp"
-            :playlist="playlist"
+            :beat="beat"
             :currSongIdx="currSongIdx"
             @changeSong="switchSong"
             @removeSong="removeSong"
@@ -48,7 +48,7 @@ export default {
   name: "beatDetails",
   data() {
     return {
-      beat: null,
+      // beat: null,
       serchYoutubeSong: "",
       newSong: null
     };
@@ -61,12 +61,12 @@ export default {
       if (!this.beat) return;
       return this.$store.getters.getCurrSong;
     },
-    playlist() {
-      if (!this.beat) return;
-      console.log('playlist',this.beat.songs);
+    // playlist() {
+    //   if (!this.beat) return;
+    //   console.log('playlist',this.beat.songs);
       
-      return this.beat.songs;
-    },
+    //   return this.beat.songs;
+    // },
     currBeatImg() {
       if (!this.beat) return;
       return this.beat.imgUrl;
@@ -82,6 +82,9 @@ export default {
     },
   },
   methods: {
+  async setBeat(beatId){
+    await this.$store.dispatch({type:''})
+    },
     changeSong(songId, diff, isShuffle) {
       let song;
       if (isShuffle) {
@@ -119,7 +122,7 @@ export default {
         beatId,
       });
     },
-    async searchYoutubeSong(keyWord) {
+   searchYoutubeSong(keyWord) {
       this.$store.dispatch({
         type: "searchSong",
         keyWord,
@@ -143,14 +146,10 @@ export default {
   },
   async created() {
     const beatId = this.$route.params.id;
-    // socketService.setup()
-      socketService.emit('join beat',beatId);
-    socketService.on('add song',this.addSongToPlayList )
-    let beat = await beatService.getById(beatId);
-    this.beat = JSON.parse(JSON.stringify(beat));
-   
-   
-    this.$store.dispatch({
+    this.setStation(beatId);
+    socketService.emit('join beat',beatId);
+
+  this.$store.dispatch({
       type: "setCurrBeat",
       beat: this.beat,
     });

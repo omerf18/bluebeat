@@ -1,6 +1,6 @@
 <template>
     <section>
-        <div v-for="(song, index) in playlist" :key="song.id">
+        <div v-for="(song, index) in beat.songs" :key="song.id">
             <div
                 class="song-container flex space-between align-center icon"
                 :class="{ active: index === currSongIdx }"
@@ -25,7 +25,7 @@
 export default {
 
   props: {
-    playlist:Array,
+    beat:Object,
    currSongIdx:Number
    },
   name: "playlist",
