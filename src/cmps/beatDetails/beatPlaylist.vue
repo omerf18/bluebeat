@@ -2,7 +2,7 @@
   <section>
     <div v-for="(song, index) in playlist" :key="song.id">
       <div
-        class="song-container flex space-between align-items icon"
+        class="song-container flex space-between align-center icon"
         :class="{ active: index === currSongIdx }"
           @click="changeSong(song)">
           <img class="song-img" :src="song.imgUrl" />
@@ -18,7 +18,10 @@
 
 <script>
 export default {
-  props: ["playlist", "currSongIdx"],
+  props: {
+    playlist:Array,
+   currSongIdx:Number
+   },
   name: "playlist",
   data() {
     return {};

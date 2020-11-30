@@ -1,5 +1,4 @@
 .beat-playerlist-cmp {
-    margin-top: 49px;
     width: 100%;
 }
 .song-container {
@@ -10,15 +9,16 @@
 }
 
 .song-img {
-    padding: 4px;
-    height: 95%;
+    width: 10%;
+    height: 60%;
+    padding: 0 4px;
     object-fit: cover;
     border-radius: 10px;
 }
 
 .song-icon {
     font-size: rem(13px);
-    padding: 0 10px 0 10px;
+    padding: 0 10px;
 }
 
 .active {
@@ -30,6 +30,9 @@
 .main-list {
     h5:hover {
         color: $logo;
-        cursor: pointer;
     }
+}
+
+.song-dur {
+    padding-left: 4px;
 }

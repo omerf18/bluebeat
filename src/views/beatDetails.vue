@@ -12,16 +12,8 @@
           :currSong="currSong"
           @switchSong="changeSong"
         />
-        <div class="flex space-between">
-          <button @click="toggleSearch">+</button>
-        </div>
-        <div class="flex row">
-          <add-song
-            v-if="isSearch"
-            :searchedSongs="searchedSongsForDisplay"
-            @setKeyWord="searchYoutubeSong"
-            @addSongToPlayList="addSongToPlayList"
-          ></add-song>
+        <searchSong class="searchSong-cmp" @setKeyWord="searchYoutubeSong" />
+        <div class="flex">
           <beatPlaylist
             class="beat-playerlist-cmp"
             :playlist="playlist"
@@ -29,6 +21,10 @@
             @changeSong="switchSong"
             @removeSong="removeSong"
           />
+          <add-song
+            :searchedSongs="searchedSongsForDisplay"
+            @addSongToPlayList="addSongToPlayList"
+          ></add-song>
         </div>
       </div>
       <div class="chat-container">
@@ -51,6 +47,7 @@ import beatPlayer from "../cmps/beatDetails/beatPlayer.vue";
 import beatPlaylist from "../cmps/beatDetails/beatPlaylist.vue";
 import beatChat from "../cmps/beatDetails/beatChat.vue";
 import addSong from "../cmps/beatDetails/addSong.vue";
+import searchSong from "../cmps/beatDetails/searchSong.vue";
 
 export default {
   name: "beatDetails",
@@ -58,7 +55,6 @@ export default {
     return {
       beat: null,
       serchYoutubeSong: "",
-      isSearch: false,
     };
   },
   computed: {
@@ -134,9 +130,6 @@ export default {
         song,
       });
     },
-    toggleSearch() {
-      this.isSearch = !this.isSearch;
-    },
   },
   async created() {
     const beatId = this.$route.params.id;
@@ -157,6 +150,7 @@ export default {
     beatPlaylist,
     beatChat,
     addSong,
+    searchSong
   },
 };
 </script>

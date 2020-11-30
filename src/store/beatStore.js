@@ -39,7 +39,6 @@ export const beatStore = {
         editBeat(state, { beat }) {
             const idx = state.beats.findIndex(currBeat => beat._id === currBeat._id);
             state.beats.splice(idx, 1, beat)
-
         },
         addBeat(state, { beat }) {
             state.beats.unshift(beat)

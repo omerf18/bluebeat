@@ -1,34 +1,37 @@
 <template>
   <section v-if="beats" class="main-list">
     <div class="list-header flex space-between align-baseline">
-      <h2 class="list-genre" >{{ genre }}</h2>
-      <h5 v-if="genre !== 'Popular' && genre !== 'Trending'" @click="showBeatsByGener" >See All</h5>
+      <h2 class="list-genre">{{ genre }}</h2>
+      <h5
+        v-if="genre !== 'Popular' && genre !== 'Trending'"
+        @click="showBeatsByGener"
+      >
+        See All
+      </h5>
     </div>
-      <beat-list :beats="beatsToShow" />
+    <beat-list :beats="beatsToShow" />
   </section>
 </template>
 
 <script>
-import beatList from '../cmps/beatList.vue'
+import beatList from "../cmps/beatList.vue";
 export default {
   name: "beatHomeList",
   props: {
     beats: Array,
-    genre: String
+    genre: String,
   },
   data() {
-      return{
-      
-      }
+    return {};
   },
-   computed: {
-     beatsToShow() {
-       if (this.genre === 'Popular') {
-       var sortBeats = JSON.parse(JSON.stringify(this.beats))
-        sortBeats = sortBeats.sort((a, b) => (a.likes > b.likes) ? -1 : 1)
-        var popularBeats = []
+  computed: {
+    beatsToShow() {
+      if (this.genre === "Popular") {
+        var sortBeats = JSON.parse(JSON.stringify(this.beats));
+        sortBeats = sortBeats.sort((a, b) => (a.likes > b.likes ? -1 : 1));
+        var popularBeats = [];
         for (var i = 0; i < 4; i++) {
-          popularBeats.push(sortBeats[i])
+          popularBeats.push(sortBeats[i]);
         }
         // console.log(popularBeats);
           return popularBeats
@@ -41,11 +44,13 @@ export default {
           }
           return popularBeats
         }
-
-        const beatsByGenres =  this.beats.filter(beat => beat.genre.toLowerCase() === this.genre.toLowerCase())
-        return beatsByGenres
       
-     }
+
+      const beatsByGenres = this.beats.filter(
+        (beat) => beat.genre.toLowerCase() === this.genre.toLowerCase()
+      );
+      return beatsByGenres;
+    },
   },
   methods: {
     showBeatsByGener(){
@@ -55,9 +60,7 @@ export default {
     }
     
   },
-  created() {
-   
-  },
+  created() {},
   components: {
     beatList,
   },
