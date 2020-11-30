@@ -15,7 +15,7 @@ export default {
   },
    created() {
     this.$store.dispatch({type: 'loadBeats'})
-        socketService.setup()
+        // socketService.setup()
   },
 };
 </script>

@@ -17,7 +17,7 @@
 
 <script>
 import socketService from '../../services/socketService.js'
-import {baetService} from '../../services/beatService.js'
+import {beatService} from '../../services/beatService.js'
 
 export default {
   props: {
@@ -56,7 +56,7 @@ export default {
       socketService.emit('user typing', userTyping);
       setTimeout(() => {
           this.isTyping = false;
-        }, 2000);
+        }, 3000);
     },
     typing(typing) {
       this.isTyping = typing.typing;
@@ -73,8 +73,10 @@ export default {
   },
   created() {
     console.log(this.beat);
+    socketService.setup()
     socketService.emit('chat topic',this.beat._id);
     socketService.on('chat addMsg', this.addMsg);
+    
     socketService.on('typing', this.typing);
   },
 };

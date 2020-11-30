@@ -23,18 +23,12 @@
           />
           <add-song
             :searchedSongs="searchedSongsForDisplay"
-            @addSongToPlayList="addSongToPlayList"
+            @addSongToPlayList="addSong"
           ></add-song>
         </div>
       </div>
       <div class="chat-container">
         <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
-        <add-song
-          class="add-song-cmp"
-          :searchedSongs="searchedSongsForDisplay"
-          @setKeyWord="searchYoutubeSong"
-          @addSongToPlayList="addSongToPlayList"
-        ></add-song>
       </div>
     </div>
   </section>
@@ -60,6 +54,9 @@ export default {
     };
   },
   computed: {
+    beat(){
+      return this.$store.getters.currBeat;
+    },
     currSong() {
       if (!this.beat) return;
       return this.$store.getters.getCurrSong;
@@ -128,23 +125,30 @@ export default {
         keyWord,
       });
     },
-    async addSongToPlayList(song) {
-      this.newSong = song
+     async addSong(song){
+       var beat =JSON.parse(JSON.stringify(this.beat))
+     await socketService.emit('add song',song)
+    
+
+    },
+    async addSongToPlayList() {
       await this.$store.dispatch({
         type: "addSong",
-        song,
+        song:this.newSong
       });
-      socketService.emit('add song',song)
+      
       // this.beat.songs.push(song)
     },
   },
   async created() {
     const beatId = this.$route.params.id;
-      socketService.emit('chat topic',beatId);
+    // socketService.setup()
+      socketService.emit('join beat',beatId);
+    socketService.on('add song',this.addSongToPlayList )
     let beat = await beatService.getById(beatId);
     this.beat = JSON.parse(JSON.stringify(beat));
    
-    socketService.on('add song',this.newSong)
+   
     this.$store.dispatch({
       type: "setCurrBeat",
       beat: this.beat,
@@ -162,5 +166,8 @@ export default {
     addSong,
     searchSong
   },
+ 
+ 
+  
 };
 </script>
