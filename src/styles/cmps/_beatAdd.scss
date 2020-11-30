@@ -1,10 +1,9 @@
-
-.beat-add{
-width: 100%; 
-margin-right: 20px;
-input{
-    margin-bottom: 20px;
-}
+.beat-add {
+    margin-left: 10px;
+    max-width: 50%;
+    input {
+        margin-bottom: 20px;
+    }
 }
 .beat-add-container {
     background-color: $bgc2;
@@ -13,7 +12,7 @@ input{
   
 }
 
-.img-uploaded{
+.img-uploaded {
     height: rem(104px);
     width: rem(104px);
 }
@@ -114,4 +113,10 @@ input{
 .add-song-cmp {
     width: 30vw;
     margin-left: 10px;
+}
+
+.search-new-songs {
+    padding: 5px 0;
+    width: 80%;
+    margin: auto auto 10px;
 }
