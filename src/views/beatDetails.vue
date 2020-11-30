@@ -160,7 +160,7 @@ export default {
     beatPlaylist,
     beatChat,
     addSong,
-    searchSong
+    searchSong,
   },
 };
 </script>
