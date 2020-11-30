@@ -48,7 +48,6 @@ export default {
   data() {
     return {
       beat: null,
-      serchYoutubeSong: "",
     };
   },
   computed: {
@@ -144,7 +143,7 @@ export default {
     beatPlaylist,
     beatChat,
     addSong,
-    searchSong
+    searchSong,
   },
 };
 </script>

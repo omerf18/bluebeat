@@ -5,7 +5,7 @@
       class="search-new-songs"
       v-model="searchKeyWord"
       @input="searchYoutubeSong"
-      placeholder="Search song"
+      placeholder="Add song to playlist"
       prefix-icon="el-icon-search"
     />
   </div>
@@ -29,8 +29,8 @@ export default {
       this.isSearch = !this.isSearch;
     },
     async searchYoutubeSong() {
-        console.log(this.searchKeyWord);
-      this.$emit("setKeyWord", this.searchKeyWord);
+      if (!this.searchKeyWord) this.$emit("setKeyWord", false);
+      else this.$emit("setKeyWord", this.searchKeyWord);
     },
   },
 };
