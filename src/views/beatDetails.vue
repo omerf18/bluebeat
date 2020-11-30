@@ -29,12 +29,19 @@
       </div>
       <div class="chat-container">
         <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
+        <add-song
+          class="add-song-cmp"
+          :searchedSongs="searchedSongsForDisplay"
+          @setKeyWord="searchYoutubeSong"
+          @addSongToPlayList="addSongToPlayList"
+        ></add-song>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import socketService from '../services/socketService';
 import { beatService } from "../services/beatService.js";
 import beatInfo from "../cmps/beatDetails/beatInfo.vue";
 import beatPlayer from "../cmps/beatDetails/beatPlayer.vue";
@@ -48,6 +55,8 @@ export default {
   data() {
     return {
       beat: null,
+      serchYoutubeSong: "",
+      newSong: null
     };
   },
   computed: {
@@ -57,6 +66,8 @@ export default {
     },
     playlist() {
       if (!this.beat) return;
+      console.log('playlist',this.beat.songs);
+      
       return this.beat.songs;
     },
     currBeatImg() {
@@ -118,16 +129,22 @@ export default {
       });
     },
     async addSongToPlayList(song) {
-      this.$store.dispatch({
+      this.newSong = song
+      await this.$store.dispatch({
         type: "addSong",
         song,
       });
+      socketService.emit('add song',song)
+      // this.beat.songs.push(song)
     },
   },
   async created() {
     const beatId = this.$route.params.id;
+      socketService.emit('chat topic',beatId);
     let beat = await beatService.getById(beatId);
     this.beat = JSON.parse(JSON.stringify(beat));
+   
+    socketService.on('add song',this.newSong)
     this.$store.dispatch({
       type: "setCurrBeat",
       beat: this.beat,

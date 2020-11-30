@@ -26,7 +26,11 @@ export default {
   methods: {
     addSongToPlayList(song) {
       this.$emit("addSongToPlayList", song);
+      
     },
   },
+  created(){
+
+  }
 };
 </script>
