@@ -17,7 +17,9 @@
 </template>
 
 <script>
+  import socketService from '../../services/socketService.js'
 export default {
+
   props: {
     playlist:Array,
    currSongIdx:Number
@@ -35,5 +37,9 @@ export default {
       this.$emit("changeSong", song);
     },
   },
+  created(){
+    socketService.setup()
+    socketService.on('add song', song)
+  }
 };
 </script>
