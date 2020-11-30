@@ -15,7 +15,6 @@ export default {
   props: {
     beats: Array,
     genre: String
-    // categories: Array
   },
   data() {
       return{

@@ -1,7 +1,7 @@
 
 <template>
   <section>
-    <div class="flex wrap" v-if="beats">
+    <div class="main-list flex wrap" v-if="beats">
       <beat-preview class="list-item"
         v-for="beat in beats"
         :key="beat._id"
