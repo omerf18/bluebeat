@@ -29,6 +29,12 @@
       </div>
       <div class="chat-container">
         <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
+        <add-song
+          class="add-song-cmp"
+          :searchedSongs="searchedSongsForDisplay"
+          @setKeyWord="searchYoutubeSong"
+          @addSongToPlayList="addSongToPlayList"
+        ></add-song>
       </div>
     </div>
   </section>

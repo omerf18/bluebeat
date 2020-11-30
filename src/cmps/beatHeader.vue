@@ -46,6 +46,7 @@ export default {
         type: "setTxtFilter",
         txt: this.beatToSearch,
       });
+      // console.log('gggggggg', this.$router.options);
       this.$router.push("/beat");
     },
   },
