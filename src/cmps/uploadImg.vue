@@ -38,9 +38,6 @@ export default {
   height: 150px;
 }
 
-.img-list img {
-  height: 100px;
-}
 
 label img {
   height: 200px;

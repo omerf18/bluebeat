@@ -18,7 +18,10 @@
 
 <script>
 export default {
-  props: ["playlist", "currSongIdx"],
+  props: {
+    playlist:Array,
+   currSongIdx:Number
+   },
   name: "playlist",
   data() {
     return {};

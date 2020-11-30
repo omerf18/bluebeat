@@ -7,9 +7,8 @@ export const utilService ={
 
 function getEmpty() {
     return {
-       
-        visits:50,
-        likes: 10,
+        visits:0,
+        likes: 0,
         name: '', 
         description:'',
         imgUrl:'https://res.cloudinary.com/bluebeat/image/upload/v1606685267/bluebeat/srdn8qp7cpwx3ywieq2n.png',

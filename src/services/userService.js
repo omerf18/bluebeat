@@ -18,7 +18,6 @@ async function logout() {
     await HttpService.post('auth/logout');
     sessionStorage.clear();
 }
-
 function _handleLogin(user) {
     sessionStorage.setItem('user', JSON.stringify(user))
     return user;
