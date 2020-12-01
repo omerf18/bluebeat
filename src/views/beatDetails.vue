@@ -89,7 +89,8 @@ export default {
       });
     },
     removeSong(songId) {
-      let beat = JSON.parse.JSON.stringify(this.beat);
+      console.log(this.beat);
+      var beat = JSON.parse(JSON.stringify(this.beat))
       this.$store.dispatch({
         type: "removeSong",
         songId,
@@ -117,8 +118,9 @@ export default {
     addSong(song) {
       var beat = JSON.parse(JSON.stringify(this.beat));
       beat.songs.push(song);
+      console.log(beat);
       socketService.emit("beat songs changed", beat);
-      this.$$store.dispatch({ type: "saveBeat", beat });
+      this.$store.dispatch({ type: "addBeat", beat });
     },
     async addSongToPlayList() {
       await this.$store.dispatch({

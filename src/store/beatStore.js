@@ -41,7 +41,7 @@ export const beatStore = {
             currBeat.songs.push(newSong);
         },
         removeSong({ currBeat }, { songId }) {
-            currBeat.songs.find(song => song.id === songId)
+            const idx = currBeat.songs.findIndex(song => song.id === songId)
             currBeat.songs.splice(idx, 1);
         },
         setSearchedSongs(state, { searchedSongs }) {
