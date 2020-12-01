@@ -1,8 +1,8 @@
 
 <template>
   <section>
-    <div class="main-list" v-if="beats">
-      <beat-preview class="list-item"
+    <div class="main-list " v-if="beats">
+      <beat-preview class=""
         v-for="beat in beats"
         :key="beat._id"
         :beat="beat"

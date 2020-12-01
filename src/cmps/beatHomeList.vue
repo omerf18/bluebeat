@@ -1,5 +1,5 @@
 <template>
-  <section v-if="beats" class="main-list">
+  <section v-if="beats" class="">
     <div class="list-header flex space-between align-baseline">
       <h2 class="list-genre">{{ genre }}</h2>
       <h5
