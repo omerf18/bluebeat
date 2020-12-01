@@ -20,7 +20,6 @@ export const beatStore = {
             return searchedSongs;
         },
         beats({ beats }) {
-            console.log('beats', beats);
             return JSON.parse(JSON.stringify(beats));
         },
         currBeat({ currBeat }) {
@@ -41,8 +40,11 @@ export const beatStore = {
             currBeat.songs.push(newSong);
         },
         removeSong({ currBeat }, { songId }) {
-            currBeat.songs.find(song => song.id === songId)
+            let idx = currBeat.songs.findIndex(song => song.id === songId);
             currBeat.songs.splice(idx, 1);
+        },
+        dragSong({ currBeat }, { songs }) {
+            currBeat.songs = songs;
         },
         setSearchedSongs(state, { searchedSongs }) {
             state.searchedSongs = searchedSongs
@@ -73,7 +75,6 @@ export const beatStore = {
         resetFilter({ filterBy, beats }) {
             filterBy.genreFilter = 'ALL';
             filterBy.beatTitle = '';
-            console.log('store filt', filterBy);
             beats = null;
         },
         setLike({currBeat,diff}){
@@ -81,10 +82,14 @@ export const beatStore = {
         }
     },
     actions: {
-        async removeSong({ commit }, { songId, beat }) {
-            await songService.removeSong(songId, beat);
+        async dragSong({ commit, state }, { songs }) {
+            await songService.saveSongs(state.currBeat, songs);
+            commit({ type: 'dragSong', songs });
+        },
+        async removeSong({ commit, state }, { songId }) {
+            await songService.removeSong(songId, state.currBeat);
             commit({ type: 'removeSong', songId })
-            socketService.emit('song remove', songId)
+            // socketService.emit('song remove', songId)
         },
         async searchSong({ commit }, { keyWord }) {
             const searchedSongs = await youtubeService.getSong(keyWord)

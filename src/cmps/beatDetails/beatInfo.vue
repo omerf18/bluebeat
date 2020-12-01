@@ -1,35 +1,37 @@
 <template>
-  <section v-if="beat" class="beat-info flex space-between">
+  <section v-if="currBeat" class="beat-info flex space-between">
     <div class="beat-info-imgs flex">
-      <img class="prev-img-details" :src="beat.imgUrl" >
+      <img class="prev-img-details" :src="currBeat.imgUrl" >
     <div class="user-profile flex col align-center justify-baseline">
-      <img class="profile-img" v-if="beat.createdBy.imgUrl" :src="beat.createdBy.imgUrl" />
+      <img class="profile-img" v-if="currBeat.createdBy.imgUrl" :src="currBeat.createdBy.imgUrl" />
       <img class="profile-img" v-else src="../../assets/img/beatLogo.png" />
-      <span>{{ beat.createdBy.userName }}</span>
+      <span>{{ currBeat.createdBy.userName }}</span>
     </div>
     </div>
     <div class="beat-desc flex col align-center ">
-      <span class="beat-title">{{ beat.name }}</span>
-      <span class="beat-genre">{{ beat.genre }}</span>
-      <span class="beat-description">{{ beat.description }}</span>
+      <span class="beat-title">{{ currBeat.name }}</span>
+      <span class="beat-genre">{{ currBeat.genre }}</span>
+      <span class="beat-description">{{ currBeat.description }}</span>
     </div>
     <div class="views-container beat-desc flex col align-center space-around">
       <div class="flex">
         <i @click="setLike(1)" v-if="!isLiked" class="like-btn icon far fa-heart"></i>
         <i @click="setLike(-1)" v-if="isLiked" class="like-btn icon fas fa-heart"></i>
-        <span class="beat-likes">{{ beat.likes }}</span>
+        <span class="beat-likes">{{ currBeat.likes }}</span>
       </div>
-      <span class="beat-likes">{{ beat.visits }} Visits </span>
+      <span class="beat-likes">{{ currBeat.visits }} Visits </span>
       <span class="beat-online">2 Online </span>
     </div>
-    <i @click="emitDelete(beat._id)" class="remove-beat icon fas fa-trash"></i>
+    <i @click="emitDelete(currBeat._id)" class="remove-beat icon fas fa-trash"></i>
                      
   </section>
 </template>
 
 <script>
 export default {
-  props: ["beat"],
+  props: {
+    currBeat:Object
+  },
   name: "beatInfo",
   data(){
     return{

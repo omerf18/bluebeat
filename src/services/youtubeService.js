@@ -33,8 +33,6 @@ async function _getDetails(youTubeIds) {
         )
     })
     const details = await Promise.all(songsDetails)
-    console.log(details);
-
     return details
 }
 

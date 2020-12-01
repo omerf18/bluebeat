@@ -1,12 +1,12 @@
 <template>
   <section>
-    <draggable v-model="playlist" ghost-class="ghost" @end="onEnd">
+    <draggable v-model="songs" ghost-class="ghost" @end="onEnd">
       <transition-group type="transition" name="flip-list">
         <div
-          v-for="(song, index) in playlist"
+          v-for="song in songs"
           :key="song.id"
           class="song-container sortable flex space-between align-center icon"
-          :class="{ active: index === currSongIdx }"
+          :class="{ active: song.id === currSongId }"
           :id="song.id"
           @click="changeSong(song)"
         >
@@ -31,23 +31,22 @@ import draggable from "vuedraggable";
 export default {
   props: {
     playlist: Array,
-    currSongIdx: Number,
+    currSongId: String,
   },
   name: "playlist",
   data() {
     return {
+      songs: null,
       oldIndex: "",
       newIndex: "",
     };
   },
-  computed: {
- 
-  },
+  computed: {},
   methods: {
     onEnd(ev) {
-      console.log("ev: ", ev);
       this.oldIndex = ev.oldIndex;
       this.newIndex = ev.newIndex;
+      this.$emit("dragSong", this.songs);
     },
     removeSong(songId) {
       this.$emit("removeSong", songId);
@@ -56,7 +55,9 @@ export default {
       this.$emit("changeSong", song);
     },
   },
-  created() {},
+  created() {
+    this.songs = JSON.parse(JSON.stringify(this.playlist));
+  },
   components: {
     draggable,
   },
