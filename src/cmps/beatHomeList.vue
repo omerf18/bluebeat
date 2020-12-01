@@ -33,18 +33,16 @@ export default {
         for (var i = 0; i < 4; i++) {
           popularBeats.push(sortBeats[i]);
         }
-        // console.log(popularBeats);
-          return popularBeats
-        } else if (this.genre === 'Trending') {
-          var sortBeats = JSON.parse(JSON.stringify(this.beats))
-          sortBeats = sortBeats.sort((a, b) => (a.visits > b.visits) ? 1 : -1)
-           var popularBeats = []
-          for (var i = 0; i < 4; i++) {
-            popularBeats.push(sortBeats[i])
-          }
-          return popularBeats
+        return popularBeats;
+      } else if (this.genre === "Trending") {
+        var sortBeats = JSON.parse(JSON.stringify(this.beats));
+        sortBeats = sortBeats.sort((a, b) => (a.visits > b.visits ? 1 : -1));
+        var popularBeats = [];
+        for (var i = 0; i < 4; i++) {
+          popularBeats.push(sortBeats[i]);
         }
-      
+        return popularBeats;
+      }
 
       const beatsByGenres = this.beats.filter(
         (beat) => beat.genre.toLowerCase() === this.genre.toLowerCase()
@@ -53,12 +51,10 @@ export default {
     },
   },
   methods: {
-    showBeatsByGener(){
-      console.log(this.genre);
-       this.$emit('filter', this.genre.toUpperCase())
-       this.$router.push('/beat')
-    }
-    
+    showBeatsByGener() {
+      this.$emit("filter", this.genre.toUpperCase());
+      this.$router.push("/beat");
+    },
   },
   created() {},
   components: {
