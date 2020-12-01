@@ -5,6 +5,13 @@
       v-if="registeredUser"
       @submit.prevent="loginUser"
     >
+       <h3>Email:</h3>
+      <input
+        type="email"
+        class="login-input icon"
+        v-model="userCred.email"
+        placeholder="Email"
+      />
       <h3>Username:</h3>
       <input
         type="text"
@@ -57,8 +64,8 @@ export default {
   name: "beat",
   data() {
     return {
-      // registeredUser: true,
-      registeredUser: false,
+      registeredUser: true,
+      // registeredUser: false,
       userCred: {
         username: "",
         email: "",
@@ -68,6 +75,7 @@ export default {
   },
   methods: {
     loginUser() {
+      console.log(this.userCred);
       this.$store.dispatch({ type: "login", userCred: this.userCred });
       // this.$router.push("/")
     },
