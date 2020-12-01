@@ -1,5 +1,5 @@
 <template>
-  <div class="header main-layout">
+  <div class="header">
     <div class="flex justify-center align-center space-between">
       <img
         class="beat-logo icon"

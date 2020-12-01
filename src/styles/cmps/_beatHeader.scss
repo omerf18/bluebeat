@@ -1,14 +1,19 @@
 .header {
     display: grid;
     width: 100%;
+    position: absolute;
+    z-index: 5;
+    padding: 0 50px;
 }
 .beat-logo {
-    height: 60px;
+    height: 80px;
 }
 .header-btn {
     font-size: rem(20px);
     text-decoration: none;
     color: $font1;
+    margin-right: 10px;
+    text-shadow: 0 0px 10px $logo;
     &:hover {
         color: $logo;
     }

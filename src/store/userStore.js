@@ -20,6 +20,7 @@ export const userStore = {
     actions: {
         async login(context, {userCred}) {
             const user = await userService.login(userCred);
+            console.log('user', user);
             context.commit({type: 'setUser', user})
             // this.$router.push("/")
             return user;

@@ -1,7 +1,7 @@
 <template>
   <section class="main-layout">
     <div>
-      <div v-if="beat" class="main-details flex">
+      <div class="main-details flex">
         <div class="beat-container">
           <beat-info
             class="beat-info-cmp"
@@ -56,8 +56,13 @@ export default {
     };
   },
   computed: {
+    currLikes(){
+      console.log('likes',this.$store.getters.currBeat.likes);
+       return this.currBeat.likes
+    },
     currBeat() {
       if (!this.beat) return;
+      console.log( this.$store.getters.currBeat,'curr beat details computed');
       return this.$store.getters.currBeat;
     },
     currSong() {
@@ -125,9 +130,8 @@ export default {
       this.$socket.emit("beatChanged", this.currBeat);
     },
     async toggleLike(diff) {
-      const beat = JSON.parse(JSON.stringify(this.beat));
-      beat.likes += diff;
-      await this.$store.dispatch({ type: "editBeat", beat });
+      const beat = JSON.parse(JSON.stringify(this.currBeat));
+      await this.$store.dispatch({type:"addLike", beat,diff})
       this.$socket.emit("beatChanged", this.currBeat);
     },
     async setCurrBeat(beat) {

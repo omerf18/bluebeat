@@ -38,15 +38,15 @@ export default {
   computed: {},
   methods: {
     sendMsg() {
+      this.msg.from = this.$store.getters.loggedinUser;
       this.$socket.emit("sendMsg", this.msg);
-      this.msg = { from: "Guest", txt: "" };
-      // this.msg = {from: this.$store.getters.loggedinUser.username, txt: ''};
+      this.txt = ''
     },
     addMsg(msg) {
       this.msgs.push(msg);
     },
     userTyping() {
-      const loggedinUser = "Guest";
+      const loggedinUser = this.$store.getters.loggedinUser;
       this.$socket.emit("userTyping", loggedinUser);
     },
     typing(user) {
