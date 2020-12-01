@@ -23,7 +23,7 @@
           />
           <add-song
             :searchedSongs="searchedSongsForDisplay"
-            @addSongToPlayList="addSong"
+            @addSongToPlayList="addSongToPlayList"
           ></add-song>
         </div>
       </div>
@@ -60,8 +60,6 @@ export default {
     },
     playlist() {
       if (!this.beat) return;
-      console.log('playlist',this.beat.songs);
-      
       return this.beat.songs;
     },
     currBeatImg() {
@@ -122,30 +120,22 @@ export default {
         keyWord,
       });
     },
-     async addSong(song){
-       this.newSong = song
-     await socketService.emit('add song',song)
-    
-
-    },
-    async addSongToPlayList() {
+    async addSongToPlayList(song) {
       await this.$store.dispatch({
         type: "addSong",
-        song:this.newSong
+        song,
       });
-      
+      // socketService.emit('add song',song)
       // this.beat.songs.push(song)
     },
   },
-  async created() {
-    socketService.setup()
-    socketService.on('add song',this.addSongToPlayList )
-      socketService.emit('chat topic',beatId);
+ async created() {
     const beatId = this.$route.params.id;
     let beat = await beatService.getById(beatId);
+      // socketService.emit('chat topic',this.beat._id);
     this.beat = JSON.parse(JSON.stringify(beat));
    
-   
+    // socketService.on('add song',this.song)
     this.$store.dispatch({
       type: "setCurrBeat",
       beat: this.beat,
@@ -163,8 +153,5 @@ export default {
     addSong,
     searchSong
   },
- 
- 
-  
 };
 </script>

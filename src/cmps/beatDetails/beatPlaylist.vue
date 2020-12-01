@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section v-if="playlist">
         <div v-for="(song, index) in playlist" :key="song.id">
             <div
                 class="song-container flex space-between align-center icon"
@@ -34,10 +34,10 @@ export default {
     };
   },
   computed: {
-    serPlaylist(){
-      socketService.on('add song', this.playlist)
+    // serPlaylist(){
+    //   socketService.on('add song', this.playlist)
 
-    }
+    // }
     },
   methods: {
     removeSong(songId) {

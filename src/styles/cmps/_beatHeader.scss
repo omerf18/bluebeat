@@ -1,9 +1,12 @@
 .header {
-    padding: 5px 20px;
-    background-color: $bgc1;
+    display: grid;
+    position: absolute;
+    width: 100%;
+    z-index: 5;
+    padding: 0 30px;
 }
 .beat-logo {
-    height: 100px;
+    height: 60px;
 }
 .header-btn {
     font-size: rem(20px);

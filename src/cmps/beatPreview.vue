@@ -7,8 +7,8 @@
       <h2 class="prev-name">{{ beat.name }}</h2>
       <h3 class="prev-genre">{{ beat.genre }}</h3>
       <div class="prev-info-container flex space-around align-center">
-        <span class="prev-info">
-          <i class="prev-likes prev- fas fa-heart"></i> {{ beat.likes }}
+        <span class="prev-info flex align-center">
+          <i class="prev-likes prev- fas fa-heart"></i><span> {{ beat.likes }}</span>
         </span>
         <span class="prev-info">25 Online</span>
         <span class="prev-info">{{ beat.songs.length }} Songs</span>
