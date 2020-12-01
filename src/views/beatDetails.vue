@@ -1,6 +1,6 @@
 <template>
   <section class="main-layout">
-    <div class="flex">
+    <div class="flex" v-if="beat">
       <div class="main-details">
         <beat-info
           class="beat-info-cmp"
@@ -17,9 +17,10 @@
           <beatPlaylist
             class="beat-playerlist-cmp"
             :playlist="playlist"
-            :currSongIdx="currSongIdx"
+            :currSongId="currSong.id"
             @changeSong="switchSong"
             @removeSong="removeSong"
+            @dragSong="dragSong"
           />
           <add-song
             :searchedSongs="searchedSongsForDisplay"
@@ -49,7 +50,6 @@ export default {
   data() {
     return {
       beat: null,
-      currSongIdx: null,
       newSong: null,
     };
   },
@@ -60,7 +60,8 @@ export default {
     },
     playlist() {
       if (!this.beat) return;
-      return this.$store.getters.currBeat.songs;
+      let songs = this.$store.getters.currBeat.songs;
+      return JSON.parse(JSON.stringify(songs));
     },
     searchedSongsForDisplay() {
       if (!this.beat) return;
@@ -81,19 +82,22 @@ export default {
         else if (diff === 1) idx += 1;
         else idx += -1;
         song = this.beat.songs[idx];
-        this.currSongIdx = idx;
       }
       this.$store.dispatch({
         type: "setCurrSong",
         song,
       });
     },
+    dragSong(songs) {
+      this.$store.dispatch({
+        type: "dragSong",
+        songs,
+      });
+    },
     removeSong(songId) {
-      let beat = JSON.parse.JSON.stringify(this.beat);
       this.$store.dispatch({
         type: "removeSong",
         songId,
-        beat,
       });
     },
     switchSong(song) {
@@ -120,24 +124,21 @@ export default {
       socketService.emit("beat songs changed", beat);
       this.$store.dispatch({ type: "saveBeat", beat });
     },
-    async addSongToPlayList() {
+    async addSongToPlayList(song) {
       await this.$store.dispatch({
         type: "addSong",
-        song: this.newSong,
+        song,
       });
     },
   },
- async created() {
+  async created() {
     const beatId = this.$route.params.id;
     let beat = await beatService.getById(beatId);
-      // socketService.emit('chat topic',this.beat._id);
+    // socketService.emit('chat topic',this.beat._id);
     this.beat = JSON.parse(JSON.stringify(beat));
-    console.log("this", this.beat);
     socketService.emit("join beat", beatId);
     socketService.on("add song", this.addSongToPlayList);
-    socketService.on("remove song", (idx) =>
-      console.log("got update remove song!", idx)
-    );
+    socketService.on("remove song");
     this.$store.dispatch({
       type: "setCurrBeat",
       beat,
@@ -146,7 +147,6 @@ export default {
       type: "setCurrSong",
       song: this.beat.songs[0],
     });
-    this.currSongIdx = 0;
   },
   components: {
     beatInfo,
