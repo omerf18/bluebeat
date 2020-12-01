@@ -1,7 +1,6 @@
 import vue from 'vue'
 import vuex from 'vuex'
 import { beatStore } from './beatStore.js'
-import { songStore } from './songStore.js'
 import { userStore } from './userStore.js'
 import vueYoutube from 'vue-youtube'
 
@@ -19,7 +18,6 @@ export default new vuex.Store({
   },
   modules: {
     beatStore,
-    songStore,
     userStore
   }
 })

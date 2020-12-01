@@ -27,8 +27,12 @@
         color: $font1;
     }
 }
+
 .main-list {
-    h5:hover {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 20px;
+    &h5:hover {
         color: $logo;
     }
 }

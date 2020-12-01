@@ -11,7 +11,6 @@ export const beatService = {
 
 const BASE_URL = 'http://localhost:3030'
 
-
 async function query(filterBy) {
     var beats = await HttpService.get(`beat?genre=${filterBy.genreFilter}`)
     if (filterBy.beatTitle !== '') {

@@ -71,7 +71,6 @@ export default {
     },
   },
   created() {
-    console.log(this.beat);
     socketService.setup();
     socketService.emit("chat topic", this.beat._id);
     socketService.on("chat addMsg", this.addMsg);
