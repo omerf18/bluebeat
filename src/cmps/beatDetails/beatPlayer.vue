@@ -2,7 +2,11 @@
   <section v-if="currSong" class="beat-player container flex">
     <div class="beat-frame flex">
       <div class="beat-img flex align-center ml20">
-      <img class="prev-img" :class="{ playing: playerVars.isPlaying }" :src="currSong.imgUrl" />
+        <img
+          class="prev-img"
+          :class="{ playing: playerVars.isPlaying }"
+          :src="currSong.imgUrl"
+        />
       </div>
       <youtube
         class="player"
@@ -17,10 +21,22 @@
       <div class="flex">
         <div class="player-btn flex icon">
           <i @click="switchSong(currSong.id, -1)" class="fas fa-backward"></i>
-          <i v-if="!playerVars.isPlaying" @click="playSong" class="fas fa-play"></i>
-          <i v-if="playerVars.isPlaying" @click="pauseSong" class="fas fa-pause"></i>
+          <i
+            v-if="!playerVars.isPlaying"
+            @click="playSong"
+            class="fas fa-play"
+          ></i>
+          <i
+            v-if="playerVars.isPlaying"
+            @click="pauseSong"
+            class="fas fa-pause"
+          ></i>
           <i @click="switchSong(currSong.id, 1)" class="fas fa-forward"></i>
-          <i @click="shuffle" :class="{ active: playerVars.isShuffle }" class="fas fa-random" ></i>
+          <i
+            @click="shuffle"
+            :class="{ active: playerVars.isShuffle }"
+            class="fas fa-random"
+          ></i>
         </div>
       </div>
       <div class="flex">

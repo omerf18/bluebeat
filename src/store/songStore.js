@@ -9,8 +9,8 @@ export const songStore = {
         searchedSongs: null,
     },
     getters: {
-        getCurrSong({ currSong }) {
-            return currSong;
+        getCurrSong(state) {
+            return JSON.parse(JSON.stringify(state.currSong));
         },
         getCurrSongId({ currSong }) {
             return currSong.id;
@@ -20,24 +20,26 @@ export const songStore = {
         }
     },
     mutations: {
-        setCurrSong({ currSong }, { song }) {
-            currSong = song;
+        setCurrSong(state, { song }) {
+            state.currSong = song;
+            console.log('curr', state.currSong);
         },
         addSong(state, { newSong, currBeat }) {
-            currBeat.songs.push(newSong);
+            state.currBeat.songs.push(newSong);
         },
-        removeSong(state, { idx, currBeat }) {
-            currBeat.songs.splice(idx, 1);
+        removeSong(state, { songId }) {
+            // findIdex
+            state.beat.songs.splice(idx, 1);
         },
         setSearchedSongs(state, { searchedSongs }) {
             state.searchedSongs = searchedSongs
         }
     },
     actions: {
-        async removeSong({ commit, rootGetters }, { songId }) {
-            let currBeat = rootGetters.currBeat;
-            let idx = await songService.removeSong(songId, currBeat);
-            commit({ type: 'removeSong', idx, currBeat })
+        async removeSong(state, { songId, beat }) {
+            let idx = await songService.removeSong(songId, beat);
+            state.commit({ type: 'removeSong', beat })
+            socketService.emit('song remove',songId)
         },
         async searchSong({ commit }, { keyWord }) {
             const searchedSongs = await youtubeService.getSong(keyWord)
@@ -46,11 +48,12 @@ export const songStore = {
         async addSong(state, { song }) {
             const currBeat = state.getters.currBeat;
             const newSong = await songService.addSong(song, currBeat)
-            state.commit({ type: 'addSong', newSong, currBeat })
-            socketService.emit("beat update", currBeat);
+            // state.commit({ type: 'addSong', newSong, currBeat })
+            state.commit({ type: 'addSong', newSong})
+            socketService.emit("song add", newSong);
         },
-        setCurrSong({ commit }, { song }) {
-            commit({ type: 'setCurrSong', song })
+        setCurrSong(store, { song }) {
+            store.commit({ type: 'setCurrSong', song })
         }
     }
 }

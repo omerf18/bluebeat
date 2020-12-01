@@ -1,4 +1,7 @@
 import { beatService } from '../services/beatService.js'
+import { songService } from '../services/songService.js'
+import { youtubeService } from '../services/youtubeService.js'
+import socketService from "../services/socketService";
 
 export const beatStore = {
     strict: true,
@@ -12,14 +15,14 @@ export const beatStore = {
         beatImgUrl({ currBeat }) {
             return currBeat.imgUrl;
         },
-        playlist({ currBeat }) {
-            return currBeat.songs;
+        playlist(state) {
+            return JSON.parse(JSON.stringify(state.currBeat.songs));
         },
-        beats({ beats }) {
-            return beats;
+        beats(state) {
+            return JSON.parse(JSON.stringify(state.beats));
         },
-        currBeat({ currBeat }) {
-            return currBeat
+        currBeat(state) {
+            return JSON.parse(JSON.stringify(state.currBeat));
         },
         genres({ genres }) {
             return genres;
@@ -30,7 +33,9 @@ export const beatStore = {
     },
     mutations: {
         setCurrBeat({ currBeat }, { beat }) {
+            console.log('beat', beat);
             currBeat = beat;
+            console.log('currBBB', currBeat);
         },
         loadBeats(state, { beats }) {
             state.beats = beats
@@ -70,6 +75,7 @@ export const beatStore = {
         async removeBeat({ commit }, { beatId }) {
             await beatService.removeBeat(beatId);
             commit({ type: 'removeBeat', beatId })
+            // socketService.emit('update song',)
         },
         async editBeat({ commit }, { beat }) {
             const savedBeat = await beatService.save(beat)

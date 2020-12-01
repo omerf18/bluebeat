@@ -54,9 +54,6 @@ export default {
     };
   },
   computed: {
-    beat() {
-      return this.$store.getters.currBeat;
-    },
     currSong() {
       if (!this.beat) return;
       return this.$store.getters.getCurrSong;
@@ -88,7 +85,7 @@ export default {
         else if (diff === 1) idx += 1;
         else idx += -1;
         song = this.beat.songs[idx];
-        this.currSongIdx = song;
+        this.currSongIdx = idx;
       }
       this.$store.dispatch({
         type: "setCurrSong",
@@ -96,9 +93,11 @@ export default {
       });
     },
     removeSong(songId) {
+      let beat = this.beat;
       this.$store.dispatch({
         type: "removeSong",
         songId,
+        beat,
       });
     },
     switchSong(song) {
@@ -136,11 +135,13 @@ export default {
     const beatId = this.$route.params.id;
     let beat = await beatService.getById(beatId);
     this.beat = JSON.parse(JSON.stringify(beat));
+    console.log("this", this.beat);
     socketService.emit("join beat", beatId);
     socketService.on("add song", this.addSongToPlayList);
+    socketService.on("remove song", (idx)=> console.log('got update remove song!', idx))
     this.$store.dispatch({
       type: "setCurrBeat",
-      beat: this.beat,
+      beat,
     });
     this.$store.dispatch({
       type: "setCurrSong",
