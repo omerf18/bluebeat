@@ -40,9 +40,7 @@ export default {
       newIndex: "",
     };
   },
-  computed: {
- 
-  },
+  computed: {},
   methods: {
     onEnd(ev) {
       console.log("ev: ", ev);
