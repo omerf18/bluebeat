@@ -1,28 +1,30 @@
 import { beatService } from '../services/beatService.js'
 import { songService } from '../services/songService.js'
 import { youtubeService } from '../services/youtubeService.js'
-import socketService from "../services/socketService";
+import socketService from "../services/socketService"
 
 export const beatStore = {
-    strict: true,
     state: {
         beats: null,
         filterBy: { genreFilter: 'ALL', beatTitle: '' },
         genres: ['Popular', 'Trending', 'Hip hop', 'Israeli', 'Dance', 'Pop', 'Rock n roll', 'Latin', 'Easy'],
-        currBeat: null
+        currBeat: null,
+        currSong: null,
+        searchedSongs: null,
     },
     getters: {
-        beatImgUrl({ currBeat }) {
-            return currBeat.imgUrl;
+        currSong({ currSong }) {
+            return JSON.parse(JSON.stringify(currSong));
         },
-        playlist(state) {
-            return JSON.parse(JSON.stringify(state.currBeat.songs));
+        searchedSongsForDisplay({ searchedSongs }) {
+            return searchedSongs;
         },
-        beats(state) {
-            return JSON.parse(JSON.stringify(state.beats));
+        beats({ beats }) {
+            console.log('beats', beats);
+            return JSON.parse(JSON.stringify(beats));
         },
-        currBeat(state) {
-            return JSON.parse(JSON.stringify(state.currBeat));
+        currBeat({ currBeat }) {
+            return JSON.parse(JSON.stringify(currBeat));
         },
         genres({ genres }) {
             return genres;
@@ -32,10 +34,21 @@ export const beatStore = {
         }
     },
     mutations: {
-        setCurrBeat({ currBeat }, { beat }) {
-            console.log('beat', beat);
-            currBeat = beat;
-            console.log('currBBB', currBeat);
+        setCurrSong(state, { song }) {
+            state.currSong = song;
+        },
+        addSong({ currBeat }, { newSong }) {
+            currBeat.songs.push(newSong);
+        },
+        removeSong({ currBeat }, { songId }) {
+            currBeat.songs.find(song => song.id === songId)
+            currBeat.songs.splice(idx, 1);
+        },
+        setSearchedSongs(state, { searchedSongs }) {
+            state.searchedSongs = searchedSongs
+        },
+        setCurrBeat(state, { beat }) {
+            state.currBeat = beat;
         },
         loadBeats(state, { beats }) {
             state.beats = beats
@@ -60,22 +73,38 @@ export const beatStore = {
         resetFilter({ filterBy, beats }) {
             filterBy.genreFilter = 'ALL';
             filterBy.beatTitle = '';
+            console.log('store filt', filterBy);
             beats = null;
         }
     },
     actions: {
+        async removeSong({ commit }, { songId, beat }) {
+            await songService.removeSong(songId, beat);
+            commit({ type: 'removeSong', songId })
+            socketService.emit('song remove', songId)
+        },
+        async searchSong({ commit }, { keyWord }) {
+            const searchedSongs = await youtubeService.getSong(keyWord)
+            commit({ type: 'setSearchedSongs', searchedSongs })
+        },
+        async addSong({ commit, state }, { song }) {
+            const newSong = await songService.addSong(song, state.currBeat);
+            commit({ type: 'addSong', newSong });
+            socketService.emit("song add", newSong);
+        },
+        setCurrSong({ commit }, { song }) {
+            commit({ type: 'setCurrSong', song })
+        },
         setCurrBeat({ commit }, { beat }) {
             commit({ type: 'setCurrBeat', beat })
         },
-        async loadBeats({ getters, commit }) {
-            let beats = await beatService.query(getters.filterBy);
+        async loadBeats({ state, commit }) {
+            let beats = await beatService.query(state.filterBy);
             commit({ type: 'loadBeats', beats })
-
         },
         async removeBeat({ commit }, { beatId }) {
             await beatService.removeBeat(beatId);
             commit({ type: 'removeBeat', beatId })
-            // socketService.emit('update song',)
         },
         async editBeat({ commit }, { beat }) {
             const savedBeat = await beatService.save(beat)
@@ -87,18 +116,18 @@ export const beatStore = {
             commit({ type: 'setCurrBeat', beat: savedBeat })
             return savedBeat
         },
-        async setGenreFilter(state, { selectedGenre }) {
-            await state.commit({ type: 'setGenreFilter', selectedGenre })
-            state.dispatch('loadBeats')
+        async setGenreFilter({ commit, dispatch }, { selectedGenre }) {
+            await commit({ type: 'setGenreFilter', selectedGenre })
+            dispatch('loadBeats')
         },
-        async setTxtFilter(state, { txt }) {
-            await state.commit({ type: 'setTxtFilter', txt })
-            state.dispatch('loadBeats')
+        async setTxtFilter({ commit, dispatch }, { txt }) {
+            await commit({ type: 'setTxtFilter', txt })
+            dispatch('loadBeats')
         },
-        async resetFilter(state) {
-            await state.commit({ type: 'resetFilter' })
+        async resetFilter({ commit, dispatch }) {
+            await commit({ type: 'resetFilter' })
             try {
-                state.dispatch('loadBeats')
+                dispatch('loadBeats')
             } catch (err) {
                 console.log(err);
             }

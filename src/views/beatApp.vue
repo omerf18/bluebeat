@@ -33,11 +33,11 @@ export default {
       return this.$store.getters.beats;
     },
     genreFilter() {
-      return this.$store.getters.genreFilter;
+      return this.$store.getters.genres;
     },
   },
   created() {
-    this.$store.dispatch({ type: "loadBeats" });
+    this.$store.dispatch({ type: "loadBeats"});
   },
 };
 </script>

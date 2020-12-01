@@ -56,15 +56,11 @@ export default {
   computed: {
     currSong() {
       if (!this.beat) return;
-      return this.$store.getters.getCurrSong;
+      return this.$store.getters.currSong;
     },
     playlist() {
       if (!this.beat) return;
-      return this.beat.songs;
-    },
-    currBeatImg() {
-      if (!this.beat) return;
-      return this.beat.imgUrl;
+      return this.$store.getters.currBeat.songs;
     },
     searchedSongsForDisplay() {
       if (!this.beat) return;
@@ -93,7 +89,7 @@ export default {
       });
     },
     removeSong(songId) {
-      let beat = this.beat;
+      let beat = JSON.parse.JSON.stringify(this.beat);
       this.$store.dispatch({
         type: "removeSong",
         songId,
@@ -138,7 +134,9 @@ export default {
     console.log("this", this.beat);
     socketService.emit("join beat", beatId);
     socketService.on("add song", this.addSongToPlayList);
-    socketService.on("remove song", (idx)=> console.log('got update remove song!', idx))
+    socketService.on("remove song", (idx) =>
+      console.log("got update remove song!", idx)
+    );
     this.$store.dispatch({
       type: "setCurrBeat",
       beat,

@@ -13,7 +13,6 @@ async function removeSong(songId, currBeat) {
     let idx = beat.songs.findIndex(song => song.id === songId);
     beat.songs.splice(idx, 1);
     await beatService.save(beat);
-    return idx;
 }
 
 async function addSong(song, currBeat) {
