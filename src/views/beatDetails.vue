@@ -95,11 +95,6 @@ export default {
       });
     },
     removeSong(songId) {
-<<<<<<< HEAD
-      console.log(this.beat);
-      var beat = JSON.parse(JSON.stringify(this.beat))
-=======
->>>>>>> 64d9858a3ef021db279865c228036eb37c5210f2
       this.$store.dispatch({
         type: "removeSong",
         songId,

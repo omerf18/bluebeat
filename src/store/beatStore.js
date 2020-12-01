@@ -40,11 +40,7 @@ export const beatStore = {
             currBeat.songs.push(newSong);
         },
         removeSong({ currBeat }, { songId }) {
-<<<<<<< HEAD
-            const idx = currBeat.songs.findIndex(song => song.id === songId)
-=======
             let idx = currBeat.songs.findIndex(song => song.id === songId);
->>>>>>> 64d9858a3ef021db279865c228036eb37c5210f2
             currBeat.songs.splice(idx, 1);
         },
         dragSong({ currBeat }, { songs }) {
