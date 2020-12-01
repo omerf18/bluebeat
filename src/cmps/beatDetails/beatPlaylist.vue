@@ -2,6 +2,7 @@
   <section>
     <draggable v-model="songs" ghost-class="ghost" @end="onEnd">
       <transition-group type="transition" name="flip-list">
+         
         <div
           v-for="song in songs"
           :key="song.id"
@@ -36,12 +37,16 @@ export default {
   name: "playlist",
   data() {
     return {
-      songs: null,
+      // songs: null,
       oldIndex: "",
       newIndex: "",
     };
   },
-  computed: {},
+  computed: {
+    songs() {
+      return JSON.parse(JSON.stringify(this.playlist));
+    }
+  },
   methods: {
     onEnd(ev) {
       this.oldIndex = ev.oldIndex;
@@ -56,7 +61,7 @@ export default {
     },
   },
   created() {
-    this.songs = JSON.parse(JSON.stringify(this.playlist));
+    // this.songs = JSON.parse(JSON.stringify(this.playlist));
   },
   components: {
     draggable,
