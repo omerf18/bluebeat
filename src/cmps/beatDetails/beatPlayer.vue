@@ -52,6 +52,7 @@ export default {
     };
   },
   methods: {
+   
     shuffle() {
       this.playerVars.isShuffle = !this.playerVars.isShuffle;
     },
@@ -79,5 +80,8 @@ export default {
       this.$refs.youtube.player.setVolume(this.playerVars.vol);
     },
   },
+  created(){
+    // this.playerVars.isPlaying =true
+  }
 };
 </script>

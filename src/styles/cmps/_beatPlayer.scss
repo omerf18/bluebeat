@@ -53,14 +53,11 @@
 }
 
 .set-vol{
-    // transform: rotate(270deg);
-    // opacity: 0;
     width: 70px;
     color: $logo;
     cursor: pointer;
-    &:hover{
-        opacity: 1;
-    }
+    padding: 0;
+  
 }
 .song-desc{
     flex: 1;
