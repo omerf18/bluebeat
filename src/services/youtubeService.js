@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { utilService } from '../services/utilService.js'
 
-const API_KEY = 'AIzaSyCyM2fv9P2yWDlNTAfgAcDdRqMXQpULiiM';
+const API_KEY = 'AIzaSyA3xup2cQRDiG3SppVytqu-nSPdhxLSwmw';
+
+// const API_KEY = 'AIzaSyCyM2fv9P2yWDlNTAfgAcDdRqMXQpULiiM';
 // const API_KEY = 'AIzaSyDBTRTb8qLf_omU7foaqgJ_kLS-WjFeMGg';
 
 export const youtubeService = {
@@ -42,9 +44,9 @@ async function _neededDetails(songs) {
         let songDetails = {
             id: utilService.makeId(),
             youtubeId: song.id,
-            title: song.snippet.title,
+            title: _setTitle(song.snippet.title),
             imgUrl: song.snippet.thumbnails.medium.url,
-            duration: _setContentDetails(song.contentDetails.duration),
+            duration: _setDuration(song.contentDetails.duration),
         }
         await neededDetails.push(songDetails)
     })
@@ -52,7 +54,18 @@ async function _neededDetails(songs) {
     return data
 }
 
-function _setContentDetails(duration) {
+
+
+function _setTitle(title){
+    var title = title.replace('(','')
+    var title2 = title.replace(')','')
+   var title3 = title2.replace('Official Video','')
+    return title3
+
+
+}
+
+function _setDuration(duration) {
     var playTime = duration.replace('PT', '')
     var playTime1 = playTime.replace('M', ':');
     var playTime2 = playTime1.replace('S', '')

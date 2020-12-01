@@ -23,7 +23,7 @@
           />
           <add-song
             :searchedSongs="searchedSongsForDisplay"
-            @addSongToPlayList="addSong"
+            @addSongToPlayList="addSongToPlayList"
           ></add-song>
         </div>
       </div>
@@ -127,9 +127,10 @@ export default {
       });
     },
   },
-  async created() {
+ async created() {
     const beatId = this.$route.params.id;
     let beat = await beatService.getById(beatId);
+      // socketService.emit('chat topic',this.beat._id);
     this.beat = JSON.parse(JSON.stringify(beat));
     console.log("this", this.beat);
     socketService.emit("join beat", beatId);
