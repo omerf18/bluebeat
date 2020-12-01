@@ -1,6 +1,5 @@
 .prev-card {
     background-color: $bgc2;
-    padding-top: 5px ;
     border-radius: 10px;
     color: $font3;
     cursor: pointer;
@@ -57,12 +56,11 @@
     font-size: rem(15px);
     color: $logo;
 }
-    
 
 .prev-info {
     opacity: 0.8;
     font-size: rem(10px);
-    span{
+    span {
         margin-left: 3px;
     }
 }
@@ -70,7 +68,6 @@
 .prev-info-container {
     border-top: 1px solid $font3;
     width: 100%;
-    padding-top: 8px;
 }
 
 .txt-deco {
@@ -84,12 +81,6 @@
 .list-header {
     padding: 0 0 25px;
 }
-.prev-details{
-    padding: 10px;
-  .prev-name{
-      padding-bottom: 10px;
-  }
-  .prev-genre{
-      padding-bottom: 5px;
-  }
+.prev-details {
+    
 }

@@ -10,7 +10,7 @@
       <i class="send-btn icon fas fa-paper-plane" @click="sendMsg"></i>
       <input
         class="send-msg"
-        @keydown="userTyping"
+        @input="userTyping"
         type="text"
         v-model="msg.txt"
       />
@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import socketService from "../../services/socketService.js";
 import { beatService } from "../../services/beatService.js";
 
 export default {
@@ -39,8 +38,7 @@ export default {
   computed: {},
   methods: {
     sendMsg() {
-      this.msg = { from: "Guest", txt: this.msg.txt };
-      socketService.emit("chat newMsg", this.msg);
+      this.$socket.emit("sendMsg", this.msg);
       this.msg = { from: "Guest", txt: "" };
       // this.msg = {from: this.$store.getters.loggedinUser.username, txt: ''};
     },
@@ -48,33 +46,26 @@ export default {
       this.msgs.push(msg);
     },
     userTyping() {
-      this.isTyping = true;
-      // const userTyping = {typing: this.isTyping ,loggedinUser: this.loggedinUser}
-      // socketService.emit('user typing', userTyping);
-      const userTyping = { typing: this.isTyping, loggedinUser: "Guest" };
-      socketService.emit("user typing", userTyping);
-      setTimeout(() => {
-        this.isTyping = false;
-      }, 3000);
+      const loggedinUser = "Guest";
+      this.$socket.emit("userTyping", loggedinUser);
     },
-    typing(typing) {
-      this.isTyping = typing.typing;
-      this.userNowTyping = typing.loggedinUser + " is typing...";
+    typing(user) {
+      this.isTyping = true;
+      this.userNowTyping = user + " is typing..";
       setTimeout(() => {
         this.userNowTyping = "";
         this.isTyping = false;
       }, 2000);
     },
-    destroyed() {
-      socketService.off("chat addMsg", this.addMsg);
-      socketService.terminate();
+  },
+  sockets: {
+    sentMsg(msg) {
+      this.addMsg(msg);
+    },
+    userTyping(user) {
+      this.typing(user);
     },
   },
-  created() {
-    socketService.setup();
-    socketService.emit("chat topic", this.beat._id);
-    socketService.on("chat addMsg", this.addMsg);
-    socketService.on("typing", this.typing);
-  },
+  created() {},
 };
 </script>

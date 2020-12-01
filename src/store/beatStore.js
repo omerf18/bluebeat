@@ -1,7 +1,6 @@
 import { beatService } from '../services/beatService.js'
 import { songService } from '../services/songService.js'
 import { youtubeService } from '../services/youtubeService.js'
-import socketService from "../services/socketService"
 
 export const beatStore = {
     state: {
@@ -89,7 +88,6 @@ export const beatStore = {
         async removeSong({ commit, state }, { songId }) {
             await songService.removeSong(songId, state.currBeat);
             commit({ type: 'removeSong', songId })
-            // socketService.emit('song remove', songId)
         },
         async searchSong({ commit }, { keyWord }) {
             const searchedSongs = await youtubeService.getSong(keyWord)
@@ -98,7 +96,6 @@ export const beatStore = {
         async addSong({ commit, state }, { song }) {
             const newSong = await songService.addSong(song, state.currBeat);
             commit({ type: 'addSong', newSong });
-            socketService.emit("song add", newSong);
         },
         setCurrSong({ commit }, { song }) {
             commit({ type: 'setCurrSong', song })
