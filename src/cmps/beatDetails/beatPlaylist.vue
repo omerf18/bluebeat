@@ -40,11 +40,7 @@ export default {
       newIndex: "",
     };
   },
-  computed: {
-    serPlaylist() {
-      socketService.on("add song", this.playlist);
-    },
-  },
+  computed: {},
   methods: {
     onEnd(ev) {
       console.log("ev: ", ev);

@@ -118,7 +118,7 @@ export default {
       var beat = JSON.parse(JSON.stringify(this.beat));
       beat.songs.push(song);
       socketService.emit("beat songs changed", beat);
-      this.$$store.dispatch({ type: "saveBeat", beat });
+      this.$store.dispatch({ type: "saveBeat", beat });
     },
     async addSongToPlayList() {
       await this.$store.dispatch({
