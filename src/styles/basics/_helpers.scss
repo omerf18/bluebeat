@@ -36,6 +36,9 @@
     &.align-baseline{
         align-items: baseline;
     }
+    &.justify-baseline{
+        justify-content: flex-end;
+    }
 }
 .ml20{
     margin-left: 20px;

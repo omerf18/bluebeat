@@ -76,6 +76,9 @@ export const beatStore = {
             filterBy.genreFilter = 'ALL';
             filterBy.beatTitle = '';
             beats = null;
+        },
+        setLike({currBeat,diff}){
+            currBeat.likes += diff
         }
     },
     actions: {
@@ -136,6 +139,7 @@ export const beatStore = {
             } catch (err) {
                 console.log(err);
             }
-        }
+        },
+     
     }
 }

@@ -4,8 +4,9 @@
       <div class="main-details">
         <beat-info
           class="beat-info-cmp"
-          :beat="beat"
+          :currBeat="currBeat"
           @removeBeat="removeBeat"
+          @setLike="toggleLike"
         />
         <beatPlayer
           class="beat-player-cmp"
@@ -51,9 +52,17 @@ export default {
     return {
       beat: null,
       newSong: null,
+    
     };
   },
   computed: {
+    currBeat() {
+<<<<<<< HEAD
+=======
+      if (!this.beat) return;
+>>>>>>> e4b550971dd22245c0fbf78d12a5cf6fd4b92691
+      return this.$store.getters.currBeat;
+    },
     currSong() {
       if (!this.beat) return;
       return this.$store.getters.currSong;
@@ -131,6 +140,12 @@ export default {
         song,
       });
     },
+    async toggleLike(diff){
+      const beat =JSON.parse(JSON.stringify(this.beat))
+      beat.likes += diff
+      console.log(diff);
+      await this.$store.dispatch({type:"editBeat", beat})
+    }
   },
   async created() {
     const beatId = this.$route.params.id;
