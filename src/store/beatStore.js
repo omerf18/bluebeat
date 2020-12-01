@@ -1,68 +1,106 @@
 import { beatService } from '../services/beatService.js'
+import { songService } from '../services/songService.js'
+import { youtubeService } from '../services/youtubeService.js'
+import socketService from "../services/socketService"
 
 export const beatStore = {
-    strict: true,
     state: {
         beats: null,
         filterBy: { genreFilter: 'ALL', beatTitle: '' },
-        genres: ['Popular', 'Trending', 'Hip hop', 'Israeli', 'Dance', 'Pop', 'Rock n roll', 'Latin','Easy'],
-        currBeat: null
+        genres: ['Popular', 'Trending', 'Hip hop', 'Israeli', 'Dance', 'Pop', 'Rock n roll', 'Latin', 'Easy'],
+        currBeat: null,
+        currSong: null,
+        searchedSongs: null,
     },
     getters: {
-        currBeat(state) {
-            return state.currBeat;
+        currSong({ currSong }) {
+            return JSON.parse(JSON.stringify(currSong));
         },
-        beats(state) {
-            return state.beats;
+        searchedSongsForDisplay({ searchedSongs }) {
+            return searchedSongs;
         },
-        currBeat(state) {
-            return state.currBeat
+        beats({ beats }) {
+            console.log('beats', beats);
+            return JSON.parse(JSON.stringify(beats));
         },
-        genres(state) {
-            return state.genres
+        currBeat({ currBeat }) {
+            return JSON.parse(JSON.stringify(currBeat));
         },
-        filterBy(state) {
-            return state.filterBy
+        genres({ genres }) {
+            return genres;
+        },
+        filterBy({ filterBy }) {
+            return filterBy;
         }
     },
     mutations: {
+        setCurrSong(state, { song }) {
+            state.currSong = song;
+        },
+        addSong({ currBeat }, { newSong }) {
+            currBeat.songs.push(newSong);
+        },
+        removeSong({ currBeat }, { songId }) {
+            currBeat.songs.find(song => song.id === songId)
+            currBeat.songs.splice(idx, 1);
+        },
+        setSearchedSongs(state, { searchedSongs }) {
+            state.searchedSongs = searchedSongs
+        },
         setCurrBeat(state, { beat }) {
             state.currBeat = beat;
         },
         loadBeats(state, { beats }) {
             state.beats = beats
         },
-        removeBeat(state, { beatId }) {
-            const idx = state.beats.findIndex(beat => beat._id === beatId);
-            state.beats.splice(idx, 1);
+        removeBeat({ beats }, { beatId }) {
+            const idx = beats.findIndex(beat => beat._id === beatId);
+            beats.splice(idx, 1);
         },
-        editBeat(state, { beat }) {
-            const idx = state.beats.findIndex(currBeat => beat._id === currBeat._id);
-            state.beats.splice(idx, 1, beat)
+        editBeat({ beats }, { beat }) {
+            const idx = beats.findIndex(currBeat => beat._id === currBeat._id);
+            beats.splice(idx, 1, beat)
         },
-        addBeat(state, { beat }) {
-            state.beats.unshift(beat)
+        addBeat({ beats }, { beat }) {
+            beats.unshift(beat);
         },
-        setGenreFilter(state, { selectedGenre }) {
-            state.filterBy.genreFilter = selectedGenre
+        setGenreFilter({ filterBy }, { selectedGenre }) {
+            filterBy.genreFilter = selectedGenre
         },
-        setTxtFilter(state, { txt }) {
-            state.filterBy.beatTitle = txt
+        setTxtFilter({ filterBy }, { txt }) {
+            filterBy.beatTitle = txt
         },
-        resetFilter(state) {
-            state.filterBy.genreFilter = 'ALL';
-            state.filterBy.beatTitle = '';
-            state.beats = null;
+        resetFilter({ filterBy, beats }) {
+            filterBy.genreFilter = 'ALL';
+            filterBy.beatTitle = '';
+            console.log('store filt', filterBy);
+            beats = null;
         }
     },
     actions: {
+        async removeSong({ commit }, { songId, beat }) {
+            await songService.removeSong(songId, beat);
+            commit({ type: 'removeSong', songId })
+            socketService.emit('song remove', songId)
+        },
+        async searchSong({ commit }, { keyWord }) {
+            const searchedSongs = await youtubeService.getSong(keyWord)
+            commit({ type: 'setSearchedSongs', searchedSongs })
+        },
+        async addSong({ commit, state }, { song }) {
+            const newSong = await songService.addSong(song, state.currBeat);
+            commit({ type: 'addSong', newSong });
+            socketService.emit("song add", newSong);
+        },
+        setCurrSong({ commit }, { song }) {
+            commit({ type: 'setCurrSong', song })
+        },
         setCurrBeat({ commit }, { beat }) {
             commit({ type: 'setCurrBeat', beat })
         },
-        async loadBeats({ getters, commit }) {
-            let beats = await beatService.query(getters.filterBy);
+        async loadBeats({ state, commit }) {
+            let beats = await beatService.query(state.filterBy);
             commit({ type: 'loadBeats', beats })
-
         },
         async removeBeat({ commit }, { beatId }) {
             await beatService.removeBeat(beatId);
@@ -78,19 +116,19 @@ export const beatStore = {
             commit({ type: 'setCurrBeat', beat: savedBeat })
             return savedBeat
         },
-        async setGenreFilter(state, { selectedGenre }) {
-            await state.commit({ type: 'setGenreFilter', selectedGenre })
-            state.dispatch('loadBeats')
+        async setGenreFilter({ commit, dispatch }, { selectedGenre }) {
+            await commit({ type: 'setGenreFilter', selectedGenre })
+            dispatch('loadBeats')
         },
-        async setTxtFilter(state, { txt }) {
-            await state.commit({ type: 'setTxtFilter', txt })
-            state.dispatch('loadBeats')
+        async setTxtFilter({ commit, dispatch }, { txt }) {
+            await commit({ type: 'setTxtFilter', txt })
+            dispatch('loadBeats')
         },
-        async resetFilter(state) {
-            await state.commit({ type: 'resetFilter' })
+        async resetFilter({ commit, dispatch }) {
+            await commit({ type: 'resetFilter' })
             try {
-                state.dispatch('loadBeats')
-            } catch(err) {
+                dispatch('loadBeats')
+            } catch (err) {
                 console.log(err);
             }
         }

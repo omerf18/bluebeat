@@ -7,15 +7,15 @@
 
 <script>
 import beatHeader from "@/cmps/beatHeader.vue";
-import socketService from './services/socketService.js'
+import socketService from "./services/socketService.js";
 
 export default {
   components: {
     beatHeader,
   },
-   created() {
-    this.$store.dispatch({type: 'loadBeats'})
-        // socketService.setup()
+  created() {
+    this.$store.dispatch({ type: "loadBeats" });
+    socketService.setup();
   },
 };
 </script>

@@ -1,11 +1,8 @@
 .prev-card {
     background-color: $bgc2;
-    // max-width: 220px;
-    // min-width: 205px;
     padding-top: 5px ;
     border-radius: 10px;
     color: $font3;
-    // margin-bottom: 20px;
     cursor: pointer;
     &.prev-card:hover {
         background-color: #121212bf;

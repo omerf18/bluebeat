@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 const BASE_URL = process.env.NODE_ENV === 'production'
     ? '/'
-    : '//localhost:3030' 
+    : '//localhost:3030'
 var socket;
 
 export default {
@@ -9,7 +9,7 @@ export default {
     terminate,
     on,
     off,
-    emit    
+    emit
 }
 
 function setup() {
@@ -29,6 +29,5 @@ function off(eventName, cb) {
 }
 
 function emit(eventName, data) {
-    // console.log(eventName,data, 'soc');
     socket.emit(eventName, data)
 }
