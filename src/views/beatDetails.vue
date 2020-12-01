@@ -54,9 +54,9 @@ export default {
     };
   },
   computed: {
-    beat() {
-      return this.$store.getters.currBeat;
-    },
+    // beat() {
+    //   return this.$store.getters.currBeat;
+    // },
     currSong() {
       if (!this.beat) return;
       return this.$store.getters.getCurrSong;
