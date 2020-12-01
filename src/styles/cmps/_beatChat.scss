@@ -1,12 +1,9 @@
 .beat-chat {
     background-color: $bgc2;
-    // height: 100%;
-    flex: 1;
-    width: rem(220px);
     position: fixed;
+    height: 88vh;
     margin-left: 10px;
-    bottom: 10px;
-    top: 60px;
+    width: 22%;
 }
 
 .send-container {

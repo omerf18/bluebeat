@@ -1,8 +1,17 @@
 <template>
   <section class="home">
+    <div class="hero-container">
     <img class="beat-hero" src="@/assets/img/bluebeatHero.jpg" />
-    <section v-if="beats">
-      <beat-home-list
+    <div class="marketing ">
+      <h1>PARTY WITH A REAL BEATS</h1>
+      <h3>Listen to music with friends. No matter where they're at.</h3>
+    </div>
+    <a href="/" @click.prevent="smoothScroll('homeList', 1000)" class="scroll-down">
+    <span></span>
+    </a>
+    </div>
+    <section id="homeList" v-if="beats" class="home-list">
+      <beat-home-list 
         class="main-layout"
         v-for="genre in genres"
         :genre="genre"
@@ -26,6 +35,27 @@ export default {
         selectedGenre,
       });
     },
+     smoothScroll(target, duration) {
+      var target = document.getElementById(target);
+      var targetPosition = target.getBoundingClientRect().top;
+      var startingPosition = window.pageYOffset;
+      var distance = targetPosition - startingPosition;
+      var startTime = null;
+      function animationScroll(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        var timeElapsed = currentTime - startTime;
+        var run = ease(timeElapsed, startingPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animationScroll);
+      }
+          function ease(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return (c / 2) * t * t + b;
+        t--;
+        return (-c / 2) * (t * (t - 2) - 1) + b;
+      }
+      requestAnimationFrame(animationScroll);
+  }
   },
   computed: {
     beats() {
@@ -41,6 +71,6 @@ export default {
   components: {
     beatHomeList,
   },
-};
+}
 </script>
 

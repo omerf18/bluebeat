@@ -1,32 +1,24 @@
 .beat-player {
     background-color: $bgc2;
-    padding: 10px;
-    h2{
+    height: 30vh;
+    h2 {
         font-family: ambitBold;
         color: $logo;
         font-size: rem(20px);
-        flex: 1;
-        padding: 10px;
-        // max-width: 400px;
-      
     }
-    
 }
-
 
 .player {
     width: 0;
     height: 0;
-    // height: 100%;
 }
 
-
-.player-btn{
+.player-btn {
     width: 100%;
     background-color: $bgc1;
     padding: 0px 40px;
     border-radius: 10px;
-    span{
+    span {
         width: 34px;
     }
 }
@@ -46,23 +38,15 @@
 
 .soundOn {
     color: $logo;
-   
 }
 .playing-disc {
     margin-left: 20px;
 }
 
 .set-vol{
-    // transform: rotate(270deg);
-    // opacity: 0;
     width: 70px;
     color: $logo;
     cursor: pointer;
-    &:hover{
-        opacity: 1;
-    }
-}
-.song-desc{
-    flex: 1;
-    margin-left: 40px;
+    padding: 0;
+  
 }
