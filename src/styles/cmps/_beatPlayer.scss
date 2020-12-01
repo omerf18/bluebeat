@@ -1,10 +1,13 @@
 .beat-player {
     background-color: $bgc2;
-    height: 30vh;
+    justify-content: center;
     h2 {
         font-family: ambitBold;
         color: $logo;
         font-size: rem(20px);
+    }
+    .beat-img{
+        margin: 10px;
     }
 }
 
@@ -16,7 +19,7 @@
 .player-btn {
     width: 100%;
     background-color: $bgc1;
-    padding: 0px 40px;
+    padding: 0px 30px;
     border-radius: 10px;
     span {
         width: 34px;
@@ -28,6 +31,10 @@
     &:hover {
         color: $logo;
     }
+}
+.song-desc{
+    padding: 15px;
+    align-self: center;
 }
 
 .sound {
