@@ -8,7 +8,7 @@
       <span>{{ currBeat.createdBy.userName }}</span>
     </div>
     </div>
-    <div class="beat-desc flex col align-center ">
+    <div class="beat-desc flex col space-evenly align-center ">
       <span class="beat-title">{{ currBeat.name }}</span>
       <span class="beat-genre">{{ currBeat.genre }}</span>
       <span class="beat-description">{{ currBeat.description }}</span>

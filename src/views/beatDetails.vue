@@ -1,7 +1,8 @@
 <template>
   <section class="main-layout">
-    <div class="flex" v-if="beat">
-      <div class="main-details">
+    <div>
+    <div v-if="beat" class="main-details flex">
+      <div class="beat-container">
         <beat-info
           class="beat-info-cmp"
           :currBeat="currBeat"
@@ -33,6 +34,7 @@
         <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
       </div>
     </div>
+    </div>
   </section>
 </template>
 
@@ -52,7 +54,6 @@ export default {
     return {
       beat: null,
       newSong: null,
-    
     };
   },
   computed: {
@@ -137,12 +138,12 @@ export default {
         song,
       });
     },
-    async toggleLike(diff){
-      const beat =JSON.parse(JSON.stringify(this.beat))
-      beat.likes += diff
+    async toggleLike(diff) {
+      const beat = JSON.parse(JSON.stringify(this.beat));
+      beat.likes += diff;
       console.log(diff);
-      await this.$store.dispatch({type:"editBeat", beat})
-    }
+      await this.$store.dispatch({ type: "editBeat", beat });
+    },
   },
   async created() {
     const beatId = this.$route.params.id;
