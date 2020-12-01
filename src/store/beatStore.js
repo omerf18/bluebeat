@@ -75,6 +75,9 @@ export const beatStore = {
             filterBy.beatTitle = '';
             console.log('store filt', filterBy);
             beats = null;
+        },
+        setLike({currBeat,diff}){
+            currBeat.likes += diff
         }
     },
     actions: {
@@ -131,6 +134,7 @@ export const beatStore = {
             } catch (err) {
                 console.log(err);
             }
-        }
+        },
+     
     }
 }

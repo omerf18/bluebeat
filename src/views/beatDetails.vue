@@ -6,6 +6,7 @@
           class="beat-info-cmp"
           :beat="beat"
           @removeBeat="removeBeat"
+          @setLike="toggleLike"
         />
         <beatPlayer
           class="beat-player-cmp"
@@ -51,6 +52,7 @@ export default {
       beat: null,
       currSongIdx: null,
       newSong: null,
+    
     };
   },
   computed: {
@@ -126,6 +128,12 @@ export default {
         song: this.newSong,
       });
     },
+    async toggleLike(diff){
+      const beat =JSON.parse(JSON.stringify(this.beat))
+      beat.likes += diff
+      console.log(diff);
+      await this.$store.dispatch({type:"editBeat", beat})
+    }
   },
  async created() {
     const beatId = this.$route.params.id;

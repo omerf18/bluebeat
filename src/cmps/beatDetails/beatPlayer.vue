@@ -1,5 +1,5 @@
 <template>
-  <section v-if="currSong" class="beat-player container flex">
+  <section v-if="currSong" class="beat-player  flex">
     <div class="beat-frame flex">
       <div class="beat-img flex align-center ml20">
         <img
@@ -16,46 +16,22 @@
       ></youtube>
     </div>
     <div class="song-desc flex col space-evenly justify-center align-center">
-      <h2>{{ currSong.title }}</h2>
-      <h4>{{ currSong.duration }}</h4>
-      <div class="flex">
-        <div class="player-btn flex icon">
+
+      <h2 >{{ currSong.title }}</h2>
+      <!-- <h4>{{ currSong.duration }}</h4> -->
+
+        <div class="player-btn flex icon align-center justify-center">
           <i @click="switchSong(currSong.id, -1)" class="fas fa-backward"></i>
-          <i
-            v-if="!playerVars.isPlaying"
-            @click="playSong"
-            class="fas fa-play"
-          ></i>
-          <i
-            v-if="playerVars.isPlaying"
-            @click="pauseSong"
-            class="fas fa-pause"
-          ></i>
+          <i v-if="!playerVars.isPlaying" @click="playSong" class="fas fa-play" ></i>
+          <i v-if="playerVars.isPlaying" @click="pauseSong" class="fas fa-pause" ></i>
           <i @click="switchSong(currSong.id, 1)" class="fas fa-forward"></i>
-          <i
-            @click="shuffle"
-            :class="{ active: playerVars.isShuffle }"
-            class="fas fa-random"
-          ></i>
+          <i @click="shuffle" :class="{ active: playerVars.isShuffle }" class="fas fa-random" ></i>
+          <i @click="muteSound" :class="{ active: !playerVars.isMuted }" class="sound icon fas fa-volume-down" ></i>
+          <input class="set-vol" type="range" min="0" max="100" v-model="playerVars.vol" @input="setVol" />
+          <span >{{playerVars.vol}}</span>
         </div>
+
       </div>
-      <div class="flex">
-        <i
-          @click="muteSound"
-          :class="{ active: !playerVars.isMuted }"
-          class="sound icon fas fa-volume-down"
-        ></i>
-        <input
-          class="set-vol"
-          type="range"
-          min="0"
-          max="100"
-          v-model="playerVars.vol"
-          @input="setVol"
-        />
-      </div>
-      <!-- {{ playerVars.vol }} -->
-    </div>
   </section>
 </template>
 
