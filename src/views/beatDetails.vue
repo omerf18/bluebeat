@@ -4,7 +4,7 @@
       <div class="main-details">
         <beat-info
           class="beat-info-cmp"
-          :beat="beat"
+          :currBeat="beat"
           @removeBeat="removeBeat"
         />
         <beatPlayer
@@ -54,6 +54,10 @@ export default {
     };
   },
   computed: {
+    currBeat() {
+      if (!this.beat) return;
+      return this.$store.getters.currBeat;
+    },
     currSong() {
       if (!this.beat) return;
       return this.$store.getters.currSong;
