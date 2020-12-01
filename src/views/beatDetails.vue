@@ -1,39 +1,37 @@
 <template>
   <section class="main-layout">
-    <div>
-      <div class="main-details flex">
-        <div class="beat-container">
-          <beat-info
-            class="beat-info-cmp"
-            :currBeat="currBeat"
-            @removeBeat="removeBeat"
-            @setLike="toggleLike"
+    <div class="flex">
+      <div class="main-details">
+        <beat-info
+          class="beat-info-cmp"
+          :currBeat="currBeat"
+          @removeBeat="removeBeat"
+          @setLike="toggleLike"
+        />
+        <beatPlayer
+          class="beat-player-cmp"
+          :currSong="currSong"
+          @switchSong="switchSong"
+        />
+        <searchSong class="searchSong-cmp" @setKeyWord="searchYoutubeSong" />
+        <div class="flex">
+          <beatPlaylist
+            class="beat-playerlist-cmp"
+            :playlist="playlist"
+            :currSongId="currSong.id"
+            @changeSong="setCurrSong"
+            @removeSong="removeSong"
+            @dragSong="dragSong"
           />
-          <beatPlayer
-            class="beat-player-cmp"
-            :currSong="currSong"
-            @switchSong="switchSong"
-          />
-          <searchSong class="searchSong-cmp" @setKeyWord="searchYoutubeSong" />
-          <div class="flex">
-            <beatPlaylist
-              class="beat-playerlist-cmp"
-              :playlist="playlist"
-              :currSongId="currSong.id"
-              @changeSong="setCurrSong"
-              @removeSong="removeSong"
-              @dragSong="dragSong"
-            />
-            <add-song
-              :searchedSongs="searchedSongsForDisplay"
-              @addSongToPlayList="addSongToPlayList"
-            ></add-song>
-          </div>
-        </div>
-        <div class="chat-container">
-          <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
+          <add-song
+            :searchedSongs="searchedSongsForDisplay"
+            @addSongToPlayList="addSongToPlayList"
+          ></add-song>
         </div>
       </div>
+      <!-- <div class="chat-container"> -->
+        <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
+      <!-- </div> -->
     </div>
   </section>
 </template>
@@ -56,13 +54,13 @@ export default {
     };
   },
   computed: {
-    currLikes(){
-      console.log('likes',this.$store.getters.currBeat.likes);
-       return this.currBeat.likes
+    currLikes() {
+      console.log("likes", this.$store.getters.currBeat.likes);
+      return this.currBeat.likes;
     },
     currBeat() {
       if (!this.beat) return;
-      console.log( this.$store.getters.currBeat,'curr beat details computed');
+      console.log(this.$store.getters.currBeat, "curr beat details computed");
       return this.$store.getters.currBeat;
     },
     currSong() {
@@ -131,7 +129,7 @@ export default {
     },
     async toggleLike(diff) {
       const beat = JSON.parse(JSON.stringify(this.currBeat));
-      await this.$store.dispatch({type:"addLike", beat,diff})
+      await this.$store.dispatch({ type: "addLike", beat, diff });
       this.$socket.emit("beatChanged", this.currBeat);
     },
     async setCurrBeat(beat) {

@@ -1,12 +1,12 @@
 <template>
-  <div class="beat-chat">
+  <div class="beat-chat flex col space-between">
     <ul class="beat-msg">
       <li v-for="(msg, idx) in msgs" :key="idx">
         {{ msg.from }}: {{ msg.txt }}
       </li>
     </ul>
     <h4 v-if="isTyping">{{ userNowTyping }}</h4>
-    <form class="send-container flex" @submit.prevent="sendMsg">
+    <form class="send-container" @submit.prevent="sendMsg">
       <i class="send-btn icon fas fa-paper-plane" @click="sendMsg"></i>
       <input
         class="send-msg"

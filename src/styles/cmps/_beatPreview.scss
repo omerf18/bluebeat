@@ -8,6 +8,10 @@
     }
 }
 
+.prev-main-info-container {
+    padding: 10px 0;
+}
+
 .prev-img {
     background-color: $bgc1;
     border-radius: 5px;
@@ -22,6 +26,7 @@
 }
 .beat-img {
     position: relative;
+    padding-bottom: 7px;
     &:before {
         content: "";
         width: 15px;
@@ -63,11 +68,11 @@
     span {
         margin-left: 3px;
     }
-}
-
-.prev-info-container {
-    border-top: 1px solid $font3;
-    width: 100%;
+    &-container {
+        border-top: 1px solid $font3;
+        width: 100%;
+        padding: 7px 0;
+    }
 }
 
 .txt-deco {
@@ -80,13 +85,10 @@
 }
 .list-header {
     padding: 0 0 25px;
-    h5{
+    h5 {
         cursor: pointer;
-        &:hover{
+        &:hover {
             color: $logo;
         }
     }
-}
-.prev-details {
-    
 }
