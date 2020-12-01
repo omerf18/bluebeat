@@ -1,14 +1,15 @@
 <template>
   <div class="prev-card icon" @click="beatPrev(beat._id)">
-    <div class="beat-img flex align-center justify-center">
+    <div class="flex col align-center justify-center">
       <img class="prev-img" :src="beat.imgUrl" />
-    </div>
-    <div class="prev-details flex col align-center">
-      <h2 class="prev-name">{{ beat.name }}</h2>
-      <h3 class="prev-genre">{{ beat.genre }}</h3>
+      <div class="prev-details flex col align-center">
+        <h2 class="prev-name">{{ beat.name }}</h2>
+        <h3 class="prev-genre">{{ beat.genre }}</h3>
+      </div>
       <div class="prev-info-container flex space-around align-center">
         <span class="prev-info flex align-center">
-          <i class="prev-likes prev- fas fa-heart"></i><span> {{ beat.likes }}</span>
+          <i class="prev-likes prev- fas fa-heart"></i
+          ><span> {{ beat.likes }}</span>
         </span>
         <span class="prev-info">25 Online</span>
         <span class="prev-info">{{ beat.songs.length }} Songs</span>

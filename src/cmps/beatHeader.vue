@@ -18,6 +18,7 @@
       <div class="flex row">
         <div class="flex justify-center align-center">
           <router-link class="header-btn" to="/beat">Beats</router-link>
+          <span class="divider">|</span>
           <router-link class="header-btn" to="/beat/add"
             >Create Beat</router-link
           >

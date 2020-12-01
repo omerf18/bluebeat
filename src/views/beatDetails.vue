@@ -35,6 +35,7 @@
         <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
       </div>
     </div>
+   
   </section>
 </template>
 
@@ -54,7 +55,6 @@ export default {
     return {
       beat: null,
       newSong: null,
-    
     };
   },
   computed: {
