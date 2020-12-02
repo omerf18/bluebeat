@@ -1,5 +1,5 @@
 <template>
-  <section v-if="currBeat"  class="beat-info flex space-between">
+  <section v-if="currBeat" :key="this.isLiked" class="beat-info flex space-between">
     <div class="beat-info-imgs flex">
       <img class="prev-img-details" :src="currBeat.imgUrl" >
     <div class="user-profile flex col align-center justify-baseline">

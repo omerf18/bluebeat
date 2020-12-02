@@ -10,6 +10,7 @@ export const beatStore = {
         currBeat: null,
         currSong: null,
         searchedSongs: null,
+        
     },
     getters: {
         currSong({ currSong }) {
@@ -80,8 +81,8 @@ export const beatStore = {
             filterBy.beatTitle = '';
             beats = null;
         },
-        setLike({currBeat},{addLikedBeat}){
-            currBeat = addLikedBeat
+        setLike(state,{addLikedBeat}){
+            state.currBeat = addLikedBeat
         }
     },
     actions: {

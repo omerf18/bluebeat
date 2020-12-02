@@ -1,5 +1,5 @@
 <template>
-  <section class="main-layout">
+  <section class="main-layout" v-if="currBeat">
     <div class="flex">
       <div class="main-details">
         <beat-info
@@ -61,7 +61,7 @@ export default {
     // },
     currBeat() {
       if (!this.beat) return;
-      console.log(this.$store.getters.currBeat, "curr beat details computed");
+      console.log("curr beat details computed",this.$store.getters.currBeat);
       return this.$store.getters.currBeat;
     },
     currSong() {
@@ -153,6 +153,7 @@ export default {
     this.beat = JSON.parse(JSON.stringify(beat));
     this.$socket.emit("joinRoom", this.beat._id);
     this.setCurrBeat(beat);
+    console.log('beatdetails created');
     this.setCurrSong(this.beat.songs[0]);
   },
   sockets: {
