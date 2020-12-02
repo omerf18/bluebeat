@@ -1,11 +1,12 @@
 .header {
+    position: absolute;
     display: grid;
     width: 100%;
     z-index: 5;
     padding: 0 50px;
 }
 .beat-logo {
-    height: 80px;
+    height: 60px;
 }
 .header-btn {
     font-size: rem(20px);

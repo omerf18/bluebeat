@@ -1,10 +1,11 @@
 <template>
-  <section class="main-layout">
+  <section class="main-layout" v-if="currBeat">
     <div class="flex">
       <div class="main-details">
         <beat-info
           class="beat-info-cmp"
           :currBeat="currBeat"
+       
           @removeBeat="removeBeat"
           @setLike="toggleLike"
         />
@@ -63,6 +64,7 @@ export default {
     },
     playlist() {
       if (!this.beat) return;
+      return this.$store.getters.currBeat.songs;
       let songs = this.$store.getters.currBeat.songs;
       return JSON.parse(JSON.stringify(songs));
     },
@@ -150,6 +152,7 @@ export default {
     console.log("beat", beat);
     this.$socket.emit("joinRoom", this.beat._id);
     this.setCurrBeat(beat);
+    console.log('beatdetails created');
     this.setCurrSong(this.beat.songs[0]);
   },
   sockets: {

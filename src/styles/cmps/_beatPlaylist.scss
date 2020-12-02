@@ -1,5 +1,7 @@
 .beat-playerlist-cmp {
     width: 100%;
+    overflow-y: scroll;
+    max-height: 270px;
 }
 .song-container {
     height: 50px;
@@ -35,7 +37,7 @@
 
 .main-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minMax(190px, 210px));
+    grid-template-columns: repeat(auto-fill, minMax(190px, 1fr));
     gap: 20px;
     padding-bottom: 20px;
     h5:hover {

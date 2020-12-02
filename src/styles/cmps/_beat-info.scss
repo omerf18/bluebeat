@@ -1,7 +1,7 @@
 .beat-info {
     background-color: $bgc2;
     margin-bottom: 10px;
-    height: 20vh;
+    // height: 20vh;
 }
 
 .beat-info-imgs {
@@ -10,18 +10,19 @@
         width: 2rem;
         height: 2rem;
         object-fit: cover;
-        border-radius: 20%;
+        border-radius: 50%;
     }
     .prev-img-details {
         padding: 0 10px;
         width: rem(150px);
-        border-radius: 20%;
+        border-radius:20%;
     }
     span {
         font-size: rem(13px);
     }
 }
 .beat-desc {
+    padding: 10px;
     .beat-title {
         font-family: ambitBold;
         font-size: rem(27px);
@@ -44,6 +45,13 @@
 }
 
 .like-btn {
+    
     padding-right: 5px;
     color: $logo;
+}
+
+.beat-likes{
+    font-size: rem(12px);
+    display: flex;
+    align-self: center;
 }

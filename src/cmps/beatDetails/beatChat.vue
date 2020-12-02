@@ -41,6 +41,7 @@ export default {
       this.msgs.push(msg);
     },
     sendMsg() {
+<<<<<<< HEAD
       this.msg.from = this.$store.getters.loggedinUser;
       if (!loggedinUser) loggedinUser = "Guest: ";
       this.$socket.emit("sendMsg", this.msg);
@@ -50,10 +51,35 @@ export default {
       const loggedinUser = this.$store.getters.loggedinUser;
       if (!loggedinUser) loggedinUser = "Guest: ";
       this.$socket.emit("userTyping", loggedinUser);
+=======
+      if(this.$store.getters.loggedinUser) {
+         this.msg.from = this.$store.getters.loggedinUser.username;
+      } else {
+        this.msg.from = 'Guest'
+      }
+      this.$socket.emit("sendMsg", this.msg);
+      this.msg.txt = ''
+    },
+    addMsg(msg) {
+      this.msgs.push(msg);
+    },
+    userTyping() {
+      const loggedinUser = this.$store.getters.loggedinUser;
+      if (loggedinUser) {
+        this.$socket.emit("userTyping", loggedinUser);
+      } else {
+        this.$socket.emit("userTyping", 'Guest');
+      }
+>>>>>>> b1f876a17efa2c7ac26ef8a526ef26243358f56e
     },
     typing(user) {
+      console.log(user);
       this.isTyping = true;
-      this.userNowTyping = user + " is typing..";
+      if (user.username ) {
+        this.userNowTyping = user.username + " is typing..";
+      } else {
+        this.userNowTyping = 'Guest' + " is typing..."
+      }
       setTimeout(() => {
         this.userNowTyping = "";
         this.isTyping = false;

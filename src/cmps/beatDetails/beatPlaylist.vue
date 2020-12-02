@@ -11,11 +11,12 @@
           @click="changeSong(song)"
         >
           <img class="song-img" :src="song.imgUrl" />
-          <h5 class="song-title">{{ song.title }}</h5>
-          <div class="flex">
-            <h5 class="song-dur">{{ song.duration }}</h5>
+          <span class="song-title">{{ song.title }}</span>
+          <div class="flex align-center">
+            <span class="song-dur">{{ song.duration }}</span>
+            <i class="song-icon fas fa-sort"></i>
             <i
-              @click="removeSong(song.id)"
+              @click.prevent="removeSong(song.id)"
               class="song-icon icon fas fa-trash"
             ></i>
           </div>
