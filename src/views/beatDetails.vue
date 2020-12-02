@@ -30,7 +30,7 @@
         </div>
       </div>
       <!-- <div class="chat-container"> -->
-        <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
+      <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
       <!-- </div> -->
     </div>
   </section>
@@ -50,17 +50,11 @@ export default {
   data() {
     return {
       beat: null,
-      newSong: null,
     };
   },
   computed: {
-    currLikes() {
-      console.log("likes", this.$store.getters.currBeat.likes);
-      return this.currBeat.likes;
-    },
     currBeat() {
       if (!this.beat) return;
-      console.log(this.$store.getters.currBeat, "curr beat details computed");
       return this.$store.getters.currBeat;
     },
     currSong() {
@@ -72,6 +66,10 @@ export default {
       let songs = this.$store.getters.currBeat.songs;
       return JSON.parse(JSON.stringify(songs));
     },
+    currLikes() {
+      if (!this.beat) return;
+      return this.$store.getters.currSong.likes;
+    },
     searchedSongsForDisplay() {
       if (!this.beat) return;
       return this.$store.getters.searchedSongsForDisplay;
@@ -81,8 +79,8 @@ export default {
     switchSong(songId, diff, isShuffle) {
       let song;
       if (isShuffle) {
-        let beatOpts = this.beat.songs.length - 1;
-        let rndIdx = Math.floor(Math.random() * Math.floor(beatOpts));
+        let beatSongOpts = this.beat.songs.length - 1;
+        let rndIdx = Math.floor(Math.random() * Math.floor(beatSongOpts));
         song = this.beat.songs[rndIdx];
       } else {
         let idx = this.beat.songs.findIndex((song) => song.id === songId);
@@ -149,6 +147,7 @@ export default {
     const beatId = this.$route.params.id;
     let beat = await beatService.getById(beatId);
     this.beat = JSON.parse(JSON.stringify(beat));
+    console.log("beat", beat);
     this.$socket.emit("joinRoom", this.beat._id);
     this.setCurrBeat(beat);
     this.setCurrSong(this.beat.songs[0]);

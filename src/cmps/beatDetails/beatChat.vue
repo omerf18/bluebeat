@@ -28,7 +28,7 @@ export default {
   name: "beatChat",
   data() {
     return {
-      msg: { from: "Guest", txt: "" },
+      msg: { from: "", txt: "" },
       msgs: [],
       topic: "",
       isTyping: false,
@@ -37,16 +37,18 @@ export default {
   },
   computed: {},
   methods: {
-    sendMsg() {
-      this.msg.from = this.$store.getters.loggedinUser;
-      this.$socket.emit("sendMsg", this.msg);
-      this.txt = ''
-    },
     addMsg(msg) {
       this.msgs.push(msg);
     },
+    sendMsg() {
+      this.msg.from = this.$store.getters.loggedinUser;
+      if (!loggedinUser) loggedinUser = "Guest: ";
+      this.$socket.emit("sendMsg", this.msg);
+      this.txt = "";
+    },
     userTyping() {
       const loggedinUser = this.$store.getters.loggedinUser;
+      if (!loggedinUser) loggedinUser = "Guest: ";
       this.$socket.emit("userTyping", loggedinUser);
     },
     typing(user) {
