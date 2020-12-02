@@ -38,6 +38,34 @@
     color: $logo;
 }
 
+.userNav {
+    transform: translate(300px, 46px);
+    transition: 1.5s;
+    position: absolute;
+    right: 15px;
+    background-color: $bgc2;
+    font-size: rem(20px);
+    margin: 0%;
+    width: rem(112px);
+    text-align: center;
+}
+
+.menuOpen {
+    transition: 1.5s;
+    position: absolute;
+    right: 15px;
+    transform: translateY(46px);
+    background-color: $bgc2;
+    font-size: rem(20px);
+    margin: 0%;
+    width: rem(112px);
+    text-align: center;
+}
+
+.login-link {
+    padding: 6px 10px 6px 10px;
+    border: 1px solid $logo;
+}
 .divider {
     margin: 0 10px;
 }

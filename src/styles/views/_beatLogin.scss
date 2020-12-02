@@ -5,13 +5,14 @@
 }
 
 .login-form {
+    margin: 20px;
     border-radius: 20px;
     background-color: $bgc2;
     border: 1px solid $font1;
     padding: 100px;
 }
 .login-input {
-    width: rem(230px);
+    max-width: rem(230px);
     background-color: $font1;
     margin-bottom: 25px;
     border-radius: 15px;

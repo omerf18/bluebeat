@@ -64,8 +64,9 @@ export default {
   name: "beat",
   data() {
     return {
-      registeredUser: true,
+      // registeredUser: true,
       // registeredUser: false,
+      registeredUser: null,
       userCred: {
         username: "",
         email: "",
@@ -73,19 +74,29 @@ export default {
       },
     };
   },
+  computed: {
+    // registeredUser() {
+    //   // console.log(this.$store.getters.isRegistered);
+    //   // this.registeredUser = this.$store.getters.isRegistered
+    //   return this.$store.getters.isRegistered
+    //   // return this.registeredUser
+    // }
+  },
   methods: {
     loginUser() {
       console.log(this.userCred);
       this.$store.dispatch({ type: "login", userCred: this.userCred });
-      // this.$router.push("/")
+      this.$router.push("/")
     },
     signupUser() {
       this.$store.dispatch({ type: "signup", userCred: this.userCred });
-      // this.$router.push("/")
+      this.$router.push("/")
     },
   },
   components: {},
   computed: {},
-  created() {},
+  created() {
+    this.registeredUser = this.$store.getters.isRegistered
+  },
 };
 </script>

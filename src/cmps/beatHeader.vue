@@ -23,11 +23,17 @@
             >Create Beat</router-link
           >
         </div>
-        <i
-          class="user-profile-btn icon fas fa-user-circle flex col justify-center align-center"
-        ></i>
+        <div @click="toggelMenu" class="user-profile-btn icon fas fa-user-circle flex col justify-center align-center">
+        </div>
       </div>
     </div>
+     <ul class="" :class="{ menuOpen: isMenuOpen, userNav: !isMenuOpen }">
+        <li class="login-link" @click="login" to="/login">Login</li>
+            <!-- <div v-if="isLoggedIn" class="" @click="login" to="/login">Login</div> -->
+        <li class="login-link"  @click="signup" to="/login">Signup</li>
+        <li class="login-link" @click="logout" to="/">Logout</li>
+      </ul>
+          
   </div>
 </template>
 
@@ -40,9 +46,40 @@ export default {
     return {
       genre: "",
       beatToSearch: "",
+      isMenuOpen: false
     };
   },
+  computed: {
+    isLoggedIn(state) {
+      return state.getters.loggedinUser
+    }
+  },
   methods: {
+    toggelMenu() {
+      this.isMenuOpen = !this.isMenuOpen
+    },
+    login() {
+      this.$store.dispatch({
+        type: "logUser",
+        registeredUser: true
+      })
+      this.isMenuOpen = !this.isMenuOpen
+      this.$router.push('/login')
+    },
+    signup() {
+      this.$store.dispatch({
+        type: "signUser",
+        registeredUser: false
+      })
+      this.isMenuOpen = !this.isMenuOpen
+      this.$router.push('/login')
+    },
+    logout() {
+      this.$store.dispatch({
+        type: 'logout',
+      })
+      this.$router.push('/')
+    },
     backHome() {
       this.$router.push("/");
     },

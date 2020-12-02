@@ -10,6 +10,7 @@ export const beatStore = {
         currBeat: null,
         currSong: null,
         searchedSongs: null,
+       
         
     },
     getters: {
@@ -31,7 +32,9 @@ export const beatStore = {
         },
         filterBy({ filterBy }) {
             return filterBy;
-        }
+        },
+       
+
     },
     mutations: {
         setCurrSong(state, { song }) {
@@ -83,7 +86,8 @@ export const beatStore = {
         },
         setLike(state,{addLikedBeat}){
             state.currBeat = addLikedBeat
-        }
+        },
+       
     },
     actions: {
         async dragSong({ commit, state }, { songs }) {
@@ -148,7 +152,7 @@ export const beatStore = {
           beat.likes +=diff
          const addLikedBeat = await beatService.save(beat)
           await commit({type:'setLike', addLikedBeat})
-        }
+        },
        
      
     }
