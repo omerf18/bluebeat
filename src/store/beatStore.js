@@ -147,9 +147,7 @@ export const beatStore = {
         async addLike({commit},{beat,diff}){
           beat.likes +=diff
          const addLikedBeat = await beatService.save(beat)
-           console.log(addLikedBeat);
           await commit({type:'setLike', addLikedBeat})
-
         }
        
      

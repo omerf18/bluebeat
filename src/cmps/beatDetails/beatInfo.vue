@@ -4,7 +4,7 @@
       <img class="prev-img-details" :src="currBeat.imgUrl" >
     <div class="user-profile flex col align-center justify-baseline">
       <img class="profile-img" v-if="currBeat.createdBy.imgUrl" :src="currBeat.createdBy.imgUrl" />
-      <img class="profile-img" v-else src="../../assets/img/beatLogo.png" />
+      <img class="profile-img" v-else src="../../assets/img/default-guest.jpg" />
       <span>{{ currBeat.createdBy.userName }}</span>
     </div>
     </div>

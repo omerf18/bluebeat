@@ -61,7 +61,6 @@ export default {
     // },
     currBeat() {
       if (!this.beat) return;
-      console.log("curr beat details computed",this.$store.getters.currBeat);
       return this.$store.getters.currBeat;
     },
     currSong() {
