@@ -14,15 +14,15 @@
       <span class="beat-description">{{ currBeat.description }}</span>
     </div>
     <div class="views-container beat-desc flex col align-center space-around">
-      <div class="flex" v-if="likes">
+      <div class="flex" v-if="currBeat.likes">
         <i @click="setLike(1)" v-if="!isLiked" class="like-btn icon far fa-heart"></i>
         <i @click="setLike(-1)" v-if="isLiked" class="like-btn icon fas fa-heart"></i>
-        <span class="beat-likes" >{{likes}}</span>
+        <span class="beat-likes" >{{currBeat.likes}}</span>
       </div>
       <span class="beat-likes">{{ currBeat.visits }} Visits </span>
-      <span class="beat-online">2 Online </span>
+      <span class="beat-online"><i class=" like-btn far fa-eye"></i> 2 </span>
     </div>
-    <i @click="emitDelete(currBeat._id)" class="remove-beat icon fas fa-trash"></i>
+    <!-- <i @click="emitDelete(currBeat._id)" class="remove-beat icon fas fa-trash"></i> -->
                      
   </section>
 </template>
@@ -32,7 +32,7 @@
 export default {
   props: {
     currBeat:Object,
-    currLikes:Number
+    // currLikes:Number
   },
   name: "beatInfo",
   data(){
@@ -41,10 +41,11 @@ export default {
     }
   },
   computed:{
-    likes(){
-      console.log(this.currLikes);
-      return this.$store.getters.currBeat.likes
-    }
+
+    // likes(){
+    //   console.log(this.currLikes);
+    //   return this.$store.getters.currBeat.likes
+    // }
   },
   methods: {
     emitDelete(beatId) {
@@ -58,7 +59,7 @@ export default {
     }
   },
   created(){
-    // console.log(this.currBeat.likes,'likes');
+    console.log(this.currBeat.likes,'likes');
   },
  
 };

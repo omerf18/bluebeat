@@ -5,6 +5,7 @@
         <beat-info
           class="beat-info-cmp"
           :currBeat="currBeat"
+       
           @removeBeat="removeBeat"
           @setLike="toggleLike"
         />
@@ -54,10 +55,10 @@ export default {
     };
   },
   computed: {
-    currLikes() {
-      console.log("likes", this.$store.getters.currBeat.likes);
-      return this.currBeat.likes;
-    },
+    // currLikes() {
+    //   // console.log("likes", this.$store.getters.currBeat.likes);
+    //   return this.currBeat.likes;
+    // },
     currBeat() {
       if (!this.beat) return;
       console.log(this.$store.getters.currBeat, "curr beat details computed");
@@ -69,6 +70,7 @@ export default {
     },
     playlist() {
       if (!this.beat) return;
+      return this.$store.getters.currBeat.songs;
       let songs = this.$store.getters.currBeat.songs;
       return JSON.parse(JSON.stringify(songs));
     },

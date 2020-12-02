@@ -1,7 +1,7 @@
 .beat-info {
     background-color: $bgc2;
     margin-bottom: 10px;
-    height: 20vh;
+    // height: 20vh;
 }
 
 .beat-info-imgs {
@@ -22,6 +22,7 @@
     }
 }
 .beat-desc {
+    padding: 10px;
     .beat-title {
         font-family: ambitBold;
         font-size: rem(27px);
@@ -44,6 +45,13 @@
 }
 
 .like-btn {
+    
     padding-right: 5px;
     color: $logo;
+}
+
+.beat-likes{
+    font-size: rem(12px);
+    display: flex;
+    align-self: center;
 }
