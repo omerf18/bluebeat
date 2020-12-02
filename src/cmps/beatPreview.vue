@@ -13,12 +13,11 @@
       </div>
     </div>
     <div class="prev-info-container flex space-around align-center">
-      <span class="prev-info flex align-center">
-        <i class="prev-likes prev- fas fa-heart"></i
-        ><span> {{ beat.likes }}</span>
-      </span>
-      <span class="prev-info">25 Online</span>
+      <span class="prev-info">25 <i class="fas fa-headphones-alt"></i></span>
       <span class="prev-info">{{ beat.songs.length }} Songs</span>
+      <span class="prev-info flex align-center">
+        <span> {{ beat.likes }}</span><i class="prev-likes prev- fas fa-heart"></i>
+      </span>
     </div>
   </div>
 </template>

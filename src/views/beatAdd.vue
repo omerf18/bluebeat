@@ -1,5 +1,5 @@
 <template>
-  <section class="beat-add">
+  <section class="beat-add main-layout">
     <div class="beat-add-container flex space-evenly align-center">
       <div class="upload-img flex justify-center">
         <upload-img @getImgUrl="setImgUrl" />

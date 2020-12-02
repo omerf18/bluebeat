@@ -19,8 +19,8 @@
 
 .player-btn {
     width: 100%;
-    background-color: $bgc1;
-    padding: 0px 30px;
+    background-image: linear-gradient(to bottom, $logo, #46a7a0, #3d7e77, #325852, #243431);
+    padding: 0px 20px;
     border-radius: 10px;
     span {
         width: 34px;
@@ -28,6 +28,7 @@
 }
 .player-btn > * {
     padding: 8px;
+    color: $bgc2;
     font-size: rem(15px);
     &:hover {
         color: $logo;
@@ -35,7 +36,8 @@
 }
 .song-desc {
     padding: 15px;
-    align-self: center;
+    justify-content: space-between;
+    flex: 1;
 }
 
 .sound {
