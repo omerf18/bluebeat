@@ -1,5 +1,7 @@
 .beat-playerlist-cmp {
     width: 100%;
+    overflow-y: scroll;
+    height: 270px;
 }
 .song-container {
     height: 50px;
