@@ -6,20 +6,24 @@
       </li>
     </ul>
     <h4 v-if="isTyping">{{ userNowTyping }}</h4>
-    <form class="send-container" @submit.prevent="sendMsg">
+    <div class="send-container flex space-between">
       <i class="send-btn icon fas fa-paper-plane" @click="sendMsg"></i>
-      <input
-        class="send-msg"
-        @input="userTyping"
-        type="text"
-        v-model="msg.txt"
-      />
-    </form>
+      <form @submit.prevent="sendMsg">
+        <input
+          class="send-msg"
+          @input="userTyping"
+          type="text"
+          v-model="msg.txt"
+        />
+      </form>
+      <beat-emoji />
+    </div>
   </div>
 </template>
 
 <script>
 import { beatService } from "../../services/beatService.js";
+import beatEmoji from "./beatEmoji.vue";
 
 export default {
   props: {
@@ -41,7 +45,6 @@ export default {
       this.msgs.push(msg);
     },
     sendMsg() {
-<<<<<<< HEAD
       this.msg.from = this.$store.getters.loggedinUser;
       if (!loggedinUser) loggedinUser = "Guest: ";
       this.$socket.emit("sendMsg", this.msg);
@@ -51,34 +54,14 @@ export default {
       const loggedinUser = this.$store.getters.loggedinUser;
       if (!loggedinUser) loggedinUser = "Guest: ";
       this.$socket.emit("userTyping", loggedinUser);
-=======
-      if(this.$store.getters.loggedinUser) {
-         this.msg.from = this.$store.getters.loggedinUser.username;
-      } else {
-        this.msg.from = 'Guest'
-      }
-      this.$socket.emit("sendMsg", this.msg);
-      this.msg.txt = ''
-    },
-    addMsg(msg) {
-      this.msgs.push(msg);
-    },
-    userTyping() {
-      const loggedinUser = this.$store.getters.loggedinUser;
-      if (loggedinUser) {
-        this.$socket.emit("userTyping", loggedinUser);
-      } else {
-        this.$socket.emit("userTyping", 'Guest');
-      }
->>>>>>> b1f876a17efa2c7ac26ef8a526ef26243358f56e
     },
     typing(user) {
       console.log(user);
       this.isTyping = true;
-      if (user.username ) {
+      if (user.username) {
         this.userNowTyping = user.username + " is typing..";
       } else {
-        this.userNowTyping = 'Guest' + " is typing..."
+        this.userNowTyping = "Guest" + " is typing..";
       }
       setTimeout(() => {
         this.userNowTyping = "";
@@ -95,5 +78,8 @@ export default {
     },
   },
   created() {},
+  components: {
+    beatEmoji,
+  },
 };
 </script>

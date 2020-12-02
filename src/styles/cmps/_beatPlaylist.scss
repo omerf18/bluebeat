@@ -1,23 +1,18 @@
 .beat-playerlist-cmp {
     width: 100%;
-  
+
     overflow-y: auto;
     max-height: 270px;
-    
 }
-   ::-webkit-scrollbar{
-     background-color: $font3; 
-     width: 10px;
-        }
-    ::-webkit-scrollbar-thumb{
-        background-color: $bgc2;
-        // width: 1px;
-        box-shadow: inset 0 0 6px grey;
-        border-radius: 5px;
-        
-    }
-  
-    
+::-webkit-scrollbar {
+    background-color: $font3;
+    width: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: $logo;
+    box-shadow: inset 0 0 6px $bgc2;
+    border-radius: 5px;
+}
 
 .song-container {
     height: 50px;
@@ -64,10 +59,9 @@
 .song-dur {
     padding-left: 4px;
 }
-.clean-search{
-    
+.clean-search {
     cursor: pointer;
-    &:hover{
+    &:hover {
         color: $logo;
     }
 }

@@ -27,7 +27,6 @@
 }
 .beat-img {
     position: relative;
-    // padding-bottom: 7px;
     &:before {
         content: "";
         width: 15px;
@@ -58,22 +57,26 @@
     font-size: rem(13px);
 }
 
-.prev-likes {
+.prev-show {
     font-size: rem(15px);
+    padding-right: 5px;
     color: $logo;
 }
 
 .prev-info {
     opacity: 0.8;
-    font-size: rem(10px);
     span {
         margin-left: 3px;
     }
     &-container {
         border-top: 1px solid rgba(255, 255, 255, 0.178);
         width: 100%;
-        padding: 7px 0;
+        padding: 10px 0 2px;
     }
+}
+
+.prev-details {
+    padding-top: 10px;
 }
 
 .txt-deco {
@@ -92,4 +95,8 @@
             color: $logo;
         }
     }
+}
+
+.list-genre {
+    color: $font2;
 }
