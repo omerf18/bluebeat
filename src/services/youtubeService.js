@@ -3,7 +3,7 @@ import { utilService } from '../services/utilService.js'
 
 // const API_KEY = 'AIzaSyA3xup2cQRDiG3SppVytqu-nSPdhxLSwmw';
 
-const API_KEY = 'AIzaSyDdmO6rniPra3HnQs-Oil8HsLmwaAwp8FE';
+const API_KEY = 'AIzaSyAp1nnIj8TN5e1gRHAi8hfr7jQJTdlsbfI';
 // const API_KEY = 'AIzaSyDBTRTb8qLf_omU7foaqgJ_kLS-WjFeMGg';
 
 export const youtubeService = {

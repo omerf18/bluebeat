@@ -15,10 +15,12 @@
         style="visibility: hidden"
       ></youtube>
     </div>
-    <div class="song-desc flex col space-evenly justify-center align-center">
+    <div class="song-desc flex col ">
       <h2>{{ currSong.title }}</h2>
       <!-- <h4>{{ currSong.duration }}</h4> -->
-      <div class="player-btn flex icon align-center justify-center">
+      <div class="player-btn flex icon align-center space-around">
+        
+
         <i @click="switchSong(currSong.id, -1)" class="fas fa-backward"></i>
         <i
           v-if="!playerVars.isPlaying"
@@ -31,6 +33,7 @@
           class="fas fa-pause"
         ></i>
         <i @click="switchSong(currSong.id, 1)" class="fas fa-forward"></i>
+       
         <i
           @click="shuffle"
           :class="{ active: playerVars.isShuffle }"
@@ -101,7 +104,7 @@ export default {
     },
   },
   created(){
-    // this.playerVars.isPlaying =true
+     
   }
 };
 </script>

@@ -64,8 +64,8 @@ export default {
   name: "beat",
   data() {
     return {
-      registeredUser: true,
-      // registeredUser: false,
+      // registeredUser: true,
+      registeredUser: false,
       userCred: {
         username: "",
         email: "",

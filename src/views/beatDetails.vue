@@ -51,14 +51,10 @@ export default {
   data() {
     return {
       beat: null,
-      newSong: null,
     };
   },
   computed: {
-    // currLikes() {
-    //   // console.log("likes", this.$store.getters.currBeat.likes);
-    //   return this.currBeat.likes;
-    // },
+ 
     currBeat() {
       if (!this.beat) return;
       return this.$store.getters.currBeat;

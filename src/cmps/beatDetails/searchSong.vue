@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex align-center">
     <el-input
       type="text"
       class="search-new-songs"
@@ -8,6 +8,7 @@
       placeholder="Add song to playlist"
       prefix-icon="el-icon-search"
     />
+    <i @click="cleanSearch" class="clean-search fas fa-backspace"></i>
   </div>
 </template>
 
@@ -19,7 +20,7 @@ export default {
   },
   data() {
     return {
-      searchKeyWord: "",
+      searchKeyWord: '',
       isSearch: false,
     };
   },
@@ -32,6 +33,10 @@ export default {
       if (!this.searchKeyWord) this.$emit("setKeyWord", false);
       else this.$emit("setKeyWord", this.searchKeyWord);
     },
+    cleanSearch(){
+      this.searchKeyWord =''
+      this.searchYoutubeSong()
+    }
   },
 };
 </script>
