@@ -10,7 +10,7 @@ export const beatStore = {
         currBeat: null,
         currSong: null,
         searchedSongs: null,
-        
+
     },
     getters: {
         currSong({ currSong }) {
@@ -23,7 +23,6 @@ export const beatStore = {
             return JSON.parse(JSON.stringify(beats));
         },
         currBeat({ currBeat }) {
-            console.log('currbeat store', currBeat);
             return JSON.parse(JSON.stringify(currBeat));
         },
         genres({ genres }) {
@@ -60,12 +59,10 @@ export const beatStore = {
             const idx = beats.findIndex(beat => beat._id === beatId);
             beats.splice(idx, 1);
         },
-        editBeat({ beats,currBeat}, { beat }) {
-            console.log('beatpar', beat);
+        editBeat({ beats, currBeat }, { beat }) {
             const idx = beats.findIndex(currBeat => beat._id === currBeat._id);
             beats.splice(idx, 1, beat)
             currBeat = beat
-            console.log('currbeat',currBeat);
         },
         addBeat({ beats }, { beat }) {
             beats.unshift(beat);
@@ -81,7 +78,7 @@ export const beatStore = {
             filterBy.beatTitle = '';
             beats = null;
         },
-        setLike(state,{addLikedBeat}){
+        setLike(state, { addLikedBeat }) {
             state.currBeat = addLikedBeat
         }
     },
@@ -105,10 +102,10 @@ export const beatStore = {
         setCurrSong({ commit }, { song }) {
             commit({ type: 'setCurrSong', song })
         },
-      async  setCurrBeat({ commit }, { beat }) {
-              beat.visits+= 1
-        const currBeat = await beatService.save(beat)
-            commit({ type: 'setCurrBeat',currBeat})
+        async setCurrBeat({ commit }, { beat }) {
+            beat.visits += 1
+            const currBeat = await beatService.save(beat)
+            commit({ type: 'setCurrBeat', currBeat })
         },
         async loadBeats({ state, commit }) {
             let beats = await beatService.query(state.filterBy);
@@ -149,7 +146,6 @@ export const beatStore = {
          const addLikedBeat = await beatService.save(beat)
           await commit({type:'setLike', addLikedBeat})
         }
-       
-     
+
     }
 }
