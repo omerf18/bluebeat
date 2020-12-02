@@ -38,20 +38,33 @@ export default {
   computed: {},
   methods: {
     sendMsg() {
-      this.msg.from = this.$store.getters.loggedinUser;
+      if(this.$store.getters.loggedinUser) {
+         this.msg.from = this.$store.getters.loggedinUser.username;
+      } else {
+        this.msg.from = 'Guest'
+      }
       this.$socket.emit("sendMsg", this.msg);
-      this.txt = ''
+      this.msg.txt = ''
     },
     addMsg(msg) {
       this.msgs.push(msg);
     },
     userTyping() {
       const loggedinUser = this.$store.getters.loggedinUser;
-      this.$socket.emit("userTyping", loggedinUser);
+      if (loggedinUser) {
+        this.$socket.emit("userTyping", loggedinUser);
+      } else {
+        this.$socket.emit("userTyping", 'Guest');
+      }
     },
     typing(user) {
+      console.log(user);
       this.isTyping = true;
-      this.userNowTyping = user + " is typing..";
+      if (user.username ) {
+        this.userNowTyping = user.username + " is typing..";
+      } else {
+        this.userNowTyping = 'Guest' + " is typing..."
+      }
       setTimeout(() => {
         this.userNowTyping = "";
         this.isTyping = false;
