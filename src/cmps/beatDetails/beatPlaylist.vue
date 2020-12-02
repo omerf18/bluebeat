@@ -1,8 +1,7 @@
 <template>
   <section>
-    <draggable v-model="songs" ghost-class="ghost" @end="onEnd">
+    <draggable v-model="songList" ghost-class="ghost" @end="onEnd">
       <transition-group type="transition" name="flip-list">
-         
         <div
           v-for="song in songs"
           :key="song.id"
@@ -27,7 +26,6 @@
 </template>
 
 <script>
-import socketService from "../../services/socketService.js";
 import draggable from "vuedraggable";
 export default {
   props: {
@@ -37,7 +35,7 @@ export default {
   name: "playlist",
   data() {
     return {
-      // songs: null,
+      songList: null,
       oldIndex: "",
       newIndex: "",
     };
@@ -45,13 +43,13 @@ export default {
   computed: {
     songs() {
       return JSON.parse(JSON.stringify(this.playlist));
-    }
+    },
   },
   methods: {
     onEnd(ev) {
       this.oldIndex = ev.oldIndex;
       this.newIndex = ev.newIndex;
-      this.$emit("dragSong", this.songs);
+      this.$emit("dragSong", this.songList);
     },
     removeSong(songId) {
       this.$emit("removeSong", songId);
@@ -61,7 +59,7 @@ export default {
     },
   },
   created() {
-    // this.songs = JSON.parse(JSON.stringify(this.playlist));
+    this.songList = JSON.parse(JSON.stringify(this.playlist));
   },
   components: {
     draggable,

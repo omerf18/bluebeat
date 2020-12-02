@@ -1,19 +1,17 @@
 <template>
   <section class="main-layout">
-    <div class="flex" v-if="currBeat">
+    <div class="flex">
       <div class="main-details">
         <beat-info
           class="beat-info-cmp"
           :currBeat="currBeat"
-         :currLikes ="currLikes"
-         
           @removeBeat="removeBeat"
           @setLike="toggleLike"
         />
         <beatPlayer
           class="beat-player-cmp"
           :currSong="currSong"
-          @switchSong="changeSong"
+          @switchSong="switchSong"
         />
         <searchSong class="searchSong-cmp" @setKeyWord="searchYoutubeSong" />
         <div class="flex">
@@ -21,7 +19,7 @@
             class="beat-playerlist-cmp"
             :playlist="playlist"
             :currSongId="currSong.id"
-            @changeSong="switchSong"
+            @changeSong="setCurrSong"
             @removeSong="removeSong"
             @dragSong="dragSong"
           />
@@ -31,16 +29,14 @@
           ></add-song>
         </div>
       </div>
-      <div class="chat-container">
+      <!-- <div class="chat-container"> -->
         <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
-      </div>
+      <!-- </div> -->
     </div>
-   
   </section>
 </template>
 
 <script>
-import socketService from "../services/socketService";
 import { beatService } from "../services/beatService.js";
 import beatInfo from "../cmps/beatDetails/beatInfo.vue";
 import beatPlayer from "../cmps/beatDetails/beatPlayer.vue";
@@ -58,13 +54,13 @@ export default {
     };
   },
   computed: {
-    currLikes(){
-      console.log('likes',this.$store.getters.currBeat.likes);
-       return this.currBeat.likes
+    currLikes() {
+      console.log("likes", this.$store.getters.currBeat.likes);
+      return this.currBeat.likes;
     },
     currBeat() {
       if (!this.beat) return;
-      console.log( this.$store.getters.currBeat,'curr beat details computed');
+      console.log(this.$store.getters.currBeat, "curr beat details computed");
       return this.$store.getters.currBeat;
     },
     currSong() {
@@ -82,7 +78,7 @@ export default {
     },
   },
   methods: {
-    changeSong(songId, diff, isShuffle) {
+    switchSong(songId, diff, isShuffle) {
       let song;
       if (isShuffle) {
         let beatOpts = this.beat.songs.length - 1;
@@ -90,37 +86,30 @@ export default {
         song = this.beat.songs[rndIdx];
       } else {
         let idx = this.beat.songs.findIndex((song) => song.id === songId);
-        if (idx === 0 && diff === -1) return;
+        if (idx === 0 && diff === -1) idx = this.beat.songs.length - 1;
         else if (idx === this.beat.songs.length - 1 && diff === 1) idx = 0;
-        else if (diff === 1) idx += 1;
-        else idx += -1;
+        else idx += diff;
         song = this.beat.songs[idx];
       }
-      this.$store.dispatch({
-        type: "setCurrSong",
-        song,
-      });
+      this.setCurrSong(song);
+      this.$socket.emit("songChanged", song);
     },
-    dragSong(songs) {
-      this.$store.dispatch({
+    async dragSong(songs) {
+      await this.$store.dispatch({
         type: "dragSong",
         songs,
       });
+      this.$socket.emit("beatChanged", this.currBeat);
     },
-    removeSong(songId) {
-      this.$store.dispatch({
+    async removeSong(songId) {
+      await this.$store.dispatch({
         type: "removeSong",
         songId,
       });
+      this.$socket.emit("beatChanged", this.currBeat);
     },
-    switchSong(song) {
-      this.$store.dispatch({
-        type: "setCurrSong",
-        song,
-      });
-    },
-    removeBeat(beatId) {
-      this.$store.dispatch({
+    async removeBeat(beatId) {
+      await this.$store.dispatch({
         type: "removeBeat",
         beatId,
       });
@@ -131,42 +120,46 @@ export default {
         keyWord,
       });
     },
-    addSong(song) {
-      var beat = JSON.parse(JSON.stringify(this.beat));
-      beat.songs.push(song);
-      console.log(beat);
-      socketService.emit("beat songs changed", beat);
-      this.$store.dispatch({ type: "saveBeat", beat });
-    },
     async addSongToPlayList(song) {
       await this.$store.dispatch({
         type: "addSong",
         song,
       });
+      this.$socket.emit("beatChanged", this.currBeat);
     },
-    async toggleLike(diff){
-      const beat =JSON.parse(JSON.stringify(this.currBeat))
-      console.log(diff);
-      await this.$store.dispatch({type:"addLike", beat,diff})
-    }
+    async toggleLike(diff) {
+      const beat = JSON.parse(JSON.stringify(this.currBeat));
+      await this.$store.dispatch({ type: "addLike", beat, diff });
+      this.$socket.emit("beatChanged", this.currBeat);
+    },
+    async setCurrBeat(beat) {
+      this.$store.dispatch({
+        type: "setCurrBeat",
+        beat,
+      });
+    },
+    setCurrSong(song) {
+      this.$store.dispatch({
+        type: "setCurrSong",
+        song,
+      });
+    },
   },
   async created() {
     const beatId = this.$route.params.id;
     let beat = await beatService.getById(beatId);
-    // socketService.emit('chat topic',this.beat._id);
     this.beat = JSON.parse(JSON.stringify(beat));
-    socketService.emit("join beat", beatId);
-    socketService.on("add song", this.addSongToPlayList);
-    socketService.on("remove song");
-  
-    this.$store.dispatch({
-      type: "setCurrBeat",
-      beat,
-    });
-    this.$store.dispatch({
-      type: "setCurrSong",
-      song: this.beat.songs[0],
-    });
+    this.$socket.emit("joinRoom", this.beat._id);
+    this.setCurrBeat(beat);
+    this.setCurrSong(this.beat.songs[0]);
+  },
+  sockets: {
+    beatChanged(beat) {
+      this.setCurrBeat(beat);
+    },
+    songChanged(song) {
+      this.setCurrSong(song);
+    },
   },
   components: {
     beatInfo,

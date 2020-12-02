@@ -1,12 +1,15 @@
 .prev-card {
     background-color: $bgc2;
-    padding-top: 5px ;
     border-radius: 10px;
     color: $font3;
     cursor: pointer;
     &.prev-card:hover {
         background-color: #121212bf;
     }
+}
+
+.prev-main-info-container {
+    padding: 10px 0;
 }
 
 .prev-img {
@@ -23,6 +26,7 @@
 }
 .beat-img {
     position: relative;
+    padding-bottom: 7px;
     &:before {
         content: "";
         width: 15px;
@@ -57,20 +61,18 @@
     font-size: rem(15px);
     color: $logo;
 }
-    
 
 .prev-info {
     opacity: 0.8;
     font-size: rem(10px);
-    span{
+    span {
         margin-left: 3px;
     }
-}
-
-.prev-info-container {
-    border-top: 1px solid $font3;
-    width: 100%;
-    padding-top: 8px;
+    &-container {
+        border-top: 1px solid $font3;
+        width: 100%;
+        padding: 7px 0;
+    }
 }
 
 .txt-deco {
@@ -83,19 +85,10 @@
 }
 .list-header {
     padding: 0 0 25px;
-    h5{
+    h5 {
         cursor: pointer;
-        &:hover{
+        &:hover {
             color: $logo;
         }
     }
-}
-.prev-details{
-    padding: 10px;
-  .prev-name{
-      padding-bottom: 10px;
-  }
-  .prev-genre{
-      padding-bottom: 5px;
-  }
 }

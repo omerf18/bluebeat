@@ -8,7 +8,7 @@
     background-color: $bgc2;
     margin-bottom: 5px;
     border-radius: 7px;
-    .song-title{
+    .song-title {
         flex: 1;
         padding: 0 10px;
         font-size: rem(12px);
@@ -37,7 +37,7 @@
 
 .main-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minMax(190px, 1fr));
+    grid-template-columns: repeat(auto-fill, minMax(190px, 210px));
     gap: 20px;
     padding-bottom: 20px;
     h5:hover {
