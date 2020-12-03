@@ -78,16 +78,16 @@ export default {
             }, 2000);
         },
  
-    sockets: {
-        sentMsg(msg) {
-            this.addMsg(msg);
-        },
-        userTyping(user) {
-            this.typing(user);
-        },
-    },
  
   },
+        sockets: {
+            sentMsg(msg) {
+                this.addMsg(msg);
+            },
+            userTyping(user) {
+                this.typing(user);
+            },
+        },
 
   created() {},
   components: {
