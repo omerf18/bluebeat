@@ -1,18 +1,26 @@
 <template>
   <section>
     <i @click="toggleEmojiPicker()" class="send-btn icon far fa-smile"></i>
+    <ul class="sent-emojis-container">
+      <li
+        v-for="sentEmoji in sentEmojis"
+        :key="sentEmoji.id"
+        class="emoji"
+        :class="sentEmoji.class"
+      ></li>
+    </ul>
     <div v-if="isEmoji" class="emoji-container flex wrap space-evenly">
       <li
         v-for="emoji in emojis"
         :key="emoji.id"
         :class="emoji.class"
-        @click="onEmoji($event)"
+        @click="onEmoji(emoji.id)"
       ></li>
     </div>
   </section>
 </template>
-
 <script>
+import { utilService } from "../../services/utilService.js";
 export default {
   name: "emojiPicker",
   data() {
@@ -104,12 +112,23 @@ export default {
         },
       ],
       isEmoji: false,
+      sentEmojis: [],
     };
   },
   methods: {
-    onEmoji(ev) {
-      console.log(ev.target);
+    onEmoji(emojiId) {
+      let emoji = JSON.parse(
+        JSON.stringify(this.emojis.find((emoji) => emoji.id === emojiId))
+      );
+      emoji.id = utilService.makeId();
+      this.sentEmojis.push(emoji);
       this.toggleEmojiPicker();
+      setTimeout(() => {
+        emoji.class += " start";
+      }, 100);
+      setTimeout(() => {
+        this.sentEmojis.splice(0, 1);
+      }, 7000);
     },
     toggleEmojiPicker() {
       this.isEmoji = !this.isEmoji;

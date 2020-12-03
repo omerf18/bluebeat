@@ -5,6 +5,7 @@ export const utilService ={
 
 function getEmpty() {
     return {
+        currSong:{},
         visits:0,
         likes: 0,
         name: '', 
