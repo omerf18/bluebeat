@@ -45,15 +45,24 @@ export default {
       this.msgs.push(msg);
     },
     sendMsg() {
-      this.msg.from = this.$store.getters.loggedinUser;
-      if (!loggedinUser) loggedinUser = "Guest: ";
+      if(this.$store.getters.loggedinUser) {
+         this.msg.from = this.$store.getters.loggedinUser.username;
+      } else {
+        this.msg.from = 'Guest'
+      }
       this.$socket.emit("sendMsg", this.msg);
-      this.txt = "";
+      this.msg.txt = ''
+    },
+    addMsg(msg) {
+      this.msgs.push(msg);
     },
     userTyping() {
       const loggedinUser = this.$store.getters.loggedinUser;
-      if (!loggedinUser) loggedinUser = "Guest: ";
-      this.$socket.emit("userTyping", loggedinUser);
+      if (loggedinUser) {
+        this.$socket.emit("userTyping", loggedinUser);
+      } else {
+        this.$socket.emit("userTyping", 'Guest');
+      }
     },
     typing(user) {
       console.log(user);

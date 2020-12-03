@@ -16,23 +16,14 @@
     <div class="views-container beat-desc flex col align-center space-around">
       <span class="beat-likes">{{ currBeat.visits }} Visits </span>
       <div class="flex" v-if="likes">
-        <i
-          @click="setLike(1)"
-          v-if="!isLiked"
-          class="like-btn icon far fa-heart"
-        ></i>
-        <i
-          @click="setLike(-1)"
-          v-if="isLiked"
-          class="like-btn icon fas fa-heart"
-        ></i>
-        <span class="beat-likes">{{ likes }}</span>
+      
       <div class="flex" v-if="currBeat.likes">
         <i @click="setLike(1)" v-if="!isLiked" class="like-btn icon far fa-heart"></i>
         <i @click="setLike(-1)" v-if="isLiked" class="like-btn icon fas fa-heart"></i>
         <span class="beat-likes" >{{currBeat.likes}}</span>
       </div>
       <span class="beat-online"><i class=" like-btn fas fa-headphones-alt"></i> 2 </span>
+    </div>
     </div>
     <!-- <i @click="emitDelete(currBeat._id)" class="remove-beat icon fas fa-trash"></i> -->
                      
