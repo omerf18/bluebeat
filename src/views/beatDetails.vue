@@ -9,9 +9,9 @@
           @removeBeat="removeBeat"
           @setLike="toggleLike"
         />
-        <beatPlayer
+        <beatPlayer 
           class="beat-player-cmp"
-          :currSong="currSong"
+          :currSong="currBeat.currSong"
           @switchSong="switchSong"
         />
         <searchSong class="searchSong-cmp" @setKeyWord="searchYoutubeSong" />
@@ -19,8 +19,8 @@
           <beatPlaylist
             class="beat-playerlist-cmp"
             :playlist="playlist"
-            :currSongId="currSong.id"
-            @changeSong="changeSong"
+            :currSongId="currBeat.currSong.id"
+            @changeSong="onChangeSong"
             @removeSong="removeSong"
             @dragSong="dragSong"
           />
@@ -31,7 +31,7 @@
         </div>
       </div>
       <!-- <div class="chat-container"> -->
-      <beatChat v-if="beat" class="beat-chat-cmp" :beat="beat" />
+      <beatChat  class="beat-chat-cmp" />
       <!-- </div> -->
     </div>
   </section>
@@ -50,31 +50,28 @@ export default {
   name: "beatDetails",
   data() {
     return {
-      beat: null,
     };
   },
   computed: {
  
     currBeat() {
-      if (!this.beat) return;
+      console.log('currbeat', this.$store.getters.currBeat );
+      
       return this.$store.getters.currBeat;
     },
     currSong() {
-      if (!this.beat) return;
+      if (!this.currBeat) return;
+      console.log('currsong',this.$store.getters.currSong );
+      
       return this.$store.getters.currSong;
     },
     playlist() {
-      if (!this.beat) return;
       return this.$store.getters.currBeat.songs;
-      let songs = this.$store.getters.currBeat.songs;
-      return JSON.parse(JSON.stringify(songs));
     },
     currLikes() {
-      if (!this.beat) return;
       return this.$store.getters.currSong.likes;
     },
     searchedSongsForDisplay() {
-      if (!this.beat) return;
       return this.$store.getters.searchedSongsForDisplay;
     },
   },
@@ -82,22 +79,20 @@ export default {
     switchSong(songId, diff, isShuffle) {
       let song;
       if (isShuffle) {
-        let beatSongOpts = this.beat.songs.length - 1;
+        let beatSongOpts = this.currBeat.songs.length - 1;
         let rndIdx = Math.floor(Math.random() * Math.floor(beatSongOpts));
-        song = this.beat.songs[rndIdx];
+        song = this.currBeat.songs[rndIdx];
       } else {
-        let idx = this.beat.songs.findIndex((song) => song.id === songId);
-        if (idx === 0 && diff === -1) idx = this.beat.songs.length - 1;
-        else if (idx === this.beat.songs.length - 1 && diff === 1) idx = 0;
+        let idx = this.currBeat.songs.findIndex((song) => song.id === songId);
+        if (idx === 0 && diff === -1) idx = this.currBeat.songs.length - 1;
+        else if (idx === this.currBeat.songs.length - 1 && diff === 1) idx = 0;
         else idx += diff;
-        song = this.beat.songs[idx];
+        song = this.currBeat.songs[idx];
       }
-      // this.setCurrSong(song);
       this.$socket.emit("songChanged", song);
     },
-    changeSong(song){
+    onChangeSong(song){
       this.$socket.emit("songChanged", song);
-
     },
     async dragSong(songs) {
       await this.$store.dispatch({
@@ -137,37 +132,33 @@ export default {
       await this.$store.dispatch({ type: "addLike", beat, diff });
       this.$socket.emit("beatChanged", this.currBeat);
     },
-    async setCurrBeat(beat) {
-      this.$store.dispatch({
-        type: "setCurrBeat",
-        beat,
-      });
+    async setCurrBeat(beatId) {
+      await  this.$store.dispatch({
+           type: "setCurrBeat",
+           beatId,
+         });
+          this.setCurrSong(this.currBeat.currSong)
     },
     async setCurrSong(song) {
      await this.$store.dispatch({
         type: "setCurrSong",
         song,
       });
-      // this.$socket.emit("songChanged", song);
      
     },
   },
-  async created() {
-    const beatId = this.$route.params.id;
-    let beat = await beatService.getById(beatId);
-    this.beat = JSON.parse(JSON.stringify(beat));
-    console.log("beat", beat);
-    this.$socket.emit("joinRoom", this.beat._id);
-    this.setCurrBeat(beat);
-    console.log('beatdetails created');
-    this.setCurrSong(this.beat.songs[0]);
+  created() {
+    let beatId = this.$route.params.id;
+    console.log('id',beatId);
+      this.setCurrBeat(beatId)
+     this.$socket.emit("joinRoom",  beatId);
   },
   sockets: {
     beatChanged(beat) {
-      this.setCurrBeat(beat);
+      this.setCurrBeat(beat._id);
     },
     songChanged(song) {
-      console.log('ssssss');
+      console.log('ssssss',song);
      this.setCurrSong(song);
     },
     

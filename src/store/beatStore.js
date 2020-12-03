@@ -8,12 +8,12 @@ export const beatStore = {
         filterBy: { genreFilter: 'ALL', beatTitle: '' },
         genres: ['Popular', 'Trending', 'Hip hop', 'Israeli', 'Dance', 'Pop', 'Rock n roll', 'Latin', 'Easy'],
         currBeat: null,
-        currSong: null,
+        // currSong: null,
         searchedSongs: null,
     },
     getters: {
         currSong({ currSong }) {
-            return JSON.parse(JSON.stringify(currSong));
+            return currSong
         },
         searchedSongsForDisplay({ searchedSongs }) {
             return searchedSongs;
@@ -21,8 +21,8 @@ export const beatStore = {
         beats({ beats }) {
             return JSON.parse(JSON.stringify(beats));
         },
-        currBeat({ currBeat }) {
-            return JSON.parse(JSON.stringify(currBeat));
+        currBeat(state) {
+            return state.currBeat
         },
         genres({ genres }) {
             return genres;
@@ -51,6 +51,8 @@ export const beatStore = {
             state.searchedSongs = searchedSongs
         },
         setCurrBeat(state, { currBeat }) {
+            console.log('muta',currBeat);
+            
             state.currBeat = currBeat;
         },
         loadBeats(state, { beats }) {
@@ -101,13 +103,19 @@ export const beatStore = {
             const newSong = await songService.addSong(song, state.currBeat);
             commit({ type: 'addSong', newSong });
         },
-        setCurrSong({ commit }, { song }) {
+        async setCurrSong({ commit, state }, { song }) {
+            const beat = JSON.parse(JSON.stringify(state.currBeat))
+               beat.currSong = song
+               const currBeat = await beatService.save(beat)
+            await commit({type:'setCurrBeat',currBeat})
             commit({ type: 'setCurrSong', song })
         },
-        async setCurrBeat({ commit }, { beat }) {
-            beat.visits += 1
-            const currBeat = await beatService.save(beat)
-            commit({ type: 'setCurrBeat', currBeat })
+        async setCurrBeat({ commit }, { beatId }) {
+            let currBeat = await beatService.getById(beatId)
+             currBeat.visits += 1
+             currBeat = await beatService.save(currBeat)
+           await commit({ type: 'setCurrBeat', currBeat })
+        //    return currBeat
         },
         async loadBeats({ state, commit }) {
             let beats = await beatService.query(state.filterBy);

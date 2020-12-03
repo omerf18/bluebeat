@@ -24,9 +24,11 @@ async function query(filterBy) {
 //     return HttpService.get(`beat?name=${filterBy.beatTitle}&genre=${filterBy.genreFilter}`)
 // }
 
-function save(beat) {
-    if (!beat._id) return HttpService.post(`beat`, beat)
-    return HttpService.put(`beat/${beat._id}`, beat)
+async function save(beat) {
+    if (!beat._id) return  await HttpService.post(`beat`, beat)
+    // console.log('sss',HttpService.put(`beat/${beat._id}`, beat));
+    
+    return await HttpService.put(`beat/${beat._id}`, beat)
 }
 
 function getById(beatId) {

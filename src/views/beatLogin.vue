@@ -10,7 +10,7 @@
         type="email"
         class="login-input icon"
         v-model="userCred.email"
-        placeholder="Email"
+        placeholder="email@example.com"
       />
       <h3>Username:</h3>
       <input
