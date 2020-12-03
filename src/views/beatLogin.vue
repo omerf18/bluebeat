@@ -65,12 +65,8 @@ export default {
   data() {
     return {
       // registeredUser: true,
-<<<<<<< HEAD
       // registeredUser: false,
       registeredUser: null,
-=======
-      registeredUser: false,
->>>>>>> f3987a67153503556e63e4271aae3c8ce7ffae29
       userCred: {
         username: "",
         email: "",

@@ -20,7 +20,7 @@
             class="beat-playerlist-cmp"
             :playlist="playlist"
             :currSongId="currSong.id"
-            @changeSong="setCurrSong"
+            @changeSong="changeSong"
             @removeSong="removeSong"
             @dragSong="dragSong"
           />
@@ -92,8 +92,12 @@ export default {
         else idx += diff;
         song = this.beat.songs[idx];
       }
-      this.setCurrSong(song);
+      // this.setCurrSong(song);
       this.$socket.emit("songChanged", song);
+    },
+    changeSong(song){
+      this.$socket.emit("songChanged", song);
+
     },
     async dragSong(songs) {
       await this.$store.dispatch({
@@ -139,11 +143,13 @@ export default {
         beat,
       });
     },
-    setCurrSong(song) {
-      this.$store.dispatch({
+    async setCurrSong(song) {
+     await this.$store.dispatch({
         type: "setCurrSong",
         song,
       });
+      // this.$socket.emit("songChanged", song);
+     
     },
   },
   async created() {
@@ -161,8 +167,11 @@ export default {
       this.setCurrBeat(beat);
     },
     songChanged(song) {
-      this.setCurrSong(song);
+      console.log('ssssss');
+     this.setCurrSong(song);
     },
+    
+
   },
   components: {
     beatInfo,
