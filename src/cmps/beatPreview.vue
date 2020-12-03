@@ -13,11 +13,18 @@
       </div>
     </div>
     <div class="prev-info-container flex space-around align-center">
-      <span class="prev-info">25 <i class="fas fa-headphones-alt"></i></span>
-      <span class="prev-info">{{ beat.songs.length }} Songs</span>
-      <span class="prev-info flex align-center">
-        <span> {{ beat.likes }}</span><i class="prev-likes prev- fas fa-heart"></i>
-      </span>
+      <div class="flex">
+        <i class="prev-show prev-show fas fa-headphones-alt"></i>
+        <span class="prev-info">25</span>
+      </div>
+      <div class="flex">
+        <i class="prev-show fas fa-music"></i>
+        <span class="prev-info">{{ beat.songs.length }} </span>
+      </div>
+      <div class="flex">
+        <i class="prev-show prev- fas fa-heart"></i>
+        <span class="prev-info"> {{ beat.likes }}</span>
+      </div>
     </div>
   </div>
 </template>

@@ -3,6 +3,7 @@
     <div class="list-header flex space-between align-baseline">
       <h2 class="list-genre">{{ genre }}</h2>
       <h5
+        class="list-genre"
         v-if="genre !== 'Popular' && genre !== 'Trending'"
         @click="showBeatsByGener"
       >
