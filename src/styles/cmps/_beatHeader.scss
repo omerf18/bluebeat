@@ -40,22 +40,31 @@
 
 .userNav {
     // transform: translate(300px, 46px);
-    opacity: 0;
-    transition: 1.2s;
-    position: absolute;
+    // opacity: 0;
+    // display: block;
+    // -webkit-transition: opacity 1s ease-in;
+    // -moz-transition: opacity 1s ease-in;
+    // -o-transition: opacity 1s ease-in;
+    // transition: opacity 1s ease-in;
+    // opacity: 0; 
+    // height: 0;
+    // overflow: hidden;
+    // transition: 1.2s;
+    // position: fixed;
     right: 15px;
     background-color: $bgc2;
     font-size: rem(20px);
     margin: 0%;
     width: rem(112px);
     text-align: center;
+    display: none;
 }
 
 .menuOpen {
     transition: 1.2s;
     position: absolute;
     right: 15px;
-    transform: translateY(46px);
+    transform: translateY(50px);
     background-color: $bgc2;
     font-size: rem(20px);
     margin: 0%;

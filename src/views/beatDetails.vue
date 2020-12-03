@@ -1,5 +1,6 @@
 <template>
-  <section class="main-layout" v-if="currBeat">
+  <!-- <section class="main-layout" v-if="currBeat"> -->
+  <section class="details-cmp" v-if="currBeat">
     <div class="flex">
       <div class="main-details">
         <beat-info
@@ -147,11 +148,25 @@ export default {
      
     },
   },
+<<<<<<< HEAD
+  async created() {
+    const beatId = this.$route.params.id;
+    let beat = await beatService.getById(beatId);
+    this.beat = JSON.parse(JSON.stringify(beat));
+    console.log("beat", beat);
+    this.$socket.emit("joinRoom", this.beat._id);
+    this.setCurrBeat(beat);
+    console.log('beatdetails created', this.currSong);
+
+    // this.setCurrSong(this.currSong);
+    this.setCurrSong(this.beat.songs[0]);
+=======
   created() {
     let beatId = this.$route.params.id;
     console.log('id',beatId);
       this.setCurrBeat(beatId)
      this.$socket.emit("joinRoom",  beatId);
+>>>>>>> 09759fc3a4c68e32d4ee70f50557d96e539327b8
   },
   sockets: {
     beatChanged(beat) {

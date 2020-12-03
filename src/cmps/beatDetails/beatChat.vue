@@ -4,8 +4,8 @@
       <li v-for="(msg, idx) in msgs" :key="idx">
         {{ msg.from }}: {{ msg.txt }}
       </li>
+    <h4 class="typing" v-if="isTyping">{{ userNowTyping }}</h4>
     </ul>
-    <h4 v-if="isTyping">{{ userNowTyping }}</h4>
     <div class="send-container flex space-between">
       <i class="send-btn icon fas fa-paper-plane" @click="sendMsg"></i>
       <form @submit.prevent="sendMsg">

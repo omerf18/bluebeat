@@ -2,8 +2,7 @@
   <section class="main-layout login-page flex justify-center align-center">
     <form
       class="login-form flex justify-center align-center col"
-      v-if="registeredUser"
-      @submit.prevent="loginUser"
+      @submit.prevent="loginOrSignup"
     >
        <h3>Email:</h3>
       <input
@@ -26,9 +25,12 @@
         v-model="userCred.password"
         placeholder="Password"
       />
+      <div class="flex">
       <button class="login-btn">Login</button>
+      <button class="login-btn">Signup</button>
+      </div>
     </form>
-    <form
+    <!-- <form
       class="login-form flex justify-center align-center col"
       v-else
       @submit.prevent="signupUser"
@@ -55,7 +57,7 @@
         placeholder="Password"
       />
       <button class="login-btn">Signup</button>
-    </form>
+    </form> -->
   </section>
 </template>
 
@@ -83,20 +85,28 @@ export default {
     // }
   },
   methods: {
-    loginUser() {
+    loginOrSignup() {
       console.log(this.userCred);
-      this.$store.dispatch({ type: "login", userCred: this.userCred });
-      this.$router.push("/")
+      if (this.registeredUser) {
+        this.$store.dispatch({ type: "login", userCred: this.userCred });
+        this.$router.push("/")
+      } else {
+         this.$store.dispatch({ type: "signup", userCred: this.userCred });
+         this.$router.push("/")
+       }
     },
     signupUser() {
-      this.$store.dispatch({ type: "signup", userCred: this.userCred });
-      this.$router.push("/")
+      //  if (!this.registeredUser) {
+      //    this.$store.dispatch({ type: "signup", userCred: this.userCred });
+      //    this.$router.push("/")
+      //  }
     },
   },
   components: {},
   computed: {},
   created() {
     this.registeredUser = this.$store.getters.isRegistered
+    console.log('this.registeredUser', this.registeredUser);
   },
 };
 </script>

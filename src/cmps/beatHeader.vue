@@ -28,10 +28,10 @@
       </div>
     </div>
      <ul class="" :class="{ menuOpen: isMenuOpen, userNav: !isMenuOpen }">
-        <li class="login-link" @click="login" to="/login">Login</li>
+        <li class="login-link icon" @click="login" to="/login">Login</li>
             <!-- <div v-if="isLoggedIn" class="" @click="login" to="/login">Login</div> -->
-        <li class="login-link"  @click="signup" to="/login">Signup</li>
-        <li class="login-link" @click="logout" to="/">Logout</li>
+        <li class="login-link icon"  @click="signup" to="/login">Signup</li>
+        <li class="login-link icon" @click="logout" to="/">Logout</li>
       </ul>
           
   </div>
@@ -72,9 +72,11 @@ export default {
         registeredUser: false
       })
       this.isMenuOpen = !this.isMenuOpen
+      // this.$router.push('/')
       this.$router.push('/login')
     },
     logout() {
+      this.isMenuOpen = !this.isMenuOpen
       this.$store.dispatch({
         type: 'logout',
       })

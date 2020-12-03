@@ -53,6 +53,7 @@ export const userStore = {
         signUser({commit}, {registeredUser}) {
             commit({type: 'signUser', registeredUser})
         }
+        
        
     }
 }
