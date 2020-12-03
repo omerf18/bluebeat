@@ -41,17 +41,6 @@ export default {
       this.msgs.push(msg);
     },
     sendMsg() {
-<<<<<<< HEAD
-      this.msg.from = this.$store.getters.loggedinUser;
-      if (!loggedinUser) loggedinUser = "Guest: ";
-      this.$socket.emit("sendMsg", this.msg);
-      this.txt = "";
-    },
-    userTyping() {
-      const loggedinUser = this.$store.getters.loggedinUser;
-      if (!loggedinUser) loggedinUser = "Guest: ";
-      this.$socket.emit("userTyping", loggedinUser);
-=======
       if(this.$store.getters.loggedinUser) {
          this.msg.from = this.$store.getters.loggedinUser.username;
       } else {
@@ -70,7 +59,6 @@ export default {
       } else {
         this.$socket.emit("userTyping", 'Guest');
       }
->>>>>>> b1f876a17efa2c7ac26ef8a526ef26243358f56e
     },
     typing(user) {
       console.log(user);
