@@ -22,8 +22,7 @@
       </div>
       <span class="beat-online"><i class=" like-btn fas fa-headphones-alt"></i> 2 </span>
     </div>
-    
-    <!-- <i @click="emitDelete(currBeat._id)" class="remove-beat icon fas fa-trash"></i> -->
+    <!-- </div> -->
                      
   </section>
 </template>
