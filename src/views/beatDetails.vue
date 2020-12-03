@@ -6,7 +6,6 @@
         <beat-info
           class="beat-info-cmp"
           :currBeat="currBeat"
-       
           @removeBeat="removeBeat"
           @setLike="toggleLike"
         />
@@ -19,8 +18,8 @@
         <div class="flex">
           <beatPlaylist
             class="beat-playerlist-cmp"
-            :playlist="playlist"
-            :currSongId="currBeat.currSong.id"
+            :currBeat="currBeat"
+            :currSong="currBeat.currSong"
             @changeSong="onChangeSong"
             @removeSong="removeSong"
             @dragSong="dragSong"
@@ -56,8 +55,6 @@ export default {
   computed: {
  
     currBeat() {
-      console.log('currbeat', this.$store.getters.currBeat );
-      
       return this.$store.getters.currBeat;
     },
     currSong() {
@@ -66,9 +63,9 @@ export default {
       
       return this.$store.getters.currSong;
     },
-    playlist() {
-      return this.$store.getters.currBeat.songs;
-    },
+    // playlist() {
+    //   return this.$store.getters.currBeat.songs;
+    // },
     currLikes() {
       return this.$store.getters.currSong.likes;
     },
@@ -148,34 +145,20 @@ export default {
      
     },
   },
-<<<<<<< HEAD
-  async created() {
-    const beatId = this.$route.params.id;
-    let beat = await beatService.getById(beatId);
-    this.beat = JSON.parse(JSON.stringify(beat));
-    console.log("beat", beat);
-    this.$socket.emit("joinRoom", this.beat._id);
-    this.setCurrBeat(beat);
-    console.log('beatdetails created', this.currSong);
-
-    // this.setCurrSong(this.currSong);
-    this.setCurrSong(this.beat.songs[0]);
-=======
   created() {
     let beatId = this.$route.params.id;
     console.log('id',beatId);
       this.setCurrBeat(beatId)
      this.$socket.emit("joinRoom",  beatId);
->>>>>>> 09759fc3a4c68e32d4ee70f50557d96e539327b8
   },
   sockets: {
     beatChanged(beat) {
       this.setCurrBeat(beat._id);
     },
-    songChanged(song) {
-      console.log('ssssss',song);
-     this.setCurrSong(song);
-    },
+    // songChanged(song) {
+    //   console.log('ssssss',song);
+    //  this.setCurrSong(song);
+    // },
     
 
   },
