@@ -39,8 +39,9 @@
 }
 
 .userNav {
-    transform: translate(300px, 46px);
-    transition: 1.5s;
+    // transform: translate(300px, 46px);
+    opacity: 0;
+    transition: 1.2s;
     position: absolute;
     right: 15px;
     background-color: $bgc2;
@@ -51,7 +52,7 @@
 }
 
 .menuOpen {
-    transition: 1.5s;
+    transition: 1.2s;
     position: absolute;
     right: 15px;
     transform: translateY(46px);

@@ -1,5 +1,5 @@
 <template>
-  <section v-if="currSong" class="beat-player flex">
+  <section v-if="currSong" class="beat-player flex" >
     <div class="beat-frame flex">
       <div class="beat-img flex align-center">
         <img
@@ -65,7 +65,7 @@ export default {
   data() {
     return {
       playerVars: {
-        autoplay: 1,
+        // autoplay: 0,
         vol: 50,
         time: null,
         isMuted: false,
@@ -79,16 +79,20 @@ export default {
     shuffle() {
       this.playerVars.isShuffle = !this.playerVars.isShuffle;
     },
-    switchSong(songId, diff) {
-      this.$emit("switchSong", songId, diff, this.playerVars.isShuffle);
+    async switchSong(songId, diff = 0) {
+      await this.$emit("switchSong", songId, diff, this.playerVars.isShuffle);
+        // this.playSong()
     },
     pauseSong() {
       this.$refs.youtube.player.pauseVideo();
       this.playerVars.isPlaying = false;
     },
     playSong() {
+      console.log('playvideo');
       this.$refs.youtube.player.playVideo();
-      this.playerVars.isPlaying = true;
+      if( !this.playerVars.isPlaying){
+        this.playerVars.isPlaying = !this.playerVars.isPlaying
+      }
     },
     muteSound() {
       if (!this.playerVars.isMuted) {
@@ -103,8 +107,22 @@ export default {
       this.$refs.youtube.player.setVolume(this.playerVars.vol);
     },
   },
+  sockets:{
+    songChanged(song) {
+      //  console.log('sssssddfdsfsdf',song);
+            this.playSong() 
+            // this.currSong = song
+    },
+  },
   created(){
-     
+    },
+  mounted(){
+         if(this.currSong){
+           this.playSong()
+         }
+
+  },
+  destroyed(){
   }
 };
 </script>

@@ -57,6 +57,8 @@ export default {
     },
     changeSong(song) {
       this.$emit("changeSong", song);
+      console.log(song);
+       console.log('playing********************************');
     },
   },
   created() {
