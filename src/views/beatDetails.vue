@@ -1,5 +1,6 @@
 <template>
-  <section class="main-layout" v-if="currBeat">
+  <!-- <section class="main-layout" v-if="currBeat"> -->
+  <section class="details-cmp" v-if="currBeat">
     <div class="flex">
       <div class="main-details">
         <beat-info
@@ -153,7 +154,9 @@ export default {
     console.log("beat", beat);
     this.$socket.emit("joinRoom", this.beat._id);
     this.setCurrBeat(beat);
-    console.log('beatdetails created');
+    console.log('beatdetails created', this.currSong);
+
+    // this.setCurrSong(this.currSong);
     this.setCurrSong(this.beat.songs[0]);
   },
   sockets: {
