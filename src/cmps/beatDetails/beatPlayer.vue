@@ -1,5 +1,5 @@
 <template>
-  <section v-if="currSong" class="beat-player flex" >
+  <section v-if="currSong" class="beat-player flex space-evenly" >
     <div class="beat-frame flex">
       <div class="beat-img flex align-center">
         <img
@@ -16,11 +16,11 @@
         style="visibility: hidden"
       ></youtube>
     </div>
-    <div class="song-desc flex col ">
-      <h2>{{ currSong.title }}</h2>
+    <!-- <div class="song-desc flex col "> -->
       <!-- <h4>{{ currSong.duration }}</h4> -->
-      <div class="player-btn flex icon align-center space-around">
+      <div class="player-btn flex icon align-center justify-center ">
         
+      <h2><span>Now Playing:</span><br>{{ currSong.title }}</h2>
 
         <i @click="switchSong(currSong.id, -1)" class="fas fa-backward"></i>
         <i
@@ -54,14 +54,13 @@
           @input="setVol"
         />
         <span>{{ playerVars.vol }}</span>
-      </div>
-    </div>
+        </div>
+    <!-- </div> -->
   </section>
 </template>
 
 <script>
 export default {
-  props: ["currSong"],
   name: "beatPlayer",
   data() {
     return {
@@ -75,13 +74,11 @@ export default {
       },
     };
   },
+
   methods: {
    
     shuffle() {
       this.playerVars.isShuffle = !this.playerVars.isShuffle;
-    },
-    async switchSong(songId, diff = 0) {
-      await this.$emit("switchSong", songId, diff, this.playerVars.isShuffle);
     },
     async playOrPauseSong(isPlaying ,isFromSocket){
       this.playerVars.isPlaying =isPlaying
@@ -109,11 +106,32 @@ export default {
       });
      
     },
+       async switchSong(songId, diff, isShuffle) {
+      let song;
+      if (isShuffle) {
+        let beatSongOpts = this.currBeat.songs.length - 1;
+        let rndIdx = Math.floor(Math.random() * Math.floor(beatSongOpts));
+        song = this.currBeat.songs[rndIdx];
+      } else {
+        let idx = this.currBeat.songs.findIndex((song) => song.id === songId);
+        if (idx === 0 && diff === -1) idx = this.currBeat.songs.length - 1;
+        else if (idx === this.currBeat.songs.length - 1 && diff === 1) idx = 0;
+        else idx += diff;
+        song = this.currBeat.songs[idx];
+      }
+     await this.$socket.emit("songChanged", song);
+    },
   },
   computed:{
   player() {
       if (this.currStation) return this.$refs.youtube.player;
     },
+     currBeat(){
+    return this.$store.getters.currBeat;
+    },
+     currSong(){
+    return this.$store.getters.currBeat.currSong;
+    }
   },
   sockets:{
     songChanged(song) {

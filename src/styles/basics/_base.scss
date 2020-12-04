@@ -5,11 +5,14 @@
 html {
     font-family: AmbitLight, cursive, sans-serif;
     color: $font3;
+ 
 }
-
 body {
     margin: 0;
     background-color: $bgc1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 h1,
@@ -42,3 +45,4 @@ button {
 .contianer {
     border-radius: 8px;
 }
+

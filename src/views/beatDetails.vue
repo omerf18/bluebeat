@@ -9,11 +9,11 @@
           @removeBeat="removeBeat"
           @setLike="toggleLike"
         />
-        <beatPlayer 
+        <!-- <beatPlayer 
           class="beat-player-cmp"
-          :currSong="currBeat.currSong"
+        
           @switchSong="switchSong"
-        />
+        /> -->
         <searchSong class="searchSong-cmp" @setKeyWord="searchYoutubeSong" />
         <div class="flex">
           <beatPlaylist
@@ -74,21 +74,7 @@ export default {
     },
   },
   methods: {
-    switchSong(songId, diff, isShuffle) {
-      let song;
-      if (isShuffle) {
-        let beatSongOpts = this.currBeat.songs.length - 1;
-        let rndIdx = Math.floor(Math.random() * Math.floor(beatSongOpts));
-        song = this.currBeat.songs[rndIdx];
-      } else {
-        let idx = this.currBeat.songs.findIndex((song) => song.id === songId);
-        if (idx === 0 && diff === -1) idx = this.currBeat.songs.length - 1;
-        else if (idx === this.currBeat.songs.length - 1 && diff === 1) idx = 0;
-        else idx += diff;
-        song = this.currBeat.songs[idx];
-      }
-      this.$socket.emit("songChanged", song);
-    },
+
     onChangeSong(song){
       this.$socket.emit("songChanged", song);
     },

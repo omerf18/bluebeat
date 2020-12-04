@@ -1,6 +1,7 @@
 import { beatService } from '../services/beatService.js'
 import { songService } from '../services/songService.js'
 import { youtubeService } from '../services/youtubeService.js'
+import {storageService} from '../services/storageService.js'
 
 export const beatStore = {
     state: {
@@ -11,17 +12,22 @@ export const beatStore = {
         searchedSongs: null,
     },
     getters: {
-        currSong({ currBeat }) {
-            return currBeat.currSong
+        currSong(state) {
+            let currSong = state.currBeat.currSong
+            if (currSong) return currSong;
+            else if (storageService.loadFromSession("currSong"))
+            return storageService.loadFromSession("currSong");
+              else return {}
+        },
+        currBeat(state) {
+            if(state.currBeat) return state.currBeat
+            return storageService.loadFromSession('currBeat')
         },
         searchedSongsForDisplay({ searchedSongs }) {
             return searchedSongs;
         },
         beats({ beats }) {
             return JSON.parse(JSON.stringify(beats));
-        },
-        currBeat(state) {
-            return state.currBeat
         },
         genres({ genres }) {
             return genres;
@@ -35,6 +41,11 @@ export const beatStore = {
     mutations: {
         setCurrSong(state, { song }) {
             state.currSong = song;
+            storageService.storeToSession('currSong', song)
+        },
+        setCurrBeat(state, { currBeat }) {
+            state.currBeat = currBeat;
+            storageService.storeToSession('currBeat', currBeat)
         },
         addSong({ currBeat }, { newSong }) {
             currBeat.songs.push(newSong);
@@ -48,11 +59,6 @@ export const beatStore = {
         },
         setSearchedSongs(state, { searchedSongs }) {
             state.searchedSongs = searchedSongs
-        },
-        setCurrBeat(state, { currBeat }) {
-            console.log('muta',currBeat);
-            
-            state.currBeat = currBeat;
         },
         loadBeats(state, { beats }) {
             state.beats = beats
@@ -78,7 +84,7 @@ export const beatStore = {
         resetFilter({ filterBy, beats }) {
             filterBy.genreFilter = 'ALL';
             filterBy.beatTitle = '';
-            beats = null;
+            // beats = null;
         },
         setLike(state, { addLikedBeat }) {
             state.currBeat = addLikedBeat

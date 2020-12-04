@@ -1,35 +1,36 @@
 .beat-player {
+    margin-top: 10px;
+    max-height: 85px;
     background-color: $bgc2;
     justify-content: center;
+ 
+    background-image: linear-gradient(to bottom, $logo, #46a7a0, #3d7e77, #325852, #243431);
     h2 {
         font-family: ambitBold;
         color: $logo;
-        font-size: rem(20px);
+        font-size: rem(15px);
         text-align: center;
+        span{
+            color:$font3;
+        }
     }
     .beat-img {
-        margin: 10px;
+        padding: 10px;
     }
 }
 
-.player {
-    width: 0;
-    height: 0;
-}
 
 .player-btn {
     width: 100%;
-    background-image: linear-gradient(to bottom, $logo, #46a7a0, #3d7e77, #325852, #243431);
     padding: 0px 20px;
     border-radius: 10px;
-    span {
-        width: 34px;
+    span{
+        width: 33px;
     }
 }
 .player-btn > * {
-    padding: 8px;
-    color: $bgc2;
-    font-size: rem(15px);
+    margin: 10px;
+    font-size: rem(20px);
     &:hover {
         color: $logo;
     }
@@ -41,21 +42,51 @@
 }
 
 .sound {
-    margin-left: 30px;
+    margin-left: 15px;
     padding: 8px;
-    font-size: rem(15px);
+    font-size: rem(20px);
 }
 
 .soundOn {
     color: $logo;
 }
-.playing-disc {
-    margin-left: 20px;
-}
+
 
 .set-vol {
-    width: 70px;
-    color: $logo;
-    cursor: pointer;
-    padding: 0;
+    transform: rotate(270deg);
+    width: 80px;
+    height: 5px;
+}
+input[type=range]{
+    -webkit-appearance: none;
+    background:$font1;
+    &:focus{
+        outline: none;
+    }
+    &::-webkit-slider-thumb{
+        -webkit-appearance: none;
+        border: 1px solid $bgc1;
+        height: 20px;
+        width: 10px;
+        border-radius: 5px;
+        background: $logo;
+        cursor: pointer;
+        // margin-top: -14px;
+        box-shadow: 1px 1px 1px $bgc1, 0px 0px 1px $bgc2;
+    }
+}
+
+.home~.beat-player{
+    z-index: 99;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 20px;
+  
+}
+
+
+.player {
+    width: 0;
+    height: 0;
 }
