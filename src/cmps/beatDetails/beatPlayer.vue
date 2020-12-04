@@ -9,6 +9,7 @@
         />
       </div>
       <youtube
+      :player-vars="playerVars"
         class="player"
         :video-id="currSong.youtubeId"
         ref="youtube"
@@ -24,12 +25,12 @@
         <i @click="switchSong(currSong.id, -1)" class="fas fa-backward"></i>
         <i
           v-if="!playerVars.isPlaying"
-          @click="playSong"
+          @click="playOrPauseSong(true, false)"
           class="fas fa-play"
         ></i>
         <i
           v-if="playerVars.isPlaying"
-          @click="pauseSong"
+          @click="playOrPauseSong(false,false)"
           class="fas fa-pause"
         ></i>
         <i @click="switchSong(currSong.id, 1)" class="fas fa-forward"></i>
@@ -65,11 +66,11 @@ export default {
   data() {
     return {
       playerVars: {
-        // autoplay: 0,
+        autoplay: 1,
         vol: 50,
         time: null,
         isMuted: false,
-        isPlaying: false,
+        isPlaying: true,
         isShuffle: false,
       },
     };
@@ -81,18 +82,13 @@ export default {
     },
     async switchSong(songId, diff = 0) {
       await this.$emit("switchSong", songId, diff, this.playerVars.isShuffle);
-        // this.playSong()
     },
-    pauseSong() {
-      this.$refs.youtube.player.pauseVideo();
-      this.playerVars.isPlaying = false;
-    },
-    playSong() {
-      console.log('playvideo');
-      this.$refs.youtube.player.playVideo();
-      if( !this.playerVars.isPlaying){
-        this.playerVars.isPlaying = !this.playerVars.isPlaying
-      }
+    async playOrPauseSong(isPlaying ,isFromSocket){
+      this.playerVars.isPlaying =isPlaying
+      if(isPlaying) await  this.$refs.youtube.player.playVideo();
+      else await   this.$refs.youtube.player.pauseVideo();
+      if (isFromSocket) return
+      this.$socket.emit("setSongStatus", isPlaying)
     },
     muteSound() {
       if (!this.playerVars.isMuted) {
@@ -106,23 +102,28 @@ export default {
     setVol() {
       this.$refs.youtube.player.setVolume(this.playerVars.vol);
     },
+      async setCurrSong(song) {
+     await this.$store.dispatch({
+        type: "setCurrSong",
+        song,
+      });
+     
+    },
+  },
+  computed:{
+  player() {
+      if (this.currStation) return this.$refs.youtube.player;
+    },
   },
   sockets:{
     songChanged(song) {
-      //  console.log('sssssddfdsfsdf',song);
-            this.playSong() 
-            // this.currSong = song
+        this.setCurrSong(song);
+         this.playOrPauseSong(true, true);
     },
+    songStatusChanged(isPlaying){
+       this.playOrPauseSong(isPlaying, true);
+    }
   },
-  created(){
-    },
-  mounted(){
-         if(this.currSong){
-           this.playSong()
-         }
 
-  },
-  destroyed(){
-  }
 };
 </script>

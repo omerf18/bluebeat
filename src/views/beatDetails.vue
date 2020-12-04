@@ -6,7 +6,6 @@
         <beat-info
           class="beat-info-cmp"
           :currBeat="currBeat"
-       
           @removeBeat="removeBeat"
           @setLike="toggleLike"
         />
@@ -19,8 +18,8 @@
         <div class="flex">
           <beatPlaylist
             class="beat-playerlist-cmp"
-            :playlist="playlist"
-            :currSongId="currBeat.currSong.id"
+            :currBeat="currBeat"
+            :currSong="currBeat.currSong"
             @changeSong="onChangeSong"
             @removeSong="removeSong"
             @dragSong="dragSong"
@@ -56,8 +55,6 @@ export default {
   computed: {
  
     currBeat() {
-      console.log('currbeat', this.$store.getters.currBeat );
-      
       return this.$store.getters.currBeat;
     },
     currSong() {
@@ -66,9 +63,9 @@ export default {
       
       return this.$store.getters.currSong;
     },
-    playlist() {
-      return this.$store.getters.currBeat.songs;
-    },
+    // playlist() {
+    //   return this.$store.getters.currBeat.songs;
+    // },
     currLikes() {
       return this.$store.getters.currSong.likes;
     },
@@ -158,10 +155,10 @@ export default {
     beatChanged(beat) {
       this.setCurrBeat(beat._id);
     },
-    songChanged(song) {
-      console.log('ssssss',song);
-     this.setCurrSong(song);
-    },
+    // songChanged(song) {
+    //   console.log('ssssss',song);
+    //  this.setCurrSong(song);
+    // },
     
 
   },

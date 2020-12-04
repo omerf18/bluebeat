@@ -1,24 +1,27 @@
 <template>
-  <section>
+  <section v-if="currBeat">
     <draggable v-model="songList" ghost-class="ghost" @end="onEnd">
       <transition-group type="transition" name="flip-list">
         <div
           v-for="song in songs"
           :key="song.id"
           class="song-container sortable flex space-between align-center icon"
-          :class="{ active: song.id === currSongId }"
+          :class="{ active: song.id === currBeat.currSong.id }"
           :id="song.id"
           @click="changeSong(song)"
         >
+        <img src="@/assets/img/preview.png" v-if="!isPlaying" class="song-img" alt="">
+        <img src="@/assets/img/sound-gif2.gif" v-if="isPlaying" class="song-img" alt="">
           <img class="song-img" :src="song.imgUrl" />
           <span class="song-title">{{ song.title }}</span>
           <div class="flex align-center">
             <span class="song-dur">{{ song.duration }}</span>
             <i class="song-icon fas fa-sort"></i>
-            <i
-              @click.prevent="removeSong(song.id)"
+            <span @click.stop="removeSong(song.id)"> <i
+            
               class="song-icon icon fas fa-trash"
-            ></i>
+            ></i></span>
+           
           </div>
         </div>
       </transition-group>
@@ -30,8 +33,8 @@
 import draggable from "vuedraggable";
 export default {
   props: {
-    playlist: Array,
-    currSongId: String,
+    currBeat: Object,
+    currSong: Object,
   },
   name: "playlist",
   data() {
@@ -39,11 +42,14 @@ export default {
       songList: null,
       oldIndex: "",
       newIndex: "",
+      song: null,
+      isPlaying : false
+      
     };
   },
   computed: {
     songs() {
-      return JSON.parse(JSON.stringify(this.playlist));
+      return JSON.parse(JSON.stringify(this.currBeat.songs));
     },
   },
   methods: {
@@ -55,16 +61,28 @@ export default {
     removeSong(songId) {
       this.$emit("removeSong", songId);
     },
-    changeSong(song) {
-      this.$emit("changeSong", song);
+   async changeSong(song) {
+      console.log('sssssss');
+      this.song = song
+     await this.$emit("changeSong", song);
+      this.checkIfPlaying()
      
     },
+    checkIfPlaying(){
+      this.isPlaying = this.song.id === this.currBeat.currSong.id ? true : false
+    },
+ 
   },
   created() {
-    this.songList = JSON.parse(JSON.stringify(this.playlist));
+    this.songList = JSON.parse(JSON.stringify(this.currBeat.songs));
+    // this.song = this.currBeat.currSong
+    this.checkIfPlaying()
   },
   components: {
     draggable,
   },
-};
+ 
+   
+  }
+
 </script>

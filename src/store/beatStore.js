@@ -8,12 +8,11 @@ export const beatStore = {
         filterBy: { genreFilter: 'ALL', beatTitle: '' },
         genres: ['Popular', 'Trending', 'Hip hop', 'Israeli', 'Dance', 'Pop', 'Rock n roll', 'Latin', 'Easy'],
         currBeat: null,
-        // currSong: null,
         searchedSongs: null,
     },
     getters: {
-        currSong({ currSong }) {
-            return currSong
+        currSong({ currBeat }) {
+            return currBeat.currSong
         },
         searchedSongsForDisplay({ searchedSongs }) {
             return searchedSongs;
