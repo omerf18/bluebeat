@@ -16,7 +16,7 @@ export default {
     beatPlayer
   },
   created() {
-    socketService.setup();
+    // socketService.setup();
     this.$store.dispatch({ type: "loadBeats" });
   },
 };

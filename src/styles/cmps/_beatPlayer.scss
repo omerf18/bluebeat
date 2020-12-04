@@ -3,6 +3,7 @@
     max-height: 85px;
     background-color: $bgc2;
     justify-content: center;
+ 
     background-image: linear-gradient(to bottom, $logo, #46a7a0, #3d7e77, #325852, #243431);
     h2 {
         font-family: ambitBold;
@@ -48,9 +49,6 @@
 
 .soundOn {
     color: $logo;
-}
-.playing-disc {
-    // margin-left: 40px;
 }
 
 
