@@ -2,7 +2,7 @@
   <div class="beat-chat flex col space-between">
     <ul class="beat-msg">
       <li v-for="(msg, idx) in msgs" :key="idx">
-        {{ msg.from }}: {{ msg.txt }}
+        <span class="from">{{ msg.from }}:</span><span class="to">{{ msg.txt }}</span> 
       </li>
     <h4 class="typing" v-if="isTyping">{{ userNowTyping }}</h4>
     </ul>
@@ -95,3 +95,10 @@ export default {
   },
 };
 </script>
+
+<style >
+.beat-chat{
+     background-image: url("../../assets/img/chat-background.jpg");
+}
+
+</style>
