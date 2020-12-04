@@ -2,26 +2,39 @@
     width: 100%;
     padding: 10px;
     position: relative;
+    
 }
+
+
 .beat-chat{
    border: 2px solid $bgc2;
    border-radius: 4px;
-   .from{
-       color:$logo;
-       font-size: rem(22px);
-
+   .beat-msg > *{
+       background-color:  $logo;
+       border-radius: 2px 7px 7px 7px;
+       width: fit-content;
+       border: 1px solid $font1;
+       max-width: 80%;
+       word-break: break-word;
    }
-   .to{
-       background-color: $logo;
-       padding: 5px 10px;
-       border-radius: 20px;
-       margin: 10px;
-       color: $bgc2;
+   .from{
+    //    margin-left: 5px;
+    //    color:$logo;
+       font-size: rem(16px);
+       color: $bgc1;
        font-family: ambitBold;
-       font-size: rem(18px);
+   }
+   .msg{
+       background-color: $logo;
+       border-radius: 20px;
+    //    margin: 10px;
+       color: $bgc2;
+    //    font-family: ambitBold;
+       font-size: rem(16px);
    }
    li{
        margin: 10px;
+       padding: 0 10px;
    }
    
 
@@ -30,6 +43,7 @@
 .send-msg {
     border-radius: 10px;
     padding: 5px;
+    outline: none;
 }
 
 .send-btn {

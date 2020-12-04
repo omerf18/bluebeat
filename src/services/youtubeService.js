@@ -3,7 +3,7 @@ import { utilService } from '../services/utilService.js'
 
 // const API_KEY = 'AIzaSyA3xup2cQRDiG3SppVytqu-nSPdhxLSwmw';
 
-const API_KEY = 'AIzaSyAp1nnIj8TN5e1gRHAi8hfr7jQJTdlsbfI';
+const API_KEY = 'AIzaSyBG4UEUWMta2rsNRu650UG623Fq-gaxf2E';
 // const API_KEY = 'AIzaSyDBTRTb8qLf_omU7foaqgJ_kLS-WjFeMGg';
 
 export const youtubeService = {
@@ -12,7 +12,7 @@ export const youtubeService = {
 
 async function getSong(q) {
     if (!q) return null
-    const path = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${q}&key=${API_KEY}`
+    const path = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=20&q=${q}&key=${API_KEY}`
     try {
         const searchSongs = await axios.get(path)
         const youTubeIds = await searchSongs.data.items.map(song => song.id.videoId)

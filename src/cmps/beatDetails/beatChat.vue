@@ -2,7 +2,7 @@
   <div class="beat-chat flex col space-between">
     <ul class="beat-msg">
       <li v-for="(msg, idx) in msgs" :key="idx">
-        <span class="from">{{ msg.from }}:</span><span class="to">{{ msg.txt }}</span> 
+        <span class="from">{{ msg.from }}:</span> <br> <span class="msg">{{ msg.txt }}</span> 
       </li>
     <h4 class="typing" v-if="isTyping">{{ userNowTyping }}</h4>
     </ul>
