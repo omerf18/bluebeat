@@ -3,6 +3,29 @@
     padding: 10px;
     position: relative;
 }
+.beat-chat{
+   border: 2px solid $bgc2;
+   border-radius: 4px;
+   .from{
+       color:$logo;
+       font-size: rem(22px);
+
+   }
+   .to{
+       background-color: $logo;
+       padding: 5px 10px;
+       border-radius: 20px;
+       margin: 10px;
+       color: $bgc2;
+       font-family: ambitBold;
+       font-size: rem(18px);
+   }
+   li{
+       margin: 10px;
+   }
+   
+
+}
 
 .send-msg {
     border-radius: 10px;
@@ -11,7 +34,7 @@
 
 .send-btn {
     color: $logo;
-    font-size: 25px;
+    font-size: rem(25px);
 }
 
 .typing{
