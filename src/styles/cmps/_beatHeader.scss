@@ -67,3 +67,34 @@
 .divider {
     margin: 0 10px;
 }
+
+@include for-normal-layout{
+    .header{
+        padding: 0 20px;
+    }
+    .header-search {
+        max-width: rem(100px);
+        ::placeholder{
+            font-size: 0;
+        }
+    }
+    .header-btn {
+    font-size: rem(15px);
+    }
+
+}
+@include for-mobile-layout{
+    .header{
+        padding: 0 10px;
+    }
+    .header-search {
+        max-width: rem(70px);
+        ::placeholder{
+            font-size: 0;
+        }
+    }
+    .header-btn {
+    font-size: rem(13px);
+    }
+
+}

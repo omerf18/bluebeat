@@ -48,7 +48,15 @@ export default {
       const beatsByGenres = this.beats.filter(
         (beat) => beat.genre.toLowerCase() === this.genre.toLowerCase()
       );
-      return beatsByGenres;
+      var beatsByGenresToShow = []
+      for (var i = 0; i < 5; i++) {
+        if(beatsByGenres.length > 4){
+          beatsByGenresToShow.push(beatsByGenres[i])
+        } else {
+          beatsByGenresToShow = beatsByGenres
+        }
+      }
+      return beatsByGenresToShow;
     },
   },
   methods: {

@@ -89,6 +89,9 @@ input[type=range]{
         width: 120px;
         display: block;
     }
+    .close-player-btn {
+        display: block;
+    }
   
 }
 .player {
@@ -96,17 +99,25 @@ input[type=range]{
     height: 0;
 }
 
+
+
 .close-player-btn {
     font-size: rem(20px);
     color: $bgc2;
     padding: 5px;
+    display: none;
 }
 
 .currsong-duration {
     color: $bgc2;
 }
 
+<<<<<<< HEAD
 .now-playing {
     width: 100%;
     max-width: 100%;
+=======
+@include for-normal-layout{
+
+>>>>>>> db4f7b454401392b90d383faf5f4bb722e01c539
 }
