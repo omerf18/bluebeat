@@ -7,6 +7,9 @@
 
 .beat-info-imgs {
     width: 20%;
+    img{
+        object-fit: cover;
+    }
     .profile-img {
         width: 2rem;
         height: 2rem;
@@ -14,8 +17,9 @@
         border-radius: 50%;
     }
     .prev-img-details {
-        width: 100%;
+        width: 80%;
         border-radius: 20%;
+
     }
     span {
         font-size: rem(13px);

@@ -9,11 +9,6 @@
           @removeBeat="removeBeat"
           @setLike="toggleLike"
         />
-        <!-- <beatPlayer 
-          class="beat-player-cmp"
-        
-          @switchSong="switchSong"
-        /> -->
         <searchSong class="searchSong-cmp" @setKeyWord="searchYoutubeSong" />
         <div class="flex">
           <beatPlaylist
@@ -63,9 +58,6 @@ export default {
       
       return this.$store.getters.currSong;
     },
-    // playlist() {
-    //   return this.$store.getters.currBeat.songs;
-    // },
     currLikes() {
       return this.$store.getters.currSong.likes;
     },
@@ -141,11 +133,6 @@ export default {
     beatChanged(beat) {
       this.setCurrBeat(beat._id);
     },
-    // songChanged(song) {
-    //   console.log('ssssss',song);
-    //  this.setCurrSong(song);
-    // },
-    
 
   },
   components: {

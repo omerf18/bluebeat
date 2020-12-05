@@ -38,5 +38,8 @@ export default {
       this.searchYoutubeSong()
     }
   },
+  destroyed(){
+    this.searchKeyWord =''
+  }
 };
 </script>

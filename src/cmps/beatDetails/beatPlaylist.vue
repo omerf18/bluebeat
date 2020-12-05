@@ -10,8 +10,8 @@
           :id="song.id"
           @click="changeSong(song)"
         >
-        <img src="@/assets/img/preview.png" v-if="!isPlaying" class="song-img" alt="">
-        <img src="@/assets/img/sound-gif2.gif" v-if="isPlaying" class="song-img" alt="">
+        <img src="@/assets/img/preview.png" v-if="song.id !== currBeat.currSong.id" class="song-img" alt="">
+        <img src="@/assets/img/sound-gif2.gif" v-if="song.id === currBeat.currSong.id" class="song-img" alt="">
           <img class="song-img" :src="song.imgUrl" />
           <span class="song-title">{{ song.title }}</span>
           <div class="flex align-center">
@@ -68,15 +68,11 @@ export default {
       this.checkIfPlaying()
      
     },
-    checkIfPlaying(){
-      this.isPlaying = this.song.id === this.currBeat.currSong.id ? true : false
-    },
+
  
   },
   created() {
     this.songList = JSON.parse(JSON.stringify(this.currBeat.songs));
-    // this.song = this.currBeat.currSong
-    this.checkIfPlaying()
   },
   components: {
     draggable,
