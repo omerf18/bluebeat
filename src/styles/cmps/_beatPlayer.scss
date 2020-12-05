@@ -89,21 +89,29 @@ input[type=range]{
         width: 120px;
         display: block;
     }
+    .close-player-btn {
+        display: block;
+    }
   
 }
-
-
 .player {
     width: 0;
     height: 0;
 }
 
+
+
 .close-player-btn {
     font-size: rem(20px);
     color: $bgc2;
     padding: 5px;
+    display: none;
 }
 
 .currsong-duration {
     color: $bgc2;
+}
+
+@include for-normal-layout{
+
 }
