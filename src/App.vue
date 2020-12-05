@@ -2,7 +2,7 @@
   <div id="app">
     <beatHeader />
     <router-view />
-    <beatPlayer/>
+    <beatPlayer />
   </div>
 </template>,
 
@@ -15,8 +15,8 @@ export default {
     beatHeader,
     beatPlayer
   },
+ 
   created() {
-    // socketService.setup();
     this.$store.dispatch({ type: "loadBeats" });
   },
 };

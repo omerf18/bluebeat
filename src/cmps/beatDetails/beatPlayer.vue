@@ -1,17 +1,17 @@
 <template>
-  <section v-if="currSong" class="beat-player flex space-evenly" >
+  <section  class="beat-player flex space-evenly">
     <div class="beat-frame flex">
       <div class="beat-img flex align-center">
         <img
           class="prev-img"
           :class="{ playing: playerVars.isPlaying }"
-          :src="currSong.imgUrl"
+          :src="currBeat.currSong.imgUrl"
         />
       </div>
       <youtube
       :player-vars="playerVars"
         class="player"
-        :video-id="currSong.youtubeId"
+        :video-id="currBeat.currSong.youtubeId"
         ref="youtube"
         style="visibility: hidden"
       ></youtube>
@@ -20,9 +20,9 @@
       <!-- <h4>{{ currSong.duration }}</h4> -->
       <div class="player-btn flex icon align-center justify-center ">
         
-      <h2><span>Now Playing:</span><br>{{ currSong.title }}</h2>
+      <h2><span>Now Playing:</span><br>{{ currBeat.currSong.title }}</h2>
 
-        <i @click="switchSong(currSong.id, -1)" class="fas fa-backward"></i>
+        <i @click="switchSong(currBeat.currSong.id, -1)" class="fas fa-backward"></i>
         <i
           v-if="!playerVars.isPlaying"
           @click="playOrPauseSong(true, false)"
@@ -33,7 +33,7 @@
           @click="playOrPauseSong(false,false)"
           class="fas fa-pause"
         ></i>
-        <i @click="switchSong(currSong.id, 1)" class="fas fa-forward"></i>
+        <i @click="switchSong(currBeat.currSong.id, 1)" class="fas fa-forward"></i>
        
         <i
           @click="shuffle"
@@ -124,14 +124,17 @@ export default {
   },
   computed:{
   player() {
-      if (this.currStation) return this.$refs.youtube.player;
+      if (this.currBeat) return this.$refs.youtube.player;
     },
      currBeat(){
     return this.$store.getters.currBeat;
     },
-     currSong(){
-    return this.$store.getters.currBeat.currSong;
-    }
+    //  currSong(){
+    // return this.$store.getters.currBeat.currSong;
+    // }
+  },
+  created(){
+    if(!this.currSong) this.currSong = this.currBeat.songs[0]
   },
   sockets:{
     songChanged(song) {

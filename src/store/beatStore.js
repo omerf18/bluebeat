@@ -40,7 +40,7 @@ export const beatStore = {
     },
     mutations: {
         setCurrSong(state, { song }) {
-            state.currSong = song;
+            state.currBeat.currSong = song;
             storageService.storeToSession('currSong', song)
         },
         setCurrBeat(state, { currBeat }) {
