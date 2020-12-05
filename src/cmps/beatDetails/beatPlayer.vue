@@ -74,7 +74,7 @@
 <script>
 export default {
   name: "beatPlayer",
-  props: ["currBeat"],
+  // props: ["currBeat"],
   data() {
     return {
       playerVars: {
@@ -143,10 +143,10 @@ export default {
     player() {
       if (this.currBeat) return this.$refs.youtube.player;
     },
-    //  currBeat(){
-    //    this.playerVars.isPlaying =true
-    // return this.$store.getters.currBeat;
-    // },
+     currBeat(){
+       this.playerVars.isPlaying =true
+    return this.$store.getters.currBeat;
+    },
   },
   created() {
     if (!this.currBeat.currSong) {
