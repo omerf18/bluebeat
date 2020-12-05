@@ -123,7 +123,7 @@ export default {
      
     },
   },
-  created() {
+  created() { 
     let beatId = this.$route.params.id;
     console.log('id',beatId);
       this.setCurrBeat(beatId)

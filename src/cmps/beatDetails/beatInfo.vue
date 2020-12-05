@@ -26,11 +26,11 @@
       <span class="beat-description">{{ currBeat.description }}</span>
     </div>
     <div class="views-container flex col align-center space-between">
-      <div class="flex space-evenly">
+      <div class="flex space-around ">
         <span class="beat-likes">{{ currBeat.visits }}</span>
         <i class="like-btn far fa-eye"></i>
       </div>
-      <div class="flex space-evenly">
+      <div class="flex space-around ">
         <span class="beat-likes">{{ currBeat.likes }}</span>
         <i
           @click="setLike(1)"
@@ -43,7 +43,7 @@
           class="like-btn icon fas fa-heart"
         ></i>
       </div>
-      <div class="flex space-evenly">
+      <div class="flex space-around">
         <span class="beat-likes">22</span>
         <i class="like-btn fas fa-headphones-alt"></i>
       </div>
