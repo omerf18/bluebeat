@@ -25,8 +25,12 @@
     }
 }
 
+.song-container:hover{
+    background-color: $font3;
+}
+
 .song-img {
-    width: 10%;
+    // width: 10%;
     height: 60%;
     padding: 0 4px;
     object-fit: cover;
