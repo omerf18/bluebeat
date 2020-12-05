@@ -63,12 +63,12 @@ export default {
       this.$socket.emit("songChanged", song);
     },
     async dragSong(songs) {
-      console.log("got", songs);
       await this.$store.dispatch({
         type: "dragSong",
         songs,
       });
       this.$socket.emit("beatChanged", this.currBeat);
+      this.setCurrBeat(this.currBeat._id);
     },
     async removeSong(songId) {
       await this.$store.dispatch({

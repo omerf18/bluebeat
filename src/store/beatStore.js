@@ -83,7 +83,6 @@ export const beatStore = {
         resetFilter({ filterBy, beats }) {
             filterBy.genreFilter = 'ALL';
             filterBy.beatTitle = '';
-            // beats = null;
         },
         setLike(state, { addLikedBeat }) {
             state.currBeat = addLikedBeat
@@ -117,7 +116,7 @@ export const beatStore = {
         async setCurrBeat({ commit }, { beatId }) {
             let currBeat = await beatService.getById(beatId)
             currBeat.visits += 1
-             currBeat = await beatService.save(currBeat)
+            currBeat = await beatService.save(currBeat)
            await commit({ type: 'setCurrBeat', currBeat })
         },
         async loadBeats({ state, commit }) {
