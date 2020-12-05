@@ -2,7 +2,6 @@
     width: 100%;
     padding: 10px;
     position: relative;
-    
 }
 
 
@@ -13,7 +12,7 @@
    background-color: $bgc2;
    width: 30%;
    margin-left: 10px;
-   min-height: 80vh;
+   height: 70vh;
    .beat-msg > *{
        background-color:  $logo;
        border-radius: 2px 7px 7px 7px;
@@ -52,6 +51,14 @@
     font-size: rem(25px);
 }
 
-.typing{
+.typing {
     color: $logo;
+}
+
+.chat-form {
+    width: 70%;
+    & > * {
+        width: 100%;
+        border: 2px solid $logo;
+    }
 }
