@@ -43,8 +43,13 @@
           class="like-btn icon fas fa-heart"
         ></i>
       </div>
+<<<<<<< HEAD
       <div class="flex space-around">
         <span class="beat-likes">22</span>
+=======
+      <div class="flex space-evenly">
+        <span class="beat-likes">{{onlineUsers}}</span>
+>>>>>>> 0a8470accf05ff66506784eddd4d33370e075172
         <i class="like-btn fas fa-headphones-alt"></i>
       </div>
     </div>
@@ -60,6 +65,7 @@ export default {
   data() {
     return {
       isLiked: false,
+      onlineUsers:0
     };
   },
   computed: {
@@ -77,6 +83,15 @@ export default {
       this.$emit("setLike", diff);
       this.isLiked = !this.isLiked;
     },
+  
   },
+  created(){
+    this.onlineUsers ++
+  },
+  sockets:{
+    userJoinRoom(diff){
+      this.onlineUsers += diff
+    }
+  }
 };
 </script>
