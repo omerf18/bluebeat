@@ -8,7 +8,7 @@
       />
       <form @keyup="searchBeat">
         <el-input
-          class="header-search"
+          class="header-search icon"
           type="text"
           placeholder="Search a beat"
           prefix-icon="el-icon-search"
