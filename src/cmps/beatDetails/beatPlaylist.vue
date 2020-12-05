@@ -23,7 +23,7 @@
             alt=""
           />
           <img class="song-img" :src="song.imgUrl" />
-          <span class="song-title">{{ song.title }}</span>
+          <span class="song-title">{{ song.title.substring(0, 30) }}</span>
           <div class="flex align-center">
             <span class="song-dur">{{ song.duration }}</span>
             <i class="song-icon fas fa-sort"></i>
@@ -50,7 +50,7 @@ export default {
       songList: null,
       oldIndex: "",
       newIndex: "",
-      song: null,
+      // song: null,
       isPlaying: false,
     };
   },
@@ -58,7 +58,9 @@ export default {
     songs() {
       return JSON.parse(JSON.stringify(this.currBeat.songs));
     },
-  },
+  
+        },
+  
   methods: {
     onEnd(ev) {
       this.oldIndex = ev.oldIndex;
@@ -70,13 +72,13 @@ export default {
     },
     async changeSong(song) {
       await this.$emit("changeSong", song);
-      this.song = song;
-      this.checkIfPlaying();
+      // this.song = song;
     },
+    
   },
   created() {
     this.songList = JSON.parse(JSON.stringify(this.currBeat.songs));
-    
+
   },
   components: {
     draggable,
