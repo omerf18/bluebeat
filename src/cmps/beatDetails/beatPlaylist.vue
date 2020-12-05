@@ -10,18 +10,26 @@
           :id="song.id"
           @click="changeSong(song)"
         >
-        <img src="@/assets/img/preview.png" v-if="song.id !== currBeat.currSong.id" class="song-img" alt="">
-        <img src="@/assets/img/sound-gif2.gif" v-if="song.id === currBeat.currSong.id" class="song-img" alt="">
+          <img
+            src="@/assets/img/preview.png"
+            v-if="song.id !== currBeat.currSong.id"
+            class="song-img"
+            alt=""
+          />
+          <img
+            src="@/assets/img/sound-gif2.gif"
+            v-if="song.id === currBeat.currSong.id"
+            class="song-img"
+            alt=""
+          />
           <img class="song-img" :src="song.imgUrl" />
           <span class="song-title">{{ song.title }}</span>
           <div class="flex align-center">
             <span class="song-dur">{{ song.duration }}</span>
             <i class="song-icon fas fa-sort"></i>
-            <span @click.stop="removeSong(song.id)"> <i
-            
-              class="song-icon icon fas fa-trash"
-            ></i></span>
-           
+            <span @click.stop="removeSong(song.id)">
+              <i class="song-icon icon fas fa-trash"></i
+            ></span>
           </div>
         </div>
       </transition-group>
@@ -43,8 +51,7 @@ export default {
       oldIndex: "",
       newIndex: "",
       song: null,
-      isPlaying : false
-      
+      isPlaying: false,
     };
   },
   computed: {
@@ -61,15 +68,11 @@ export default {
     removeSong(songId) {
       this.$emit("removeSong", songId);
     },
-   async changeSong(song) {
-      console.log('sssssss');
-      this.song = song
-     await this.$emit("changeSong", song);
-      this.checkIfPlaying()
-     
+    async changeSong(song) {
+      this.song = song;
+      await this.$emit("changeSong", song);
+      this.checkIfPlaying();
     },
-
- 
   },
   created() {
     this.songList = JSON.parse(JSON.stringify(this.currBeat.songs));
@@ -77,8 +80,5 @@ export default {
   components: {
     draggable,
   },
- 
-   
-  }
-
+};
 </script>

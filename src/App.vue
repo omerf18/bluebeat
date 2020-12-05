@@ -2,20 +2,32 @@
   <div id="app">
     <beatHeader />
     <router-view />
-    <beatPlayer />
+    <beatPlayer :currBeat="currBeat" @closePlayer="closePlayer" />
   </div>
 </template>,
 
 <script>
 import beatHeader from "@/cmps/beatHeader.vue";
-import beatPlayer from "@/cmps/beatDetails/beatPlayer.vue"
+import beatPlayer from "@/cmps/beatDetails/beatPlayer.vue";
 
 export default {
   components: {
     beatHeader,
-    beatPlayer
+    beatPlayer,
   },
- 
+  methods: {
+    closePlayer() {
+      this.$store.commit({
+        type: "setCurrBeat",
+        currBeat: null,
+      });
+    },
+  },
+  computed: {
+    currBeat() {
+      return this.$store.getters.currBeat;
+    },
+  },
   created() {
     this.$store.dispatch({ type: "loadBeats" });
   },
