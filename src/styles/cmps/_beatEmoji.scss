@@ -1,6 +1,6 @@
 .emoji-container {
     position: absolute;
-    bottom: 0;
+    bottom: 45px;
     right: 0;
     background-color: $bgc1;
     text-align: center;
@@ -30,4 +30,9 @@
 .emoji.start {
     bottom: 100vh;
     position: absolute;
+}
+
+.beat-chat li {
+    margin: 0;
+    padding: 2px 7px;
 }

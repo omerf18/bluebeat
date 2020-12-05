@@ -59,7 +59,12 @@
         @input="setVol"
       />
       <span class="vol-var">{{ playerVars.vol }}</span>
-       <img class="back-to-beat-img" @click.prevent="backToBeat" src="../../assets/img/backtobeat.png" alt="">
+      <img
+        class="back-to-beat-img"
+        @click.prevent="backToBeat"
+        src="../../assets/img/backtobeat.png"
+        alt=""
+      />
     </div>
     <div @click="closePlayer" class="close-player">
       <i class="icon close-player-btn fas fa-times"></i>
@@ -86,7 +91,7 @@ export default {
   methods: {
     closePlayer() {
       this.$emit("closePlayer");
-      sessionStorage.clear()
+      sessionStorage.clear();
     },
     shuffle() {
       this.playerVars.isShuffle = !this.playerVars.isShuffle;
@@ -131,22 +136,19 @@ export default {
       }
       await this.$socket.emit("songChanged", song);
     },
-    backToBeat(){
-      this.$router.push(`/beat/${this.currBeat._id}`)
+    backToBeat() {
+      this.$router.push(`/beat/${this.currBeat._id}`);
       // if(!this.currSong) this.currSong = this.currBeat.songs[0]
-
-
-    }
+    },
   },
   computed: {
     player() {
       if (this.currBeat) return this.$refs.youtube.player;
     },
-     currBeat(){
-       this.playerVars.isPlaying =true
-    return this.$store.getters.currBeat;
+    currBeat() {
+      this.playerVars.isPlaying = true;
+      return this.$store.getters.currBeat;
     },
- 
   },
   created() {
     if (!this.currBeat.currSong) {
