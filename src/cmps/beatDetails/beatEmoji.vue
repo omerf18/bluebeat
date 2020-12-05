@@ -123,6 +123,7 @@ export default {
       emoji.id = utilService.makeId();
       this.sentEmojis.push(emoji);
       this.toggleEmojiPicker();
+      this.$socket.emit("sendEmoji", emoji);
       setTimeout(() => {
         emoji.class += " start";
       }, 100);
@@ -132,6 +133,20 @@ export default {
     },
     toggleEmojiPicker() {
       this.isEmoji = !this.isEmoji;
+    },
+    reciveEmoji(emoji) {
+      this.sentEmojis.push(emoji);
+      setTimeout(() => {
+        emoji.class += " start";
+      }, 100);
+      setTimeout(() => {
+        this.sentEmojis.splice(0, 1);
+      }, 7000);
+    },
+  },
+  sockets: {
+    reciveEmoji(emoji) {
+      this.reciveEmoji(emoji);
     },
   },
 };
