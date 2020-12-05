@@ -3,8 +3,8 @@
     <div class="hero-container">
     <img class="beat-hero" src="@/assets/img/bluebeatHero.jpg" />
     <div class="marketing ">
-      <h1>PARTY WITH REAL BEATS</h1>
-      <h3>Listen to music with friends. No matter where they're at.</h3>
+      <h1>FIND YOUR BEAT</h1>
+      <h3>CREATE JOIN &amp; EDIT LIVE PLAYLISTS</h3>
     </div>
     <a href="/" @click.prevent="smoothScroll('homeList', 1000)" class="scroll-down">
     <span></span>
