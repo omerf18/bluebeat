@@ -18,7 +18,9 @@
     </div>
     <h4 class="currsong-duration">{{ currBeat.currSong.duration }}</h4>
     <div class="player-btn flex icon align-center justify-center">
-      <h2 class="now-playing"><span>Now Playing:</span><br />{{ currBeat.currSong.title }}</h2>
+      <h2 class="now-playing">
+        <span>Now Playing:</span><br />{{ currBeat.currSong.title }}
+      </h2>
       <i
         @click="switchSong(currBeat.currSong.id, -1)"
         class="fas fa-backward"
@@ -117,9 +119,9 @@ export default {
         song,
       });
     },
-    async switchSong(songId, diff, isShuffle) {
+    async switchSong(songId, diff) {
       let song;
-      if (isShuffle) {
+      if (this.playerVars.isShuffle) {
         let beatSongOpts = this.currBeat.songs.length - 1;
         let rndIdx = Math.floor(Math.random() * Math.floor(beatSongOpts));
         song = this.currBeat.songs[rndIdx];
