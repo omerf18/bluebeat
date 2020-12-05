@@ -10,6 +10,7 @@ export const beatStore = {
         genres: ['Popular', 'Trending', 'Hip hop', 'Israeli', 'Dance', 'Pop', 'Rock n roll', 'Latin', 'Easy'],
         currBeat: null,
         searchedSongs: null,
+        startPlay: null
     },
     getters: {
         currSong(state) {
@@ -87,6 +88,7 @@ export const beatStore = {
         setLike(state, { addLikedBeat }) {
             state.currBeat = addLikedBeat
         },
+        
        
     }, 
     actions: {
@@ -157,7 +159,7 @@ export const beatStore = {
           beat.likes +=diff
          const addLikedBeat = await beatService.save(beat)
           await commit({type:'setLike', addLikedBeat})
-        }
+        },
 
     }
 }

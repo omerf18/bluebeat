@@ -1,5 +1,5 @@
 <template>
-  <section class="main-layout">
+  <section class="main-layout home">
     <genre-filter
       @setGenre="setGenreFilter"
       class="flex align-center justify-center"

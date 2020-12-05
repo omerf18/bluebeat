@@ -1,8 +1,11 @@
 .beat-player {
     margin-top: 10px;
-    max-height: 85px;
+    max-height: 70px;
     background-color: $bgc2;
     justify-content: center;
+    .back-to-beat-img{
+        display: none;
+    }
  
     background-image: linear-gradient(to bottom, $logo, #46a7a0, #3d7e77, #325852, #243431);
     h2 {
@@ -52,9 +55,10 @@
 }
 
 
+
 .set-vol {
     transform: rotate(270deg);
-    width: 80px;
+    width: 60px;
     height: 5px;
 }
 input[type=range]{
@@ -70,8 +74,7 @@ input[type=range]{
         width: 10px;
         border-radius: 5px;
         background: $logo;
-        cursor: pointer;
-        // margin-top: -14px;
+        cursor: grab;
         box-shadow: 1px 1px 1px $bgc1, 0px 0px 1px $bgc2;
     }
 }
@@ -82,6 +85,10 @@ input[type=range]{
     bottom: 0;
     width: 100%;
     margin-bottom: 20px;
+    .back-to-beat-img{
+        width: 120px;
+        display: block;
+    }
   
 }
 

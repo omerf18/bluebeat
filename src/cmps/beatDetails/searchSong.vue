@@ -7,8 +7,9 @@
       @input="searchYoutubeSong"
       placeholder="Add song to playlist"
       prefix-icon="el-icon-search"
+      id="search"
     />
-    <i @click="cleanSearch" class="clean-search fas fa-backspace"></i>
+  <i @click="cleanSearch" class="clean-search fas fa-backspace"></i>
   </div>
 </template>
 
@@ -38,8 +39,9 @@ export default {
       this.searchYoutubeSong()
     }
   },
-  destroyed(){
+  created(){
     this.searchKeyWord =''
+    this.searchYoutubeSong()
   }
 };
 </script>
