@@ -1,5 +1,5 @@
 <template>
-  <section  class="beat-player flex space-evenly">
+  <section class="beat-player flex space-evenly" v-if="currBeat">
     <div class="beat-frame flex">
       <div class="beat-img flex align-center">
         <img
@@ -9,59 +9,65 @@
         />
       </div>
       <youtube
-      :player-vars="playerVars"
+        :player-vars="playerVars"
         class="player"
         :video-id="currBeat.currSong.youtubeId"
         ref="youtube"
         style="visibility: hidden"
       ></youtube>
     </div>
-    <!-- <div class="song-desc flex col "> -->
-      <!-- <h4>{{ currSong.duration }}</h4> -->
-      <div class="player-btn flex icon align-center justify-center ">
-        
-      <h2><span>Now Playing:</span><br>{{ currBeat.currSong.title }}</h2>
+    <h4 class="currsong-duration" >{{ currBeat.currSong.duration }}</h4>
+    <div class="player-btn flex icon align-center justify-center">
+      <h2><span>Now Playing:</span><br />{{ currBeat.currSong.title }}</h2>
+      <i
+        @click="switchSong(currBeat.currSong.id, -1)"
+        class="fas fa-backward"
+      ></i>
+      <i
+        v-if="!playerVars.isPlaying"
+        @click="playOrPauseSong(true, false)"
+        class="fas fa-play"
+      ></i>
+      <i
+        v-if="playerVars.isPlaying"
+        @click="playOrPauseSong(false, false)"
+        class="fas fa-pause"
+      ></i>
+      <i
+        @click="switchSong(currBeat.currSong.id, 1)"
+        class="fas fa-forward"
+      ></i>
 
-        <i @click="switchSong(currBeat.currSong.id, -1)" class="fas fa-backward"></i>
-        <i
-          v-if="!playerVars.isPlaying"
-          @click="playOrPauseSong(true, false)"
-          class="fas fa-play"
-        ></i>
-        <i
-          v-if="playerVars.isPlaying"
-          @click="playOrPauseSong(false,false)"
-          class="fas fa-pause"
-        ></i>
-        <i @click="switchSong(currBeat.currSong.id, 1)" class="fas fa-forward"></i>
-       
-        <i
-          @click="shuffle"
-          :class="{ active: playerVars.isShuffle }"
-          class="fas fa-random"
-        ></i>
-        <i
-          @click="muteSound"
-          :class="{ active: !playerVars.isMuted }"
-          class="sound icon fas fa-volume-down"
-        ></i>
-        <input
-          class="set-vol"
-          type="range"
-          min="0"
-          max="100"
-          v-model="playerVars.vol"
-          @input="setVol"
-        />
-        <span>{{ playerVars.vol }}</span>
-        </div>
-    <!-- </div> -->
+      <i
+        @click="shuffle"
+        :class="{ active: playerVars.isShuffle }"
+        class="fas fa-random"
+      ></i>
+      <i
+        @click="muteSound"
+        :class="{ active: !playerVars.isMuted }"
+        class="sound icon fas fa-volume-down"
+      ></i>
+      <input
+        class="set-vol"
+        type="range"
+        min="0"
+        max="100"
+        v-model="playerVars.vol"
+        @input="setVol"
+      />
+      <span>{{ playerVars.vol }}</span>
+    </div>
+    <div @click="closePlayer" class="close-player">
+      <i class="icon close-player-btn fas fa-times"></i>
+    </div>
   </section>
 </template>
 
 <script>
 export default {
   name: "beatPlayer",
+  props: ["currBeat"],
   data() {
     return {
       playerVars: {
@@ -74,18 +80,19 @@ export default {
       },
     };
   },
-
   methods: {
-   
+    closePlayer() {
+      this.$emit("closePlayer");
+    },
     shuffle() {
       this.playerVars.isShuffle = !this.playerVars.isShuffle;
     },
-    async playOrPauseSong(isPlaying ,isFromSocket){
-      this.playerVars.isPlaying =isPlaying
-      if(isPlaying) await  this.$refs.youtube.player.playVideo();
-      else await   this.$refs.youtube.player.pauseVideo();
-      if (isFromSocket) return
-      this.$socket.emit("setSongStatus", isPlaying)
+    async playOrPauseSong(isPlaying, isFromSocket) {
+      this.playerVars.isPlaying = isPlaying;
+      if (isPlaying) await this.$refs.youtube.player.playVideo();
+      else await this.$refs.youtube.player.pauseVideo();
+      if (isFromSocket) return;
+      this.$socket.emit("setSongStatus", isPlaying);
     },
     muteSound() {
       if (!this.playerVars.isMuted) {
@@ -99,14 +106,13 @@ export default {
     setVol() {
       this.$refs.youtube.player.setVolume(this.playerVars.vol);
     },
-      async setCurrSong(song) {
-     await this.$store.dispatch({
+    async setCurrSong(song) {
+      await this.$store.dispatch({
         type: "setCurrSong",
         song,
       });
-     
     },
-       async switchSong(songId, diff, isShuffle) {
+    async switchSong(songId, diff, isShuffle) {
       let song;
       if (isShuffle) {
         let beatSongOpts = this.currBeat.songs.length - 1;
@@ -119,32 +125,26 @@ export default {
         else idx += diff;
         song = this.currBeat.songs[idx];
       }
-     await this.$socket.emit("songChanged", song);
+      await this.$socket.emit("songChanged", song);
     },
   },
-  computed:{
-  player() {
+  computed: {
+    player() {
       if (this.currBeat) return this.$refs.youtube.player;
     },
-     currBeat(){
-    return this.$store.getters.currBeat;
-    },
-    //  currSong(){
-    // return this.$store.getters.currBeat.currSong;
-    // }
   },
-  created(){
-    if(!this.currSong) this.currSong = this.currBeat.songs[0]
+  created() {
+    if (!this.currBeat.currSong)
+      this.currBeat.currSong = this.currBeat.songs[0];
   },
-  sockets:{
+  sockets: {
     songChanged(song) {
-        this.setCurrSong(song);
-         this.playOrPauseSong(true, true);
+      this.setCurrSong(song);
+      this.playOrPauseSong(true, true);
     },
-    songStatusChanged(isPlaying){
-       this.playOrPauseSong(isPlaying, true);
-    }
+    songStatusChanged(isPlaying) {
+      this.playOrPauseSong(isPlaying, true);
+    },
   },
-
 };
 </script>
