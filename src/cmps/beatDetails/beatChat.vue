@@ -42,9 +42,11 @@ export default {
     computed: {},
     methods: {
         addMsg(msg) {
+            if(!msg) return
             this.msgs.push(msg);
         },
         sendMsg() {
+          
             if (this.$store.getters.loggedinUser) {
                 this.msg.from = this.$store.getters.loggedinUser.username;
             } else {
@@ -52,9 +54,6 @@ export default {
             }
             this.$socket.emit("sendMsg", this.msg);
             this.msg.txt = "";
-        },
-        addMsg(msg) {
-            this.msgs.push(msg);
         },
         userTyping() {
             const loggedinUser = this.$store.getters.loggedinUser;

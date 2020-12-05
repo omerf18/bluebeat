@@ -1,6 +1,6 @@
 
 <template>
-  <section>
+  <section >
     <div class="main-list" v-if="beats">
       <beat-preview v-for="beat in beats" :key="beat._id" :beat="beat" />
     </div>

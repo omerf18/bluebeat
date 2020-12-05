@@ -54,6 +54,7 @@
           @input="setVol"
         />
         <span>{{ playerVars.vol }}</span>
+        <img class="back-to-beat-img" @click.prevent="backToBeat" src="../../assets/img/backtobeat.png" alt="">
         </div>
     <!-- </div> -->
   </section>
@@ -69,7 +70,7 @@ export default {
         vol: 50,
         time: null,
         isMuted: false,
-        isPlaying: true,
+        isPlaying:true,
         isShuffle: false,
       },
     };
@@ -121,21 +122,26 @@ export default {
       }
      await this.$socket.emit("songChanged", song);
     },
+    backToBeat(){
+      this.$router.push(`/beat/${this.currBeat._id}`)
+      if(!this.currSong) this.currSong = this.currBeat.songs[0]
+
+    }
   },
   computed:{
   player() {
       if (this.currBeat) return this.$refs.youtube.player;
     },
      currBeat(){
+       this.playerVars.isPlaying =true
     return this.$store.getters.currBeat;
     },
-    //  currSong(){
-    // return this.$store.getters.currBeat.currSong;
-    // }
+ 
   },
   created(){
     if(!this.currSong) this.currSong = this.currBeat.songs[0]
   },
+
   sockets:{
     songChanged(song) {
         this.setCurrSong(song);

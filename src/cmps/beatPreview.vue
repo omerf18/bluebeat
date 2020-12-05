@@ -6,6 +6,7 @@
     <div class="flex col prev-main-info-container">
       <div class="beat-img flex align-center justify-center">
         <img class="prev-img" :src="beat.imgUrl" />
+        <i class="play-on-hover fas fa-play-circle"></i>
       </div>
       <div class="prev-details flex col align-center justify-center">
         <h2 class="prev-name">{{ beat.name }}</h2>

@@ -1,7 +1,7 @@
 .beat-playerlist-cmp {
     width: 100%;
     overflow-y: auto;
-    height: 43vh;
+    height: 39vh;
 }
 ::-webkit-scrollbar {
     background-color: $font3;
@@ -26,7 +26,7 @@
 }
 
 .song-container:hover{
-    background-color: $font3;
+    background-color: #eeedf32a;
 }
 
 .song-img {
@@ -67,6 +67,7 @@
 }
 .clean-search {
     cursor: pointer;
+    margin-right: 70px;
     &:hover {
         color: $logo;
     }

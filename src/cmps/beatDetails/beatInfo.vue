@@ -44,7 +44,7 @@
         ></i>
       </div>
       <div class="flex space-evenly">
-        <span class="beat-likes">22</span>
+        <span class="beat-likes">{{onlineUsers}}</span>
         <i class="like-btn fas fa-headphones-alt"></i>
       </div>
     </div>
@@ -60,6 +60,7 @@ export default {
   data() {
     return {
       isLiked: false,
+      onlineUsers:0
     };
   },
   computed: {
@@ -77,6 +78,15 @@ export default {
       this.$emit("setLike", diff);
       this.isLiked = !this.isLiked;
     },
+  
   },
+  created(){
+    this.onlineUsers ++
+  },
+  sockets:{
+    userJoinRoom(diff){
+      this.onlineUsers += diff
+    }
+  }
 };
 </script>
