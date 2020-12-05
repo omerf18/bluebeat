@@ -21,8 +21,8 @@ export const beatStore = {
               else return {}
         },
         currBeat(state) {
-            if(state.currBeat) return state.currBeat
-            return storageService.loadFromSession('currBeat')
+            return state.currBeat
+            // return storageService.loadFromSession('currBeat')
         },
         searchedSongsForDisplay({ searchedSongs }) {
             return searchedSongs;
@@ -36,11 +36,6 @@ export const beatStore = {
         filterBy({ filterBy }) {
             return filterBy;
         },
-        // startPlay({startPlay}) {
-        //     return startPlay
-        // }
-       
-
     },
     mutations: {
         setCurrSong(state, { song }) {
@@ -49,6 +44,7 @@ export const beatStore = {
         },
         setCurrBeat(state, { currBeat }) {
             state.currBeat = currBeat;
+            console.log('state', state.currBeat);
             storageService.storeToSession('currBeat', currBeat)
         },
         addSong({ currBeat }, { newSong }) {
@@ -122,10 +118,9 @@ export const beatStore = {
         },
         async setCurrBeat({ commit }, { beatId }) {
             let currBeat = await beatService.getById(beatId)
-             currBeat.visits += 1
+            currBeat.visits += 1
              currBeat = await beatService.save(currBeat)
            await commit({ type: 'setCurrBeat', currBeat })
-        //    return currBeat
         },
         async loadBeats({ state, commit }) {
             let beats = await beatService.query(state.filterBy);

@@ -1,5 +1,4 @@
 <template>
-  <!-- <section class="main-layout" v-if="currBeat"> -->
   <section class="details-cmp" v-if="currBeat">
     <div class="flex">
       <div class="main-details">
@@ -25,9 +24,7 @@
           ></add-song>
         </div>
       </div>
-      <!-- <div class="chat-container"> -->
-      <beatChat  class="beat-chat-cmp" />
-      <!-- </div> -->
+      <beatChat class="beat-chat-cmp" />
     </div>
   </section>
 </template>
@@ -44,18 +41,14 @@ import searchSong from "../cmps/beatDetails/searchSong.vue";
 export default {
   name: "beatDetails",
   data() {
-    return {
-    };
+    return {};
   },
   computed: {
- 
     currBeat() {
       return this.$store.getters.currBeat;
     },
     currSong() {
       if (!this.currBeat) return;
-      console.log('currsong',this.$store.getters.currSong );
-      
       return this.$store.getters.currSong;
     },
     currLikes() {
@@ -66,11 +59,11 @@ export default {
     },
   },
   methods: {
-
-    onChangeSong(song){
+    onChangeSong(song) {
       this.$socket.emit("songChanged", song);
     },
     async dragSong(songs) {
+      console.log("got", songs);
       await this.$store.dispatch({
         type: "dragSong",
         songs,
@@ -109,31 +102,28 @@ export default {
       this.$socket.emit("beatChanged", this.currBeat);
     },
     async setCurrBeat(beatId) {
-      await  this.$store.dispatch({
-           type: "setCurrBeat",
-           beatId,
-         });
-          this.setCurrSong(this.currBeat.currSong)
+      await this.$store.dispatch({
+        type: "setCurrBeat",
+        beatId,
+      });
+      this.setCurrSong(this.currBeat.currSong);
     },
     async setCurrSong(song) {
-     await this.$store.dispatch({
+      await this.$store.dispatch({
         type: "setCurrSong",
         song,
       });
-     
     },
   },
   created() { 
     let beatId = this.$route.params.id;
-    console.log('id',beatId);
-      this.setCurrBeat(beatId)
-     this.$socket.emit("joinRoom",  beatId);
+    this.setCurrBeat(beatId);
+    this.$socket.emit("joinRoom", beatId);
   },
   sockets: {
     beatChanged(beat) {
       this.setCurrBeat(beat._id);
     },
-
   },
   components: {
     beatInfo,
