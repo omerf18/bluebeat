@@ -56,7 +56,7 @@
 }
 
 .prev-name {
-    font-size: rem(18px);
+    font-size: rem(16px);
     font-family: ambitBold;
 }
 
@@ -65,12 +65,12 @@
     opacity: 0.8;
 }
 
-.prev-song-count {
-    font-size: rem(13px);
-}
+// .prev-song-count {
+//     font-size: rem(6px);
+// }
 
 .prev-show {
-    font-size: rem(15px);
+    font-size: rem(12px);
     padding-right: 5px;
     color: $logo;
 }
