@@ -145,10 +145,6 @@ export default {
     //    this.playerVars.isPlaying =true
     // return this.$store.getters.currBeat;
     // },
-<<<<<<< HEAD
-=======
- 
->>>>>>> db4f7b454401392b90d383faf5f4bb722e01c539
   },
   created() {
     if (!this.currBeat.currSong) {

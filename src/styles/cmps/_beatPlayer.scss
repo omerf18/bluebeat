@@ -112,12 +112,10 @@ input[type=range]{
     color: $bgc2;
 }
 
-<<<<<<< HEAD
 .now-playing {
     width: 100%;
     max-width: 100%;
-=======
-@include for-normal-layout{
-
->>>>>>> db4f7b454401392b90d383faf5f4bb722e01c539
 }
+// @include for-normal-layout{
+
+// }
