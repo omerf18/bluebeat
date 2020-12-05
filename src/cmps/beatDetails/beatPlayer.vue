@@ -70,7 +70,7 @@
 <script>
 export default {
   name: "beatPlayer",
-  props: ["currBeat"],
+  // props: ["currBeat"],
   data() {
     return {
       playerVars: {
