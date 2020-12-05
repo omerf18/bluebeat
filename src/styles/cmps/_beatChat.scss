@@ -9,6 +9,11 @@
 .beat-chat{
    border: 2px solid $bgc2;
    border-radius: 4px;
+   margin-top: 80px;
+   background-color: $bgc2;
+   width: 30%;
+   margin-left: 10px;
+   min-height: 80vh;
    .beat-msg > *{
        background-color:  $logo;
        border-radius: 2px 7px 7px 7px;
@@ -18,8 +23,6 @@
        word-break: break-word;
    }
    .from{
-    //    margin-left: 5px;
-    //    color:$logo;
        font-size: rem(16px);
        color: $bgc1;
        font-family: ambitBold;
@@ -27,9 +30,7 @@
    .msg{
        background-color: $logo;
        border-radius: 20px;
-    //    margin: 10px;
        color: $bgc2;
-    //    font-family: ambitBold;
        font-size: rem(16px);
    }
    li{

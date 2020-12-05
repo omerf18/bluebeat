@@ -26,8 +26,8 @@
         placeholder="Password"
       />
       <div class="flex">
-      <button class="login-btn">Login</button>
-      <button class="login-btn">Signup</button>
+      <button  class="login-btn">Login</button>
+      <button  class="login-btn">Signup</button>
       </div>
     </form>
     <!-- <form
