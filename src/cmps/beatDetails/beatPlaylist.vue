@@ -58,9 +58,8 @@ export default {
     songs() {
       return JSON.parse(JSON.stringify(this.currBeat.songs));
     },
-  
-        },
-  
+  },
+
   methods: {
     onEnd(ev) {
       this.oldIndex = ev.oldIndex;
@@ -72,17 +71,11 @@ export default {
     },
     async changeSong(song) {
       await this.$emit("changeSong", song);
-<<<<<<< HEAD
-      // this.song = song;
-=======
       this.song = song;
->>>>>>> 67751e45a3c1a4acd9ae3786e66675c105bf5b31
     },
-    
   },
   created() {
     this.songList = JSON.parse(JSON.stringify(this.currBeat.songs));
-
   },
   components: {
     draggable,

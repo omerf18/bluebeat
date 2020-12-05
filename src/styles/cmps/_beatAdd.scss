@@ -11,7 +11,6 @@
     padding: 20px;
     margin-top: 80px;
     // max-width: 50%;
-  
 }
 
 .img-uploaded {
@@ -121,4 +120,13 @@
     padding: 5px 0;
     width: 80%;
     margin: auto auto 10px;
+}
+
+.add-song-container {
+    border-right: 1px solid $logo;
+    border-left: 1px solid $logo;
+    &:hover {
+        border-right: 4px solid $logo;
+        border-left: 4px solid $logo;
+    }
 }
