@@ -76,6 +76,7 @@ export default {
   },
   created() {
     this.songList = JSON.parse(JSON.stringify(this.currBeat.songs));
+    
   },
   components: {
     draggable,

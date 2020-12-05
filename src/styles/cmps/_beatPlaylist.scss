@@ -73,3 +73,11 @@
         color: $logo;
     }
 }
+
+
+
+@include for-normal-layout{
+    .main-details{
+        width: 100%;
+    }
+}

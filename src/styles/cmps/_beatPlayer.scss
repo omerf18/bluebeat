@@ -13,6 +13,9 @@
         color: $logo;
         font-size: rem(15px);
         text-align: center;
+       width: 250px;
+        margin-right: 40px;
+        align-self: center;
         span{
             color:$font3;
         }
@@ -106,12 +109,44 @@ input[type=range]{
     color: $bgc2;
     padding: 5px;
     display: none;
+    margin-right: 20px;
 }
 
 .currsong-duration {
     color: $bgc2;
 }
 
+@include for-normal-layout{
+    .beat-player{
+        margin: 0;
+        .prev-img{
+            display: none
+        }
+        .beat-img{
+            display: none;
+        }
+        h4{
+            display: none;
+        }
+        max-height: none;
+      
+    }
+    .player-btn{
+        // flex-direction: column;
+      i{
+          padding: 10px;
+      }
+        .set-vol{
+            display: none;
+        }
+        .sound{
+            display: none;
+        }
+        .vol-var{
+            display: none;
+        }
+    }
+}
 .now-playing {
     width: 100%;
     max-width: 100%;

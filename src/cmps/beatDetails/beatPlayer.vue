@@ -49,6 +49,7 @@
         :class="{ active: !playerVars.isMuted }"
         class="sound icon fas fa-volume-down"
       ></i>
+      <!-- </div> -->
       <input
         class="set-vol"
         type="range"
@@ -57,7 +58,7 @@
         v-model="playerVars.vol"
         @input="setVol"
       />
-      <span>{{ playerVars.vol }}</span>
+      <span class="vol-var">{{ playerVars.vol }}</span>
       <img
         class="back-to-beat-img"
         @click.prevent="backToBeat"
@@ -90,6 +91,7 @@ export default {
   methods: {
     closePlayer() {
       this.$emit("closePlayer");
+      sessionStorage.clear();
     },
     shuffle() {
       this.playerVars.isShuffle = !this.playerVars.isShuffle;
@@ -136,16 +138,16 @@ export default {
     },
     backToBeat() {
       this.$router.push(`/beat/${this.currBeat._id}`);
-      if (!this.currSong) this.currSong = this.currBeat.songs[0];
+      // if(!this.currSong) this.currSong = this.currBeat.songs[0]
     },
   },
   computed: {
     player() {
       if (this.currBeat) return this.$refs.youtube.player;
     },
-     currBeat(){
-       this.playerVars.isPlaying =true
-    return this.$store.getters.currBeat;
+    currBeat() {
+      this.playerVars.isPlaying = true;
+      return this.$store.getters.currBeat;
     },
   },
   created() {

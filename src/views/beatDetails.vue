@@ -24,7 +24,8 @@
           ></add-song>
         </div>
       </div>
-      <beatChat class="beat-chat-cmp" />
+      <i class="chat-toggle icon fas fa-comment" @click="toggleChatModal"></i>
+      <beatChat class="beat-chat-cmp" :toggleChat="toggleChat" />
     </div>
   </section>
 </template>
@@ -41,7 +42,9 @@ import searchSong from "../cmps/beatDetails/searchSong.vue";
 export default {
   name: "beatDetails",
   data() {
-    return {};
+    return {
+      toggleChat: "",
+    };
   },
   computed: {
     currBeat() {
@@ -114,6 +117,11 @@ export default {
         type: "setCurrSong",
         song,
       });
+    },
+    toggleChatModal() {
+      if (this.toggleChat === "") this.toggleChat = "active";
+      else this.toggleChat = "";
+      console.log('chat', this.toggleChat);
     },
   },
   created() {
