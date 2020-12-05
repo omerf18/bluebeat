@@ -115,7 +115,7 @@ export default {
       });
     },
   },
-  created() {
+  created() { 
     let beatId = this.$route.params.id;
     this.setCurrBeat(beatId);
     this.$socket.emit("joinRoom", beatId);
