@@ -72,7 +72,11 @@ export default {
     },
     async changeSong(song) {
       await this.$emit("changeSong", song);
+<<<<<<< HEAD
       // this.song = song;
+=======
+      this.song = song;
+>>>>>>> 67751e45a3c1a4acd9ae3786e66675c105bf5b31
     },
     
   },

@@ -31,10 +31,6 @@
         color: $bgc2;
         font-size: rem(16px);
     }
-    li {
-        margin: 10px;
-        padding: 0 10px;
-    }
 }
 
 .send-msg {
@@ -49,7 +45,7 @@
 }
 
 .typing {
-    color: $logo;
+    color: $bgc1;
 }
 
 .chat-form {
@@ -62,6 +58,12 @@
 
 .chat-toggle {
     display: none;
+}
+
+.msg-li{
+    margin: 10px !important;
+    padding: 0 10px !important;
+    color: $bgc1;
 }
 
 @include for-normal-layout {

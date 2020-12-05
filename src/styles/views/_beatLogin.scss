@@ -9,7 +9,8 @@
     border-radius: 20px;
     background-color: $bgc2;
     border: 1px solid $font1;
-    padding: 100px;
+    padding: 80px;
+    max-height: 400px;
 }
 .login-input {
     max-width: rem(230px);
@@ -43,3 +44,12 @@
 .login-btn:hover {
     background-color: $font3;
 }
+
+
+@include for-normal-layout{
+    .login-form {
+        max-height: 350px;
+        padding: 50px;
+    }
+    
+  }

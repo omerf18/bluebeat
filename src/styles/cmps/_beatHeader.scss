@@ -45,7 +45,11 @@
     margin: 0%;
     width: rem(112px);
     text-align: center;
-    display: none;
+    // display: none;
+    transform: translateY(-200px);
+    position: absolute;
+    transition: 1.5s;
+    visibility: hidden
 }
 
 .menuOpen {

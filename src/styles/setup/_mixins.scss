@@ -9,6 +9,12 @@
       @content;
     }
   }
+
+  @mixin for-tablet-layout {
+    @media (max-width: $break-tablet) {
+      @content;
+    }
+  }
   
   @mixin for-wide-layout {
     @media (max-width: $break-wide) {

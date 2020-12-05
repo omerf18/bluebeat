@@ -28,7 +28,7 @@
     }
 }
 
-.song-container:hover{
+.song-container:hover {
     background-color: $bgc3;
 }
 
@@ -49,7 +49,7 @@
     color: $logo;
     .song-icon {
         color: $font1;
-        &.is-add{
+        &.is-add {
             color: blue;
         }
     }
@@ -76,10 +76,16 @@
     }
 }
 
-
-
-@include for-normal-layout{
-    .main-details{
+@include for-normal-layout {
+    .main-details {
         width: 100%;
+    }
+    .beat-playlist-container {
+        flex-direction: column-reverse;
+    }
+    .beat-add.add-container {
+        width: 100%;
+        margin: 0;
+        margin-bottom: 10px;
     }
 }
