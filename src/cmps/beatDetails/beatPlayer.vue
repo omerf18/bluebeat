@@ -16,9 +16,9 @@
         style="visibility: hidden"
       ></youtube>
     </div>
-    <h4 class="currsong-duration" >{{ currBeat.currSong.duration }}</h4>
+    <h4 class="currsong-duration">{{ currBeat.currSong.duration }}</h4>
     <div class="player-btn flex icon align-center justify-center">
-      <h2><span>Now Playing:</span><br />{{ currBeat.currSong.title }}</h2>
+      <h2 class="now-playing"><span>Now Playing:</span><br />{{ currBeat.currSong.title }}</h2>
       <i
         @click="switchSong(currBeat.currSong.id, -1)"
         class="fas fa-backward"
@@ -37,7 +37,6 @@
         @click="switchSong(currBeat.currSong.id, 1)"
         class="fas fa-forward"
       ></i>
-
       <i
         @click="shuffle"
         :class="{ active: playerVars.isShuffle }"
@@ -57,7 +56,12 @@
         @input="setVol"
       />
       <span>{{ playerVars.vol }}</span>
-       <img class="back-to-beat-img" @click.prevent="backToBeat" src="../../assets/img/backtobeat.png" alt="">
+      <img
+        class="back-to-beat-img"
+        @click.prevent="backToBeat"
+        src="../../assets/img/backtobeat.png"
+        alt=""
+      />
     </div>
     <div @click="closePlayer" class="close-player">
       <i class="icon close-player-btn fas fa-times"></i>
@@ -76,7 +80,7 @@ export default {
         vol: 50,
         time: null,
         isMuted: false,
-        isPlaying:true,
+        isPlaying: true,
         isShuffle: false,
       },
     };
@@ -128,25 +132,24 @@ export default {
       }
       await this.$socket.emit("songChanged", song);
     },
-    backToBeat(){
-      this.$router.push(`/beat/${this.currBeat._id}`)
-      if(!this.currSong) this.currSong = this.currBeat.songs[0]
-
-    }
+    backToBeat() {
+      this.$router.push(`/beat/${this.currBeat._id}`);
+      if (!this.currSong) this.currSong = this.currBeat.songs[0];
+    },
   },
   computed: {
     player() {
       if (this.currBeat) return this.$refs.youtube.player;
     },
-     currBeat(){
-       this.playerVars.isPlaying =true
-    return this.$store.getters.currBeat;
-    },
- 
+    //  currBeat(){
+    //    this.playerVars.isPlaying =true
+    // return this.$store.getters.currBeat;
+    // },
   },
   created() {
-    if (!this.currBeat.currSong)
+    if (!this.currBeat.currSong) {
       this.currBeat.currSong = this.currBeat.songs[0];
+    }
   },
   sockets: {
     songChanged(song) {

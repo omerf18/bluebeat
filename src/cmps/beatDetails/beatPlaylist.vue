@@ -1,5 +1,5 @@
 <template>
-  <section v-if="currBeat">
+  <section v-if="currBeat.songs">
     <draggable v-model="songList" ghost-class="ghost" @end="onEnd">
       <transition-group type="transition" name="flip-list">
         <div
@@ -69,13 +69,12 @@ export default {
       this.$emit("removeSong", songId);
     },
     async changeSong(song) {
-      this.song = song;
       await this.$emit("changeSong", song);
+      this.song = song;
       this.checkIfPlaying();
     },
   },
   created() {
-    console.log('s', this.currBeat.songs);
     this.songList = JSON.parse(JSON.stringify(this.currBeat.songs));
   },
   components: {

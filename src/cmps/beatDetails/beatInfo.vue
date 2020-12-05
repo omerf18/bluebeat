@@ -26,11 +26,11 @@
       <span class="beat-description">{{ currBeat.description }}</span>
     </div>
     <div class="views-container flex col align-center space-between">
-      <div class="flex space-around ">
+      <div class="flex space-around">
         <span class="beat-likes">{{ currBeat.visits }}</span>
         <i class="like-btn far fa-eye"></i>
       </div>
-      <div class="flex space-around ">
+      <div class="flex space-around">
         <span class="beat-likes">{{ currBeat.likes }}</span>
         <i
           @click="setLike(1)"
@@ -43,13 +43,8 @@
           class="like-btn icon fas fa-heart"
         ></i>
       </div>
-<<<<<<< HEAD
       <div class="flex space-around">
-        <span class="beat-likes">22</span>
-=======
-      <div class="flex space-evenly">
-        <span class="beat-likes">{{onlineUsers}}</span>
->>>>>>> 0a8470accf05ff66506784eddd4d33370e075172
+        <span class="beat-likes">{{ onlineUsers }}</span>
         <i class="like-btn fas fa-headphones-alt"></i>
       </div>
     </div>
@@ -65,7 +60,7 @@ export default {
   data() {
     return {
       isLiked: false,
-      onlineUsers:0
+      onlineUsers: 0,
     };
   },
   computed: {
@@ -83,15 +78,14 @@ export default {
       this.$emit("setLike", diff);
       this.isLiked = !this.isLiked;
     },
-  
   },
-  created(){
-    this.onlineUsers ++
+  created() {
+    this.onlineUsers++;
   },
-  sockets:{
-    userJoinRoom(diff){
-      this.onlineUsers += diff
-    }
-  }
+  sockets: {
+    userJoinRoom(diff) {
+      this.onlineUsers += diff;
+    },
+  },
 };
 </script>
