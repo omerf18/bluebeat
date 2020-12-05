@@ -90,8 +90,7 @@ border-radius: 8px;
 }
 
 @include for-mobile-layout{
-    .beat-info{
-    }
+  
     .prev-img-details{
         display: none;
     }

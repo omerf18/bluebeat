@@ -16,10 +16,11 @@
         style="visibility: hidden"
       ></youtube>
     </div>
-    <h4 class="currsong-duration" >{{ currBeat.currSong.duration }}</h4>
+    <h4 class="currsong-duration">{{ currBeat.currSong.duration }}</h4>
     <div class="player-btn flex icon align-center justify-center">
-      <h2><span>Now Playing:</span><br />{{ currBeat.currSong.title }}</h2>
-      <!-- <div class="flex icon align-center justify-center"> -->
+      <h2 class="now-playing">
+        <span>Now Playing:</span><br />{{ currBeat.currSong.title }}
+      </h2>
       <i
         @click="switchSong(currBeat.currSong.id, -1)"
         class="fas fa-backward"
@@ -38,7 +39,6 @@
         @click="switchSong(currBeat.currSong.id, 1)"
         class="fas fa-forward"
       ></i>
-
       <i
         @click="shuffle"
         :class="{ active: playerVars.isShuffle }"
@@ -78,7 +78,7 @@ export default {
         vol: 50,
         time: null,
         isMuted: false,
-        isPlaying:true,
+        isPlaying: true,
         isShuffle: false,
       },
     };
@@ -116,9 +116,9 @@ export default {
         song,
       });
     },
-    async switchSong(songId, diff, isShuffle) {
+    async switchSong(songId, diff) {
       let song;
-      if (isShuffle) {
+      if (this.playerVars.isShuffle) {
         let beatSongOpts = this.currBeat.songs.length - 1;
         let rndIdx = Math.floor(Math.random() * Math.floor(beatSongOpts));
         song = this.currBeat.songs[rndIdx];
@@ -149,8 +149,9 @@ export default {
  
   },
   created() {
-    if (!this.currBeat.currSong)
+    if (!this.currBeat.currSong) {
       this.currBeat.currSong = this.currBeat.songs[0];
+    }
   },
   sockets: {
     songChanged(song) {

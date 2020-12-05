@@ -1,7 +1,7 @@
 import { beatService } from '../services/beatService.js'
 import { songService } from '../services/songService.js'
 import { youtubeService } from '../services/youtubeService.js'
-import {storageService} from '../services/storageService.js'
+import { storageService } from '../services/storageService.js'
 
 export const beatStore = {
     state: {
@@ -17,8 +17,8 @@ export const beatStore = {
             let currSong = state.currBeat.currSong
             if (currSong) return currSong;
             else if (storageService.loadFromSession("currSong"))
-            return storageService.loadFromSession("currSong");
-              else return {}
+                return storageService.loadFromSession("currSong");
+            else return {}
         },
         currBeat(state) {
             if(!state.currBeat) return storageService.loadFromSession('currBeat')
@@ -84,14 +84,13 @@ export const beatStore = {
         resetFilter({ filterBy, beats }) {
             filterBy.genreFilter = 'ALL';
             filterBy.beatTitle = '';
-            // beats = null;
         },
         setLike(state, { addLikedBeat }) {
             state.currBeat = addLikedBeat
         },
-        
-       
-    }, 
+
+
+    },
     actions: {
         async dragSong({ commit, state }, { songs }) {
             await songService.saveSongs(state.currBeat, songs);
@@ -111,16 +110,16 @@ export const beatStore = {
         },
         async setCurrSong({ commit, state }, { song }) {
             const beat = JSON.parse(JSON.stringify(state.currBeat))
-               beat.currSong = song
-               const currBeat = await beatService.save(beat)
-            await commit({type:'setCurrBeat',currBeat})
+            beat.currSong = song
+            const currBeat = await beatService.save(beat)
+            await commit({ type: 'setCurrBeat', currBeat })
             commit({ type: 'setCurrSong', song })
         },
         async setCurrBeat({ commit }, { beatId }) {
             let currBeat = await beatService.getById(beatId)
             currBeat.visits += 1
-             currBeat = await beatService.save(currBeat)
-           await commit({ type: 'setCurrBeat', currBeat })
+            currBeat = await beatService.save(currBeat)
+            await commit({ type: 'setCurrBeat', currBeat })
         },
         async loadBeats({ state, commit }) {
             let beats = await beatService.query(state.filterBy);
@@ -156,10 +155,10 @@ export const beatStore = {
                 console.log(err);
             }
         },
-        async addLike({commit},{beat,diff}){
-          beat.likes +=diff
-         const addLikedBeat = await beatService.save(beat)
-          await commit({type:'setLike', addLikedBeat})
+        async addLike({ commit }, { beat, diff }) {
+            beat.likes += diff
+            const addLikedBeat = await beatService.save(beat)
+            await commit({ type: 'setLike', addLikedBeat })
         },
 
     }

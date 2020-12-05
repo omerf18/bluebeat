@@ -13,6 +13,7 @@ async function saveSongs(currBeat, songs) {
     let beat = JSON.parse(JSON.stringify(currBeat));
     beat.songs = songs;
     await beatService.save(beat);
+    return beat;
 }
 
 async function removeSong(songId, currBeat) {

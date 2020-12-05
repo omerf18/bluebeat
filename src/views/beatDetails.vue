@@ -63,11 +63,12 @@ export default {
       this.$socket.emit("songChanged", song);
     },
     async dragSong(songs) {
-      console.log("got", songs);
       await this.$store.dispatch({
         type: "dragSong",
         songs,
       });
+      console.log("tjsdasasas", this.currBeat._id);
+      this.setCurrBeat(this.currBeat._id);
       this.$socket.emit("beatChanged", this.currBeat);
     },
     async removeSong(songId) {
@@ -106,7 +107,7 @@ export default {
         type: "setCurrBeat",
         beatId,
       });
-      this.setCurrSong(this.currBeat.currSong);
+      if (!this.currBeat.currSong) this.setCurrSong(this.currBeat.currSong);
     },
     async setCurrSong(song) {
       await this.$store.dispatch({
@@ -115,7 +116,7 @@ export default {
       });
     },
   },
-  created() { 
+  created() {
     let beatId = this.$route.params.id;
     this.setCurrBeat(beatId);
     this.$socket.emit("joinRoom", beatId);
@@ -123,6 +124,9 @@ export default {
   sockets: {
     beatChanged(beat) {
       this.setCurrBeat(beat._id);
+    },
+    songChanged(song) {
+      this.setCurrSong(song);
     },
   },
   components: {
