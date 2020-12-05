@@ -48,7 +48,7 @@ export const beatStore = {
             storageService.storeToSession('currBeat', currBeat)
         },
         addSong({ currBeat }, { newSong }) {
-            currBeat.songs.push(newSong);
+            currBeat.songs.unshift(newSong);
         },
         removeSong({ currBeat }, { songId }) {
             let idx = currBeat.songs.findIndex(song => song.id === songId);
@@ -90,7 +90,7 @@ export const beatStore = {
             state.currBeat = addLikedBeat
         },
        
-    },
+    }, 
     actions: {
         async dragSong({ commit, state }, { songs }) {
             await songService.saveSongs(state.currBeat, songs);

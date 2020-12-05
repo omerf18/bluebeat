@@ -4,32 +4,40 @@
     position: relative;
 }
 
-.beat-chat {
-    border: 2px solid $bgc2;
-    border-radius: 4px;
-    .beat-msg > * {
-        background-color: $logo;
-        border-radius: 2px 7px 7px 7px;
-        width: fit-content;
-        border: 1px solid $font1;
-        max-width: 80%;
-        word-break: break-word;
-    }
-    .from {
-        font-size: rem(16px);
-        color: $bgc1;
-        font-family: ambitBold;
-    }
-    .msg {
-        background-color: $logo;
-        border-radius: 20px;
-        color: $bgc2;
-        font-size: rem(16px);
-    }
-    li {
-        margin: 10px;
-        padding: 0 10px;
-    }
+
+.beat-chat{
+   border: 2px solid $bgc2;
+   border-radius: 4px;
+   margin-top: 80px;
+   background-color: $bgc2;
+   width: 30%;
+   margin-left: 10px;
+   height: 70vh;
+   .beat-msg > *{
+       background-color:  $logo;
+       border-radius: 2px 7px 7px 7px;
+       width: fit-content;
+       border: 1px solid $font1;
+       max-width: 80%;
+       word-break: break-word;
+   }
+   .from{
+       font-size: rem(16px);
+       color: $bgc1;
+       font-family: ambitBold;
+   }
+   .msg{
+       background-color: $logo;
+       border-radius: 20px;
+       color: $bgc2;
+       font-size: rem(16px);
+   }
+   li{
+       margin: 10px;
+       padding: 0 10px;
+   }
+   
+
 }
 
 .send-msg {

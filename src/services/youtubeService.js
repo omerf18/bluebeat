@@ -1,10 +1,9 @@
 import axios from 'axios';
 import { utilService } from '../services/utilService.js'
 
-// const API_KEY = 'AIzaSyA3xup2cQRDiG3SppVytqu-nSPdhxLSwmw';
 
 const API_KEY = 'AIzaSyBG4UEUWMta2rsNRu650UG623Fq-gaxf2E';
-// const API_KEY = 'AIzaSyDBTRTb8qLf_omU7foaqgJ_kLS-WjFeMGg';
+
 
 export const youtubeService = {
     getSong,
