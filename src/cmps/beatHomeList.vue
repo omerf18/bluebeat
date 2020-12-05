@@ -31,7 +31,7 @@ export default {
         var sortBeats = JSON.parse(JSON.stringify(this.beats));
         sortBeats = sortBeats.sort((a, b) => (a.likes > b.likes ? -1 : 1));
         var popularBeats = [];
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < 5; i++) {
           popularBeats.push(sortBeats[i]);
         }
         return popularBeats;
@@ -39,7 +39,7 @@ export default {
         var sortBeats = JSON.parse(JSON.stringify(this.beats));
         sortBeats = sortBeats.sort((a, b) => (a.visits > b.visits ? 1 : -1));
         var popularBeats = [];
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < 5; i++) {
           popularBeats.push(sortBeats[i]);
         }
         return popularBeats;
@@ -48,7 +48,15 @@ export default {
       const beatsByGenres = this.beats.filter(
         (beat) => beat.genre.toLowerCase() === this.genre.toLowerCase()
       );
-      return beatsByGenres;
+      var beatsByGenresToShow = []
+      for (var i = 0; i < 5; i++) {
+        if(beatsByGenres.length > 4){
+          beatsByGenresToShow.push(beatsByGenres[i])
+        } else {
+          beatsByGenresToShow = beatsByGenres
+        }
+      }
+      return beatsByGenresToShow;
     },
   },
   methods: {

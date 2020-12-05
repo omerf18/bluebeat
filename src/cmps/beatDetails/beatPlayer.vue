@@ -138,10 +138,10 @@ export default {
     player() {
       if (this.currBeat) return this.$refs.youtube.player;
     },
-     currBeat(){
-       this.playerVars.isPlaying =true
-    return this.$store.getters.currBeat;
-    },
+    //  currBeat(){
+    //    this.playerVars.isPlaying =true
+    // return this.$store.getters.currBeat;
+    // },
  
   },
   created() {

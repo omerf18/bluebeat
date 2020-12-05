@@ -2,7 +2,7 @@ import axios from 'axios';
 import { utilService } from '../services/utilService.js'
 
 
-const API_KEY = 'AIzaSyBG4UEUWMta2rsNRu650UG623Fq-gaxf2E';
+const API_KEY = 'AIzaSyDJcIjbKH1x5w_d_F2US-B_T78BvaPh9gM';
 
 
 export const youtubeService = {
