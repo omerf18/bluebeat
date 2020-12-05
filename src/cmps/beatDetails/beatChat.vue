@@ -8,7 +8,7 @@
     </ul>
     <div class="send-container flex space-between">
       <i class="send-btn icon fas fa-paper-plane" @click="sendMsg"></i>
-      <form @submit.prevent="sendMsg">
+      <form class="chat-form" @submit.prevent="sendMsg">
         <input
           class="send-msg"
           @input="userTyping"

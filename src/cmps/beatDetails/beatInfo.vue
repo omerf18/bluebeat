@@ -21,9 +21,7 @@
         <span class="beat-likes" >{{currBeat.likes}}</span>
       </div>
       <span class="beat-online"><i class=" like-btn fas fa-headphones-alt"></i> 2 </span>
-    </div>
-    <!-- </div> -->
-                     
+    </div>                     
   </section>
 </template>
 
