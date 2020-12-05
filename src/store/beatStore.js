@@ -21,8 +21,8 @@ export const beatStore = {
               else return {}
         },
         currBeat(state) {
+            if(!state.currBeat) return storageService.loadFromSession('currBeat')
             return state.currBeat
-            // return storageService.loadFromSession('currBeat')
         },
         searchedSongsForDisplay({ searchedSongs }) {
             return searchedSongs;

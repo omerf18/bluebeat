@@ -19,6 +19,7 @@
     <h4 class="currsong-duration" >{{ currBeat.currSong.duration }}</h4>
     <div class="player-btn flex icon align-center justify-center">
       <h2><span>Now Playing:</span><br />{{ currBeat.currSong.title }}</h2>
+      <!-- <div class="flex icon align-center justify-center"> -->
       <i
         @click="switchSong(currBeat.currSong.id, -1)"
         class="fas fa-backward"
@@ -48,6 +49,7 @@
         :class="{ active: !playerVars.isMuted }"
         class="sound icon fas fa-volume-down"
       ></i>
+      <!-- </div> -->
       <input
         class="set-vol"
         type="range"
@@ -56,7 +58,7 @@
         v-model="playerVars.vol"
         @input="setVol"
       />
-      <span>{{ playerVars.vol }}</span>
+      <span class="vol-var">{{ playerVars.vol }}</span>
        <img class="back-to-beat-img" @click.prevent="backToBeat" src="../../assets/img/backtobeat.png" alt="">
     </div>
     <div @click="closePlayer" class="close-player">
@@ -84,6 +86,7 @@ export default {
   methods: {
     closePlayer() {
       this.$emit("closePlayer");
+      sessionStorage.clear()
     },
     shuffle() {
       this.playerVars.isShuffle = !this.playerVars.isShuffle;
@@ -130,7 +133,8 @@ export default {
     },
     backToBeat(){
       this.$router.push(`/beat/${this.currBeat._id}`)
-      if(!this.currSong) this.currSong = this.currBeat.songs[0]
+      // if(!this.currSong) this.currSong = this.currBeat.songs[0]
+
 
     }
   },
@@ -138,10 +142,10 @@ export default {
     player() {
       if (this.currBeat) return this.$refs.youtube.player;
     },
-    //  currBeat(){
-    //    this.playerVars.isPlaying =true
-    // return this.$store.getters.currBeat;
-    // },
+     currBeat(){
+       this.playerVars.isPlaying =true
+    return this.$store.getters.currBeat;
+    },
  
   },
   created() {
