@@ -71,7 +71,6 @@ export default {
     async changeSong(song) {
       await this.$emit("changeSong", song);
       this.song = song;
-      this.checkIfPlaying();
     },
   },
   created() {
