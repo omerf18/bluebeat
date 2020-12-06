@@ -121,9 +121,12 @@ export default {
         JSON.stringify(this.emojis.find((emoji) => emoji.id === emojiId))
       );
       emoji.id = utilService.makeId();
-      this.sentEmojis.push(emoji);
       this.toggleEmojiPicker();
+      this.startAnimation(emoji);
       this.$socket.emit("sendEmoji", emoji);
+    },
+    startAnimation(emoji) {
+      this.sentEmojis.push(emoji);
       setTimeout(() => {
         emoji.class += " start";
       }, 100);
@@ -134,19 +137,10 @@ export default {
     toggleEmojiPicker() {
       this.isEmoji = !this.isEmoji;
     },
-    reciveEmoji(emoji) {
-      this.sentEmojis.push(emoji);
-      setTimeout(() => {
-        emoji.class += " start";
-      }, 100);
-      setTimeout(() => {
-        this.sentEmojis.splice(0, 1);
-      }, 7000);
-    },
   },
   sockets: {
     reciveEmoji(emoji) {
-      this.reciveEmoji(emoji);
+      this.startAnimation(emoji);
     },
   },
 };
