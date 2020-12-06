@@ -21,7 +21,7 @@ export const beatStore = {
             else return {}
         },
         currBeat(state) {
-            if(!state.currBeat) return storageService.loadFromSession('currBeat')
+            if (!state.currBeat) return storageService.loadFromSession('currBeat')
             return state.currBeat
         },
         searchedSongsForDisplay({ searchedSongs }) {
@@ -44,7 +44,6 @@ export const beatStore = {
         },
         setCurrBeat(state, { currBeat }) {
             state.currBeat = currBeat;
-            console.log('state', state.currBeat);
             storageService.storeToSession('currBeat', currBeat)
         },
         addSong({ currBeat }, { newSong }) {
@@ -55,10 +54,7 @@ export const beatStore = {
             currBeat.songs.splice(idx, 1);
         },
         dragSong(state, { songs }) {
-            // console.log('state',state.currBeat);
             state.currBeat.songs = songs;
-            // console.log('dragSong', state.currBeat);
-            // storageService.storeToSession('currBeat',  state.currBeat)
         },
         setSearchedSongs(state, { searchedSongs }) {
             state.searchedSongs = searchedSongs
@@ -96,9 +92,8 @@ export const beatStore = {
     },
     actions: {
         async dragSong({ commit, state }, { songs }) {
-            console.log('dragsongggggg',songs);
-           const savedBeat = await songService.saveSongs(state.currBeat, songs);
-            commit({ type: 'dragSong', songs });
+            let savedBeat = await songService.saveSongs(state.currBeat, songs);
+            commit({ type: 'setCurrBeat', savedBeat })
         },
         async removeSong({ commit, state }, { songId }) {
             await songService.removeSong(songId, state.currBeat);

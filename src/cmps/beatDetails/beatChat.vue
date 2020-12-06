@@ -83,7 +83,9 @@ export default {
     },
   },
 
-  created() {},
+  created() {
+   
+  },
   components: {
     beatEmoji,
   },

@@ -1,6 +1,6 @@
 <template>
   <section v-if="currBeat.songs">
-    <draggable  ghost-class="ghost" @end="onEnd">
+    <draggable ghost-class="ghost" @end="onEnd">
       <transition-group type="transition" name="flip-list">
         <div
           v-for="song in songs"
@@ -50,12 +50,13 @@ export default {
       oldIndex: "",
       newIndex: "",
       isPlaying: false,
+      songs: null,
     };
   },
   computed: {
-    songs() {
-      return JSON.parse(JSON.stringify(this.currBeat.songs));
-    },
+    // songs() {
+    //   return JSON.parse(JSON.stringify(this.currBeat.songs));
+    // },
   },
 
   methods: {
@@ -72,7 +73,9 @@ export default {
       this.song = song;
     },
   },
-
+  created() {
+    this.songs = JSON.parse(JSON.stringify(this.currBeat.songs));
+  },
   components: {
     draggable,
   },
