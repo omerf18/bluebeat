@@ -5,6 +5,7 @@
       <el-radio class="filter-btn" value="Easy"  label="EASY"></el-radio> -->
       <el-radio class="filter-btn" value="Hip Hop"  label="HIP HOP"></el-radio>
       <el-radio class="filter-btn" value="Israeli"  label="ISRAELI"></el-radio>
+      <br class="br-filter">
       <el-radio class="filter-btn" value="Dance"  label="DANCE"></el-radio>
       <el-radio class="filter-btn" value="Rock N Roll"  label="ROCK N ROLL"></el-radio>
       <el-radio class="filter-btn" value="Pop"  label="POP"></el-radio>

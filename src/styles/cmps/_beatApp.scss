@@ -18,6 +18,9 @@
     padding: 0;
   }
 }
+.br-filter {
+  display: none;
+}
 
 .filter-btn:hover {
  background-color: $bgc2;
@@ -46,22 +49,28 @@
        
   }
   .el-radio__label {
-    font-size: em(11px);
+    font-size: em(13px);
   }
   .filter-btn {
-    padding: 2px;
+    padding:10px;
     margin: 0;
+    min-width: 85px;
   }
-
+  .br-filter {
+    display: block;
+  }
 }
 
 @include for-mobile-layout{
   
   .el-radio__label {
-    font-size: em(9px);
+    font-size: em(11px);
   }
   .el-radio{
     margin-right: 5px;
+  }
+  .filter-btn {
+    min-width: 70px;
   }
   
 }

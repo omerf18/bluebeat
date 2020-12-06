@@ -72,7 +72,6 @@ export default {
         registeredUser: false
       })
       this.isMenuOpen = !this.isMenuOpen
-      // this.$router.push('/')
       this.$router.push('/login')
     },
     logout() {

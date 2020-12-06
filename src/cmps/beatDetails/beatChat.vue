@@ -12,7 +12,7 @@
       <form class="chat-form" @submit.prevent="sendMsg">
         <input
           class="send-msg"
-          @input="userTyping"
+          @input="TheUserTyping"
           type="text"
           v-model="msg.txt"
         />
@@ -56,20 +56,22 @@ export default {
       this.$socket.emit("sendMsg", this.msg);
       this.msg.txt = "";
     },
-    userTyping() {
+    TheUserTyping() {
       let loggedinUser = this.$store.getters.loggedinUser;
       if (!loggedinUser) loggedinUser = "Guest";
       this.$socket.emit("userTyping", loggedinUser);
     },
     typing(user) {
-      console.log();
       this.isTyping = true;
-      if (!user) user = "Guest";
-      this.userNowTyping = user.username + " is typing..";
+      if (!user.username) {
+        this.userNowTyping = "Guest" + " is typing..";
+      } else {
+        this.userNowTyping = user.username + " is typing..";
+      }
       setTimeout(() => {
         this.userNowTyping = "";
         this.isTyping = false;
-      }, 2000);
+      }, 2500);
     },
   },
   sockets: {
