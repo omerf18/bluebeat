@@ -1,7 +1,4 @@
-// import axios from 'axios';
 import { beatService } from './beatService.js';
-
-// const BASE_URL = 'http://localhost:3000';
 
 export const songService = {
     removeSong,

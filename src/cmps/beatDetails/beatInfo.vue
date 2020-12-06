@@ -27,6 +27,11 @@
     </div>
     <div class="views-container flex col align-center space-between">
       <div class="flex space-around">
+        <a
+          href="whatsapp://send?text= LOOK AT THIS BEAT!"
+          data-action="share/whatsapp/share"
+          ><i class="copy-clipboard icon fab fa-whatsapp"></i
+        ></a>
         <i v-if="isCopied" class="copy-clipboard icon fas fa-share-square"></i>
         <i
           v-else
