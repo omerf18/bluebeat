@@ -58,13 +58,11 @@ export default {
     },
     userTyping() {
       let loggedinUser = this.$store.getters.loggedinUser;
-      console.log('loggedinUser', loggedinUser);
       if (!loggedinUser) loggedinUser = "Guest";
-      console.log('loggedinUser', loggedinUser);
       this.$socket.emit("userTyping", loggedinUser);
     },
     typing(user) {
-      console.log('user', user);
+      console.log("user", user);
       this.isTyping = true;
       if (!user.username) {
         this.userNowTyping = "Guest" + " is typing..";
