@@ -66,12 +66,11 @@ export default {
       this.$socket.emit("songChanged", song);
     },
     async dragSong(songs) {
-      console.log('songs details',songs);
+      console.log("songs details", songs);
       await this.$store.dispatch({
         type: "dragSong",
         songs,
       });
-      console.log("tjsdasasas", this.currBeat._id);
       this.setCurrBeat(this.currBeat._id);
       this.$socket.emit("beatChanged", this.currBeat);
     },
@@ -122,7 +121,6 @@ export default {
     toggleChatModal() {
       if (this.toggleChat === "") this.toggleChat = "active";
       else this.toggleChat = "";
-      console.log('chat', this.toggleChat);
     },
   },
   created() {
