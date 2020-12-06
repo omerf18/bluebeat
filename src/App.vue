@@ -23,6 +23,11 @@ export default {
       });
     },
   },
+  computed: {
+    currBeat() {
+      return this.$store.getters.currBeat;
+    },
+  },
   created() {
     this.$store.dispatch({ type: "loadBeats" });
   },
