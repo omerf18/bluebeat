@@ -62,7 +62,6 @@ export default {
       this.$socket.emit("userTyping", loggedinUser);
     },
     typing(user) {
-      console.log('user', user);
       this.isTyping = true;
       if (!user.username) {
         this.userNowTyping = "Guest" + " is typing..";

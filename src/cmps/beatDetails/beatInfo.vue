@@ -27,6 +27,14 @@
     </div>
     <div class="views-container flex col align-center space-between">
       <div class="flex space-around">
+        <i v-if="isCopied" class="copy-clipboard icon fas fa-share-square"></i>
+        <i
+          v-else
+          @click="copyToClipboard"
+          class="copy-clipboard icon far fa-share-square"
+        ></i>
+      </div>
+      <div class="flex space-around">
         <span class="beat-likes">{{ currBeat.visits }}</span>
         <i class="like-btn far fa-eye"></i>
       </div>
@@ -43,10 +51,6 @@
           class="like-btn icon fas fa-heart"
         ></i>
       </div>
-      <div class="flex space-around">
-        <span class="beat-likes">{{ onlineUsers }}</span>
-        <i class="like-btn fas fa-headphones-alt"></i>
-      </div>
     </div>
   </section>
 </template>
@@ -61,6 +65,7 @@ export default {
     return {
       isLiked: false,
       onlineUsers: 0,
+      isCopied: false,
     };
   },
   computed: {
@@ -74,9 +79,20 @@ export default {
       this.$router.push("/beat");
     },
     setLike(diff) {
-      console.log(diff);
       this.$emit("setLike", diff);
       this.isLiked = !this.isLiked;
+    },
+    copyToClipboard() {
+      this.isCopied = true;
+      let input = document.body.appendChild(document.createElement("input"));
+      input.value = window.location.href;
+      input.focus();
+      input.select();
+      document.execCommand("copy");
+      input.parentNode.removeChild(input);
+      setTimeout(() => {
+        this.isCopied = false;
+      }, 2000);
     },
   },
   created() {
