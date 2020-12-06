@@ -54,8 +54,11 @@ export const beatStore = {
             let idx = currBeat.songs.findIndex(song => song.id === songId);
             currBeat.songs.splice(idx, 1);
         },
-        dragSong({ currBeat }, { songs }) {
-            currBeat.songs = songs;
+        dragSong(state, { songs }) {
+            // console.log('state',state.currBeat);
+            state.currBeat.songs = songs;
+            // console.log('dragSong', state.currBeat);
+            // storageService.storeToSession('currBeat',  state.currBeat)
         },
         setSearchedSongs(state, { searchedSongs }) {
             state.searchedSongs = searchedSongs
@@ -93,7 +96,8 @@ export const beatStore = {
     },
     actions: {
         async dragSong({ commit, state }, { songs }) {
-            await songService.saveSongs(state.currBeat, songs);
+            console.log('dragsongggggg',songs);
+           const savedBeat = await songService.saveSongs(state.currBeat, songs);
             commit({ type: 'dragSong', songs });
         },
         async removeSong({ commit, state }, { songId }) {

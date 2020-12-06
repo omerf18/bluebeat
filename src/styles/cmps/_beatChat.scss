@@ -69,7 +69,7 @@
 @include for-normal-layout {
     .beat-chat {
         display: none;
-        position: absolute;
+        position: fixed;
         width: 70%;
         height: 65vh;
         left: 15%;

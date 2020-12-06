@@ -9,7 +9,7 @@
           @setLike="toggleLike"
         />
         <searchSong class="searchSong-cmp" @setKeyWord="searchYoutubeSong" />
-        <div class="flex">
+        <div class="beat-playlist-container flex">
           <beatPlaylist
             class="beat-playerlist-cmp"
             :currBeat="currBeat"
@@ -66,6 +66,7 @@ export default {
       this.$socket.emit("songChanged", song);
     },
     async dragSong(songs) {
+      console.log('songs details',songs);
       await this.$store.dispatch({
         type: "dragSong",
         songs,

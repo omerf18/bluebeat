@@ -19,7 +19,7 @@
     <h4 class="currsong-duration">{{ currBeat.currSong.duration }}</h4>
     <div class="player-btn flex icon align-center justify-center">
       <h2 class="now-playing">
-        <span>Now Playing:</span><br />{{ currBeat.currSong.title }}
+        <span>Now Playing:</span> <br>{{ currBeat.currSong.title }}
       </h2>
       <i
         @click="switchSong(currBeat.currSong.id, -1)"
