@@ -11,7 +11,7 @@
       <div class="prev-details flex col align-center justify-center">
         <h2 class="prev-name">{{ beat.name }}</h2>
         <!-- <h3 class="prev-genre">{{ beat.genre }}</h3> -->
-        <span class="">Now:<br></span><span class="playing-now">{{beat.currSong.title.substring(0,25)}}</span>
+        <span class="">Now Playing:<br></span><span class="playing-now">{{beat.currSong.title.substring(0,25)}}</span>
         
       </div>
     </div>
