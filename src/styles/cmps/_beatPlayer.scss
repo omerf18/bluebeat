@@ -6,6 +6,10 @@
     .back-to-beat-img{
         display: none;
     }
+    .prev-img{
+        width: 7.5rem;
+        height: 7.5rem;
+    }
  
     background-image: linear-gradient(to bottom, $logo, #46a7a0, #3d7e77, #325852, #243431);
     h2 {
@@ -57,6 +61,16 @@
     color: $logo;
 }
 
+.marquee-text-text{
+    // width:300px;
+    // z-index: 22;
+    bottom: 0;
+    // position: absolute;
+    // width: 100px;
+    span{
+        text-align: center;
+    }
+}
 
 
 .set-vol {
@@ -138,7 +152,7 @@ input[type=range]{
       }
       h2{
           margin: 10px;
-          width: 100px;
+          width: 150px;
       }
         .set-vol{
             display: none;
@@ -158,6 +172,3 @@ input[type=range]{
     width: 100%;
     max-width: 100%;
 }
-// @include for-normal-layout{
-
-// }
