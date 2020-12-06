@@ -1,6 +1,6 @@
 <template>
     <section v-if="currBeat.songs">
-        <draggable ghost-class="ghost" @end="onEnd">
+        <draggable v-model="songs" ghost-class="ghost" @end="onEnd">
             <transition-group type="transition" name="flip-list">
                 <div
                     v-for="song in  songs"
@@ -64,7 +64,6 @@ export default {
         onEnd(ev) {
             this.oldIndex = ev.oldIndex;
             this.newIndex = ev.newIndex;
-            console.log('end',this.songs);
             this.$emit("dragSong",  this.songs );
         },
         removeSong(songId) {

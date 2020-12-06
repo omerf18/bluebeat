@@ -116,7 +116,7 @@ input[type=range]{
     color: $bgc2;
 }
 
-@include for-normal-layout{
+@include for-tablet-layout{
     .beat-player{
         margin: 0;
         .prev-img{

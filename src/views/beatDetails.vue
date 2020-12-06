@@ -14,7 +14,7 @@
             class="beat-playerlist-cmp"
             :currBeat="currBeat"
             :currSong="currBeat.currSong"
-            @changeSong="onChangeSong"
+            @changeSong="changeSong"
             @removeSong="removeSong"
             @dragSong="dragSong"
           />
@@ -62,7 +62,7 @@ export default {
     },
   },
   methods: {
-    onChangeSong(song) {
+    changeSong(song) {
       this.$socket.emit("songChanged", song);
     },
     async dragSong(songs) {

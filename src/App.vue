@@ -2,7 +2,7 @@
   <div id="app">
     <beatHeader />
     <router-view />
-    <beatPlayer v-if="currBeat" @closePlayer="closePlayer" />
+    <beatPlayer @closePlayer="closePlayer" />
   </div>
 </template>,
 
