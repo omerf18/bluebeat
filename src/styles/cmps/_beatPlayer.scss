@@ -1,14 +1,15 @@
 .beat-player {
-    margin-top: 10px;
+    margin: 20px 0;
     max-height: 70px;
     background-color: $bgc2;
+    
     justify-content: center;
     .back-to-beat-img{
         display: none;
     }
-    .prev-img{
-        width: 7.5rem;
-        height: 7.5rem;
+    .prev-img {
+        width: 7.3rem;
+        height: 7.3rem;
     }
  
     background-image: linear-gradient(to bottom, $logo, #46a7a0, #3d7e77, #325852, #243431);
@@ -31,7 +32,6 @@
 
 
 .player-btn {
-    // width: 100%;
     padding: 0px 20px;
     border-radius: 10px;
     span{
@@ -62,11 +62,7 @@
 }
 
 .marquee-text-text{
-    // width:300px;
-    // z-index: 22;
     bottom: 0;
-    // position: absolute;
-    // width: 100px;
     span{
         text-align: center;
     }
@@ -74,7 +70,6 @@
 
 
 .set-vol {
-    // transform: rotate(270deg);
     width: 60px;
     height: 5px;
 }

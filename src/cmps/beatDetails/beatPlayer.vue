@@ -137,7 +137,7 @@ export default {
     },
     backToBeat() {
       this.$router.push(`/beat/${this.currBeat._id}`);
-      // if(!this.currSong) this.currSong = this.currBeat.songs[0]
+      if(!this.currSong) this.currSong = this.currBeat.songs[0]
     },
   },
   computed: {

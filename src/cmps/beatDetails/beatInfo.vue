@@ -46,12 +46,12 @@
       <div class="flex space-around">
         <span class="beat-likes">{{ currBeat.likes }}</span>
         <i
-          @click="setLike(1)"
+          @click.prevent="setLike(1)"
           v-if="!isLiked"
           class="like-btn icon far fa-heart"
         ></i>
         <i
-          @click="setLike(-1)"
+          @click.prevent="setLike(-1)"
           v-if="isLiked"
           class="like-btn icon fas fa-heart"
         ></i>
