@@ -57,21 +57,14 @@ export default {
       this.msg.txt = "";
     },
     userTyping() {
-      const loggedinUser = this.$store.getters.loggedinUser;
-      if (loggedinUser) {
-        this.$socket.emit("userTyping", loggedinUser);
-      } else {
-        this.$socket.emit("userTyping", "Guest");
-      }
+      let loggedinUser = this.$store.getters.loggedinUser;
+      if (!loggedinUser) loggedinUser = "Guest";
+      this.$socket.emit("userTyping", loggedinUser);
     },
     typing(user) {
-      console.log(user);
       this.isTyping = true;
-      if (user.username) {
-        this.userNowTyping = user.username + " is typing..";
-      } else {
-        this.userNowTyping = "Guest" + " is typing...";
-      }
+      if (!user) user = "Guest";
+      this.userNowTyping = user + " is typing..";
       setTimeout(() => {
         this.userNowTyping = "";
         this.isTyping = false;
