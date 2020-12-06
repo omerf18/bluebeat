@@ -64,7 +64,7 @@ export default {
     typing(user) {
       this.isTyping = true;
       if (!user) user = "Guest";
-      this.userNowTyping = user + " is typing..";
+      this.userNowTyping = user.from + " is typing..";
       setTimeout(() => {
         this.userNowTyping = "";
         this.isTyping = false;
