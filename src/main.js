@@ -8,6 +8,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 import VueSocketIO from 'vue-socket.io'
 import './styles/main.scss'
 
+
+
 vue.config.productionTip = false
 const BASE_URL = process.env.NODE_ENV === 'production'
     ? '/'
