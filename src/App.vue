@@ -2,7 +2,7 @@
   <div id="app">
     <beatHeader />
     <router-view />
-    <beatPlayer   @closePlayer="closePlayer"  />
+    <beatPlayer v-if="currBeat"  @closePlayer="closePlayer"  />
   </div>
 </template>,
 
@@ -24,12 +24,13 @@ export default {
     },
   },
   computed: {
-    // currBeat() {
-    //   return this.$store.getters.currBeat.currSong;
-    // },
+    currBeat() {
+      return this.$store.getters.currBeat.currSong;
+    },
   },
   created() {
     this.$store.dispatch({ type: "loadBeats" });
+    
   },
 };
 </script>

@@ -75,8 +75,9 @@ export default {
             this.song = song;
         },
     },
-    components: {
-        draggable,
-    },
+
+  components: {
+    draggable,
+  },
 };
 </script>
