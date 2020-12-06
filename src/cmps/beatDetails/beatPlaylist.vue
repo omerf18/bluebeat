@@ -64,7 +64,6 @@ export default {
         onEnd(ev) {
             this.oldIndex = ev.oldIndex;
             this.newIndex = ev.newIndex;
-            console.log('end',this.songs);
             this.$emit("dragSong",  this.songs );
         },
         removeSong(songId) {
