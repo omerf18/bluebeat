@@ -12,7 +12,7 @@
       <form class="chat-form" @submit.prevent="sendMsg">
         <input
           class="send-msg"
-          @input="userTyping"
+          @input="TheUserTyping"
           type="text"
           v-model="msg.txt"
         />
@@ -56,7 +56,7 @@ export default {
       this.$socket.emit("sendMsg", this.msg);
       this.msg.txt = "";
     },
-    userTyping() {
+    TheUserTyping() {
       let loggedinUser = this.$store.getters.loggedinUser;
       if (!loggedinUser) loggedinUser = "Guest";
       this.$socket.emit("userTyping", loggedinUser);
@@ -83,7 +83,9 @@ export default {
     },
   },
 
-  created() {},
+  created() {
+   
+  },
   components: {
     beatEmoji,
   },

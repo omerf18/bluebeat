@@ -16,10 +16,9 @@
         style="visibility: hidden"
       ></youtube>
     </div>
-    <h4 class="currsong-duration">{{ currBeat.currSong.duration }}</h4>
     <div class="player-btn flex icon align-center justify-center">
       <h2 class="now-playing">
-        <span>Now Playing:</span> <br>{{ currBeat.currSong.title }}
+     <marquee-text><span>Playing Now:<br></span>{{currBeat.currSong.title}}</marquee-text>
       </h2>
       <i
         @click="switchSong(currBeat.currSong.id, -1)"
@@ -80,7 +79,7 @@ export default {
     return {
       playerVars: {
         autoplay: 1,
-        vol: 50,
+        vol: 15,
         time: null,
         isMuted: false,
         isPlaying: true,
@@ -151,7 +150,7 @@ export default {
     },
   },
   created() {
-    if (!this.currBeat.currSong) {
+    if (this.currBeat && !this.currBeat.currSong) {
       this.currBeat.currSong = this.currBeat.songs[0];
     }
   },
