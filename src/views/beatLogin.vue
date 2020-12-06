@@ -89,7 +89,7 @@ export default {
       console.log(this.userCred);
       if (this.registeredUser) {
         this.$store.dispatch({ type: "login", userCred: this.userCred });
-        this.$router.push("/")
+        // this.$router.push("/")
       } else {
          this.$store.dispatch({ type: "signup", userCred: this.userCred });
          this.$router.push("/")

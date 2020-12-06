@@ -151,7 +151,7 @@ export default {
     },
   },
   created() {
-    if (!this.currBeat.currSong) {
+    if (this.currBeat && !this.currBeat.currSong) {
       this.currBeat.currSong = this.currBeat.songs[0];
     }
   },
