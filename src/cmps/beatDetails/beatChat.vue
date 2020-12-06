@@ -58,18 +58,23 @@ export default {
     },
     userTyping() {
       let loggedinUser = this.$store.getters.loggedinUser;
+      console.log('loggedinUser', loggedinUser);
       if (!loggedinUser) loggedinUser = "Guest";
+      console.log('loggedinUser', loggedinUser);
       this.$socket.emit("userTyping", loggedinUser);
     },
     typing(user) {
-      console.log();
+      console.log('user', user);
       this.isTyping = true;
-      if (!user) user = "Guest";
-      this.userNowTyping = user.username + " is typing..";
+      if (!user.username) {
+        this.userNowTyping = "Guest" + " is typing..";
+      } else {
+        this.userNowTyping = user.username + " is typing..";
+      }
       setTimeout(() => {
         this.userNowTyping = "";
         this.isTyping = false;
-      }, 2000);
+      }, 2500);
     },
   },
   sockets: {
