@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     currBeat() {
-      return this.$store.getters.currBeat.currSong;
+      return this.$store.getters.currBeat;
     },
   },
   created() {
