@@ -1,6 +1,6 @@
 <template>
     <section v-if="currBeat.songs">
-        <draggable v-model="songList" ghost-class="ghost" @end="onEnd">
+        <draggable v-model="songs" ghost-class="ghost" @end="onEnd">
             <transition-group type="transition" name="flip-list">
                 <div
                     v-for="song in  songs"

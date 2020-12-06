@@ -131,7 +131,7 @@ export default {
         emoji.class += " start";
       }, 100);
       setTimeout(() => {
-        this.sentEmojis.splice(0, 1);
+        this.sentEmojis.shift();
       }, 7000);
     },
     toggleEmojiPicker() {

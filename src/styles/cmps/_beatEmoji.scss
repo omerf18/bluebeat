@@ -25,11 +25,9 @@
     transition: all 8s ease;
     color: $logo;
     position: absolute;
-}
-
-.emoji.start {
-    bottom: 100vh;
-    position: absolute;
+    &.start {
+        bottom: 100vh;
+    }
 }
 
 .beat-chat li {
