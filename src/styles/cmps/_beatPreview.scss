@@ -6,8 +6,8 @@
         display: none
     }
     cursor: pointer;
-    padding: 10px;
-    padding-bottom: 0px;
+    padding: 0 10px;
+    // padding-bottom: 0px;
     &.prev-card:hover {
         background-color: #121212bf;
         .play-on-hover{
@@ -59,13 +59,15 @@
     width: 30px;
     .tones-prev1{
         width: 30px;
-        height: 30px;
+        height: 40px;
+        padding-bottom: 7px;
     }
-  
+    
     .tones-prev2{
         width: 30px;
-        height: 30px;
+        height: 40px;
         display: none;
+        padding-bottom: 7px;
     }
     
    
@@ -96,7 +98,7 @@
     &-container {
         border-top: 1px solid rgba(255, 255, 255, 0.178);
         width: 100%;
-        padding: 10px 0 2px;
+        // padding: 10px 0 2px;
     }
 }
 
@@ -135,12 +137,12 @@
     color: $logo;
     font-size: rem(13px);
     position: relative;
+    margin-top: 2px;
 }
 
 .prev-card:hover{
     .playing-now{
-
-        animation: move-text2 5s infinite !important;
+        animation: move-text2 7s infinite !important;
     }
     .tones-prev2{
         display: block;
