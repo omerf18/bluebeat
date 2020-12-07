@@ -50,10 +50,14 @@ export default {
       oldIndex: "",
       newIndex: "",
       isPlaying: false,
-      songs: null,
+      // songs: null,
     };
   },
-  computed: {},
+  computed: {
+    songs() {
+      return JSON.parse(JSON.stringify(this.currBeat.songs));
+    },
+  },
 
   methods: {
     onEnd(ev) {
@@ -68,9 +72,6 @@ export default {
       await this.$emit("changeSong", song);
       this.song = song;
     },
-  },
-  created() {
-    this.songs = JSON.parse(JSON.stringify(this.currBeat.songs));
   },
   components: {
     draggable,
