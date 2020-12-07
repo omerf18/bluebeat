@@ -87,13 +87,11 @@ export const beatStore = {
         setLike(state, { addLikedBeat }) {
             state.currBeat = addLikedBeat
         },
-
-
     },
     actions: {
         async dragSong({ commit, state }, { songs }) {
             let savedBeat = await songService.saveSongs(state.currBeat, songs);
-            commit({ type: 'setCurrBeat', savedBeat })
+            commit({ type: 'setCurrBeat', currBeat: savedBeat })
         },
         async removeSong({ commit, state }, { songId }) {
             await songService.removeSong(songId, state.currBeat);
@@ -135,7 +133,7 @@ export const beatStore = {
         async addBeat({ commit }, { beat }) {
             const savedBeat = await beatService.save(beat)
             commit({ type: 'addBeat', beat: savedBeat })
-            commit({ type: 'setCurrBeat', beat: savedBeat })
+            commit({ type: 'setCurrBeat', currBeat: savedBeat })
             return savedBeat
         },
         async setGenreFilter({ commit, dispatch }, { selectedGenre }) {

@@ -53,11 +53,7 @@ export default {
       songs: null,
     };
   },
-  computed: {
-    songs() {
-      return JSON.parse(JSON.stringify(this.currBeat.songs));
-    },
-  },
+  computed: {},
 
   methods: {
     onEnd(ev) {
@@ -74,7 +70,7 @@ export default {
     },
   },
   created() {
-    // this.songs = JSON.parse(JSON.stringify(this.currBeat.songs));
+    this.songs = JSON.parse(JSON.stringify(this.currBeat.songs));
   },
   components: {
     draggable,
