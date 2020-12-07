@@ -23,7 +23,7 @@
             alt=""
           />
           <img class="song-img" :src="song.imgUrl" />
-          <span class="song-title">{{ song.title.substring(0, 30) }}</span>
+          <span class="song-title">{{song.title.substring(0, 30)}}</span>
           <div class="flex align-center">
             <span class="song-dur">{{ song.duration }}</span>
             <i class="song-icon fas fa-sort"></i>
@@ -53,7 +53,9 @@ export default {
       songs: null,
     };
   },
-  computed: {},
+  computed: {
+
+  },
 
   methods: {
     onEnd(ev) {
@@ -71,6 +73,7 @@ export default {
   },
   created() {
     this.songs = JSON.parse(JSON.stringify(this.currBeat.songs));
+    console.log(this.songs);
   },
   components: {
     draggable,

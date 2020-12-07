@@ -24,6 +24,7 @@ export const beatStore = {
             if (!state.currBeat) return storageService.loadFromSession('currBeat')
             return state.currBeat
         },
+            
         searchedSongsForDisplay({ searchedSongs }) {
             return searchedSongs;
         },
