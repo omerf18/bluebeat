@@ -8,7 +8,7 @@
           class="song-container sortable flex space-between align-center icon"
           :class="{ active: song.id === currBeat.currSong.id }"
           :id="song.id"
-          @click="changeSong(song)"
+          @click.stop="changeSong(song)"
         >
           <img
             src="@/assets/img/preview.png"

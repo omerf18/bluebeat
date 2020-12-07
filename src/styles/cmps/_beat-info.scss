@@ -1,9 +1,8 @@
 .beat-info {
     background-color: $bgc2;
     margin-bottom: 10px;
-    // height: 90px;
     padding: 10px;
-border-radius: 8px;
+     border-radius: 8px;
 }
 
 .beat-info-imgs {
@@ -26,10 +25,6 @@ border-radius: 8px;
     span {
         font-size: rem(13px);
     }
-}
-
-.song-info {
-    width: 70%;
 }
 
 .beat-title {
@@ -61,25 +56,33 @@ border-radius: 8px;
 
 @include for-normal-layout{
     .beat-info {
-        height: 80px;
+        height: 100px;
     }
     .beat-description{
         display: none;
     }
     .views-container{
-        // flex-direction: row;
         i{
-            font-size: rem(10px);
+            font-size: rem(15px);
+        }
+        .beat-likes{
+            font-size: rem(14px);
+           margin-right: 5px;
+
         }
         span{
             font-size: rem(10px);
             font-family: ambitBold;
         }
+        a .copy-clipboard{
+            padding-right: 10px;
+        }
     }
+  
     .beat-info-imgs {
         .prev-img-details {
             width: 60px;
-            height: 60px;
+            // height: 60px;
         }
         .user-profile{
             span{

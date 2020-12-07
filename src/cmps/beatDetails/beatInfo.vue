@@ -28,7 +28,7 @@
     <div class="views-container flex col align-center space-between">
       <div class="flex space-around">
         <a
-          href="whatsapp://send?text= LOOK AT THIS BEAT!"
+             href= "whatsapp://send?text=LOOK AT THAT BEAT https://bluebeat.herokuapp.com/" 
           data-action="share/whatsapp/share"
           ><i class="copy-clipboard icon fab fa-whatsapp"></i
         ></a>

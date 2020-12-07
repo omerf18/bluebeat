@@ -21,30 +21,30 @@
      <marquee-text><span>Playing Now:<br></span>{{currBeat.currSong.title}}</marquee-text>
       </h2>
       <i
-        @click="switchSong(currBeat.currSong.id, -1)"
+        @click.stop="switchSong(currBeat.currSong.id, -1)"
         class="fas fa-backward"
       ></i>
       <i
         v-if="!playerVars.isPlaying"
-        @click="playOrPauseSong(true, false)"
+        @click.stop="playOrPauseSong(true, false)"
         class="fas fa-play"
       ></i>
       <i
         v-if="playerVars.isPlaying"
-        @click="playOrPauseSong(false, false)"
+        @click.stop="playOrPauseSong(false, false)"
         class="fas fa-pause"
       ></i>
       <i
-        @click="switchSong(currBeat.currSong.id, 1)"
+        @click.stop="switchSong(currBeat.currSong.id, 1)"
         class="fas fa-forward"
       ></i>
       <i
-        @click="shuffle"
+        @click.stop="shuffle"
         :class="{ active: playerVars.isShuffle }"
         class="fas fa-random"
       ></i>
       <i
-        @click="muteSound"
+        @click.stop="muteSound"
         :class="{ active: !playerVars.isMuted }"
         class="sound icon fas fa-volume-down"
       ></i>
@@ -53,7 +53,7 @@
         class="set-vol"
         type="range"
         min="0"
-        max="100"
+        max="10"
         v-model="playerVars.vol"
         @input="setVol"
       />
@@ -79,7 +79,7 @@ export default {
     return {
       playerVars: {
         autoplay: 1,
-        vol: 15,
+        vol: 5,
         time: null,
         isMuted: false,
         isPlaying: true,
