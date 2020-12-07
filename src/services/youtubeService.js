@@ -2,7 +2,7 @@ import axios from 'axios';
 import { utilService } from '../services/utilService.js'
 
 
-const API_KEY = 'AIzaSyC-N5so2icAp6xd1c2gQhlOkwez2J2LVZA';
+const API_KEY = 'AIzaSyAjomhb13MGxX40vmZRilGWxjt1y6rb42U';
 // AIzaSyA3xup2cQRDiG3SppVytqu-nSPdhxLSwmw
 // AIzaSyC-N5so2icAp6xd1c2gQhlOkwez2J2LVZA
 
