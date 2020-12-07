@@ -1,5 +1,5 @@
 <template>
-  <section v-if="currBeat.songs">
+  <section v-if="songs">
     <draggable ghost-class="ghost" @end="onEnd">
       <transition-group type="transition" name="flip-list">
         <div
@@ -23,7 +23,7 @@
             alt=""
           />
           <img class="song-img" :src="song.imgUrl" />
-          <span class="song-title">{{ song.title.substring(0, 30) }}</span>
+          <span class="song-title">{{song.title.substring(0, 30)}}</span>
           <div class="flex align-center">
             <span class="song-dur">{{ song.duration }}</span>
             <i class="song-icon fas fa-sort"></i>
@@ -50,11 +50,11 @@ export default {
       oldIndex: "",
       newIndex: "",
       isPlaying: false,
-      // songs: null,
     };
   },
   computed: {
     songs() {
+      console.log("cmp", this.currBeat.songs);
       return JSON.parse(JSON.stringify(this.currBeat.songs));
     },
   },

@@ -70,7 +70,7 @@ export default {
         type: "dragSong",
         songs,
       });
-      this.setCurrBeat(this.currBeat._id);
+      await this.setCurrBeat(this.currBeat._id);
       this.$socket.emit("beatChanged", this.currBeat);
     },
     async removeSong(songId) {

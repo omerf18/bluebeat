@@ -23,6 +23,7 @@ export const beatStore = {
             if (!state.currBeat) return storageService.loadFromSession('currBeat')
             return state.currBeat
         },
+            
         searchedSongsForDisplay({ searchedSongs }) {
             return searchedSongs;
         },
@@ -46,7 +47,6 @@ export const beatStore = {
             storageService.storeToSession('currBeat', currBeat)
         },
         addSong({ currBeat }, { newSong }) {
-            console.log('mutati', newSong);
             currBeat.songs.unshift(newSong);
         },
         removeSong({ currBeat }, { songId }) {
@@ -103,7 +103,6 @@ export const beatStore = {
         },
         async addSong({ commit, state }, { song }) {
             const newSong = await songService.addSong(song, state.currBeat);
-            console.log('mutati', newSong);
             commit({ type: 'addSong', newSong });
         },
         async setCurrSong({ commit, state }, { song }) {

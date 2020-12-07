@@ -11,7 +11,6 @@
     background-color: $bgc2;
     width: 30%;
     margin-left: 10px;
-    //    height: 65vh;
     .beat-msg > * {
         background-color: $logo;
         border-radius: 2px 7px 7px 7px;
@@ -71,7 +70,7 @@
         display: none;
         position: fixed;
         width: 70%;
-        height: 65vh;
+        height: 70vh;
         left: 15%;
         margin-left: 0;
         &.active {
