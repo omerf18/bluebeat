@@ -24,7 +24,6 @@
         padding: 0 10px;
         font-size: rem(12px);
         text-overflow: ellipsis; 
-
     }
 }
 
@@ -33,7 +32,6 @@
 }
 
 .song-img {
-    // width: 10%;
     height: 60%;
     padding: 0 4px;
     object-fit: cover;
@@ -50,7 +48,7 @@
     .song-icon {
         color: $font1;
         &.is-add {
-            color: blue;
+            color: $logo;
         }
     }
 }
@@ -86,6 +84,10 @@
     .beat-add.add-container {
         width: 100%;
         margin: 0;
+        margin-bottom: 10px;
+    }
+    .beat-playerlist-cmp {
+        // height: fit-content;
         margin-bottom: 10px;
     }
 }
