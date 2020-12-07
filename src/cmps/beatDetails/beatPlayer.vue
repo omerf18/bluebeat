@@ -79,7 +79,11 @@ export default {
     return {
       playerVars: {
         autoplay: 1,
+<<<<<<< HEAD
         vol: 5,
+=======
+        vol: 7,
+>>>>>>> 9dce4a677e9346776d05c3f912814e5447f18beb
         time: null,
         isMuted: false,
         isPlaying: true,

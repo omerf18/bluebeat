@@ -50,11 +50,11 @@ export default {
       oldIndex: "",
       newIndex: "",
       isPlaying: false,
-      // songs: null,
     };
   },
   computed: {
     songs() {
+      console.log("cmp", this.currBeat.songs);
       return JSON.parse(JSON.stringify(this.currBeat.songs));
     },
   },
