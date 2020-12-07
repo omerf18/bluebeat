@@ -53,7 +53,7 @@
         class="set-vol"
         type="range"
         min="0"
-        max="100"
+        max="10"
         v-model="playerVars.vol"
         @input="setVol"
       />
@@ -79,7 +79,7 @@ export default {
     return {
       playerVars: {
         autoplay: 1,
-        vol: 15,
+        vol: 7,
         time: null,
         isMuted: false,
         isPlaying: true,

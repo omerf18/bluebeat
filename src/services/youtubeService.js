@@ -13,7 +13,7 @@ export const youtubeService = {
 
 async function getSong(q) {
     if (!q) return null
-    const path = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=20&q=${q}&key=${API_KEY}`
+    const path = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${q}&key=${API_KEY}`
     try {
         const searchSongs = await axios.get(path)
         const youTubeIds = await searchSongs.data.items.map(song => song.id.videoId)
